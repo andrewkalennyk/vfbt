@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitizens extends Migration
+class CreateElectivePlot extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCitizens extends Migration
      */
     public function up()
     {
-        Schema::create('citizens', function (Blueprint $table) {
+        Schema::create('elective_plots', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('last_name');
-            $table->string('first_name');
-            $table->string('patronymic_name');
-            $table->string('phone', 64);
-            $table->date('date_birth');
+            $table->string('title');
+            $table->unsignedBigInteger('office_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('office_id')->references('id')->on('offices')->onDelete('set null');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateCitizens extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citizens');
+        Schema::dropIfExists('elective_plots');
     }
 }

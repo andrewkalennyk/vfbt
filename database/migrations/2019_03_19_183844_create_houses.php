@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCitizens extends Migration
+class CreateHouses extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,13 @@ class CreateCitizens extends Migration
      */
     public function up()
     {
-        Schema::create('citizens', function (Blueprint $table) {
+        Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('last_name');
-            $table->string('first_name');
-            $table->string('patronymic_name');
-            $table->string('phone', 64);
-            $table->date('date_birth');
+            $table->unsignedBigInteger('street_id')->nullable();
+            $table->string('title');
             $table->timestamps();
+
+            $table->foreign('street_id')->references('id')->on('streets')->onDelete('set null');
         });
     }
 
@@ -31,6 +30,6 @@ class CreateCitizens extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('citizens');
+        Schema::dropIfExists('houses');
     }
 }
