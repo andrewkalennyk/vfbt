@@ -26,6 +26,11 @@ class House extends Model
 
     public function citizens()
     {
-        return $this->belongsToMany('App\Models\Citizen','house_citizens')->withPivot('is_responsible');
+        return $this->belongsToMany('App\Models\Citizen','houses_citizens')->withPivot('citizen_status_id');
+    }
+
+    public function house_citizens()
+    {
+        return $this->hasMany('App\Models\HouseCitizen');
     }
 }

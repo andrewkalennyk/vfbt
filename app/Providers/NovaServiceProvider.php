@@ -2,13 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\HouseCitizen;
+use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
 use App\Nova\CitizensCategory;
 use App\Nova\CitizensStatus;
 use App\Nova\ElectivePlot;
 use App\Nova\House;
+use App\Nova\HousesCitizen;
 use App\Nova\Office;
 use App\Nova\Street;
+use App\Observers\HouseCitizensObserver;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -24,6 +28,10 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function boot()
     {
         parent::boot();
+
+        /*Nova::serving(function () {
+            HouseCitizen::observe(HouseCitizensObserver::class);
+        });*/
     }
 
     /**
@@ -77,7 +85,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Office::class,
             ElectivePlot::class,
             Street::class,
-            House::class
+            House::class,
+            HousesCitizen::class,
+            GeneralInfoCitizens::class
         ]);
     }
 

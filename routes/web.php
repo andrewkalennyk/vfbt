@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return redirect('/admin');
 });
+
+Route::get('/test', function () {
+    $houses = \App\Models\House::with('house_citizens')->get();
+
+    dd($houses);
+});

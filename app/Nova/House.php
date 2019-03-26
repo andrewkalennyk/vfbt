@@ -2,9 +2,13 @@
 
 namespace App\Nova;
 
+use App\Models\HouseCitizensFields;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -35,6 +39,10 @@ class House extends HandBookResource
                 ->rules('required', 'max:255'),
 
             BelongsTo::make('Street'),
+
+            //BelongsToMany::make('Citizen','citizens')->fields(new HouseCitizensFields())
+
+            HasMany::make('HousesCitizens', 'house_citizens')
         ];
     }
 

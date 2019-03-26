@@ -4,8 +4,56 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0687ab47d698bc60b28797f4fd25600",
+    "content-hash": "b2cc538404adca9c52c50175765fefe0",
     "packages": [
+        {
+            "name": "awesome-nova/dependent-filter",
+            "version": "v1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/awesome-nova/dependent-filter.git",
+                "reference": "848161d8a7451a7b12eb2631edda725a432b203b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/awesome-nova/dependent-filter/zipball/848161d8a7451a7b12eb2631edda725a432b203b",
+                "reference": "848161d8a7451a7b12eb2631edda725a432b203b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "AwesomeNova\\DependentFilterServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "AwesomeNova\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Dmytro Kulyk",
+                    "email": "lnkvisitor.ts@gmail.com"
+                }
+            ],
+            "description": "Dependent filters for Laravel Nova",
+            "keywords": [
+                "filter",
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-02-17T16:00:15+00:00"
+        },
         {
             "name": "cakephp/chronos",
             "version": "1.2.4",
