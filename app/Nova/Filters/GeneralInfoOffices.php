@@ -2,6 +2,7 @@
 
 namespace App\Nova\Filters;
 
+use Andrewkalennyk\CustomFilter\CustomFilter;
 use App\Models\Office;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;

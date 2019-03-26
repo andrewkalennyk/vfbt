@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class GeneralInfoCitizens extends Resource
 {
@@ -72,7 +73,9 @@ class GeneralInfoCitizens extends Resource
      */
     public function cards(Request $request)
     {
-        return [];
+        return [
+            new NovaBigFilter,
+        ];
     }
 
     /**
