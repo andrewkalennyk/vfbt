@@ -18,5 +18,5 @@ Route::get('/', function () {
 Route::get('/test', function () {
     $houses = \App\Models\House::with('house_citizens')->get();
 
-    dd($houses);
+    dr($houses);
 });

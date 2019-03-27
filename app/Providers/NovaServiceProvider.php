@@ -12,6 +12,7 @@ use App\Nova\House;
 use App\Nova\HousesCitizen;
 use App\Nova\Office;
 use App\Nova\Street;
+use App\Nova\Translations;
 use App\Observers\HouseCitizensObserver;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
@@ -87,7 +88,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Street::class,
             House::class,
             HousesCitizen::class,
-            GeneralInfoCitizens::class
+            GeneralInfoCitizens::class,
+            Translations::class,
         ]);
     }
 
