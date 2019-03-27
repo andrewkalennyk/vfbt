@@ -17,5 +17,8 @@ class CitizensStatus extends HandBookResource
 
     public static $displayInNavigation = true;
 
-
+    public static function label()
+    {
+        return 'Статус гражд.';
+    }
 }

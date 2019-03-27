@@ -37,6 +37,13 @@ class GeneralInfoCitizens extends Resource
         'id',
     ];
 
+    public static $group = 'Общая информация';
+
+    public static function label()
+    {
+        return 'Общая информация';
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

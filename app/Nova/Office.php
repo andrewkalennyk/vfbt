@@ -27,6 +27,11 @@ class Office extends Resource
 
     public static $group = 'Учет';
 
+    public static function label()
+    {
+        return 'Приемная коммиссия';
+    }
+
 
     public function title()
     {

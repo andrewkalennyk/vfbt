@@ -23,7 +23,12 @@ class House extends HandBookResource
 
     public static $group = 'Учет';
 
-    /**
+    public static function label()
+    {
+        return 'Дома';
+    }
+
+        /**
      * Get the fields displayed by the resource.
      *
      * @param  \Illuminate\Http\Request  $request

@@ -89,7 +89,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             House::class,
             HousesCitizen::class,
             GeneralInfoCitizens::class,
-            Translations::class,
+            //Translations::class,
         ]);
     }
 

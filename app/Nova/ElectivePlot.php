@@ -22,6 +22,11 @@ class ElectivePlot extends HandBookResource
 
     public static $displayInNavigation = true;
 
+    public static function label()
+    {
+        return 'Участки';
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

@@ -20,6 +20,11 @@ class Street extends HandBookResource
 
     public static $group = 'Учет';
 
+    public static function label()
+    {
+        return 'Улицы';
+    }
+
     /**
      * Get the fields displayed by the resource.
      *

@@ -18,4 +18,9 @@ class CitizensCategory extends HandBookResource
 
     public static $displayInNavigation = true;
 
+    public static function label()
+    {
+        return 'Категория гражд.';
+    }
+
 }

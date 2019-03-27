@@ -25,6 +25,11 @@ class HandBookResource extends Resource
      */
     public static $title = 'title';
 
+    public static function singularLabel()
+    {
+        return '';
+    }
+
     /**
      * The columns that should be searched.
      *
