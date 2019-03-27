@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Filters\Filter;
 
-class GeneralInfoElectivePlot extends Filter
+class GeneralInfoElectivePlot extends DependentFilter
 {
     /**
      * The filter's component.
@@ -17,6 +17,12 @@ class GeneralInfoElectivePlot extends Filter
      * @var string
      */
     public $component = 'select-filter';
+
+    public $name = 'Участок';
+
+    //public $attribute = 'elective_plot_id';
+
+    public $dependentOf = ['office_id'];
 
     /**
      * Apply the filter to the given query.
@@ -37,9 +43,8 @@ class GeneralInfoElectivePlot extends Filter
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function options(Request $request)
+    public function options(Request $request, array $filters = [])
     {
-        //Log::info(Input::all());
         return ElectivePlot::select('id','title')->pluck('id','title');
     }
 }

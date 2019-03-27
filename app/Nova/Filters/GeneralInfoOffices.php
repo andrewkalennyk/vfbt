@@ -4,11 +4,12 @@ namespace App\Nova\Filters;
 
 use Andrewkalennyk\CustomFilter\CustomFilter;
 use App\Models\Office;
+use AwesomeNova\Filters\DependentFilter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Filters\Filter;
 
-class GeneralInfoOffices extends Filter
+class GeneralInfoOffices extends DependentFilter
 {
     /**
      * The filter's component.
@@ -16,6 +17,10 @@ class GeneralInfoOffices extends Filter
      * @var string
      */
     public $component = 'select-filter';
+
+    public $name = 'Общественная приемная';
+
+    public $attribute = 'office_id';
 
     /**
      * Apply the filter to the given query.
@@ -38,7 +43,6 @@ class GeneralInfoOffices extends Filter
      */
     public function options(Request $request)
     {
-        $offices = Office::select('id','title')->pluck('id','title');
-        return $offices;
+        return Office::select('id','title')->pluck('id','title');
     }
 }

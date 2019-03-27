@@ -29,7 +29,7 @@ class Office extends Resource
 
     public static function label()
     {
-        return 'Приемная коммиссия';
+        return 'Общественная приемная';
     }
 
 
