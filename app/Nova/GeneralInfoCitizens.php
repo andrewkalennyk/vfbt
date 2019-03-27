@@ -2,8 +2,6 @@
 
 namespace App\Nova;
 
-use App\Nova\Filters\GeneralInfoElectivePlot;
-use App\Nova\Filters\GeneralInfoOffices;
 use AwesomeNova\Filters\DependentFilter;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -37,11 +35,16 @@ class GeneralInfoCitizens extends Resource
         'id',
     ];
 
-    public static $group = 'Общая информация';
+    public static $group = 'Загальна інформація';
+
+    public static function singularLabel()
+    {
+        return '';
+    }
 
     public static function label()
     {
-        return 'Общая информация';
+        return 'Загальна інформація';
     }
 
     /**
@@ -55,19 +58,19 @@ class GeneralInfoCitizens extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('Общественная приемная','office','App\Nova\Office'),
+            BelongsTo::make('Громадська приймальня','office','App\Nova\Office'),
 
-            BelongsTo::make('Участок', 'elective_plot','App\Nova\ElectivePlot'),
+            BelongsTo::make('Дільниця', 'elective_plot','App\Nova\ElectivePlot'),
 
-            BelongsTo::make('Улица','street','App\Nova\Street'),
+            BelongsTo::make('Вулиця','street','App\Nova\Street'),
 
-            BelongsTo::make('Дом','house','App\Nova\House'),
+            BelongsTo::make('Будинок','house','App\Nova\House'),
 
             Text::make(__('Квартира'),'flat_number')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Гражданин','citizen','App\Nova\Citizen'),
+            BelongsTo::make('Громадянин','citizen','App\Nova\Citizen'),
 
         ];
     }
@@ -81,7 +84,7 @@ class GeneralInfoCitizens extends Resource
     public function cards(Request $request)
     {
         return [
-            new NovaBigFilter,
+            (new NovaBigFilter)->setTitle(__('Filter Menux'))
         ];
     }
 
@@ -94,17 +97,31 @@ class GeneralInfoCitizens extends Resource
     public function filters(Request $request)
     {
         return [
-            DependentFilter::make('GeneralInfoOffices','office_id')
+            DependentFilter::make('Приймальня','office_id')
                 ->withOptions(function (Request $request, $filters) {
                     return \App\Models\Office::pluck('title', 'id');
                 }),
-
-            DependentFilter::make('GeneralInfoElectivePlot','elective_plot_id')
+            DependentFilter::make('Дільниця','elective_plot_id')
                 ->dependentOf('office_id')
                 ->withOptions(function (Request $request, $filters) {
                     return \App\Models\ElectivePlot::where('office_id', $filters['office_id'])
                         ->pluck('title', 'id');
-                }),
+                })
+                ->hideWhenEmpty(),
+            DependentFilter::make('Вулиця','street_id')
+                ->dependentOf('elective_plot_id')
+                ->withOptions(function (Request $request, $filters) {
+                    return \App\Models\Street::where('elective_plot_id', $filters['elective_plot_id'])
+                        ->pluck('title', 'id');
+                })
+                ->hideWhenEmpty(),
+            DependentFilter::make('Будинок','house_id')
+                ->dependentOf('street_id')
+                ->withOptions(function (Request $request, $filters) {
+                    return \App\Models\House::where('street_id', $filters['street_id'])
+                        ->pluck('title', 'id');
+                })
+                ->hideWhenEmpty(),
         ];
     }
 
