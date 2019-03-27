@@ -10,6 +10,7 @@ use App\Nova\CitizensStatus;
 use App\Nova\ElectivePlot;
 use App\Nova\House;
 use App\Nova\HousesCitizen;
+use App\Nova\Metrics\CitizenCount;
 use App\Nova\Office;
 use App\Nova\Street;
 use App\Nova\Translations;
@@ -72,7 +73,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new Help,
+            new CitizenCount(),
         ];
     }
 

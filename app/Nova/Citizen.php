@@ -84,9 +84,9 @@ class Citizen extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('CitizensCategory','citizens_category'),
+            BelongsTo::make('Категория','citizens_category','App\Nova\CitizensCategory'),
 
-            Text::make(__('# cert'),'certificate_number')
+            Text::make(__('# посв'),'certificate_number')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
