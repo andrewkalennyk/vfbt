@@ -18,13 +18,13 @@ class ElectivePlot extends HandBookResource
      */
     public static $model = 'App\Models\ElectivePlot';
 
-    public static $group = 'Учет';
+    public static $group = 'Облік';
 
     public static $displayInNavigation = true;
 
     public static function label()
     {
-        return 'Участки';
+        return 'Дільниці';
     }
 
     /**
@@ -38,13 +38,13 @@ class ElectivePlot extends HandBookResource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Название'),'title')
+            Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Office'),
+            BelongsTo::make(__('Громадська приймальня'), 'office','App\Nova\Office'),
 
-            HasMany::make('Street','streets')
+            HasMany::make(__('Вулиці'),'streets','App\Nova\Street')
         ];
     }
 

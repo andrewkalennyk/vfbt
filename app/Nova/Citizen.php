@@ -20,16 +20,16 @@ class Citizen extends Resource
      */
     public static $model = 'App\Models\Citizen';
 
-    public static $group = 'Учет';
+    public static $group = 'Облік';
 
     public static function label()
     {
-        return 'Граждане';
+        return 'Громадяни';
     }
 
     public static function singularLabel()
     {
-        return 'гражданина';
+        return '';
     }
 
     /**

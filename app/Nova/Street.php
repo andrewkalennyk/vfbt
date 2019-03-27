@@ -18,11 +18,11 @@ class Street extends HandBookResource
      */
     public static $model = 'App\Models\Street';
 
-    public static $group = 'Учет';
+    public static $group = 'Облік';
 
     public static function label()
     {
-        return 'Улицы';
+        return 'Вулиці';
     }
 
     /**
@@ -36,13 +36,13 @@ class Street extends HandBookResource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Название'),'title')
+            Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('ElectivePlot', 'elective_plot'),
+            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot'),
 
-            HasMany::make('House', 'houses')
+            HasMany::make(__('Будинки'), 'houses', 'App\Nova\House')
         ];
     }
 

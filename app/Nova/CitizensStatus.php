@@ -19,6 +19,6 @@ class CitizensStatus extends HandBookResource
 
     public static function label()
     {
-        return 'Статус гражд.';
+        return 'Статус громадянина';
     }
 }

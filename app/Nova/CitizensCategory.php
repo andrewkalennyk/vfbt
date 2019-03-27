@@ -20,7 +20,7 @@ class CitizensCategory extends HandBookResource
 
     public static function label()
     {
-        return 'Категория гражд.';
+        return 'Категорія громадянина';
     }
 
 }

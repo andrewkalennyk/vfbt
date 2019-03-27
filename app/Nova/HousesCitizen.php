@@ -26,6 +26,11 @@ class HousesCitizen extends Resource
      */
     public static $title = 'id';
 
+    public static function singularLabel()
+    {
+        return '';
+    }
+
     /**
      * The columns that should be searched.
      *
@@ -46,15 +51,15 @@ class HousesCitizen extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make('House'),
+            BelongsTo::make(__('Будинок') , 'house','App\Nova\House'),
 
             Text::make(__('Квартира'),'flat_number')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Citizen'),
+            BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen'),
 
-            BelongsTo::make('CitizensStatus','citizen_status')->nullable(),
+            BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),
 
         ];
     }

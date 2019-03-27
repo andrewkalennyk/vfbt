@@ -21,11 +21,11 @@ class House extends HandBookResource
      */
     public static $model = 'App\Models\House';
 
-    public static $group = 'Учет';
+    public static $group = 'Облік';
 
     public static function label()
     {
-        return 'Дома';
+        return 'Будинки';
     }
 
         /**
@@ -39,15 +39,15 @@ class House extends HandBookResource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Название'),'title')
+            Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Street'),
+            BelongsTo::make(__('Вулиця'),'street','App\Nova\Street'),
 
             //BelongsToMany::make('Citizen','citizens')->fields(new HouseCitizensFields())
 
-            HasMany::make('HousesCitizens', 'house_citizens')
+            HasMany::make(__(''),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
         ];
     }
 

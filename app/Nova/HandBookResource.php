@@ -16,7 +16,7 @@ class HandBookResource extends Resource
      */
     public static $model = 'App\Models\CitizensStatus';
 
-    public static $group = 'Справочники';
+    public static $group = 'Довідники';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -50,7 +50,7 @@ class HandBookResource extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Название'),'title')
+            Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
         ];

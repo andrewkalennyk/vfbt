@@ -25,11 +25,11 @@ class Office extends Resource
      */
     public static $title = 'title';
 
-    public static $group = 'Учет';
+    public static $group = 'Облік';
 
     public static function label()
     {
-        return 'Общественная приемная';
+        return 'Громадська приймальня';
     }
 
 
@@ -58,7 +58,7 @@ class Office extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Название приемной комисси'), 'title')
+            Text::make(__('Назва'), 'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
@@ -66,11 +66,11 @@ class Office extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make(__('Адресс'), 'address')
+            Text::make(__('Адреса'), 'address')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            HasMany::make('ElectivePlot', 'elective_plots')
+            HasMany::make(__('Дільниці'), 'elective_plots','App\Nova\ElectivePlot')
         ];
     }
 
