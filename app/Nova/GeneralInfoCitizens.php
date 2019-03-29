@@ -12,6 +12,14 @@ use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class GeneralInfoCitizens extends Resource
 {
+
+    public static $searchRelations = [
+        'office' => ['title','number', 'address'],
+        'elective_plot' => ['title'],
+        'street' => ['title'],
+        'house' => ['title'],
+        'citizen' => ['last_name','first_name', 'patronymic_name'],
+    ];
     /**
      * The model the resource corresponds to.
      *
@@ -32,7 +40,7 @@ class GeneralInfoCitizens extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id', 'flat_number',
     ];
 
     public static $group = 'Загальна інформація';
@@ -70,7 +78,7 @@ class GeneralInfoCitizens extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make('Громадянин','citizen','App\Nova\Citizen'),
+            BelongsTo::make('Громадянин','citizen','App\Nova\Citizen')->searchable(),
 
         ];
     }

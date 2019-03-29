@@ -57,7 +57,7 @@ class HousesCitizen extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen'),
+            BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
 
             BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),
 

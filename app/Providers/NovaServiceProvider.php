@@ -15,6 +15,7 @@ use App\Nova\Office;
 use App\Nova\Street;
 use App\Nova\Translations;
 use App\Observers\HouseCitizensObserver;
+use Joedixon\NovaTranslation\NovaTranslation;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
@@ -101,7 +102,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
      */
     public function tools()
     {
-        return [];
+        return [
+            //фnew NovaTranslation,
+        ];
     }
 
     /**
@@ -113,4 +116,5 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         //
     }
+
 }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ffb73088a4818a6d17b1c8e1eabc265c",
+    "content-hash": "0ed030c58e34306e828fd3b814aaffac",
     "packages": [
         {
             "name": "awesome-nova/dependent-filter",
@@ -603,93 +603,6 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
-        },
-        {
-            "name": "joedixon/laravel-translation",
-            "version": "v0.1.4",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joedixon/laravel-translation.git",
-                "reference": "4cb940576277aa37afc2189863c05c584bc9b7b8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joedixon/laravel-translation/zipball/4cb940576277aa37afc2189863c05c584bc9b7b8",
-                "reference": "4cb940576277aa37afc2189863c05c584bc9b7b8",
-                "shasum": ""
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0.0",
-                "orchestra/testbench": "^3.6",
-                "phpunit/phpunit": "^7.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "JoeDixon\\Translation\\TranslationServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "JoeDixon\\Translation\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Joe Dixon",
-                    "email": "hello@joedixon.co.uk"
-                }
-            ],
-            "description": "A tool for managing all of your Laravel translations",
-            "time": "2019-02-12T10:20:22+00:00"
-        },
-        {
-            "name": "joedixon/nova-translation",
-            "version": "v0.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/joedixon/nova-translation.git",
-                "reference": "62d36e4838de1fc84dd509cdc2b8793ebca96da0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/joedixon/nova-translation/zipball/62d36e4838de1fc84dd509cdc2b8793ebca96da0",
-                "reference": "62d36e4838de1fc84dd509cdc2b8793ebca96da0",
-                "shasum": ""
-            },
-            "require": {
-                "joedixon/laravel-translation": "^0.1.0",
-                "php": ">=7.1.0"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Joedixon\\NovaTranslation\\ToolServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Joedixon\\NovaTranslation\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "A Laravel Nova tool.",
-            "keywords": [
-                "laravel",
-                "nova"
-            ],
-            "time": "2019-01-03T21:02:26+00:00"
         },
         {
             "name": "laravel/framework",
@@ -3069,6 +2982,42 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2017-11-27T11:13:29+00:00"
+        },
+        {
+            "name": "titasgailius/search-relations",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TitasGailius/nova-search-relations.git",
+                "reference": "1e7408a678b9258537cb15ceb58a56016501243a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TitasGailius/nova-search-relations/zipball/1e7408a678b9258537cb15ceb58a56016501243a",
+                "reference": "1e7408a678b9258537cb15ceb58a56016501243a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Titasgailius\\SearchRelations\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova",
+                "relations",
+                "search"
+            ],
+            "time": "2018-12-18T18:06:27+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

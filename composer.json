@@ -12,12 +12,12 @@
         "awesome-nova/dependent-filter": "^1.1",
         "coderello/laravel-nova-lang": "^1.0",
         "fideloper/proxy": "^4.0",
-        "joedixon/nova-translation": "^0.1.1",
         "laravel/framework": "5.8.*",
         "laravel/nova": "*",
         "laravel/tinker": "^1.0",
         "nrml-co/nova-big-filter": "^1.0",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "titasgailius/search-relations": "^1.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

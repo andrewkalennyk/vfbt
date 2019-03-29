@@ -4,6 +4,7 @@ namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
@@ -78,7 +79,8 @@ class Citizen extends Resource
             Date::make(__('Дата Рождения'), 'date_birth')
                 ->displayUsing(function ($date) {
                     return $date->format('d-m-Y');
-                }),
+                })
+                ->hideFromIndex(),
 
             Text::make(__('Телефон'),'phone')
                 ->sortable()
@@ -88,7 +90,12 @@ class Citizen extends Resource
 
             Text::make(__('# посв'),'certificate_number')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
+
+            Boolean::make(__('Black list'), 'is_in_black')
+                ->trueValue(1)
+                ->falseValue(0)
 
             //BelongsToMany::make('Promotion','promotions')
         ];
