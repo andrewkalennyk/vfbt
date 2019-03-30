@@ -96,6 +96,7 @@ class Citizen extends Resource
             Boolean::make(__('Black list'), 'is_in_black')
                 ->trueValue(1)
                 ->falseValue(0)
+                ->hideFromIndex(),
 
             //BelongsToMany::make('Promotion','promotions')
         ];
