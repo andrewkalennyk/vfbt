@@ -16,6 +16,7 @@ class House extends Model
     protected $table = 'houses';
 
     protected $fillable = [
+        'street_id',
         'title'
     ];
 

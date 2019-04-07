@@ -15,6 +15,8 @@ Route::get('/', function () {
     return redirect('/admin');
 });
 
+Route::post('/import-general-info','Backend\ImportInfoController@doImport');
+
 Route::get('/test', function () {
     $houses = \App\Models\House::with('house_citizens')->get();
 

@@ -9,7 +9,9 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "build-custom-filter": "cd nova-components/CustomFilter && npm run dev",
-        "build-custom-filter-prod": "cd nova-components/CustomFilter && npm run prod"
+        "build-custom-filter-prod": "cd nova-components/CustomFilter && npm run prod",
+        "build-import-files": "cd nova-components/ImportFiles && npm run dev",
+        "build-import-files-prod": "cd nova-components/ImportFiles && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",

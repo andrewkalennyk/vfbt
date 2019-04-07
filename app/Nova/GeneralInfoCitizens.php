@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Annyk\ImportFiles\ImportFiles;
 use AwesomeNova\Filters\DependentFilter;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -92,7 +93,8 @@ class GeneralInfoCitizens extends Resource
     public function cards(Request $request)
     {
         return [
-            (new NovaBigFilter)->setTitle(__('Filter Menux'))
+            (new NovaBigFilter)->setTitle(__('Filter Menux')),
+            new ImportFiles()
         ];
     }
 

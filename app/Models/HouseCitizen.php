@@ -16,7 +16,10 @@ class HouseCitizen extends Model
     protected $table = 'houses_citizens';
 
     protected $fillable = [
-        'house_id','citizen_id','citizen_status_id'
+        'house_id',
+        'citizen_id',
+        'citizen_status_id',
+        'flat_number'
     ];
 
     public function citizen()

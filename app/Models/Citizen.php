@@ -16,7 +16,13 @@ class Citizen extends Model
     protected $table = 'citizens';
 
     protected $fillable = [
-        'title','date_birth'
+        'citizens_category_id',
+        'last_name',
+        'first_name',
+        'patronymic_name',
+        'phone',
+        'certificate_number',
+        'date_birth'
     ];
 
     protected $casts = [
@@ -31,6 +37,22 @@ class Citizen extends Model
     public function citizens_category()
     {
         return $this->BelongsTo('App\Models\CitizensCategory');
+    }
+
+    public static function importCitizen($item) {
+        return Citizen::updateOrCreate(
+            [
+                'last_name' => $item['prizvishche'],
+                'first_name' => $item['imya'],
+                'patronymic_name' => $item['po_batkovi'],
+                'phone' => $item['telefon']
+            ],
+            [
+                'citizens_category_id' => $item['kat'],
+                'certificate_number' => $item['posv'],
+                //'date_birth' => $item['prizvishche'],
+            ]
+        );
     }
 
     /*public function house()
