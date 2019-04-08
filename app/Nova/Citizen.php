@@ -41,7 +41,8 @@ class Citizen extends Resource
 
     public function title()
     {
-        return $this->last_name . ' ' . $this->first_name . ' '. $this->patronymic_name;
+        $blacklist = $this->is_in_black == 1 ? ' (УВАГА)' : '';
+        return $this->last_name . ' ' . $this->first_name . ' '. $this->patronymic_name . $blacklist;
     }
 
     /**

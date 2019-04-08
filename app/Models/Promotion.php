@@ -25,8 +25,8 @@ class Promotion extends Model
     ];
 
 
-    /*public function citizens()
+    public function citizens()
     {
-        return $this->belongsToMany('App\Models\Citizen','citizens_promotions');
-    }*/
+        return $this->belongsToMany('App\Models\Citizen', 'citizens_promotions');
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Date;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -48,7 +49,7 @@ class Promotion extends Resource
     {
         return '';
     }
-    
+
     public static function label()
     {
         return 'Акції';
@@ -74,6 +75,7 @@ class Promotion extends Resource
                     return $date->format('d-m-Y');
                 }),
 
+            BelongsToMany::make(__('Громадяни'),'citizens','App\Nova\Citizen')->searchable()
         ];
     }
 
