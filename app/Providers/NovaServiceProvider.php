@@ -12,6 +12,7 @@ use App\Nova\House;
 use App\Nova\HousesCitizen;
 use App\Nova\Metrics\CitizenCount;
 use App\Nova\Office;
+use App\Nova\Promotion;
 use App\Nova\Street;
 use App\Nova\Translations;
 use App\Observers\HouseCitizensObserver;
@@ -91,6 +92,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             House::class,
             HousesCitizen::class,
             GeneralInfoCitizens::class,
+            Promotion::class,
             //Translations::class,
         ]);
     }
@@ -103,7 +105,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            //фnew NovaTranslation,
+            //new NovaTranslation,
         ];
     }
 

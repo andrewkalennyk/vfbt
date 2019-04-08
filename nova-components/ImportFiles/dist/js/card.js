@@ -284,6 +284,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['card'],
@@ -335,7 +345,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         }
     },
-
     mounted: function mounted() {
         //
     },
@@ -369,9 +378,14 @@ var render = function() {
     { staticClass: "flex flex-col items-center justify-center" },
     [
       _c("div", { staticClass: "px-3 py-3" }, [
-        _c("h1", { staticClass: "text-center text-3xl text-80 font-light" }, [
-          _vm._v("Import " + _vm._s(this.card.resourceLabel))
-        ]),
+        _c(
+          "div",
+          {
+            staticClass:
+              "py-2 w-full block text-xs uppercase tracking-wide text-center text-80 dim font-bold focus:outline-none"
+          },
+          [_vm._v("\n            Імпорт Людей\n        ")]
+        ),
         _vm._v(" "),
         _c(
           "form",

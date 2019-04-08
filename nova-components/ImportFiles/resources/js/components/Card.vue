@@ -1,7 +1,9 @@
 <template>
     <card class="flex flex-col items-center justify-center">
         <div class="px-3 py-3">
-            <h1 class="text-center text-3xl text-80 font-light">Import {{this.card.resourceLabel}}</h1>
+            <div class="py-2 w-full block text-xs uppercase tracking-wide text-center text-80 dim font-bold focus:outline-none">
+                Імпорт Людей
+            </div>
             <form @submit.prevent="processImport" ref="form">
                 <div class="py-4">
                     <span class="form-file mr-4">
@@ -38,6 +40,14 @@
                 </div>
             </form>
         </div>
+        <!--<div class="px-3 py-3">
+            <div class="py-2 w-full block text-xs uppercase tracking-wide text-center text-80 dim font-bold focus:outline-none">
+                Експорт регіональних довідників
+            </div>
+            <a href="" class="btn btn-default btn-primary">
+                Створити
+            </a>
+        </div>-->
     </card>
 </template>
 
@@ -94,8 +104,6 @@ export default {
                 });
         },
     },
-
-
     mounted() {
         //
     },
