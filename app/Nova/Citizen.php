@@ -100,7 +100,7 @@ class Citizen extends Resource
                 ->falseValue(0)
                 ->hideFromIndex(),
 
-            //BelongsToMany::make('Promotion','promotions')
+            BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion')
         ];
     }
 
