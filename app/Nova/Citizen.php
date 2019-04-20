@@ -100,7 +100,11 @@ class Citizen extends Resource
                 ->falseValue(0)
                 ->hideFromIndex(),
 
-            BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion')
+            HasOne::make(__('Будинок'),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false),
+
+            BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion'),
+
+
         ];
     }
 

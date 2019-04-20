@@ -34,4 +34,9 @@ class House extends Model
     {
         return $this->hasMany('App\Models\HouseCitizen');
     }
+
+    public function elective_plot()
+    {
+        return $this->belongsTo('App\Models\ElectivePlot');
+    }
 }

@@ -39,6 +39,11 @@ class Citizen extends Model
         return $this->BelongsTo('App\Models\CitizensCategory');
     }
 
+    public function house_citizens()
+    {
+        return $this->hasOne('App\Models\HouseCitizen');
+    }
+
     public static function importCitizen($item) {
         return Citizen::updateOrCreate(
             [
@@ -54,6 +59,7 @@ class Citizen extends Model
             ]
         );
     }
+
 
     /*public function house()
     {

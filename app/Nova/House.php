@@ -45,6 +45,8 @@ class House extends HandBookResource
 
             BelongsTo::make(__('Вулиця'),'street','App\Nova\Street'),
 
+            BelongsTo::make(__('Дільниця'),'elective_plot','App\Nova\ElectivePlot'),
+
             //BelongsToMany::make('Citizen','citizens')->fields(new HouseCitizensFields())
 
             HasMany::make(__(''),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
