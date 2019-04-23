@@ -8,15 +8,29 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Office extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'offices';
 
     protected $fillable = [
         'title'
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'title' => 'Назва',
+            'number' => 'Номер',
+            'address' => 'Адреса',
+        ],
+        'name' => 'Громадська приймальня',
+        'slug' => 'offices'
     ];
 
     public function elective_plots()

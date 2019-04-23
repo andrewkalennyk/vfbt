@@ -18,7 +18,7 @@ Route::get('/', function () {
 Route::post('/import-general-info','Backend\ImportInfoController@doImport');
 
 Route::get('/test', function () {
-    $houses = \App\Models\House::with('house_citizens')->get();
+    $revision = \App\Models\Revision::with('user')->get();
 
-    dr($houses);
+    dr($revision);
 });

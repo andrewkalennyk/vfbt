@@ -8,11 +8,14 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Promotion extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'promotions';
 
     protected $fillable = [
@@ -22,6 +25,18 @@ class Promotion extends Model
     protected $casts = [
         'start_date' => 'date',
         'finish_date' => 'date',
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'title' => 'Назва',
+            'start_date' => 'Дата старту',
+            'finish_date' => 'Дата фінішу',
+            'description' => 'Опис',
+        ],
+        'name' => 'Акції',
+        'slug' => 'promotions'
     ];
 
 

@@ -8,11 +8,14 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Citizen extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'citizens';
 
     protected $fillable = [
@@ -27,6 +30,21 @@ class Citizen extends Model
 
     protected $casts = [
         'date_birth' => 'date',
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'citizens_category_id' => 'Категорія',
+            'last_name' => 'Прізвище',
+            'first_name' => "Ім'я",
+            'patronymic_name' => 'По батькові',
+            'phone' => 'Телефон',
+            'certificate_number' => '# посв',
+            'date_birth' => 'Дата народження'
+        ],
+        'name' => 'Громадяни',
+        'slug' => 'citizens'
     ];
 
     public function promotions()
@@ -59,11 +77,5 @@ class Citizen extends Model
             ]
         );
     }
-
-
-    /*public function house()
-    {
-        return $this->belongsToMany('App\Models\Citizen','citizens_promotions');
-    }*/
 
 }

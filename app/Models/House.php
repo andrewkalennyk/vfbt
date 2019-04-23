@@ -8,16 +8,30 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class House extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'houses';
 
     protected $fillable = [
         'street_id',
         'title'
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'title' => 'Назва',
+            'street_id' => 'ID Вулиці',
+            'elective_plot_id' => 'ID Дільниці',
+        ],
+        'name' => 'Будинки',
+        'slug' => 'houses'
     ];
 
     public function street()

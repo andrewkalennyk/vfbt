@@ -15,7 +15,7 @@ class User extends Resource
      *
      * @var string
      */
-    public static $model = 'App\\User';
+    public static $model = 'App\Models\User';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -32,6 +32,13 @@ class User extends Resource
     public static $search = [
         'id', 'name', 'email',
     ];
+
+    public static $group = 'Користувачі';
+
+    public static function label()
+    {
+        return 'Користувачі';
+    }
 
     /**
      * Get the fields displayed by the resource.

@@ -8,11 +8,14 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class HouseCitizen extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'houses_citizens';
 
     protected $fillable = [
@@ -20,6 +23,18 @@ class HouseCitizen extends Model
         'citizen_id',
         'citizen_status_id',
         'flat_number'
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'house_id' => 'id Дому',
+            'citizen_id' => 'id Громадянина',
+            'citizen_status_id' => 'Статус',
+            'flat_number' => 'Квартира',
+        ],
+        'name' => 'Привязка громадянина до дому',
+        'slug' => 'houses-citizens'
     ];
 
     public function citizen()

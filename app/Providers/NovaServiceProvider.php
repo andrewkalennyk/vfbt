@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\HouseCitizen;
 use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
 use App\Nova\CitizensCategory;
@@ -13,9 +12,9 @@ use App\Nova\HousesCitizen;
 use App\Nova\Metrics\CitizenCount;
 use App\Nova\Office;
 use App\Nova\Promotion;
+use App\Nova\Revision;
 use App\Nova\Street;
-use App\Nova\Translations;
-use App\Observers\HouseCitizensObserver;
+use App\Nova\User;
 use Joedixon\NovaTranslation\NovaTranslation;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
@@ -93,6 +92,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             HousesCitizen::class,
             GeneralInfoCitizens::class,
             Promotion::class,
+            Revision::class,
+            User::class,
             //Translations::class,
         ]);
     }
