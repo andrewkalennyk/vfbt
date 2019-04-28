@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Models\CitizenPromotion;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -103,7 +104,6 @@ class Citizen extends Resource
             HasOne::make(__('Будинок'),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false),
 
             BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion'),
-
 
         ];
     }

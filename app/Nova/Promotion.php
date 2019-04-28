@@ -75,7 +75,8 @@ class Promotion extends Resource
                     return $date->format('d-m-Y');
                 }),
 
-            BelongsToMany::make(__('Громадяни'),'citizens','App\Nova\Citizen')->searchable()
+            BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen')
+                ->searchable()
         ];
     }
 

@@ -8,8 +8,11 @@
 
 namespace App\Models;
 
+use App\Models\Pivots\CitizenPromotion;
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Facades\Log;
 
 
 class Citizen extends Model
@@ -47,10 +50,11 @@ class Citizen extends Model
         'slug' => 'citizens'
     ];
 
-    public function promotions()
+    /*public function promotions()
     {
-        return $this->belongsToMany('App\Models\Promotion','citizens_promotions');
-    }
+        return $this->belongsToMany('App\Models\Promotion','citizens_promotions')
+            ->using(CitizenPromotion::class);
+    }*/
 
     public function citizens_category()
     {
@@ -76,6 +80,15 @@ class Citizen extends Model
                 //'date_birth' => $item['prizvishche'],
             ]
         );
+    }
+
+    public function promotions(): BelongsToMany
+    {
+        return $this->belongsToMany(Promotion::class,
+            'citizens_promotions',
+            'citizen_id',
+            'promotion_id')
+            ->using(CitizenPromotion::class);
     }
 
 }

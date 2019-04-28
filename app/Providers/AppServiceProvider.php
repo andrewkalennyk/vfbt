@@ -2,11 +2,10 @@
 
 namespace App\Providers;
 
-use App\Models\Citizen;
 use App\Models\HouseCitizen;
-use App\Observers\EventObserver;
+use App\Models\Pivots\CitizenPromotion;
+use App\Observers\CitizenPromotionsObserver;
 use App\Observers\HouseCitizensObserver;
-use App\Traits\RevisionMaker;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -29,6 +28,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
        HouseCitizen::observe(HouseCitizensObserver::class);
-       Citizen::observe(EventObserver::class);
+       CitizenPromotion::observe(CitizenPromotionsObserver::class);
     }
 }

@@ -3,11 +3,13 @@
 namespace App\Traits;
 
 use App\Models\Revision;
+use Fico7489\Laravel\Pivot\Traits\PivotEventTrait;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 trait RevisionMaker
 {
-    use PrepareInfo;
+    use PrepareInfo, PivotEventTrait;
 
     public static function bootRevisionMaker()
     {

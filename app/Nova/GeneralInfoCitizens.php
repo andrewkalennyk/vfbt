@@ -3,8 +3,10 @@
 namespace App\Nova;
 
 use Annyk\ImportFiles\ImportFiles;
+use App\Nova\Filters\GeneralInfoPromotions;
 use AwesomeNova\Filters\DependentFilter;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -81,6 +83,8 @@ class GeneralInfoCitizens extends Resource
 
             BelongsTo::make('Громадянин','citizen','App\Nova\Citizen')->searchable(),
 
+            BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion'),
+
         ];
     }
 
@@ -132,6 +136,8 @@ class GeneralInfoCitizens extends Resource
                         ->pluck('title', 'id');
                 })
                 ->hideWhenEmpty(),
+
+            new GeneralInfoPromotions,
         ];
     }
 

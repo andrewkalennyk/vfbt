@@ -8,8 +8,10 @@
 
 namespace App\Models;
 
+use App\Models\Pivots\CitizenPromotion;
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
 class Promotion extends Model
@@ -42,6 +44,15 @@ class Promotion extends Model
 
     public function citizens()
     {
-        return $this->belongsToMany('App\Models\Citizen', 'citizens_promotions');
+        return $this->belongsToMany('App\Models\Citizen', 'citizens_promotions')
+            ->using(CitizenPromotion::class);
     }
+
+    /*public function citizens(): BelongsToMany
+    {
+        return $this->belongsToMany(Citizen::class,
+            'citizen_id',
+            'promotion_id')
+            ->using(CitizenPromotion::class);
+    }*/
 }

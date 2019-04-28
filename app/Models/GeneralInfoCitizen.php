@@ -44,4 +44,14 @@ class GeneralInfoCitizen extends Model
         return $this->BelongsTo('App\Models\Citizen');
     }
 
+    public function promotions()
+    {
+        return $this->belongsToMany('App\Models\Promotion','general_info_citizens_promotions');
+    }
+
+    public function scopeByCitizen($query, $id)
+    {
+        return $query->where('citizen_id', $id);
+    }
+
 }
