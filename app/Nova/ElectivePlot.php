@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Markdown;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -42,9 +43,18 @@ class ElectivePlot extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Markdown::make(__('Додаткова інформація'), 'description')->alwaysShow(),
+
             BelongsTo::make(__('Громадська приймальня'), 'office','App\Nova\Office'),
 
             HasMany::make(__('Вулиці'),'streets','App\Nova\Street')
+        ];
+    }
+
+    public function cards(Request $request)
+    {
+        return [
+            (new Metrics\ElectivePlotCitizens())->onlyOnDetail(),
         ];
     }
 

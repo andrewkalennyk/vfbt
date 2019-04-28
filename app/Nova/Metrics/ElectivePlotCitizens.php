@@ -2,25 +2,27 @@
 
 namespace App\Nova\Metrics;
 
-use App\Models\Citizen;
+use App\Models\GeneralInfoCitizen;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Laravel\Nova\Metrics\Value;
 
-class CitizenCount extends Value
+class ElectivePlotCitizens extends Value
 {
+    public function name()
+    {
+        return __('Кількість громадян');
+    }
+
     /**
      * Calculate the value of the metric.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
-
-
-
-
     public function calculate(Request $request)
     {
-        return $this->count($request, Citizen::class);
+        return $this->count($request, GeneralInfoCitizen::where('elective_plot_id', $request->resourceId));
     }
 
     /**
@@ -31,9 +33,9 @@ class CitizenCount extends Value
     public function ranges()
     {
         return [
-            30 => '30 Days',
-            60 => '60 Days',
-            365 => '365 Days',
+            30 => '30 днів',
+            60 => '60 днів',
+            365 => '365 днів',
         ];
     }
 
@@ -54,6 +56,6 @@ class CitizenCount extends Value
      */
     public function uriKey()
     {
-        return 'citizen-count';
+        return 'elective-plot-citizens';
     }
 }
