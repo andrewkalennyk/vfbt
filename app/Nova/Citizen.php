@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Models\CitizenPromotion;
+use App\Models\GeneralInfoCitizen;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -101,7 +102,10 @@ class Citizen extends Resource
                 ->falseValue(0)
                 ->hideFromIndex(),
 
-            HasOne::make(__('Будинок'),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false),
+            HasOne::make(__('Будинок'),'house_citizens', 'App\Nova\HousesCitizen')->canSee(function () {
+                $user = \request()->user();
+                return ($user->isSuperAdmin() || $user->isCoordinator()) ? true : false;
+            }),
 
             BelongsToMany::make(__('Акції'),'promotions','App\Nova\Promotion'),
 
@@ -150,5 +154,19 @@ class Citizen extends Resource
     public function actions(Request $request)
     {
         return [];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+        if ($user->isCoordinator()) {
+            $generalInfo = GeneralInfoCitizen::all();
+            $userIds = self::$model::whereNotIn('id', $generalInfo->pluck('citizen_id'))->pluck('id');
+            $usersOfficeIds = $generalInfo->where('office_id', $user->getCoordinatorsOfficeId())->pluck('citizen_id');
+            $ids = $userIds->merge($usersOfficeIds);
+            $query = $query->whereIn('id', $ids);
+        }
+
+        return $query;
     }
 }

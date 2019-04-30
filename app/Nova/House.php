@@ -53,47 +53,16 @@ class House extends HandBookResource
         ];
     }
 
-    /**
-     * Get the cards available for the request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function cards(Request $request)
+    public static function indexQuery(NovaRequest $request, $query)
     {
-        return [];
-    }
+        $user = $request->user();
+        if ($user->isCoordinator()) {
+            $electivePlot = \App\Models\ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
+                ->pluck('id');
+            $streets = \App\Models\Street::where('elective_plot_id', $electivePlot)->pluck('id');
+            $query = $query->where('street_id', $streets);
+        }
 
-    /**
-     * Get the filters available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function filters(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the lenses available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function lenses(Request $request)
-    {
-        return [];
-    }
-
-    /**
-     * Get the actions available for the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
-    public function actions(Request $request)
-    {
-        return [];
+        return $query;
     }
 }

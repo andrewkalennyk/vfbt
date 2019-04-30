@@ -15,6 +15,7 @@ use App\Nova\Promotion;
 use App\Nova\Revision;
 use App\Nova\Street;
 use App\Nova\User;
+use App\Nova\UserRole;
 use Joedixon\NovaTranslation\NovaTranslation;
 use Laravel\Nova\Nova;
 use Laravel\Nova\Cards\Help;
@@ -94,6 +95,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Promotion::class,
             Revision::class,
             User::class,
+            UserRole::class,
             //Translations::class,
         ]);
     }

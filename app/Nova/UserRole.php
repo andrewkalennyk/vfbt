@@ -2,21 +2,20 @@
 
 namespace App\Nova;
 
-use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class Office extends Resource
+class UserRole extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\Office';
+    public static $model = 'App\Models\UserRole';
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -25,27 +24,21 @@ class Office extends Resource
      */
     public static $title = 'title';
 
-    public static $group = 'Облік';
-
-    public static function label()
-    {
-        return 'Громадська приймальня';
-    }
-
-
-    public function title()
-    {
-        return $this->title . ' №' . $this->number . ' ('. $this->address. ')';
-    }
-
     /**
      * The columns that should be searched.
      *
      * @var array
      */
     public static $search = [
-        'id','title','number', 'address'
+        'id',
     ];
+
+    public static $group = 'Користувачі';
+
+    public static function label()
+    {
+        return 'Групи користувачів';
+    }
 
     /**
      * Get the fields displayed by the resource.
@@ -58,19 +51,11 @@ class Office extends Resource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Назва'), 'title')
+            Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Number::make(__('Номер'), 'number')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make(__('Адреса'), 'address')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            HasMany::make(__('Дільниці'), 'elective_plots','App\Nova\ElectivePlot')
+            BelongsTo::make(__('Громадська приймальня'), 'office','App\Nova\Office')->nullable(),
         ];
     }
 
@@ -116,15 +101,5 @@ class Office extends Resource
     public function actions(Request $request)
     {
         return [];
-    }
-
-    public static function indexQuery(NovaRequest $request, $query)
-    {
-        $user = $request->user();
-        if ($user->isCoordinator()) {
-            $query = $query->where('id', $user->getCoordinatorsOfficeId());
-        }
-
-        return $query;
     }
 }

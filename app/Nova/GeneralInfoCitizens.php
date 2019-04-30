@@ -162,4 +162,14 @@ class GeneralInfoCitizens extends Resource
     {
         return [];
     }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+        if ($user->isCoordinator()) {
+            $query = $query->where('office_id', $user->getCoordinatorsOfficeId());
+        }
+
+        return $query;
+    }
 }

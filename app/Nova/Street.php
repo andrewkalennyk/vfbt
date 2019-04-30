@@ -46,4 +46,16 @@ class Street extends HandBookResource
         ];
     }
 
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        $user = $request->user();
+        if ($user->isCoordinator()) {
+            $electivePlot = \App\Models\ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
+                ->pluck('id');
+            $query = $query->where('elective_plot_id', $electivePlot);
+        }
+
+        return $query;
+    }
+
 }

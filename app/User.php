@@ -36,4 +36,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function user_role()
+    {
+        return $this->BelongsTo('App\Models\UserRole');
+    }
+
+    public function isSuperAdmin()
+    {
+        return !empty($this->user_role) ? $this->user_role->is_super_group : false;
+    }
+
+    public function isCoordinator()
+    {
+        return $this->user_role->office ? true  : false;
+    }
+
+    public function getCoordinatorsOfficeId()
+    {
+        return $this->user_role->office ? $this->user_role->office->id  : false;
+    }
 }

@@ -18,7 +18,10 @@ Route::get('/', function () {
 Route::post('/import-general-info','Backend\ImportInfoController@doImport');
 
 Route::get('/test', function () {
-    $revision = \App\Models\Revision::with('user')->get();
-
-    dr($revision);
+    $generalInfo = \App\Models\GeneralInfoCitizen::all();
+    $userIds = \App\Models\Citizen::whereNotIn('id', $generalInfo->pluck('citizen_id'))->pluck('id');
+    $officeId = 1;
+    $usersOffice = $generalInfo->where('office_id', $officeId)->pluck('citizen_id');
+    $ids = $userIds->merge($usersOffice);
+    dr($ids);
 });
