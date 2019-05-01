@@ -9,12 +9,13 @@
 namespace App\Models;
 
 
+use App\Traits\RevisionMaker;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, RevisionMaker;
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +23,17 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'name' => 'ПІБ',
+            'email' => 'Email',
+            'user_role_id' => 'ID Группи',
+        ],
+        'name' => 'Користувачі',
+        'slug' => 'users'
     ];
 
     /**

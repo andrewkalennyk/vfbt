@@ -17,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Promotion' => 'App\Policies\Policy',
          'App\Models\CitizensCategory' => 'App\Policies\Policy',
          'App\Models\CitizensStatus' => 'App\Policies\Policy',
-         'App\Models\Revision' => 'App\Policies\Policy',
+         'App\Models\Revision' => 'App\Policies\RevisionPolicy',
          'App\Models\User' => 'App\Policies\Policy',
          'App\Models\UserRole' => 'App\Policies\Policy',
          'App\Models\Office' => 'App\Policies\OfficePolicy',

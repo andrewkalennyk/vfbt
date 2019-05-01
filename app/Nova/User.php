@@ -52,7 +52,7 @@ class User extends Resource
         return [
             ID::make()->sortable(),
 
-            Gravatar::make(),
+            //Gravatar::make(),
 
             Text::make('ПІБ','name')
                 ->sortable()

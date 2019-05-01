@@ -8,15 +8,27 @@
 
 namespace App\Models;
 
+use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
 class CitizensCategory extends Model
 {
+    use RevisionMaker;
+
     protected $table = 'citizens_categories';
 
     protected $fillable = [
         'title'
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'title' => 'Назва',
+        ],
+        'name' => 'Категорія громадянина',
+        'slug' => 'citizens-categories'
     ];
 
 }
