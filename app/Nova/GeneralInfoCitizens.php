@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Annyk\ImportFiles\ImportFiles;
+use App\Nova\Actions\GeneralInfoAction;
 use App\Nova\Filters\GeneralInfoPromotions;
 use AwesomeNova\Filters\DependentFilter;
 use Laravel\Nova\Fields\BelongsTo;
@@ -11,6 +12,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Maatwebsite\LaravelNovaExcel\Actions\DownloadExcel;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
 
 class GeneralInfoCitizens extends Resource
@@ -160,7 +162,9 @@ class GeneralInfoCitizens extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        return [
+            (new GeneralInfoAction)->withHeadings(),
+        ];
     }
 
     public static function indexQuery(NovaRequest $request, $query)

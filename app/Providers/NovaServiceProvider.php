@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Annyk\ExportHandBooks\ExportHandBooks;
 use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
 use App\Nova\CitizensCategory;
@@ -76,6 +77,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new CitizenCount(),
+            new ExportHandBooks()
         ];
     }
 

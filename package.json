@@ -11,7 +11,9 @@
         "build-custom-filter": "cd nova-components/CustomFilter && npm run dev",
         "build-custom-filter-prod": "cd nova-components/CustomFilter && npm run prod",
         "build-import-files": "cd nova-components/ImportFiles && npm run dev",
-        "build-import-files-prod": "cd nova-components/ImportFiles && npm run prod"
+        "build-import-files-prod": "cd nova-components/ImportFiles && npm run prod",
+        "build-exportHandBooks": "cd nova-components/ExportHandBooks && npm run dev",
+        "build-exportHandBooks-prod": "cd nova-components/ExportHandBooks && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",
