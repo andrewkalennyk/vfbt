@@ -44,6 +44,11 @@ class GeneralInfoCitizen extends Model
         return $this->BelongsTo('App\Models\Citizen');
     }
 
+    public function house_citizen()
+    {
+        return $this->BelongsTo('App\Models\HouseCitizen');
+    }
+
     public function promotions()
     {
         return $this->belongsToMany('App\Models\Promotion','general_info_citizens_promotions');
@@ -52,6 +57,27 @@ class GeneralInfoCitizen extends Model
     public function scopeByCitizen($query, $id)
     {
         return $query->where('citizen_id', $id);
+    }
+
+    public function preparePromotions($filters)
+    {
+        $promotionFilter = $this->getPromotionFilter($filters);
+        $promotion = $this->promotions;
+
+        if ($promotionFilter) {
+            $promotion = $promotion->where('id', $promotionFilter);
+        }
+        return $promotion->implode('title', ',');
+    }
+
+    public function getPromotionFilter($filters)
+    {
+        foreach ($filters as $filter) {
+            if ($filter->filter->name == 'Акції') {
+               return $filter->value;
+            }
+        }
+        return '';
     }
 
 }

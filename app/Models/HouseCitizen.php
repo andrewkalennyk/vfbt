@@ -52,4 +52,9 @@ class HouseCitizen extends Model
         return $this->BelongsTo('App\Models\CitizensStatus');
     }
 
+    public function getStatus()
+    {
+        return $this->citizen_status ? $this->citizen_status->title : '';
+    }
+
 }

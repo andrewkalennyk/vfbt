@@ -15,13 +15,14 @@ class GeneralInfoAction extends ExportFromView implements FromView
     public function view(): View
     {
         $citizens = $this->getInfo();
-        return view('export.general_info', compact('citizens'));
+        $filters = $this->request->filters();
+        return view('export.general_info', compact('citizens','filters'));
     }
 
     public function getInfo()
     {
         $ids = explode(',',$this->request->get('resources'));
-        return GeneralInfoCitizen::with(['citizen','street','house'])->whereIn('id',$ids)->get();
+        return GeneralInfoCitizen::with(['citizen.promotions','street','house','house_citizen.citizen_status'])->whereIn('id',$ids)->get();
     }
 
 }

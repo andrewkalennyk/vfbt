@@ -1,31 +1,6 @@
 <table cellspacing="0" border="0">
     <tbody>
     <tr>
-        <td colspan="12" height="24" align="left" style="border: 1px solid #000" valign="bottom">Район: СВЯТОШИНСЬКИЙ ПР.ПЕРЕМОГИ, 93</td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-    </tr>
-    <tr>
-        <td colspan="12" height="27" align="left" valign="bottom"><b><i>?????</i></b></td>
-        <td align="left" valign="bottom"><b><i>ДВК</i></b></td>
-        <td align="right" valign="bottom" sdval="210" sdnum="1033;"><b><i>???</i></b></td>
-        <td align="left" valign="bottom"><b><i><br></i></b></td>
-        <td align="left" valign="bottom"><b><i><br></i></b></td>
-        <td align="left" valign="bottom"><b><i><br></i></b></td>
-    </tr>
-    <tr>
-        <td colspan="8" height="31" width="24" align="left" valign="bottom"><b><u>ПІБ ????</u></b></td>
-        <td colspan="4" align="left" valign="bottom"><b><u>контактний телефон ????</u></b></td>
-        <td align="left" valign="bottom"><b>Відповідальний</b></td>
-        <td align="left" valign="middle">??????</td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-        <td align="left" valign="bottom"><br></td>
-    </tr>
-    <tr>
         <td height="41" align="left" valign="bottom"><b>№</b></td>
         <td align="left" valign="bottom" style="font-family: TimesNewRoman, 'Times New Roman', Times, Baskerville, Georgia, serif;"><b>Прізвище</b></td>
         <td align="left" valign="bottom"><b>Ім'я</b></td>

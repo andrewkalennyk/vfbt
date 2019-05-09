@@ -28,7 +28,8 @@ class Citizen extends Model
         'patronymic_name',
         'phone',
         'certificate_number',
-        'date_birth'
+        'date_birth',
+        'is_in_black'
     ];
 
     protected $casts = [
@@ -89,6 +90,11 @@ class Citizen extends Model
             'citizen_id',
             'promotion_id')
             ->using(CitizenPromotion::class);
+    }
+
+    public function isBlack()
+    {
+        return $this->is_in_black == 1 ? 'Так' : '';
     }
 
 }

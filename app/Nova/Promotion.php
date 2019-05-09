@@ -27,7 +27,7 @@ class Promotion extends Resource
 
     public static $group = 'Акції';
 
-    public static $title = 'id';
+    public static $title = 'title';
 
     /**
      * The columns that should be searched.
