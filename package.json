@@ -13,7 +13,9 @@
         "build-import-files": "cd nova-components/ImportFiles && npm run dev",
         "build-import-files-prod": "cd nova-components/ImportFiles && npm run prod",
         "build-exportHandBooks": "cd nova-components/ExportHandBooks && npm run dev",
-        "build-exportHandBooks-prod": "cd nova-components/ExportHandBooks && npm run prod"
+        "build-exportHandBooks-prod": "cd nova-components/ExportHandBooks && npm run prod",
+        "build-citizen-finder": "cd nova-components/CitizenFinder && npm run dev",
+        "build-citizen-finder-prod": "cd nova-components/CitizenFinder && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",

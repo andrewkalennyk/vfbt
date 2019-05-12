@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use App\Models\Pivots\CitizenPromotion;
+use App\Traits\PrepareFindInfo;
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Log;
 
 class Citizen extends Model
 {
-    use RevisionMaker;
+    use RevisionMaker, PrepareFindInfo;
 
     protected $table = 'citizens';
 
@@ -51,15 +52,14 @@ class Citizen extends Model
         'slug' => 'citizens'
     ];
 
-    /*public function promotions()
-    {
-        return $this->belongsToMany('App\Models\Promotion','citizens_promotions')
-            ->using(CitizenPromotion::class);
-    }*/
-
     public function citizens_category()
     {
         return $this->BelongsTo('App\Models\CitizensCategory');
+    }
+
+    public function general_info()
+    {
+        return $this->hasOne('App\Models\GeneralInfoCitizen');
     }
 
     public function house_citizens()
@@ -95,6 +95,21 @@ class Citizen extends Model
     public function isBlack()
     {
         return $this->is_in_black == 1 ? 'Так' : '';
+    }
+
+    public function scopeSearchByName($query, $input)
+    {
+
+        $query = $query->where('last_name', 'like', '%' . $input['last_name'] . '%');
+
+        if (!empty($initials['first_name'])) {
+            $query = $query->where('first_name', 'like', '%' . $input['first_name'] . '%');
+        }
+
+        if (!empty($initials['patronymic_name'])) {
+            $query = $query->where('patronymic_name', 'like', '%' . $input['patronymic_name'] . '%');
+        }
+        return $query;
     }
 
 }

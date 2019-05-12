@@ -22,7 +22,8 @@
         "maatwebsite/laravel-nova-excel": "^1.1",
         "nrml-co/nova-big-filter": "^1.0",
         "predis/predis": "^1.1",
-        "titasgailius/search-relations": "^1.0"
+        "titasgailius/search-relations": "^1.0",
+        "annyk/citizen-finder": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -44,6 +45,10 @@
         {
             "type": "path",
             "url": "./nova-components/ExportHandBooks"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/CitizenFinder"
         }
     ],
     "config": {

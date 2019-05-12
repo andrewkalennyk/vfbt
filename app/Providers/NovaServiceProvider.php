@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Annyk\CitizenFinder\CitizenFinder;
 use Annyk\ExportHandBooks\ExportHandBooks;
 use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
@@ -77,7 +78,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new CitizenCount(),
-            new ExportHandBooks()
+            //new ExportHandBooks(),
+
         ];
     }
 
@@ -111,6 +113,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             //new NovaTranslation,
+            new CitizenFinder()
         ];
     }
 
