@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Route::post('/import-general-info','Backend\ImportInfoController@doImport');
 Route::post('/search-citizen','Backend\SearchController@doSearch');
+Route::post('/get-info-for-new','Backend\InfoController@getInfo');
+Route::post('/save-citizen','Backend\CitizenController@saveCitizen');
 Route::get('/export-handbooks','Backend\ExportHandbookController@doExport');
 
 Route::get('/test', function () {

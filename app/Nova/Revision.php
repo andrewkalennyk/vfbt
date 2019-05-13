@@ -89,4 +89,9 @@ class Revision extends Resource
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
+
+    public static function availableForNavigation(Request $request)
+    {
+        return true;
+    }
 }

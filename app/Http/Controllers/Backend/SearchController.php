@@ -30,7 +30,6 @@ class SearchController extends \App\Http\Controllers\Controller
         }
 
         foreach ($citizens as $citizen) {
-            //dr($citizen);
             $citizen->category = $citizen->getCategoryTitle();
             $citizen->birthDay = $citizen->getBirthDate();
             $citizen->black_list = $citizen->isInBlackList();

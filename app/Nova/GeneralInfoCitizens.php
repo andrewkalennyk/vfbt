@@ -176,4 +176,9 @@ class GeneralInfoCitizens extends Resource
 
         return $query;
     }
+
+    public static function availableForNavigation(Request $request)
+    {
+        return true;
+    }
 }
