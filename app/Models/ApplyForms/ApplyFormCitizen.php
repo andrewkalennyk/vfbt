@@ -3,8 +3,11 @@
 namespace App\Models\ApplyForms;
 
 use App\Models\Citizen;
+use App\Models\ElectivePlot;
+use App\Models\House;
 use App\Models\HouseCitizen;
-use phpDocumentor\Reflection\Types\Null_;
+use App\Models\Office;
+use App\Models\Street;
 
 class ApplyFormCitizen extends Citizen
 {
@@ -43,15 +46,18 @@ class ApplyFormCitizen extends Citizen
 
     public function prepareCitizen()
     {
+        $electivePlot = ElectivePlot::find($this->inputData['elective_plot_id']);
+        $street = Street::find($this->inputData['street_id']);
+        $house = House::find($this->inputData['house_id']);
+
         $this->citizen->category = $this->citizen->getCategoryTitle();
         $this->citizen->birthDay = $this->citizen->getBirthDate();
         $this->citizen->black_list = $this->citizen->isInBlackList();
-        $this->citizen->office = $this->citizen->getOfficeTitle();
-        $this->citizen->elective_plot = $this->citizen->getElectivePlotTitle();
-        $this->citizen->street = $this->citizen->getStreetTitle();
-        $this->citizen->house = $this->citizen->getHouseTitle();
-        $this->citizen->flat = $this->citizen->getFlatTitle();
-        dr($this->citizen);
+        $this->citizen->office = $electivePlot->office->title;
+        $this->citizen->elective_plot = $electivePlot->title;
+        $this->citizen->street = $street->title;
+        $this->citizen->house = $house->title;
+        $this->citizen->flat = $this->inputData['flat_number'];
         return $this->citizen;
     }
 

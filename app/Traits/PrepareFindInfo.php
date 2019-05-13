@@ -15,7 +15,7 @@ trait PrepareFindInfo
 
     public function getBirthDate()
     {
-        return $this->date_birth ? $this->date_birth : '—';
+        return $this->date_birth ? $this->date_birth->format('d-m-Y') : '—';
     }
 
     public function isInBlackList()

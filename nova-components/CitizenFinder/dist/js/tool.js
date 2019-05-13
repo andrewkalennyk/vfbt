@@ -169,7 +169,7 @@ exports = module.exports = __webpack_require__(5)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Scoped Styles */\n", ""]);
 
 // exports
 
@@ -901,7 +901,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app',
@@ -914,6 +913,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             working: false,
             citizen: false,
             noCitizens: false,
+            newCitizenForm: false,
             findCitizens: [],
             citizenCategories: [],
             electivePlots: [],
@@ -961,15 +961,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     _this2.$toasted.success(data.message);
                 }
                 _this2.working = false;
-                console.log(data.citizens.length);
             });
         },
         newCitizen: function newCitizen() {
+            var _this3 = this;
+
             var myForm = document.getElementById('new_citizen_form'),
                 data = new FormData(myForm);
 
             Nova.request().post('/save-citizen', data).then(function (_ref3) {
                 var data = _ref3.data;
+
+                _this3.$toasted.success(data.message);
+                _this3.citizen = data.citizen;
+                _this3.closeForm();
             });
         },
         choseCitizen: function choseCitizen(event) {
@@ -981,6 +986,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
             this.citizen = citizen;
             this.findCitizens = [];
+            this.newCitizenForm = false;
         },
         filterStreets: function filterStreets() {
             var streets = [],
@@ -1002,6 +1008,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
             this.filteredHouses = houses;
+        },
+        openForm: function openForm() {
+            this.citizen = false;
+            this.newCitizenForm = true;
+        },
+        closeForm: function closeForm() {
+            this.newCitizenForm = false;
         }
     }
 });
@@ -1134,11 +1147,11 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "button",
+                "a",
                 {
                   staticClass:
                     "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded ml-4",
-                  attrs: { disabled: _vm.working, type: "submit" }
+                  on: { click: _vm.openForm }
                 },
                 [_vm._v("\n                Новий\n            ")]
               )
@@ -1356,480 +1369,185 @@ var render = function() {
           )
         : _vm._e(),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "relative rounded overflow-hidden mb-8 shadow-lg mt-6" },
-        [
-          _c(
+      this.newCitizenForm
+        ? _c(
             "div",
-            { staticClass: " border-grey-light p-4 flex justify-center p-8" },
+            {
+              staticClass:
+                "relative rounded overflow-hidden mb-8 shadow-lg mt-6"
+            },
             [
               _c(
-                "form",
+                "div",
                 {
-                  staticClass: "w-full justify-center",
-                  attrs: { id: "new_citizen_form" },
-                  on: {
-                    submit: function($event) {
-                      $event.preventDefault()
-                      return _vm.newCitizen($event)
-                    }
-                  }
+                  staticClass: " border-grey-light p-4 flex justify-center p-8"
                 },
                 [
-                  _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-                    _c("div", { staticClass: "md:w-1/3 px-3 mb-6 md:mb-0" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-last-name" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Прізвище\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "citizenValue",
-                        staticClass:
-                          "appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-                        attrs: {
-                          id: "grid-last-name",
-                          name: "last_name",
-                          type: "text",
-                          placeholder: ""
+                  _c(
+                    "form",
+                    {
+                      staticClass: "w-full justify-center",
+                      attrs: { id: "new_citizen_form" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          return _vm.newCitizen($event)
                         }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "md:w-1/3 px-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-first-name" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Ім'я\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "citizenValue",
-                        staticClass:
-                          "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                        attrs: {
-                          id: "grid-first-name",
-                          name: "first_name",
-                          type: "text",
-                          placeholder: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "md:w-1/3 px-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-patronymic-name" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            По-Батькові\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "citizenValue",
-                        staticClass:
-                          "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                        attrs: {
-                          id: "grid-patronymic-name",
-                          name: "patronymic_name",
-                          type: "text",
-                          placeholder: ""
-                        }
-                      })
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-                    _c("div", { staticClass: "md:w-1/3 px-3 mb-6 md:mb-0" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-birthdate-name" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Дата Народження\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "citizenValue",
-                        staticClass:
-                          "appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",
-                        attrs: {
-                          id: "grid-birthdate-name",
-                          name: "date_birth",
-                          type: "text",
-                          placeholder: "12-05-2019"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "md:w-1/3 px-3" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-phone-name" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Телефон\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("input", {
-                        ref: "citizenValue",
-                        staticClass:
-                          "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                        attrs: {
-                          id: "grid-phone-name",
-                          name: "phone",
-                          type: "text",
-                          placeholder: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-category" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Категорія\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "relative" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.citizenCategory,
-                                expression: "citizenCategory"
-                              }
-                            ],
-                            ref: "citizenValue",
-                            staticClass:
-                              "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                            attrs: {
-                              id: "grid-category",
-                              name: "citizens_category_id"
-                            },
-                            on: {
-                              change: function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.citizenCategory = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              }
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Виберіть категорію")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.citizenCategories, function(category) {
-                              return _c(
-                                "option",
-                                { domProps: { value: category.id } },
-                                [_vm._v(_vm._s(category.title))]
-                              )
-                            })
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
                         _c(
                           "div",
-                          {
-                            staticClass:
-                              "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
-                          },
+                          { staticClass: "md:w-1/3 px-3 mb-6 md:mb-0" },
                           [
                             _c(
-                              "svg",
-                              {
-                                staticClass: "fill-current h-4 w-4",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _vm.citizenCategory
-                    ? _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-                        _vm._m(0)
-                      ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c("h2", [_vm._v("Адреса")]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" }, [
-                    _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
-                      _c(
-                        "label",
-                        {
-                          staticClass:
-                            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                          attrs: { for: "grid-category" }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Дільниця\n                        "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "relative" }, [
-                        _c(
-                          "select",
-                          {
-                            directives: [
-                              {
-                                name: "model",
-                                rawName: "v-model",
-                                value: _vm.electivePlotId,
-                                expression: "electivePlotId"
-                              }
-                            ],
-                            staticClass:
-                              "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                            attrs: {
-                              id: "grid-elective-plot",
-                              name: "elective_plot_id"
-                            },
-                            on: {
-                              change: [
-                                function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.electivePlotId = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                },
-                                _vm.filterStreets
-                              ]
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Виберіть дільницю")
-                            ]),
-                            _vm._v(" "),
-                            _vm._l(_vm.electivePlots, function(electivePlot) {
-                              return _c(
-                                "option",
-                                { domProps: { value: electivePlot.id } },
-                                [_vm._v(_vm._s(electivePlot.title))]
-                              )
-                            })
-                          ],
-                          2
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass:
-                              "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
-                          },
-                          [
-                            _c(
-                              "svg",
-                              {
-                                staticClass: "fill-current h-4 w-4",
-                                attrs: {
-                                  xmlns: "http://www.w3.org/2000/svg",
-                                  viewBox: "0 0 20 20"
-                                }
-                              },
-                              [
-                                _c("path", {
-                                  attrs: {
-                                    d:
-                                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                  }
-                                })
-                              ]
-                            )
-                          ]
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _vm.electivePlotId
-                      ? _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
-                          _c(
-                            "label",
-                            {
-                              staticClass:
-                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-                              attrs: { for: "grid-category" }
-                            },
-                            [
-                              _vm._v(
-                                "\n                            Вулиця\n                        "
-                              )
-                            ]
-                          ),
-                          _vm._v(" "),
-                          _c("div", { staticClass: "relative" }, [
-                            _c(
-                              "select",
-                              {
-                                directives: [
-                                  {
-                                    name: "model",
-                                    rawName: "v-model",
-                                    value: _vm.streetId,
-                                    expression: "streetId"
-                                  }
-                                ],
-                                staticClass:
-                                  "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
-                                attrs: {
-                                  id: "grid-street-plot",
-                                  name: "street_id"
-                                },
-                                on: {
-                                  change: [
-                                    function($event) {
-                                      var $$selectedVal = Array.prototype.filter
-                                        .call($event.target.options, function(
-                                          o
-                                        ) {
-                                          return o.selected
-                                        })
-                                        .map(function(o) {
-                                          var val =
-                                            "_value" in o ? o._value : o.value
-                                          return val
-                                        })
-                                      _vm.streetId = $event.target.multiple
-                                        ? $$selectedVal
-                                        : $$selectedVal[0]
-                                    },
-                                    _vm.filterHouses
-                                  ]
-                                }
-                              },
-                              [
-                                _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Виберіть вулицю")
-                                ]),
-                                _vm._v(" "),
-                                _vm._l(_vm.filteredStreets, function(street) {
-                                  return _c(
-                                    "option",
-                                    { domProps: { value: street.id } },
-                                    [_vm._v(_vm._s(street.title))]
-                                  )
-                                })
-                              ],
-                              2
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "div",
+                              "label",
                               {
                                 staticClass:
-                                  "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                attrs: { for: "grid-last-name" }
                               },
                               [
-                                _c(
-                                  "svg",
-                                  {
-                                    staticClass: "fill-current h-4 w-4",
-                                    attrs: {
-                                      xmlns: "http://www.w3.org/2000/svg",
-                                      viewBox: "0 0 20 20"
-                                    }
-                                  },
-                                  [
-                                    _c("path", {
-                                      attrs: {
-                                        d:
-                                          "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                                      }
-                                    })
-                                  ]
+                                _vm._v(
+                                  "\n                            Прізвище\n                        "
                                 )
                               ]
-                            )
-                          ])
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              ref: "citizenValue",
+                              staticClass:
+                                "appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                              attrs: {
+                                id: "grid-last-name",
+                                name: "last_name",
+                                type: "text",
+                                placeholder: ""
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "md:w-1/3 px-3" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-first-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Ім'я\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "citizenValue",
+                            staticClass:
+                              "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                            attrs: {
+                              id: "grid-first-name",
+                              name: "first_name",
+                              type: "text",
+                              placeholder: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "md:w-1/3 px-3" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-patronymic-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            По-Батькові\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "citizenValue",
+                            staticClass:
+                              "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                            attrs: {
+                              id: "grid-patronymic-name",
+                              name: "patronymic_name",
+                              type: "text",
+                              placeholder: ""
+                            }
+                          })
                         ])
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _vm.streetId
-                      ? _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
+                        _c(
+                          "div",
+                          { staticClass: "md:w-1/3 px-3 mb-6 md:mb-0" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                attrs: { for: "grid-birthdate-name" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                            Дата Народження\n                        "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("input", {
+                              ref: "citizenValue",
+                              staticClass:
+                                "appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",
+                              attrs: {
+                                id: "grid-birthdate-name",
+                                name: "date_birth",
+                                type: "text",
+                                placeholder: "12-05-2019"
+                              }
+                            })
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "md:w-1/3 px-3" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-phone-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Телефон\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "citizenValue",
+                            staticClass:
+                              "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                            attrs: {
+                              id: "grid-phone-name",
+                              name: "phone",
+                              type: "text",
+                              placeholder: ""
+                            }
+                          })
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
                           _c(
                             "label",
                             {
@@ -1839,7 +1557,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                            Дім\n                        "
+                                "\n                            Категорія\n                        "
                               )
                             ]
                           ),
@@ -1852,15 +1570,16 @@ var render = function() {
                                   {
                                     name: "model",
                                     rawName: "v-model",
-                                    value: _vm.houseId,
-                                    expression: "houseId"
+                                    value: _vm.citizenCategory,
+                                    expression: "citizenCategory"
                                   }
                                 ],
+                                ref: "citizenValue",
                                 staticClass:
                                   "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
                                 attrs: {
-                                  id: "grid-house-plot",
-                                  name: "house_id"
+                                  id: "grid-category",
+                                  name: "citizens_category_id"
                                 },
                                 on: {
                                   change: function($event) {
@@ -1873,7 +1592,7 @@ var render = function() {
                                           "_value" in o ? o._value : o.value
                                         return val
                                       })
-                                    _vm.houseId = $event.target.multiple
+                                    _vm.citizenCategory = $event.target.multiple
                                       ? $$selectedVal
                                       : $$selectedVal[0]
                                   }
@@ -1881,14 +1600,16 @@ var render = function() {
                               },
                               [
                                 _c("option", { attrs: { value: "" } }, [
-                                  _vm._v("Виберіть дім")
+                                  _vm._v("Виберіть категорію")
                                 ]),
                                 _vm._v(" "),
-                                _vm._l(_vm.filteredHouses, function(house) {
+                                _vm._l(_vm.citizenCategories, function(
+                                  category
+                                ) {
                                   return _c(
                                     "option",
-                                    { domProps: { value: house.id } },
-                                    [_vm._v(_vm._s(house.title))]
+                                    { domProps: { value: category.id } },
+                                    [_vm._v(_vm._s(category.title))]
                                   )
                                 })
                               ],
@@ -1924,16 +1645,22 @@ var render = function() {
                             )
                           ])
                         ])
-                      : _vm._e()
-                  ]),
-                  _vm._v(" "),
-                  _vm.houseId
-                    ? _c(
+                      ]),
+                      _vm._v(" "),
+                      _vm.citizenCategory
+                        ? _c(
+                            "div",
+                            { staticClass: "flex flex-wrap -mx-3 mb-2" },
+                            [_vm._m(0)]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("h2", [_vm._v("Адреса")]),
+                      _vm._v(" "),
+                      _c(
                         "div",
                         { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" },
                         [
-                          _vm._m(1),
-                          _vm._v(" "),
                           _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
                             _c(
                               "label",
@@ -1944,7 +1671,7 @@ var render = function() {
                               },
                               [
                                 _vm._v(
-                                  "\n                            Статус\n                        "
+                                  "\n                            Дільниця\n                        "
                                 )
                               ]
                             ),
@@ -1953,23 +1680,55 @@ var render = function() {
                               _c(
                                 "select",
                                 {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.electivePlotId,
+                                      expression: "electivePlotId"
+                                    }
+                                  ],
                                   staticClass:
                                     "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
                                   attrs: {
-                                    id: "grid-status",
-                                    name: "status_id"
+                                    id: "grid-elective-plot",
+                                    name: "elective_plot_id"
+                                  },
+                                  on: {
+                                    change: [
+                                      function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.electivePlotId = $event.target
+                                          .multiple
+                                          ? $$selectedVal
+                                          : $$selectedVal[0]
+                                      },
+                                      _vm.filterStreets
+                                    ]
                                   }
                                 },
                                 [
                                   _c("option", { attrs: { value: "" } }, [
-                                    _vm._v("Виберіть статус")
+                                    _vm._v("Виберіть дільницю")
                                   ]),
                                   _vm._v(" "),
-                                  _vm._l(_vm.statuses, function(status) {
+                                  _vm._l(_vm.electivePlots, function(
+                                    electivePlot
+                                  ) {
                                     return _c(
                                       "option",
-                                      { domProps: { value: status.id } },
-                                      [_vm._v(_vm._s(status.title))]
+                                      { domProps: { value: electivePlot.id } },
+                                      [_vm._v(_vm._s(electivePlot.title))]
                                     )
                                   })
                                 ],
@@ -2004,18 +1763,314 @@ var render = function() {
                                 ]
                               )
                             ])
-                          ])
+                          ]),
+                          _vm._v(" "),
+                          _vm.electivePlotId
+                            ? _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                    attrs: { for: "grid-category" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Вулиця\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "relative" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.streetId,
+                                          expression: "streetId"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                      attrs: {
+                                        id: "grid-street-plot",
+                                        name: "street_id"
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.streetId = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          _vm.filterHouses
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Виберіть вулицю")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.filteredStreets, function(
+                                        street
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: street.id } },
+                                          [_vm._v(_vm._s(street.title))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "fill-current h-4 w-4",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              d:
+                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _vm.streetId
+                            ? _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                    attrs: { for: "grid-category" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Дім\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "relative" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.houseId,
+                                          expression: "houseId"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                      attrs: {
+                                        id: "grid-house-plot",
+                                        name: "house_id"
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.houseId = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Виберіть дім")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.filteredHouses, function(
+                                        house
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: house.id } },
+                                          [_vm._v(_vm._s(house.title))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "fill-current h-4 w-4",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              d:
+                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            : _vm._e()
                         ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._m(2)
+                      ),
+                      _vm._v(" "),
+                      _vm.houseId
+                        ? _c(
+                            "div",
+                            { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" },
+                            [
+                              _vm._m(1),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "md:w-1/3 px-3 mb-8" }, [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                    attrs: { for: "grid-category" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Статус\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "relative" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      staticClass:
+                                        "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                      attrs: {
+                                        id: "grid-status",
+                                        name: "status_id"
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Виберіть статус")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.statuses, function(status) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: status.id } },
+                                          [_vm._v(_vm._s(status.title))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "fill-current h-4 w-4",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              d:
+                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm._m(2)
+                    ]
+                  )
                 ]
               )
             ]
           )
-        ]
-      )
+        : _vm._e()
     ],
     1
   )

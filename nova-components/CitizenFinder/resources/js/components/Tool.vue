@@ -30,11 +30,10 @@
                         type="submit">
                     Пошук
                 </button>
-                <button class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded ml-4"
-                        :disabled="working"
-                        type="submit">
+                <a class="bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded ml-4"
+                        @click="openForm">
                     Новий
-                </button>
+                </a>
             </div>
             <div  class="overflow-hidden absolute w-full rounded-lg shadow-lg mt-2 mr-3 max-h-search overflow-y-auto">
                 <div class="search-results-citizens">
@@ -111,7 +110,7 @@
             </div>
         </div>
 
-        <div class="relative rounded overflow-hidden mb-8 shadow-lg mt-6">
+        <div class="relative rounded overflow-hidden mb-8 shadow-lg mt-6" v-if="this.newCitizenForm">
             <div class=" border-grey-light p-4 flex justify-center p-8">
                 <form class="w-full justify-center" id="new_citizen_form" @submit.prevent="newCitizen">
                     <div class="flex flex-wrap -mx-3 mb-2">
@@ -280,6 +279,7 @@ export default {
             working:false,
             citizen: false,
             noCitizens: false,
+            newCitizenForm: false,
             findCitizens: [],
             citizenCategories: [],
             electivePlots: [],
@@ -327,7 +327,6 @@ export default {
                         this.$toasted.success(data.message);
                     }
                     this.working = false;
-                    console.log(data.citizens.length);
                 })
         },
 
@@ -341,7 +340,9 @@ export default {
                     data
                 )
                 .then(({data}) => {
-
+                    this.$toasted.success(data.message);
+                    this.citizen = data.citizen;
+                    this.closeForm();
                 })
         },
 
@@ -354,6 +355,7 @@ export default {
             });
             this.citizen = citizen;
             this.findCitizens = [];
+            this.newCitizenForm = false;
         },
 
         filterStreets()
@@ -379,6 +381,15 @@ export default {
                 }
             });
             this.filteredHouses = houses;
+        },
+
+        openForm() {
+            this.citizen = false;
+            this.newCitizenForm = true;
+        },
+
+        closeForm() {
+            this.newCitizenForm = false;
         }
     },
 }

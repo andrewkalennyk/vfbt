@@ -13,7 +13,8 @@ class CitizenController extends \App\Http\Controllers\Controller
         $result = $applyForm->apply();
 
         return [
-            'citizen' => $result
+            'citizen' => $result,
+            'message' => 'Збережено'
         ];
 
     }
