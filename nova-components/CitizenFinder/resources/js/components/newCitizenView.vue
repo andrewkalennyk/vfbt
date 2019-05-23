@@ -222,7 +222,7 @@
                     streetId = this.streetId,
                     electivePlotId = this.electivePlotId;
                 this.houses.forEach(function(value, key){
-                    if (value.street_id === parseInt(streetId) && value.elective_plot_id === parseInt(electivePlotId)) {
+                    if (value.street_id === parseInt(streetId)) {
                         houses.push(value);
                     }
                 });
