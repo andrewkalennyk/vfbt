@@ -100,8 +100,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Revision::class,
             User::class,
             UserRole::class,
-            //Translations::class,
         ]);
+
     }
 
     /**
