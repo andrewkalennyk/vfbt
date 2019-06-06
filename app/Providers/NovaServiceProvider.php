@@ -107,7 +107,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Revision::class,
             User::class,
             UserRole::class,
-            //NavigationMenuItem::class
+            NavigationMenuItem::class
         ]);
 
     }
@@ -122,7 +122,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             //new NovaTranslation,
             new CitizenFinder(),
-            //new NavigationBuilder()
+            new NavigationBuilder()
         ];
     }
 
