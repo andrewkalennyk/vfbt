@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Annyk\CitizenFinder\CitizenFinder;
 use Annyk\ExportHandBooks\ExportHandBooks;
+use Annyk\NavigationBuilder\NavigationBuilder;
 use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
 use App\Nova\CitizensCategory;
@@ -12,6 +13,7 @@ use App\Nova\ElectivePlot;
 use App\Nova\House;
 use App\Nova\HousesCitizen;
 use App\Nova\Metrics\CitizenCount;
+use App\Nova\NavigationMenuItem;
 use App\Nova\Office;
 use App\Nova\Promotion;
 use App\Nova\Revision;
@@ -77,7 +79,12 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function cards()
     {
         return [
-            new CitizenCount(),
+            (new CitizenCount())->canSee(function ($request) {
+                if ($request->user()->isSuperAdmin() || $request->user()->isCoordinator()) {
+                    return true;
+                }
+                return false;
+            }),
             //new ExportHandBooks(),
 
         ];
@@ -100,6 +107,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Revision::class,
             User::class,
             UserRole::class,
+            //NavigationMenuItem::class
         ]);
 
     }
@@ -113,7 +121,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             //new NovaTranslation,
-            new CitizenFinder()
+            new CitizenFinder(),
+            //new NavigationBuilder()
         ];
     }
 
