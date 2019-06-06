@@ -11,11 +11,16 @@ class HouseCitizensObserver
 {
     public function created(HouseCitizen $houseCitizens)
     {
-        GeneralInfoCitizen::create($this->getInfo($houseCitizens));
+        Log::info($houseCitizens);
+        GeneralInfoCitizen::updateOrCreate([
+            'house_citizen_id' => $houseCitizens->id,
+        ],
+            $this->getInfo($houseCitizens));
     }
 
     public function saved(HouseCitizen $houseCitizens)
     {
+        Log::info('saved');
         GeneralInfoCitizen::updateOrCreate([
             'house_citizen_id' => $houseCitizens->id,
         ],

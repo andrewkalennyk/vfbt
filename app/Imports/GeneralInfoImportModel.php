@@ -43,11 +43,12 @@ class GeneralInfoImportModel implements  ToCollection, WithMappedCells
         $streetInfo = explode(',', $collection['street']);
 
         $this->street = Street::firstOrCreate(['title' => $streetInfo[0]]);
+
         $this->house = House::firstOrCreate(
             [
                 'street_id' => $this->street->id,
                 'elective_plot_id' => $this->street->elective_plot->id,
-                'title'=> $streetInfo[1]
+                'title'=> trim($streetInfo[1])
             ]
         );
         $this->saveCitizens();
@@ -76,7 +77,6 @@ class GeneralInfoImportModel implements  ToCollection, WithMappedCells
 
     public function detectStatus($field)
     {
-
         $status = $this->statuses->where('title', $field)->first();
 
         return  !empty($status) ? $status->id : NULL ;

@@ -20,6 +20,7 @@ class House extends Model
 
     protected $fillable = [
         'street_id',
+        'elective_plot_id',
         'title'
     ];
 
