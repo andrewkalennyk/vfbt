@@ -41,10 +41,12 @@ class GeneralInfoImportModel implements  ToCollection, WithMappedCells
     {
         $collection = $collection->toArray();
         $streetInfo = explode(',', $collection['street']);
+
         $this->street = Street::firstOrCreate(['title' => $streetInfo[0]]);
         $this->house = House::firstOrCreate(
             [
                 'street_id' => $this->street->id,
+                'elective_plot_id' => $this->street->elective_plot->id,
                 'title'=> $streetInfo[1]
             ]
         );

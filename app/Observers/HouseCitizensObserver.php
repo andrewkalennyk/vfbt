@@ -11,14 +11,11 @@ class HouseCitizensObserver
 {
     public function created(HouseCitizen $houseCitizens)
     {
-        Log::info('created');
-
         GeneralInfoCitizen::create($this->getInfo($houseCitizens));
     }
 
     public function saved(HouseCitizen $houseCitizens)
     {
-
         GeneralInfoCitizen::updateOrCreate([
             'house_citizen_id' => $houseCitizens->id,
         ],
@@ -27,11 +24,11 @@ class HouseCitizensObserver
 
     protected function getInfo(HouseCitizen $houseCitizens) :array
     {
-        $house = House::with(['street','elective_plot.office'])->where('id',$houseCitizens->house_id)->first();
+        $house = House::with(['street','elective_plot.office'])->where('id', $houseCitizens->house_id)->first();
 
         return [
-            'office_id' => $house->elective_plot->office->id,
-            'elective_plot_id' => $house->elective_plot_id,
+            'office_id' => !empty($house->elective_plot_id) ? $house->elective_plot->office->id : null,
+            'elective_plot_id' => !empty($house->elective_plot_id) ? $house->elective_plot_id : null,
             'street_id' => $house->street->id,
             'house_id' => $houseCitizens->house_id,
             'citizen_id' => $houseCitizens->citizen_id,
