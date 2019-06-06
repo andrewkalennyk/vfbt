@@ -16,8 +16,6 @@ class CitizensCategory extends HandBookResource
      */
     public static $model = 'App\Models\CitizensCategory';
 
-    public static $displayInNavigation = true;
-
     public static function label()
     {
         return 'Категорія громадянина';

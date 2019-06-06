@@ -15,8 +15,6 @@ class CitizensStatus extends HandBookResource
      */
     public static $model = 'App\Models\CitizensStatus';
 
-    public static $displayInNavigation = true;
-
     public static function label()
     {
         return 'Статус громадянина';

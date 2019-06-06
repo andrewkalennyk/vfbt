@@ -65,4 +65,6 @@ abstract class Resource extends NovaResource
     {
         return false;
     }
+
+    public static $displayInNavigation = false;
 }

@@ -21,8 +21,6 @@ class ElectivePlot extends HandBookResource
 
     public static $group = 'Облік';
 
-    public static $displayInNavigation = true;
-
     public static function label()
     {
         return 'Дільниці';

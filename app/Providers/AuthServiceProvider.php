@@ -25,6 +25,7 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\Street' => 'App\Policies\ElectivePlotPolicy',
          'App\Models\House' => 'App\Policies\ElectivePlotPolicy',
          'App\Models\Citizen' => 'App\Policies\OfficePolicy',
+         'App\Models\NavigationMenuItem' => 'App\Policies\Policy',
     ];
 
     /**
