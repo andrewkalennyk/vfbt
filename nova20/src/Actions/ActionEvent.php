@@ -21,6 +21,16 @@ class ActionEvent extends Model
     protected $guarded = [];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'original' => 'array',
+        'changes' => 'array',
+    ];
+
+    /**
      * Get the user that initiated the action.
      */
     public function user()
@@ -56,6 +66,8 @@ class ActionEvent extends Model
             'model_type' => $model->getMorphClass(),
             'model_id' => $model->getKey(),
             'fields' => '',
+            'original' => null,
+            'changes' => $model->attributesToArray(),
             'status' => 'finished',
             'exception' => '',
         ]);
@@ -81,6 +93,36 @@ class ActionEvent extends Model
             'model_type' => $model->getMorphClass(),
             'model_id' => $model->getKey(),
             'fields' => '',
+            'original' => array_intersect_key($model->getOriginal(), $model->getDirty()),
+            'changes' => $model->getDirty(),
+            'status' => 'finished',
+            'exception' => '',
+        ]);
+    }
+
+    /**
+     * Create a new action event instance for an attached resource.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  \Illuminate\Database\Eloquent\Model  $parent
+     * @param  \Illuminate\Database\Eloquent\Model  $pivot
+     * @return \Illuminate\Database\Eloquent\Model
+     */
+    public static function forAttachedResource(NovaRequest $request, $parent, $pivot)
+    {
+        return new static([
+            'batch_id' => (string) Str::orderedUuid(),
+            'user_id' => $request->user()->getAuthIdentifier(),
+            'name' => 'Attach',
+            'actionable_type' => $parent->getMorphClass(),
+            'actionable_id' => $parent->getKey(),
+            'target_type' => Nova::modelInstanceForKey($request->relatedResource)->getMorphClass(),
+            'target_id' => $parent->getKey(),
+            'model_type' => $pivot->getMorphClass(),
+            'model_id' => $pivot->getKey(),
+            'fields' => '',
+            'original' => null,
+            'changes' => $pivot->attributesToArray(),
             'status' => 'finished',
             'exception' => '',
         ]);
@@ -107,6 +149,8 @@ class ActionEvent extends Model
             'model_type' => $pivot->getMorphClass(),
             'model_id' => $pivot->getKey(),
             'fields' => '',
+            'original' => array_intersect_key($pivot->getOriginal(), $pivot->getDirty()),
+            'changes' => $pivot->getDirty(),
             'status' => 'finished',
             'exception' => '',
         ]);
@@ -160,6 +204,8 @@ class ActionEvent extends Model
                 'model_type' => $model->getMorphClass(),
                 'model_id' => $model->getKey(),
                 'fields' => '',
+                'original' => null,
+                'changes' => null,
                 'status' => 'finished',
                 'exception' => '',
                 'created_at' => new DateTime,
@@ -193,6 +239,8 @@ class ActionEvent extends Model
                 'model_type' => $pivotClass,
                 'model_id' => null,
                 'fields' => '',
+                'original' => null,
+                'changes' => null,
                 'status' => 'finished',
                 'exception' => '',
                 'created_at' => new DateTime,
@@ -262,6 +310,8 @@ class ActionEvent extends Model
             'target_type' => $request->model()->getMorphClass(),
             'model_type' => $modelType,
             'fields' => serialize($request->resolveFieldsForStorage()),
+            'original' => null,
+            'changes' => null,
             'status' => $status,
             'exception' => '',
             'created_at' => new DateTime,

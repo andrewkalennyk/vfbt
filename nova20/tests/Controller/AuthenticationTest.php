@@ -3,7 +3,6 @@
 namespace Laravel\Nova\Tests\Controller;
 
 use Laravel\Nova\Nova;
-use Laravel\Nova\Tool;
 use Illuminate\Support\Facades\DB;
 use Laravel\Nova\Tests\Fixtures\User;
 use Laravel\Nova\Tests\IntegrationTest;

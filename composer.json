@@ -15,6 +15,8 @@
         "annyk/navigation-builder": "*",
         "awesome-nova/dependent-filter": "^1.1",
         "coderello/laravel-nova-lang": "^1.0",
+        "dillingham/nova-ajax-select": "^1.0",
+        "epartment/nova-dependency-container": "^1.1",
         "fico7489/laravel-pivot": "^3.0",
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
@@ -24,8 +26,10 @@
         "maatwebsite/laravel-nova-excel": "^1.1",
         "michielkempen/nova-order-field": "^2.0",
         "nrml-co/nova-big-filter": "^1.0",
+        "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
-        "titasgailius/search-relations": "^1.0"
+        "titasgailius/search-relations": "^1.0",
+        "wemersonrv/input-mask": "^0.1.2"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'meta',
     ];
 
     /**
@@ -27,6 +27,10 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password', 'remember_token',
+    ];
+
+    protected $casts = [
+        'meta' => 'array',
     ];
 
     /**
@@ -60,6 +64,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'user_roles', 'user_id', 'role_id')
                             ->withPivot('id', 'admin', 'photo', 'restricted')
                             ->using(RoleAssignment::class);
+    }
+
+    /**
+     * Related users with each other via email.
+     */
+    public function relatedUsers()
+    {
+        return $this->belongsToMany(self::class, 'user_emails_xref', 'email_to', 'email_from', 'email', 'email')
+            ->using(UserEmailRelationship::class);
     }
 
     /**

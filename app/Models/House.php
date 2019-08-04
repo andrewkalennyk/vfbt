@@ -22,12 +22,18 @@ class House extends Model
         'street_id',
         'elective_plot_id',
         'title'
+        'entrances_number',
+        'floors_number',
+        'flat_number',
     ];
 
     protected $transcript = [
         'fields' => [
             'id' => 'ID',
             'title' => 'Назва',
+            'entrances_number' => "кількість під'їздів",
+            'floors_number' => 'кількість поверхів',
+            'flat_number' => 'кількість квартир',
             'street_id' => 'ID Вулиці',
             'elective_plot_id' => 'ID Дільниці',
         ],

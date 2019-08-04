@@ -79,6 +79,13 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public static $globallySearchable = true;
 
     /**
+     * The per-page options used the resource index.
+     *
+     * @var array
+     */
+    public static $perPageOptions = [25, 50, 100];
+
+    /**
      * The number of resources to show per page via relationships.
      *
      * @var int
@@ -204,7 +211,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      */
     public static function label()
     {
-        return Str::plural(class_basename(get_called_class()));
+        return Str::plural(Str::title(Str::snake(class_basename(get_called_class()), ' ')));
     }
 
     /**
@@ -271,6 +278,16 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     }
 
     /**
+     * The pagination per-page options configured for this resource.
+     *
+     * @return array
+     */
+    public static function perPageOptions()
+    {
+        return static::$perPageOptions;
+    }
+
+    /**
      * Filter and authorize the given values.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
@@ -312,7 +329,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      */
     public function serializeForDetail(NovaRequest $request)
     {
-        return array_merge($this->serializeWithId($this->detailFields($request)), [
+        return array_merge($this->serializeWithId($this->detailFieldsWithinPanels($request)), [
             'authorizedToUpdate' => $this->authorizedToUpdate($request),
             'authorizedToDelete' => $this->authorizedToDelete($request),
             'authorizedToRestore' => static::softDeletes() && $this->authorizedToRestore($request),
@@ -375,7 +392,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public function jsonSerialize()
     {
         $this->serializeWithId($this->resolveFields(
-            resolve(Request::class)
+            resolve(NovaRequest::class)
         ));
     }
 
@@ -391,5 +408,29 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
             'id' => $fields->whereInstanceOf(ID::class)->first() ?: ID::forModel($this->resource),
             'fields' => $fields->all(),
         ];
+    }
+
+    /**
+     * Return the location to redirect the user after creation.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
+     */
+    public static function redirectAfterCreate(NovaRequest $request, $resource)
+    {
+        return '/resources/'.static::uriKey().'/'.$resource->getKey();
+    }
+
+    /**
+     * Return the location to redirect the user after update.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @param \App\Nova\Resource $resource
+     * @return string
+     */
+    public static function redirectAfterUpdate(NovaRequest $request, $resource)
+    {
+        return '/resources/'.static::uriKey().'/'.$resource->getKey();
     }
 }

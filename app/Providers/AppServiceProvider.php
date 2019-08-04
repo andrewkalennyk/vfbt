@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Citizen;
 use App\Models\HouseCitizen;
 use App\Models\Pivots\CitizenPromotion;
+use App\Observers\BadListCitizensObserver;
 use App\Observers\CitizenPromotionsObserver;
 use App\Observers\HouseCitizensObserver;
 use Illuminate\Support\ServiceProvider;
@@ -29,5 +31,6 @@ class AppServiceProvider extends ServiceProvider
     {
        HouseCitizen::observe(HouseCitizensObserver::class);
        CitizenPromotion::observe(CitizenPromotionsObserver::class);
+       //Citizen::observe(BadListCitizensObserver::class);
     }
 }

@@ -5,6 +5,9 @@ namespace App\Providers;
 use Annyk\CitizenFinder\CitizenFinder;
 use Annyk\ExportHandBooks\ExportHandBooks;
 use Annyk\NavigationBuilder\NavigationBuilder;
+use App\Nova\BadListReasons;
+use App\Nova\CitizenCitizenStatus;
+use App\Nova\CitizensSubStatus;
 use App\Nova\GeneralInfoCitizens;
 use App\Nova\Citizen;
 use App\Nova\CitizensCategory;
@@ -96,6 +99,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::resources([
             CitizensCategory::class,
             CitizensStatus::class,
+            CitizensSubStatus::class,
+            CitizenCitizenStatus::class,
+            BadListReasons::class,
             Citizen::class,
             Office::class,
             ElectivePlot::class,
@@ -122,7 +128,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             //new NovaTranslation,
             new CitizenFinder(),
+<<<<<<< HEAD
             new NavigationBuilder()
+=======
+           // new NavigationBuilder()
+>>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         ];
     }
 

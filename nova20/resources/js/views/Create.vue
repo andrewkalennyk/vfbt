@@ -1,48 +1,45 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{ __('New') }} {{ singularName }}</heading>
+        <form v-if="panels" @submit.prevent="createResource" autocomplete="off">
+            <form-panel
+                class="mb-8"
+                v-for="panel in panelsWithFields"
+                :panel="panel"
+                :name="panel.name"
+                :key="panel.name"
+                :resource-name="resourceName"
+                :fields="panel.fields"
+                mode="form"
+                :validation-errors="validationErrors"
+                :via-resource="viaResource"
+                :via-resource-id="viaResourceId"
+                :via-relationship="viaRelationship"
+            />
 
-        <card class="overflow-hidden">
-            <form v-if="fields" @submit.prevent="createResource" autocomplete="off">
-                <!-- Validation Errors -->
-                <validation-errors :errors="validationErrors" />
+            <!-- Create Button -->
+            <div class="flex items-center">
+                <cancel-button />
 
-                <!-- Fields -->
-                <div v-for="field in fields">
-                    <component
-                        :is="'form-' + field.component"
-                        :errors="validationErrors"
-                        :resource-name="resourceName"
-                        :field="field"
-                        :via-resource="viaResource"
-                        :via-resource-id="viaResourceId"
-                        :via-relationship="viaRelationship"
-                    />
-                </div>
+                <progress-button
+                    class="mr-3"
+                    dusk="create-and-add-another-button"
+                    @click.native="createAndAddAnother"
+                    :disabled="isWorking"
+                    :processing="submittedViaCreateAndAddAnother"
+                >
+                    {{ __('Create & Add Another') }}
+                </progress-button>
 
-                <!-- Create Button -->
-                <div class="bg-30 flex px-8 py-4">
-                    <progress-button
-                        class="ml-auto mr-3"
-                        dusk="create-and-add-another-button"
-                        @click.native="createAndAddAnother"
-                        :disabled="isWorking"
-                        :processing="submittedViaCreateAndAddAnother"
-                    >
-                        {{ __('Create & Add Another') }}
-                    </progress-button>
-
-                    <progress-button
-                        dusk="create-button"
-                        type="submit"
-                        :disabled="isWorking"
-                        :processing="submittedViaCreateResource"
-                    >
-                        {{ __('Create') }} {{ singularName }}
-                    </progress-button>
-                </div>
-            </form>
-        </card>
+                <progress-button
+                    dusk="create-button"
+                    type="submit"
+                    :disabled="isWorking"
+                    :processing="submittedViaCreateResource"
+                >
+                    {{ __('Create :resource', { resource: singularName }) }}
+                </progress-button>
+            </div>
+        </form>
     </loading-view>
 </template>
 
@@ -74,6 +71,7 @@ export default {
         submittedViaCreateAndAddAnother: false,
         submittedViaCreateResource: false,
         fields: [],
+        panels: [],
         validationErrors: new Errors(),
     }),
 
@@ -97,19 +95,22 @@ export default {
          * Get the available fields for the resource.
          */
         async getFields() {
+            this.panels = []
             this.fields = []
 
-            const { data: fields } = await Nova.request().get(
-                `/nova-api/${this.resourceName}/creation-fields`,
-                {
-                    params: {
-                        viaResource: this.viaResource,
-                        viaResourceId: this.viaResourceId,
-                        viaRelationship: this.viaRelationship,
-                    },
-                }
-            )
+            const {
+                data: { panels, fields },
+            } = await Nova.request().get(`/nova-api/${this.resourceName}/creation-fields`, {
+                params: {
+                    editing: true,
+                    editMode: 'create',
+                    viaResource: this.viaResource,
+                    viaResourceId: this.viaResourceId,
+                    viaRelationship: this.viaRelationship,
+                },
+            })
 
+            this.panels = panels
             this.fields = fields
             this.loading = false
         },
@@ -121,7 +122,9 @@ export default {
             this.submittedViaCreateResource = true
 
             try {
-                const response = await this.createRequest()
+                const {
+                    data: { redirect },
+                } = await this.createRequest()
 
                 this.submittedViaCreateResource = false
 
@@ -132,13 +135,7 @@ export default {
                     { type: 'success' }
                 )
 
-                this.$router.push({
-                    name: 'detail',
-                    params: {
-                        resourceName: this.resourceName,
-                        resourceId: response.data.id,
-                    },
-                })
+                this.$router.push({ path: redirect })
             } catch (error) {
                 this.submittedViaCreateResource = false
 
@@ -194,9 +191,11 @@ export default {
          */
         createResourceFormData() {
             return _.tap(new FormData(), formData => {
+                // _.each(this.panels, panel => {
                 _.each(this.fields, field => {
                     field.fill(formData)
                 })
+                // })
 
                 formData.append('viaResource', this.viaResource)
                 formData.append('viaResourceId', this.viaResourceId)
@@ -223,6 +222,15 @@ export default {
          */
         isWorking() {
             return this.submittedViaCreateResource || this.submittedViaCreateAndAddAnother
+        },
+
+        panelsWithFields() {
+            return _.map(this.panels, panel => {
+                return {
+                    name: panel.name,
+                    fields: _.filter(this.fields, field => field.panel == panel.name),
+                }
+            })
         },
     },
 }

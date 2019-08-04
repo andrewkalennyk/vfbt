@@ -2,13 +2,12 @@
 
 namespace Laravel\Nova\Fields;
 
-use Laravel\Nova\Nova;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Nova\TrashedStatus;
 use Laravel\Nova\Rules\Relatable;
-use Illuminate\Database\Eloquent\Model;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Laravel\Nova\Http\Requests\ResourceIndexRequest;
 
 class BelongsTo extends Field
@@ -147,21 +146,38 @@ class BelongsTo extends Field
      */
     public function resolve($resource, $attribute = null)
     {
-        if ($resource instanceof Model && $resource->relationLoaded($this->attribute)) {
+        $value = null;
+
+        if ($resource->relationLoaded($this->attribute)) {
             $value = $resource->getRelation($this->attribute);
-        } else {
-            $value = $resource->{$this->attribute}()->withoutGlobalScopes()->first();
-            $resource->setRelation($this->attribute, $value);
+        }
+
+        if (! $value) {
+            $value = $resource->{$this->attribute}()->withoutGlobalScopes()->getResults();
         }
 
         if ($value) {
             $this->belongsToId = $value->getKey();
 
-            $this->value = $this->formatDisplayValue($value);
+            $resource = new $this->resourceClass($value);
+
+            $this->value = $this->formatDisplayValue($resource);
 
             $this->viewable = $this->viewable
-                && Nova::newResourceFromModel($value)->authorizedTo(request(), 'view');
+                && $resource->authorizedToView(request());
         }
+    }
+
+    /**
+     * Resolve the field's value for display.
+     *
+     * @param  mixed  $resource
+     * @param  string|null  $attribute
+     * @return void
+     */
+    public function resolveForDisplay($resource, $attribute = null)
+    {
+        //
     }
 
     /**
@@ -193,7 +209,7 @@ class BelongsTo extends Field
      */
     public function fill(NovaRequest $request, $model)
     {
-        $foreignKey = $model->{$this->attribute}()->getForeignKeyName();
+        $foreignKey = $this->getRelationForeignKeyName($model->{$this->attribute}());
 
         parent::fillInto($request, $model, $foreignKey);
 
@@ -203,6 +219,32 @@ class BelongsTo extends Field
 
         if ($this->filledCallback) {
             call_user_func($this->filledCallback, $request, $model);
+        }
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  string  $requestAttribute
+     * @param  object  $model
+     * @param  string  $attribute
+     * @return mixed
+     */
+    protected function fillAttributeFromRequest(NovaRequest $request, $requestAttribute, $model, $attribute)
+    {
+        if ($request->exists($requestAttribute)) {
+            $value = $request[$requestAttribute];
+
+            $relation = Relation::noConstraints(function () use ($model) {
+                return $model->{$this->attribute}();
+            });
+
+            if ($this->isNullValue($value)) {
+                $relation->dissociate();
+            } else {
+                $relation->associate($relation->getQuery()->withoutGlobalScopes()->find($value));
+            }
         }
     }
 

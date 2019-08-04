@@ -57,6 +57,13 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     public $fillCallback;
 
     /**
+     * The callback to be used for computed field.
+     *
+     * @var callable
+     */
+    protected $computedCallback;
+
+    /**
      * The validation rules for creation and updates.
      *
      * @var array
@@ -120,18 +127,32 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     public static $customComponents = [];
 
     /**
+     * The callback used to determine if the field is readonly.
+     *
+     * @var Closure
+     */
+    public $readonlyCallback;
+
+    /**
      * Create a new field.
      *
      * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
+     * @param  string|callable|null  $attribute
+     * @param  callable|null  $resolveCallback
      * @return void
      */
-    public function __construct($name, $attribute = null, $resolveCallback = null)
+    public function __construct($name, $attribute = null, callable $resolveCallback = null)
     {
         $this->name = $name;
         $this->resolveCallback = $resolveCallback;
-        $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
+
+        if ($attribute instanceof Closure ||
+            (is_callable($attribute) && is_object($attribute))) {
+            $this->computedCallback = $attribute;
+            $this->attribute = 'ComputedField';
+        } else {
+            $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
+        }
     }
 
     /**
@@ -182,9 +203,10 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     {
         $attribute = $attribute ?? $this->attribute;
 
-        if ($attribute instanceof Closure ||
-           (is_callable($attribute) && is_object($attribute))) {
-            return $this->resolveComputedAttribute($attribute);
+        if ($attribute === 'ComputedField') {
+            $this->value = call_user_func($this->computedCallback, $resource);
+
+            return;
         }
 
         if (! $this->resolveCallback) {
@@ -208,19 +230,6 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     protected function resolveAttribute($resource, $attribute)
     {
         return data_get($resource, str_replace('->', '.', $attribute));
-    }
-
-    /**
-     * Resolve a computed attribute.
-     *
-     * @param  callable  $attribute
-     * @return void
-     */
-    protected function resolveComputedAttribute($attribute)
-    {
-        $this->value = $attribute();
-
-        $this->attribute = 'ComputedField';
     }
 
     /**
@@ -323,15 +332,25 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
         if ($request->exists($requestAttribute)) {
             $value = $request[$requestAttribute];
 
-            $isNull = false;
-
-            if ($this->nullable) {
-                $isNull = is_callable($this->nullValues)
-                    ? ($this->nullValues)($value)
-                    : in_array($value, (array) $this->nullValues);
-            }
-            $model->{$attribute} = $isNull ? null : $value;
+            $model->{$attribute} = $this->isNullValue($value) ? null : $value;
         }
+    }
+
+    /**
+     * Check value for null value.
+     *
+     * @param  mixed $value
+     * @return bool
+     */
+    protected function isNullValue($value)
+    {
+        if (! $this->nullable) {
+            return false;
+        }
+
+        return is_callable($this->nullValues)
+            ? ($this->nullValues)($value)
+            : in_array($value, (array) $this->nullValues);
     }
 
     /**
@@ -527,6 +546,50 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     }
 
     /**
+     * Set the callback used to determine if the field is readonly.
+     *
+     * @param Closure|bool $callback
+     * @return $this
+     */
+    public function readonly($callback = true)
+    {
+        $this->readonlyCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Determine if the field is readonly.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     * @return bool
+     */
+    public function isReadonly(NovaRequest $request)
+    {
+        return with($this->readonlyCallback, function ($callback) use ($request) {
+            if ($callback === true || (is_callable($callback) && call_user_func($callback, $request))) {
+                $this->setReadonlyAttribute();
+
+                return true;
+            }
+
+            return false;
+        });
+    }
+
+    /**
+     * Set the field to a readonly field.
+     *
+     * @return $this
+     */
+    protected function setReadonlyAttribute()
+    {
+        $this->withMeta(['extraAttributes' => ['readonly' => true]]);
+
+        return $this;
+    }
+
+    /**
      * Prepare the field for JSON serialization.
      *
      * @return array
@@ -543,6 +606,7 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
             'panel' => $this->panel,
             'sortable' => $this->sortable,
             'nullable' => $this->nullable,
+            'readonly' => $this->isReadonly(app(NovaRequest::class)),
             'textAlign' => $this->textAlign,
         ], $this->meta());
     }

@@ -11,9 +11,11 @@ namespace App\Models;
 use App\Models\Pivots\CitizenPromotion;
 use App\Traits\PrepareFindInfo;
 use App\Traits\RevisionMaker;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Log;
+use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
 
 class Citizen extends Model
@@ -33,10 +35,6 @@ class Citizen extends Model
         'is_in_black'
     ];
 
-    protected $casts = [
-        'date_birth' => 'date',
-    ];
-
     protected $transcript = [
         'fields' => [
             'id' => 'ID',
@@ -52,20 +50,54 @@ class Citizen extends Model
         'slug' => 'citizens'
     ];
 
-    public function citizens_category()
+    /*public function citizens_category()
     {
         return $this->BelongsTo('App\Models\CitizensCategory');
-    }
+    }*/
 
     public function general_info()
     {
         return $this->hasOne('App\Models\GeneralInfoCitizen');
     }
 
+    public function bad_list()
+    {
+        return $this->hasOne('App\Models\BadList');
+    }
+
     public function house_citizens()
     {
         return $this->hasOne('App\Models\HouseCitizen');
     }
+
+    public function bad_list_reason()
+    {
+        return $this->belongsTo('App\Models\BadListReason');
+    }
+
+    public function citizen_statuses()
+    {
+        return $this->hasMany('App\Models\CitizenCitizenStatus');
+    }
+
+    public function getIndexCategoryAttribute()
+    {
+        return $this->categories->pluck('title')->implode(', ');
+    }
+
+    public function getIndexStatusAttribute()
+    {
+        $statuses = $this->citizen_statuses;
+        $indexStatuses = [];
+        foreach ($statuses as $status) {
+            $citStatus = $status->citizen_status->title ?? '';
+            $citSubStatus = $status->citizen_sub_status->title ?? '';
+            $indexStatuses[] = $citStatus . '(' . $citSubStatus .')';
+        }
+        return implode($indexStatuses, ', ');
+    }
+
+
 
     public static function importCitizen($item) {
         return Citizen::updateOrCreate(
@@ -92,9 +124,17 @@ class Citizen extends Model
             ->using(CitizenPromotion::class);
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(CitizensCategory::class,
+            'citizen_citizen_categories',
+            'citizen_id',
+            'citizens_category_id');
+    }
+
     public function isBlack()
     {
-        return $this->is_in_black == 1 ? 'Так' : '';
+        return $this->is_in_black == 1 ? 'Так ' : '';
     }
 
     public function scopeSearchByName($query, $input)

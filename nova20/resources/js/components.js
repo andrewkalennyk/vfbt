@@ -1,11 +1,13 @@
 import Vue from 'vue'
 Vue.config.ignoredElements = ['trix-editor']
 
+import Add from '@/components/Icons/Add'
 import ActionSelector from '@/components/ActionSelector'
 import BasePartitionMetric from '@/components/Metrics/Base/PartitionMetric'
 import BaseTrendMetric from '@/components/Metrics/Base/TrendMetric'
 import BaseValueMetric from '@/components/Metrics/Base/ValueMetric'
 import Bold from '@/components/Icons/Editor/Bold'
+import CancelButton from '@/components/Form/CancelButton'
 import Card from '@/components/Card'
 import Cards from '@/components/Cards'
 import CardWrapper from '@/components/CardWrapper'
@@ -19,6 +21,7 @@ import CustomDetailToolbar from '@/components/CustomDetailToolbar'
 import CustomIndexHeader from '@/components/CustomIndexHeader'
 import CustomIndexToolbar from '@/components/CustomIndexToolbar'
 import Delete from '@/components/Icons/Delete'
+import Menu from '@/components/Icons/Menu'
 import DeleteMenu from '@/components/DeleteMenu'
 import DeleteResourceModal from '@/components/Modals/DeleteResourceModal'
 import Download from '@/components/Icons/Download'
@@ -32,6 +35,7 @@ import Excerpt from '@/components/Excerpt'
 import FakeCheckbox from '@/components/Index/FakeCheckbox'
 import Filter from '@/components/Icons/Filter'
 import FilterMenu from '@/components/FilterMenu'
+import FormPanel from '@/components/Form/Panel'
 import ForceDelete from '@/components/Icons/ForceDelete'
 import FullScreen from '@/components/Icons/Editor/FullScreen'
 import GlobalSearch from '@/components/GlobalSearch'
@@ -84,6 +88,7 @@ Vue.component('base-value-metric', BaseValueMetric)
 Vue.component('card', Card)
 Vue.component('card-wrapper', CardWrapper)
 Vue.component('cards', Cards)
+Vue.component('cancel-button', CancelButton)
 Vue.component('checkbox', Checkbox)
 Vue.component('checkbox-with-label', CheckboxWithLabel)
 Vue.component('confirm-action-modal', ConfirmActionModal)
@@ -114,6 +119,7 @@ Vue.component('heading', Heading)
 Vue.component('help', HelpCard)
 Vue.component('help-text', HelpText)
 Vue.component('icon', Icon)
+Vue.component('icon-add', Add)
 Vue.component('icon-delete', Delete)
 Vue.component('icon-download', Download)
 Vue.component('icon-edit', Edit)
@@ -124,6 +130,7 @@ Vue.component('icon-refresh', Refresh)
 Vue.component('icon-restore', Restore)
 Vue.component('icon-search', Search)
 Vue.component('icon-view', View)
+Vue.component('icon-menu', Menu)
 Vue.component('lens', Lens)
 Vue.component('lens-selector', LensSelector)
 Vue.component('loader', Loader)
@@ -133,6 +140,7 @@ Vue.component('modal', Modal)
 Vue.component('pagination-links', PaginationLinks)
 Vue.component('pagination-simple', PaginationSimple)
 Vue.component('panel-item', PanelItem)
+Vue.component('form-panel', FormPanel)
 Vue.component('partition-metric', PartitionMetric)
 Vue.component('progress-button', ProgressButton)
 Vue.component('resource-index', Index)

@@ -76,9 +76,9 @@
                             :value="perPage"
                             @change="perPageChanged"
                         >
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                            <option value="100">100</option>
+                            <option v-for="option in perPageOptions" :key="option">
+                                {{ option }}
+                            </option>
                         </select>
                     </div>
                 </div>
@@ -104,6 +104,7 @@ export default {
             validator: value => ['', 'with', 'only'].indexOf(value) != -1,
         },
         perPage: [String, Number],
+        perPageOptions: Array,
         showTrashedOption: {
             type: Boolean,
             default: true,

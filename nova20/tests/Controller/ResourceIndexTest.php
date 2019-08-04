@@ -9,6 +9,7 @@ use Laravel\Nova\Tests\Fixtures\Post;
 use Laravel\Nova\Tests\Fixtures\Role;
 use Laravel\Nova\Tests\Fixtures\User;
 use Laravel\Nova\Tests\IntegrationTest;
+use Laravel\Nova\Tests\Fixtures\Comment;
 use Laravel\Nova\Tests\Fixtures\IdFilter;
 use Laravel\Nova\Tests\Fixtures\UserPolicy;
 use Laravel\Nova\Tests\Fixtures\ColumnFilter;
@@ -32,11 +33,12 @@ class ResourceIndexTest extends IntegrationTest
         $response = $this->withExceptionHandling()
                         ->getJson('/nova-api/users');
 
-        $this->assertEquals('UserResources', $response->original['label']);
+        $this->assertEquals('User Resources', $response->original['label']);
         $this->assertEquals($user->id, $response->original['resources'][0]['id']->value);
         $this->assertTrue($response->original['resources'][0]['authorizedToUpdate']);
         $this->assertTrue($response->original['resources'][0]['authorizedToDelete']);
         $this->assertTrue($response->original['resources'][0]['softDeletes']);
+        $this->assertEquals([25, 50, 100], $response->original['per_page_options']);
 
         $fields = $response->original['resources'][0]['fields'];
         $nameField = collect($fields)->where('attribute', 'name')->first();
@@ -371,29 +373,35 @@ class ResourceIndexTest extends IntegrationTest
         $response->assertStatus(200);
     }
 
-    public function test_eager_belongs_to()
+    public function test_eager_relations_load()
     {
-        $user = factory(User::class)->create();
-        $user->posts()->saveMany(factory(Post::class, 3)->create());
+        $post1 = factory(Post::class)->create();
+
+        factory(Comment::class)->create()->commentable(false)->associate($post1);
+        factory(Comment::class)->create()->commentable()->associate($post1);
+        factory(Comment::class)->create()->commentable()->associate($post1);
 
         DB::enableQueryLog();
         $count = count(DB::getQueryLog());
 
         $response = $this->withExceptionHandling()
-            ->getJson('/nova-api/posts');
+            ->getJson('/nova-api/comments');
 
         $response->assertStatus(200);
-        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 3);
+        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 3 /* comentable */ + 3 /* authors */);
 
         $count = count(DB::getQueryLog());
-        $_SERVER['nova.post.useEagerUser'] = true;
-        $response = $this->withExceptionHandling()
-            ->getJson('/nova-api/posts');
-        unset($_SERVER['nova.post.useEagerUser']);
 
-        $response->assertStatus(200);
-        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 1);
+        $_SERVER['nova.comments.useEager'] = true;
+
+        $response = $this->withExceptionHandling()
+            ->getJson('/nova-api/comments');
 
         DB::disableQueryLog();
+
+        unset($_SERVER['nova.comments.useEager']);
+
+        $response->assertStatus(200);
+        $this->assertEquals(count(DB::getQueryLog()) - $count, 1 + 1 /* comentable */ + 1 /* authors */);
     }
 }
