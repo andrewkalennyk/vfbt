@@ -128,11 +128,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         return [
             //new NovaTranslation,
             new CitizenFinder(),
-<<<<<<< HEAD
             new NavigationBuilder()
-=======
-           // new NavigationBuilder()
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         ];
     }
 
