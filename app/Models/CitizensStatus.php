@@ -31,4 +31,9 @@ class CitizensStatus extends Model
         'slug' => 'citizens-statuses'
     ];
 
+    public function citizen_sub_statuses()
+    {
+        return $this->hasMany('App\Models\CitizensSubStatus');
+    }
+
 }

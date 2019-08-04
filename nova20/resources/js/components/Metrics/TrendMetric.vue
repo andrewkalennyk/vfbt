@@ -32,10 +32,12 @@ export default {
             type: Object,
             required: true,
         },
+
         resourceName: {
             type: String,
             default: '',
         },
+
         resourceId: {
             type: [Number, String],
             default: '',
@@ -56,6 +58,12 @@ export default {
         suffix: '',
         selectedRangeKey: null,
     }),
+
+    watch: {
+        resourceId() {
+            this.fetch()
+        },
+    },
 
     created() {
         if (this.hasRanges) {
@@ -127,9 +135,7 @@ export default {
         metricEndpoint() {
             const lens = this.lens !== '' ? `/lens/${this.lens}` : ''
             if (this.resourceName && this.resourceId) {
-                return `/nova-api/${this.resourceName}${lens}/${this.resourceId}/metrics/${
-                    this.card.uriKey
-                }`
+                return `/nova-api/${this.resourceName}${lens}/${this.resourceId}/metrics/${this.card.uriKey}`
             } else if (this.resourceName) {
                 return `/nova-api/${this.resourceName}${lens}/metrics/${this.card.uriKey}`
             } else {

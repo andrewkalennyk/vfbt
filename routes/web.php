@@ -32,3 +32,17 @@ Route::get('/test', function () {
     $ids = $userIds->merge($usersOffice);
     dr($ids);
 });
+
+Route::get('/mutators', function () {
+    $citizen = \App\Models\Citizen::with('citizen_statuses')->find(93);
+    dr($citizen);
+});
+
+// todo: go to Controller!!!!!!
+Route::get('api/type-list/{type_list}', function($typeId) {
+    $messages = \App\Models\BadListReason::where('type', $typeId)->get();
+
+    return $messages->map(function($message) {
+        return [ 'value' => $message->id, 'display' => $message->message ];
+    });
+})->middleware(['nova']);

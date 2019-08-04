@@ -46,7 +46,10 @@ class LensControllerTest extends IntegrationTest
             'prev_page_url',
             'next_page_url',
             'softDeletes',
+            'per_page_options',
         ]);
+
+        $this->assertEquals([25, 50, 100], $response->original['per_page_options']);
     }
 
     public function test_lens_that_returns_paginator_can_be_retrieved()

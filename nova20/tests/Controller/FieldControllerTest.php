@@ -42,7 +42,7 @@ class FieldControllerTest extends IntegrationTest
         $response = $this->withExceptionHandling()
                         ->get('/nova-api/users/creation-fields');
 
-        $fields = collect($response->original);
+        $fields = collect($response->original['fields']);
 
         $response->assertStatus(200);
         $this->assertCount(0, $fields->where('attribute', 'id'));
@@ -74,11 +74,10 @@ class FieldControllerTest extends IntegrationTest
         $user = factory(User::class)->create();
 
         $response = $this->withExceptionHandling()
-                        ->get('/nova-api/users/'.$user->id.'/update-fields');
+                        ->get('/nova-api/users/'.$user->id.'/update-fields')
+                        ->assertOk();
 
-        $fields = collect($response->original);
-
-        $response->assertStatus(200);
+        $fields = collect($response->original['fields']);
         $this->assertCount(0, $fields->where('attribute', 'id'));
         $this->assertCount(1, $fields->where('attribute', 'name'));
         $this->assertCount(1, $fields->where('attribute', 'email'));
@@ -156,6 +155,7 @@ class FieldControllerTest extends IntegrationTest
         $user = factory(User::class)->create();
         $post = factory(Post::class)->create(['user_id' => $user->id]);
 
+        $_SERVER['nova.user.authorizable'] = true;
         $_SERVER['nova.user.viewable'] = false;
 
         $response = $this->withExceptionHandling()
@@ -165,7 +165,7 @@ class FieldControllerTest extends IntegrationTest
 
         $fields = collect(json_decode(json_encode($response->original['resource']['fields']), true));
 
-        unset($_SERVER['nova.user.viewable']);
+        unset($_SERVER['nova.user.viewable'], $_SERVER['nova.user.authorizable']);
 
         $this->assertFalse($fields->firstWhere('attribute', 'user')['viewable']);
     }

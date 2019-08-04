@@ -28,10 +28,10 @@ class House extends HandBookResource
         return 'Будинки';
     }
 
-        /**
+    /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -39,17 +39,27 @@ class House extends HandBookResource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Назва'),'title')
+            Text::make(__('Назва'), 'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make(__('Вулиця'),'street','App\Nova\Street'),
+            Text::make(__("Кількість під'їздів"), 'entrances_number')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
-            BelongsTo::make(__('Дільниця'),'elective_plot','App\Nova\ElectivePlot'),
+            Text::make(__('Кількість поверхів'), 'floors_number')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
-            //BelongsToMany::make('Citizen','citizens')->fields(new HouseCitizensFields())
+            Text::make(__('Кількість квартир'), 'flat_number')
+                ->sortable()
+                ->rules('required', 'max:255'),
 
-            HasMany::make(__(''),'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
+            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
+
+            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot'),
+
+            HasMany::make(__(''), 'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
         ];
     }
 

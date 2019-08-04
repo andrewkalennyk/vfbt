@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full font-sans antialiased">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full font-sans antialiased">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=1280">
@@ -75,7 +75,7 @@
 
     <!-- Tool Scripts -->
     @foreach (Nova::availableScripts(request()) as $name => $path)
-        @if (starts_with($path, ['http://', 'https://']))
+        @if (\Illuminate\Support\Str::startsWith($path, ['http://', 'https://']))
             <script src="{!! $path !!}"></script>
         @else
             <script src="/nova-api/scripts/{{ $name }}"></script>

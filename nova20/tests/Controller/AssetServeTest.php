@@ -3,7 +3,6 @@
 namespace Laravel\Nova\Tests\Controller;
 
 use Laravel\Nova\Nova;
-use Laravel\Nova\Tool;
 use Laravel\Nova\Tests\IntegrationTest;
 
 class AssetServeTest extends IntegrationTest

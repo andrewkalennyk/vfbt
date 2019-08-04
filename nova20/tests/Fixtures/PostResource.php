@@ -3,7 +3,6 @@
 namespace Laravel\Nova\Tests\Fixtures;
 
 use Laravel\Nova\Resource;
-use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\BelongsTo;

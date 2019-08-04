@@ -19,6 +19,7 @@ class HouseCitizen extends Model
     protected $table = 'houses_citizens';
 
     protected $fillable = [
+        'street_id',
         'house_id',
         'citizen_id',
         'citizen_status_id',
@@ -36,6 +37,11 @@ class HouseCitizen extends Model
         'name' => 'Привязка громадянина до дому',
         'slug' => 'houses-citizens'
     ];
+
+    public function street()
+    {
+        return $this->belongsTo('App\Models\Street');
+    }
 
     public function citizen()
     {

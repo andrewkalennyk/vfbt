@@ -10,7 +10,6 @@ use Laravel\Nova\Tests\Fixtures\User;
 use Laravel\Nova\Tests\IntegrationTest;
 use Laravel\Nova\Tests\Fixtures\TotalUsers;
 use Laravel\Nova\Tests\Fixtures\UserGrowth;
-use Laravel\Nova\Tests\Fixtures\CustomerRevenue;
 
 class MetricControllerTest extends IntegrationTest
 {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <slot>
-            <h4 class="text-90 font-normal text-2xl mb-3">{{ panel.name }}</h4>
+            <heading :level="1" class="mb-3">{{ panel.name }}</heading>
         </slot>
 
         <card class="mb-6 py-3 px-6">

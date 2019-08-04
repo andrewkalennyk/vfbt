@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Status;
 use Laravel\Nova\Fields\DateTime;
+use Laravel\Nova\Fields\KeyValue;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\MorphToActionTarget;
 
@@ -74,6 +76,16 @@ class ActionResource extends Resource
             Status::make(__('Action Status'), 'status', function ($value) {
                 return ucfirst($value);
             })->loadingWhen(['Waiting', 'Running'])->failedWhen(['Failed']),
+
+            $this->when(isset($this->original), function () {
+                return KeyValue::make(__('Original'));
+            }),
+
+            $this->when(isset($this->changes), function () {
+                return KeyValue::make(__('Changes'));
+            }),
+
+            Textarea::make('Exception'),
 
             DateTime::make(__('Action Happened At'), 'created_at')->exceptOnForms(),
         ];

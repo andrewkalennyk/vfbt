@@ -16,7 +16,6 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 use Laravel\Nova\Tests\Fixtures\FailingPivotAction;
 use Laravel\Nova\Tests\Fixtures\UpdateStatusAction;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use Laravel\Nova\Tests\Fixtures\QueuedResourceAction;
 use Laravel\Nova\Tests\Fixtures\QueuedUpdateStatusAction;
 use Laravel\Nova\Tests\Fixtures\NoopActionWithPivotHandle;
 

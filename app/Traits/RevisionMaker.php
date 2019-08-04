@@ -30,7 +30,7 @@ trait RevisionMaker
             $oldObject = $model::find($object->id);
             if ($oldObject) {
                 static::saveRevision([
-                    'user_id' => Auth::getUser()->id,
+                    'user_id' => Auth::getUser() ? Auth::getUser()->id : Null,
                     'class_name' => $object->prepareObjectClassName(),
                     'model' => get_class($object),
                     'model_id' => $object->id,

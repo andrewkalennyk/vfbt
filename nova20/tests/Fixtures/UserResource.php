@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\File;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\HasMany;
+use Laravel\Nova\Fields\KeyValue;
 use Laravel\Nova\ResourceToolElement;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -51,8 +52,6 @@ class UserResource extends Resource
      */
     public function authorizedToAdd(NovaRequest $request, $model)
     {
-        return parent::authorizedToAdd($request, $model);
-
         return $_SERVER['nova.user.relatable'] ?? parent::authorizedToAdd($request, $model);
     }
 
@@ -73,11 +72,17 @@ class UserResource extends Resource
                             ->updateRules('required', 'string', 'max:255'),
             ]),
 
-            Text::make('Email')->rules('required', 'email', 'max:254')
-                                ->creationRules(function ($request) {
-                                    return ['unique:users,email'];
-                                })
-                                ->updateRules('unique:users,email,{{resourceId}}'),
+            Text::make('Email')
+                ->rules('required', 'email', 'max:254')
+                ->creationRules('unique:users,email')
+                ->updateRules('unique:users,email,{{resourceId}}'),
+
+            Text::make('Weight')
+                ->rules('required')
+                ->readonly($_SERVER['weight-field.readonly'] ?? true)
+                ->canSee(function () {
+                    return $_SERVER['weight-field.canSee'] ?? true;
+                }),
 
             Text::make('Password')
                                 ->onlyOnForms()
@@ -105,6 +110,8 @@ class UserResource extends Resource
                 ];
             }),
 
+            BelongsToMany::make('Related Users', 'relatedUsers', self::class),
+
             Text::make('Index')->onlyOnIndex(),
             Text::make('Detail')->onlyOnDetail(),
             Text::make('Form')->onlyOnForms(),
@@ -130,7 +137,28 @@ class UserResource extends Resource
             }),
 
             new ResourceToolElement('component-name'),
+            new MyResourceTool(),
+
+            KeyValue::make('Meta'),
         ];
+    }
+
+    /**
+     * Return the email field for the resource.
+     *
+     * @return \Laravel\Nova\Fields\Text
+     */
+    public function emailField()
+    {
+        return Text::make('Email')
+            ->rules('required', 'email', 'max:254')
+            ->creationRules(function ($request) {
+                return ['unique:users,email'];
+            })
+            ->updateRules('unique:users,email,{{resourceId}}')
+            ->canSee(function () {
+                return $_SERVER['email-field.canSee'] ?? true;
+            });
     }
 
     /**
@@ -157,6 +185,8 @@ class UserResource extends Resource
     public function actions(Request $request)
     {
         return [
+            new OpensInNewTabAction,
+            new RedirectAction,
             new DestructiveAction,
             new EmptyAction,
             new ExceptionAction,

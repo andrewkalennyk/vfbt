@@ -1,9 +1,11 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{ __('Update') }} {{ relatedResourceLabel }}</heading>
+        <heading class="mb-3">{{
+            __('Update :resource', { resource: relatedResourceLabel })
+        }}</heading>
 
-        <card class="overflow-hidden">
-            <form v-if="field" @submit.prevent="updateAttachedResource" autocomplete="off">
+        <form v-if="field" @submit.prevent="updateAttachedResource" autocomplete="off">
+            <card class="overflow-hidden mb-8">
                 <!-- Related Resource -->
                 <default-field :field="field" :errors="validationErrors">
                     <template slot="field">
@@ -18,9 +20,9 @@
                             :label="'display'"
                             :selected="selectedResourceId"
                         >
-                            <option value="" disabled selected
-                                >{{ __('Choose') }} {{ field.name }}</option
-                            >
+                            <option value="" disabled selected>{{
+                                __('Choose :field', { field: field.name })
+                            }}</option>
                         </select-control>
                     </template>
                 </default-field>
@@ -40,30 +42,31 @@
                         :via-relationship="viaRelationship"
                     />
                 </div>
+            </card>
+            <!-- Attach Button -->
+            <div class="flex">
+                <cancel-button />
 
-                <!-- Attach Button -->
-                <div class="bg-30 flex px-8 py-4">
-                    <progress-button
-                        class="ml-auto mr-3"
-                        dusk="update-and-continue-editing-button"
-                        @click.native="updateAndContinueEditing"
-                        :disabled="isWorking"
-                        :processing="submittedViaUpdateAndContinueEditing"
-                    >
-                        {{ __('Update & Continue Editing') }}
-                    </progress-button>
+                <progress-button
+                    class="mr-3"
+                    dusk="update-and-continue-editing-button"
+                    @click.native="updateAndContinueEditing"
+                    :disabled="isWorking"
+                    :processing="submittedViaUpdateAndContinueEditing"
+                >
+                    {{ __('Update & Continue Editing') }}
+                </progress-button>
 
-                    <progress-button
-                        dusk="update-button"
-                        type="submit"
-                        :disabled="isWorking"
-                        :processing="submittedViaUpdateAttachedResource"
-                    >
-                        {{ __('Update') }} {{ relatedResourceLabel }}
-                    </progress-button>
-                </div>
-            </form>
-        </card>
+                <progress-button
+                    dusk="update-button"
+                    type="submit"
+                    :disabled="isWorking"
+                    :processing="submittedViaUpdateAttachedResource"
+                >
+                    {{ __('Update :resource', { resource: relatedResourceLabel }) }}
+                </progress-button>
+            </div>
+        </form>
     </loading-view>
 </template>
 
@@ -174,10 +177,14 @@ export default {
 
             const { data } = await Nova.request()
                 .get(
-                    `/nova-api/${this.resourceName}/${this.resourceId}/update-pivot-fields/${
-                        this.relatedResourceName
-                    }/${this.relatedResourceId}`,
-                    { params: { viaRelationship: this.viaRelationship } }
+                    `/nova-api/${this.resourceName}/${this.resourceId}/update-pivot-fields/${this.relatedResourceName}/${this.relatedResourceId}`,
+                    {
+                        params: {
+                            editing: true,
+                            editMode: 'update-attached',
+                            viaRelationship: this.viaRelationship,
+                        },
+                    }
                 )
                 .catch(error => {
                     if (error.response.status == 404) {
@@ -199,9 +206,7 @@ export default {
         async getAvailableResources(search = '') {
             try {
                 const response = await Nova.request().get(
-                    `/nova-api/${this.resourceName}/${this.resourceId}/attachable/${
-                        this.relatedResourceName
-                    }`,
+                    `/nova-api/${this.resourceName}/${this.resourceId}/attachable/${this.relatedResourceName}`,
                     {
                         params: {
                             search,
@@ -307,9 +312,7 @@ export default {
          */
         updateRequest() {
             return Nova.request().post(
-                `/nova-api/${this.resourceName}/${this.resourceId}/update-attached/${
-                    this.relatedResourceName
-                }/${this.relatedResourceId}`,
+                `/nova-api/${this.resourceName}/${this.resourceId}/update-attached/${this.relatedResourceName}/${this.relatedResourceId}`,
                 this.updateAttachmentFormData
             )
         },

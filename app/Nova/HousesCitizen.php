@@ -51,6 +51,8 @@ class HousesCitizen extends Resource
         return [
             ID::make()->sortable(),
 
+            BelongsTo::make(__('Вулиця'), 'street','App\Nova\Street'),
+
             BelongsTo::make(__('Будинок') , 'house','App\Nova\House'),
 
             Text::make(__('Квартира'),'flat_number')

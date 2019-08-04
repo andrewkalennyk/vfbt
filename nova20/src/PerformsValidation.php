@@ -43,6 +43,9 @@ trait PerformsValidation
     {
         return static::formatRules($request, (new static(static::newModel()))
                     ->creationFields($request)
+                    ->reject(function ($field) use ($request) {
+                        return $field->isReadonly($request);
+                    })
                     ->mapWithKeys(function ($field) use ($request) {
                         return $field->getCreationRules($request);
                     })->all());
@@ -101,6 +104,9 @@ trait PerformsValidation
     {
         return static::formatRules($request, (new static(static::newModel()))
                     ->updateFields($request)
+                    ->reject(function ($field) use ($request) {
+                        return $field->isReadonly($request);
+                    })
                     ->mapWithKeys(function ($field) use ($request) {
                         return $field->getUpdateRules($request);
                     })->all());
@@ -207,7 +213,7 @@ trait PerformsValidation
     protected static function formatRules(NovaRequest $request, array $rules)
     {
         $replacements = array_filter([
-            '{{resourceId}}' => $request->resourceId,
+            '{{resourceId}}' => str_replace(['\'', '"', ',', '\\'], '', $request->resourceId),
         ]);
 
         if (empty($replacements)) {

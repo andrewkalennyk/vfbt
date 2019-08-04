@@ -2,13 +2,17 @@
 
 namespace Laravel\Nova\Tests\Feature;
 
+use stdClass;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Trix;
 use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Password;
 use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Tests\IntegrationTest;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Tests\Fixtures\UserResource;
 
 class FieldTest extends IntegrationTest
@@ -60,6 +64,19 @@ class FieldTest extends IntegrationTest
         $this->assertEquals('Computed', $field->value);
 
         $field->resolveForDisplay((object) []);
+        $this->assertEquals('Computed', $field->value);
+    }
+
+    public function test_computed_fields_resolve_with_resource()
+    {
+        $field = Text::make('InvokableComputed', function ($resource) {
+            return $resource->value;
+        });
+
+        $field->resolve((object) ['value' => 'Computed']);
+        $this->assertEquals('Computed', $field->value);
+
+        $field->resolveForDisplay((object) ['value' => 'Other value']);
         $this->assertEquals('Computed', $field->value);
     }
 
@@ -168,5 +185,58 @@ class FieldTest extends IntegrationTest
         ]);
 
         $this->assertJsonStringEqualsJsonString(json_encode($expected), json_encode($field->jsonSerialize()['options']));
+    }
+
+    public function test_field_can_be_set_to_readonly()
+    {
+        $field = Text::make('Avatar');
+        $field->readonly(true);
+
+        $this->assertTrue($field->isReadonly(NovaRequest::create('/', 'get')));
+    }
+
+    public function test_field_can_be_set_to_readonly_using_a_callback()
+    {
+        $field = Text::make('Avatar');
+        $field->readonly(function () {
+            return true;
+        });
+
+        $this->assertTrue($field->isReadonly(NovaRequest::create('/', 'get')));
+    }
+
+    public function test_field_can_be_set_to_not_be_readonly_using_a_callback()
+    {
+        $field = Text::make('Avatar');
+        $field->readonly(function () {
+            return false;
+        });
+
+        $this->assertFalse($field->isReadonly(NovaRequest::create('/', 'get')));
+    }
+
+    public function test_collision_of_request_properties()
+    {
+        $request = new NovaRequest([], [
+            'query' => '',
+            'resource' => 'resource',
+        ]);
+
+        $request->setMethod('POST');
+        $request->setRouteResolver(function () use ($request) {
+            return tap(new Route('POST', '/{resource}', function () {
+            }), function (Route $route) use ($request) {
+                $route->bind($request);
+                $route->setParameter('resource', UserResource::class);
+            });
+        });
+
+        $model = new stdClass();
+
+        Text::make('Resource')->fill($request, $model);
+        Password::make('Query')->fill($request, $model);
+
+        $this->assertObjectNotHasAttribute('query', $model);
+        $this->assertEquals('resource', $model->resource);
     }
 }

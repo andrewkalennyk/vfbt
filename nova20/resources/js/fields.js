@@ -32,6 +32,10 @@ Vue.component('index-code-field', require('./components/Index/TextField.vue'))
 Vue.component('detail-code-field', require('./components/Detail/CodeField.vue'))
 Vue.component('form-code-field', require('./components/Form/CodeField.vue'))
 
+// KeyValue Field...
+Vue.component('detail-key-value-field', require('./components/Detail/KeyValueField.vue'))
+Vue.component('form-key-value-field', require('./components/Form/KeyValueField/KeyValueField.vue'))
+
 // Date Field
 Vue.component('index-date', require('./components/Index/DateField.vue'))
 Vue.component('form-date', require('./components/Form/DateField.vue'))
@@ -66,6 +70,10 @@ Vue.component('form-status-field', require('./components/Form/StatusField.vue'))
 Vue.component('index-markdown-field', require('./components/Detail/TextField.vue'))
 Vue.component('detail-markdown-field', require('./components/Detail/MarkdownField.vue'))
 Vue.component('form-markdown-field', require('./components/Form/MarkdownField.vue'))
+
+// Badge Field...
+Vue.component('index-badge-field', require('./components/Index/BadgeField.vue'))
+Vue.component('detail-badge-field', require('./components/Detail/BadgeField.vue'))
 
 // Trix Field
 Vue.component('detail-trix-field', require('./components/Detail/TrixField.vue'))

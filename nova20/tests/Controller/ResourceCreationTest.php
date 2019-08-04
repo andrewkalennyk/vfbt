@@ -9,6 +9,7 @@ use Laravel\Nova\Tests\Fixtures\User;
 use Laravel\Nova\Tests\IntegrationTest;
 use Laravel\Nova\Tests\Fixtures\Address;
 use Laravel\Nova\Tests\Fixtures\CustomKey;
+use Laravel\Nova\Tests\Fixtures\Recipient;
 use Laravel\Nova\Tests\Fixtures\UserPolicy;
 use Illuminate\Database\Eloquent\Relations\Relation;
 
@@ -40,6 +41,11 @@ class ResourceCreationTest extends IntegrationTest
         $this->assertCount(1, ActionEvent::all());
         $this->assertEquals('Create', $actionEvent->name);
         $this->assertEquals($user->id, $actionEvent->target->id);
+        $this->assertEmpty($actionEvent->original);
+        $this->assertSubset([
+            'name' => 'Taylor Otwell',
+            'email' => 'taylor@laravel.com',
+        ], $actionEvent->changes);
         $this->assertTrue($user->is($actionEvent->target));
     }
 
@@ -267,6 +273,23 @@ class ResourceCreationTest extends IntegrationTest
         $response->assertStatus(201);
     }
 
+    public function test_resource_that_belongs_to_with_custom_owner_key()
+    {
+        $user = factory(User::class)->create();
+
+        $response = $this->withExceptionHandling()
+            ->postJson('/nova-api/recipients', [
+                'user' => $user->id,
+                'name' => 'Fake Name',
+            ]);
+
+        $response->assertStatus(201);
+
+        $recipient = Recipient::query()->first();
+
+        $this->assertEquals($user->email, $recipient->email);
+    }
+
     public function test_related_resource_cant_be_full_for_has_one_relationships()
     {
         $user = factory(User::class)->create();
@@ -341,5 +364,128 @@ class ResourceCreationTest extends IntegrationTest
         $this->assertTrue($user->is($actionEvent->target));
 
         Relation::morphMap([], false);
+    }
+
+    public function test_can_create_resources_with_key_value_field()
+    {
+        $response = $this->withoutExceptionHandling()
+                        ->postJson('/nova-api/users', [
+                            'name' => 'David Hemphill',
+                            'email' => 'david@laravel.com',
+                            'password' => 'secret',
+                            'meta' => json_encode([
+                                'age' => 34,
+                                'weight' => 170,
+                                'extra' => [
+                                    'nicknames' => ['Hempy', 'Hemp', 'Internet Ghost'],
+                                ],
+                            ]),
+                        ]);
+
+        $response->assertStatus(201);
+
+        $user = User::first();
+
+        $this->assertEquals([
+                'age' => 34,
+                'weight' => 170,
+                'extra' => ['nicknames' => ['Hempy', 'Hemp', 'Internet Ghost']],
+            ],
+            $user->meta
+        );
+    }
+
+    public function test_fields_are_not_validated_if_user_cant_see_them()
+    {
+        $_SERVER['weight-field.canSee'] = false;
+        $_SERVER['weight-field.readonly'] = false;
+
+        $this->withExceptionHandling()
+            ->postJson('/nova-api/users', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'password' => 'secret',
+            ])
+            ->assertStatus(201);
+    }
+
+    public function test_fields_are_not_stored_if_user_cant_see_them()
+    {
+        $_SERVER['weight-field.canSee'] = false;
+        $_SERVER['weight-field.readonly'] = false;
+
+        $this->withExceptionHandling()
+            ->postJson('/nova-api/users', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'weight' => 190,
+                'password' => 'secret',
+            ])
+            ->assertStatus(201);
+
+        $this->assertNull(User::first()->weight);
+    }
+
+    public function test_readonly_fields_are_not_validated()
+    {
+        $_SERVER['weight-field.canSee'] = true;
+        $_SERVER['weight-field.readonly'] = true;
+
+        $this->withExceptionHandling()
+            ->postJson('/nova-api/users', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'password' => 'secret',
+            ])
+            ->assertStatus(201);
+    }
+
+    public function test_readonly_fields_are_not_stored()
+    {
+        $_SERVER['weight-field.canSee'] = true;
+        $_SERVER['weight-field.readonly'] = true;
+
+        $this->withExceptionHandling()
+            ->postJson('/nova-api/users', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'weight' => 190,
+                'password' => 'secret',
+            ])
+            ->assertStatus(201);
+
+        $this->assertNull(User::first()->weight);
+    }
+
+    public function test_resource_can_redirect_to_default_uri_on_create()
+    {
+        $response = $this->withoutExceptionHandling()
+            ->postJson('/nova-api/users', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'password' => 'secret',
+            ]);
+
+        $response->assertJson(['redirect' => '/resources/users/1']);
+    }
+
+    public function test_resource_can_redirect_to_custom_uri_on_create()
+    {
+        $response = $this->withoutExceptionHandling()
+            ->postJson('/nova-api/users-with-redirects', [
+                'name' => 'Taylor Otwell',
+                'email' => 'taylor@laravel.com',
+                'password' => 'secret',
+            ]);
+
+        $response->assertJson(['redirect' => 'https://yahoo.com']);
+    }
+
+    public function tearDown() : void
+    {
+        unset($_SERVER['weight-field.readonly']);
+        unset($_SERVER['weight-field.canSee']);
+
+        parent::tearDown();
     }
 }

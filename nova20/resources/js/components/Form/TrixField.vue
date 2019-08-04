@@ -1,16 +1,20 @@
 <template>
     <default-field :field="field" :errors="errors" :full-width-content="true">
         <template slot="field">
-            <trix
-                name="trixman"
-                :value="field.value"
-                @change="handleChange"
-                @file-add="handleFileAdd"
-                @file-remove="handleFileRemove"
-                :class="{ 'border-danger': hasError }"
-                :with-files="field.withFiles"
-                v-bind="extraAttributes"
-            />
+            <div class="rounded-lg" :class="{ disabled: isReadonly }">
+                <trix
+                    name="trixman"
+                    :value="field.value"
+                    @change="handleChange"
+                    @file-add="handleFileAdd"
+                    @file-remove="handleFileRemove"
+                    :class="{ 'border-danger': hasError }"
+                    :with-files="field.withFiles"
+                    v-bind="extraAttributes"
+                    :disabled="isReadonly"
+                    class="rounded-lg"
+                />
+            </div>
         </template>
     </default-field>
 </template>
@@ -94,9 +98,7 @@ export default {
             if (this.field.withFiles) {
                 Nova.request()
                     .delete(
-                        `/nova-api/${this.resourceName}/trix-attachment/${this.field.attribute}/${
-                            this.draftId
-                        }`
+                        `/nova-api/${this.resourceName}/trix-attachment/${this.field.attribute}/${this.draftId}`
                     )
                     .then(response => console.log(response))
                     .catch(error => {})

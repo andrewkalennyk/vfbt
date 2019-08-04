@@ -1,9 +1,11 @@
 <template>
     <loading-view :loading="loading">
-        <heading class="mb-3">{{ __('Attach') }} {{ relatedResourceLabel }}</heading>
+        <heading class="mb-3">{{
+            __('Attach :resource', { resource: relatedResourceLabel })
+        }}</heading>
 
-        <card class="overflow-hidden">
-            <form v-if="field" @submit.prevent="attachResource" autocomplete="off">
+        <form v-if="field" @submit.prevent="attachResource" autocomplete="off">
+            <card class="overflow-hidden mb-8">
                 <!-- Related Resource -->
                 <default-field :field="field" :errors="validationErrors">
                     <template slot="field">
@@ -54,9 +56,9 @@
                             :label="'display'"
                             :selected="selectedResourceId"
                         >
-                            <option value="" disabled selected
-                                >{{ __('Choose') }} {{ relatedResourceLabel }}</option
-                            >
+                            <option value="" disabled selected>{{
+                                __('Choose :resource', { resource: relatedResourceLabel })
+                            }}</option>
                         </select-control>
 
                         <!-- Trashed State -->
@@ -84,30 +86,32 @@
                         :via-relationship="viaRelationship"
                     />
                 </div>
+            </card>
 
-                <!-- Attach Button -->
-                <div class="bg-30 flex px-8 py-4">
-                    <progress-button
-                        class="ml-auto mr-3"
-                        dusk="attach-and-attach-another-button"
-                        @click.native="attachAndAttachAnother"
-                        :disabled="isWorking"
-                        :processing="submittedViaAttachAndAttachAnother"
-                    >
-                        {{ __('Attach & Attach Another') }}
-                    </progress-button>
+            <!-- Attach Button -->
+            <div class="flex">
+                <cancel-button />
 
-                    <progress-button
-                        dusk="attach-button"
-                        type="submit"
-                        :disabled="isWorking"
-                        :processing="submittedViaAttachResource"
-                    >
-                        {{ __('Attach') }} {{ relatedResourceLabel }}
-                    </progress-button>
-                </div>
-            </form>
-        </card>
+                <progress-button
+                    class="mr-3"
+                    dusk="attach-and-attach-another-button"
+                    @click.native="attachAndAttachAnother"
+                    :disabled="isWorking"
+                    :processing="submittedViaAttachAndAttachAnother"
+                >
+                    {{ __('Attach & Attach Another') }}
+                </progress-button>
+
+                <progress-button
+                    dusk="attach-button"
+                    type="submit"
+                    :disabled="isWorking"
+                    :processing="submittedViaAttachResource"
+                >
+                    {{ __('Attach :resource', { resource: relatedResourceLabel }) }}
+                </progress-button>
+            </div>
+        </form>
     </loading-view>
 </template>
 
@@ -207,7 +211,13 @@ export default {
                     '/nova-api/' +
                         this.resourceName +
                         '/creation-pivot-fields/' +
-                        this.relatedResourceName
+                        this.relatedResourceName,
+                    {
+                        params: {
+                            editing: true,
+                            editMode: 'attach',
+                        },
+                    }
                 )
                 .then(({ data }) => {
                     this.fields = data
@@ -228,9 +238,7 @@ export default {
         getAvailableResources(search = '') {
             Nova.request()
                 .get(
-                    `/nova-api/${this.resourceName}/${this.resourceId}/attachable/${
-                        this.relatedResourceName
-                    }`,
+                    `/nova-api/${this.resourceName}/${this.resourceId}/attachable/${this.relatedResourceName}`,
                     {
                         params: {
                             search,
