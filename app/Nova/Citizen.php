@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\Date;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\HasOne;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -154,7 +155,7 @@ class Citizen extends Resource
 
             BelongsToMany::make(__('Категорії'), 'categories', 'App\Nova\CitizensCategory'),
 
-            HasOne::make(__('Статуси'), 'citizen_statuses', 'App\Nova\CitizenCitizenStatus')->canSee(function () {
+            HasMany::make(__('Статуси'), 'citizen_statuses', 'App\Nova\CitizenCitizenStatus')->canSee(function () {
                 $user = \request()->user();
                 return ($user->isSuperAdmin() || $user->isCoordinator()) ? true : false;
             }),
