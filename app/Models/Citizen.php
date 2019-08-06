@@ -82,7 +82,7 @@ class Citizen extends Model
 
     public function getIndexCategoryAttribute()
     {
-        return $this->categories->pluck('title')->implode(', ');
+        return $this->categories->pluck('title')->implode(',<br>');
     }
 
     public function getIndexStatusAttribute()
@@ -94,7 +94,7 @@ class Citizen extends Model
             $citSubStatus = $status->citizen_sub_status->title ?? '';
             $indexStatuses[] = $citStatus . '(' . $citSubStatus .')';
         }
-        return implode($indexStatuses, ', ');
+        return implode($indexStatuses, ',<br>');
     }
 
 

@@ -12,7 +12,7 @@ class SearchController extends \App\Http\Controllers\Controller
 {
     public function doSearch(Request $request)
     {
-        $citizens  = Citizen::with(['citizens_category', 'house_citizens', 'general_info'])->searchByName($request->all())->get();
+        $citizens  = Citizen::with(['categories', 'house_citizens', 'general_info'])->searchByName($request->all())->get();
 
         $citizens = $this->prepare($citizens);
 

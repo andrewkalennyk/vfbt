@@ -106,9 +106,9 @@ class Citizen extends Resource
                 ->mask('+380' . '##-###-##-##')
                 ->rules('required', 'max:255'),
 
-            Text::make('Категорії', 'index_category')->onlyOnIndex(),
+            Text::make('Категорії', 'index_category')->onlyOnIndex()->asHtml(),
 
-            Text::make('Статуси', 'index_status')->onlyOnIndex(),
+            Text::make('Статуси', 'index_status')->onlyOnIndex()->asHtml(),
 
             Boolean::make(__('Чи є посвідчення?'), 'is_certificate')
                 ->trueValue(1)
