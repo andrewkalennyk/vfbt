@@ -7,6 +7,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class HousesCitizen extends Resource
 {
@@ -51,9 +52,15 @@ class HousesCitizen extends Resource
         return [
             ID::make()->sortable(),
 
-            BelongsTo::make(__('Вулиця'), 'street','App\Nova\Street'),
+            NovaBelongsToDepend::make(__('Вулиця'), 'street', 'App\Nova\Street')
+                ->options(\App\Models\Street::all()),
 
-            BelongsTo::make(__('Будинок') , 'house','App\Nova\House'),
+            NovaBelongsToDepend::make(__('Будинок'), 'house', 'App\Nova\House')
+                ->optionsResolve(function ($street) {
+                    // Reduce the amount of unnecessary data sent
+                    return $street->houses()->get(['id', 'title']);
+                })
+                ->dependsOn('street'),
 
             Text::make(__('Квартира'),'flat_number')
                 ->sortable()
@@ -61,7 +68,7 @@ class HousesCitizen extends Resource
 
             BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
 
-            BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),
+            /*BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),*/
 
         ];
     }
