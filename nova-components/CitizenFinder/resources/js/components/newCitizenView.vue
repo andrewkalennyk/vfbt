@@ -28,7 +28,14 @@
                             <label for="grid-birthdate-name" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                                 Дата Народження
                             </label>
-                            <input id="grid-birthdate-name" ref="citizenValue" name="date_birth" type="text" placeholder="12-05-2019" class="appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input">
+                            <input id="grid-birthdate-name"
+                                   ref="citizenValue"
+                                   name="date_birth"
+                                   type="text"
+                                   placeholder="12-05-2019"
+                                   v-model="date"
+                                   mask="11 / 11 / 1111"
+                                   class="appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input">
                         </div>
                         <div class="md:w-1/3 px-3">
                             <label for="grid-phone-name" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
@@ -158,8 +165,13 @@
 </template>
 
 <script>
+    import MaskedInput from 'vue-masked-input'
+
     export default {
         name: 'newCitizenView',
+        components: {
+            MaskedInput
+        },
         data() {
             return {
                 citizenCategories: [],

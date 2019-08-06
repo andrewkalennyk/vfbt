@@ -64,13 +64,14 @@
 
     import citizenView from './citizenView';
     import newCitizenView from './newCitizenView';
+    import MaskedInput from 'vue-masked-input'
 
     export default {
         name: 'app',
         mounted() {
         },
         components: {
-            citizenView, newCitizenView
+            citizenView, newCitizenView , MaskedInput
         },
         data() {
             return {

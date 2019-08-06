@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae934db42065aaf87cdbebe3e59cdb80",
+    "content-hash": "b5692ecb6e6800b7770e3ddd5f7e5ccd",
     "packages": [
         {
             "name": "annyk/citizen-finder",
@@ -107,12 +107,11 @@
         },
         {
             "name": "annyk/navigation-builder",
-            "version": "9999999-dev",
+            "version": "dev-dev",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/NavigationBuilder",
-                "reference": "e81729c64685e169d4a2b76ce6197c3ac6dc269c",
-                "shasum": null
+                "reference": "e81729c64685e169d4a2b76ce6197c3ac6dc269c"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -1114,18 +1113,6 @@
         },
         {
             "name": "laravel/framework",
-<<<<<<< HEAD
-            "version": "v5.8.18",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/laravel/framework.git",
-                "reference": "9f571be04435883dab6f23ecfadb204273b7f527"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/9f571be04435883dab6f23ecfadb204273b7f527",
-                "reference": "9f571be04435883dab6f23ecfadb204273b7f527",
-=======
             "version": "v5.8.30",
             "source": {
                 "type": "git",
@@ -1136,7 +1123,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/laravel/framework/zipball/7ccf0cf63931a8d8391aed90e6fc011381ea6838",
                 "reference": "7ccf0cf63931a8d8391aed90e6fc011381ea6838",
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
                 "shasum": ""
             },
             "require": {
@@ -1270,11 +1256,7 @@
                 "framework",
                 "laravel"
             ],
-<<<<<<< HEAD
-            "time": "2019-05-21T16:40:34+00:00"
-=======
             "time": "2019-07-30T14:08:47+00:00"
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         },
         {
             "name": "laravel/nova",
@@ -1404,18 +1386,6 @@
         },
         {
             "name": "league/flysystem",
-<<<<<<< HEAD
-            "version": "1.0.52",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
-                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
-=======
             "version": "1.0.53",
             "source": {
                 "type": "git",
@@ -1426,7 +1396,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/08e12b7628f035600634a5e76d95b5eb66cea674",
                 "reference": "08e12b7628f035600634a5e76d95b5eb66cea674",
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
                 "shasum": ""
             },
             "require": {
@@ -1497,11 +1466,7 @@
                 "sftp",
                 "storage"
             ],
-<<<<<<< HEAD
-            "time": "2019-05-20T20:21:14+00:00"
-=======
             "time": "2019-06-18T20:09:29+00:00"
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         },
         {
             "name": "maatwebsite/excel",
@@ -1960,18 +1925,6 @@
         },
         {
             "name": "nesbot/carbon",
-<<<<<<< HEAD
-            "version": "2.18.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8322b7bd1805be31867c13bf3cdaab948a0dd406",
-                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406",
-=======
             "version": "2.22.0",
             "source": {
                 "type": "git",
@@ -1982,7 +1935,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/1a0e48b5f656065ba3c265b058b25d36c2162a5e",
                 "reference": "1a0e48b5f656065ba3c265b058b25d36c2162a5e",
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
                 "shasum": ""
             },
             "require": {
@@ -2036,11 +1988,7 @@
                 "datetime",
                 "time"
             ],
-<<<<<<< HEAD
-            "time": "2019-05-16T18:44:35+00:00"
-=======
             "time": "2019-07-28T09:02:12+00:00"
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         },
         {
             "name": "nikic/php-parser",
@@ -2285,18 +2233,6 @@
         },
         {
             "name": "phpoffice/phpspreadsheet",
-<<<<<<< HEAD
-            "version": "1.7.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PHPOffice/PhpSpreadsheet.git",
-                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/84e09df79855ed3da84e2eab6850eb7741d8cbda",
-                "reference": "84e09df79855ed3da84e2eab6850eb7741d8cbda",
-=======
             "version": "1.8.2",
             "source": {
                 "type": "git",
@@ -2307,7 +2243,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHPOffice/PhpSpreadsheet/zipball/0c1346a1956347590b7db09533966307d20cb7cc",
                 "reference": "0c1346a1956347590b7db09533966307d20cb7cc",
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
                 "shasum": ""
             },
             "require": {
@@ -2388,11 +2323,7 @@
                 "xls",
                 "xlsx"
             ],
-<<<<<<< HEAD
-            "time": "2019-05-26T02:50:36+00:00"
-=======
             "time": "2019-07-08T21:21:25+00:00"
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         },
         {
             "name": "phpoption/phpoption",
@@ -5473,18 +5404,6 @@
         },
         {
             "name": "phpunit/phpunit",
-<<<<<<< HEAD
-            "version": "7.5.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "64cb33f5b520da490a7b13149d39b43cf3c890c6"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/64cb33f5b520da490a7b13149d39b43cf3c890c6",
-                "reference": "64cb33f5b520da490a7b13149d39b43cf3c890c6",
-=======
             "version": "7.5.14",
             "source": {
                 "type": "git",
@@ -5495,7 +5414,6 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/2834789aeb9ac182ad69bfdf9ae91856a59945ff",
                 "reference": "2834789aeb9ac182ad69bfdf9ae91856a59945ff",
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
                 "shasum": ""
             },
             "require": {
@@ -5566,11 +5484,7 @@
                 "testing",
                 "xunit"
             ],
-<<<<<<< HEAD
-            "time": "2019-05-14T04:53:02+00:00"
-=======
             "time": "2019-07-15T06:24:08+00:00"
->>>>>>> 41233745afc37da391007fcb0bc8519e0d719dd2
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
