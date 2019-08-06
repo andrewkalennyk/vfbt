@@ -66,6 +66,24 @@ class HousesCitizen extends Resource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make(__("Під'їзд"),'entrance')
+                ->sortable()
+                ->rules('required', 'max:255', function($attribute, $value, $fail) {
+                    $house = \App\Models\House::find(\request()->get('house'));
+                    if ($house->entrances_number < $value) {
+                        return $fail("Неправильний номер під'їзду! У домі " . $house->entrances_number. " під'їзд(ів)");
+                    }
+                }),
+
+            Text::make(__('Поверх'),'floor')
+                ->sortable()
+                ->rules('required', 'max:255', function($attribute, $value, $fail) {
+                    $house = \App\Models\House::find(\request()->get('house'));
+                    if ($house->floors_number < $value) {
+                        return $fail("Неправильний номер під'їзду! У домі " . $house->floors_number. " поверх(ів)");
+                    }
+                }),
+
             BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
 
             /*BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),*/
