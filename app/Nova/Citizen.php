@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Models\GeneralInfoCitizen;
+use App\Nova\Filters\CitizensCategoryFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
@@ -143,7 +144,10 @@ class Citizen extends Resource
 
             /*fucking costyl to show ajaxSelect above! todo:// make own package for dependencies */
             BelongsTo::make(__('Повідомлення'), 'bad_list_reason', 'App\Nova\BadListReasons')
-                ->nullable()->hideWhenCreating()->hideWhenUpdating()->hideFromIndex(),
+                ->nullable()
+                ->hideWhenCreating()
+                ->hideWhenUpdating()
+                ->hideFromIndex(),
 
 
             HasOne::make(__('Будинок'), 'house_citizens', 'App\Nova\HousesCitizen')->canSee(function () {
@@ -197,6 +201,7 @@ class Citizen extends Resource
                         ->pluck('title', 'id');
                 })
                 ->hideWhenEmpty(),
+            new CitizensCategoryFilter()
 
         ];
     }
