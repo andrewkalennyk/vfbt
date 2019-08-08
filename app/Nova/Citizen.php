@@ -6,6 +6,7 @@ use App\Models\GeneralInfoCitizen;
 use App\Nova\Filters\CitizensCategoryFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
+use Dniccum\PhoneNumber\PhoneNumber;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
@@ -102,9 +103,11 @@ class Citizen extends Resource
                 ->mask('##-##-####')
                 ->rules('required', 'max:255'),
 
-            InputMask::make(__('Телефон'), 'phone')
+            PhoneNumber::make(__('Телефон'), 'phone')
                 ->sortable()
-                ->mask('+380' . '##-###-##-##')
+                ->format('+380' . '##-###-##-##')
+                ->placeholder('+380__-___-__-__')
+                //->mask('+380' . '##-###-##-##')
                 ->rules('required', 'max:255'),
 
             Text::make('Категорії', 'index_category')->onlyOnIndex()->asHtml(),
