@@ -60,4 +60,9 @@ class House extends Model
     {
         return $this->belongsTo('App\Models\ElectivePlot');
     }
+
+    public function getIndexTitleAttribute()
+    {
+        return $this->title . ' ' . ($this->is_private == 1 ? ' (П/C)' : '') ;
+    }
 }

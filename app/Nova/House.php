@@ -41,9 +41,14 @@ class House extends HandBookResource
         return [
             ID::make()->sortable(),
 
+            Text::make(__('Назва'), 'index_title')
+                ->sortable()
+                ->onlyOnIndex(),
+
             Text::make(__('Назва'), 'title')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->hideFromIndex(),
 
 
 
@@ -56,7 +61,7 @@ class House extends HandBookResource
                 Text::make(__('Кількість квартир'), 'flat_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
-                
+
                 Text::make(__("Кількість під'їздів"), 'entrances_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
