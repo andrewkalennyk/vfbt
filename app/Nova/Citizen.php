@@ -106,9 +106,8 @@ class Citizen extends Resource
             PhoneNumber::make(__('Телефон'), 'phone')
                 ->sortable()
                 ->format('+380' . '##-###-##-##')
-                ->placeholder('+380__-___-__-__')
-                //->mask('+380' . '##-###-##-##')
-                ->rules('required', 'max:255'),
+                ->disableValidation(true)
+                ->placeholder('+380__-___-__-__'),
 
             Text::make('Категорії', 'index_category')->onlyOnIndex()->asHtml(),
 
