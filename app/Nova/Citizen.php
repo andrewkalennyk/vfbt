@@ -107,7 +107,7 @@ class Citizen extends Resource
                 ->sortable()
                 ->format('+380' . '##-###-##-##')
                 ->creationRules('required','unique:citizens,phone')
-                ->updateRules('required','unique:citizens,phone,{{resourceId}}')
+                ->updateRules('unique:citizens,phone,{{resourceId}}')
                 ->disableValidation(true)
                 ->placeholder('+380__-___-__-__'),
 

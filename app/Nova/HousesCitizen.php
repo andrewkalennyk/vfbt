@@ -2,9 +2,12 @@
 
 namespace App\Nova;
 
+use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
@@ -44,7 +47,7 @@ class HousesCitizen extends Resource
     /**
      * Get the fields displayed by the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -62,29 +65,40 @@ class HousesCitizen extends Resource
                 })
                 ->dependsOn('street'),
 
-            Text::make(__('Квартира'),'flat_number')
-                ->sortable()
-                ->rules('required', 'max:255'),
+            Select::make(__('Приватний будинок'), 'is_private')->options([
+                0 => 'Ні',
+                1 => 'Так'
+            ]),
 
-            Text::make(__("Під'їзд"),'entrance')
-                ->sortable()
-                ->rules('required', 'max:255', function($attribute, $value, $fail) {
-                    $house = \App\Models\House::find(\request()->get('house'));
-                    if ($house->entrances_number < $value) {
-                        return $fail("Неправильний номер під'їзду! У домі " . $house->entrances_number. " під'їзд(ів)");
-                    }
-                }),
+            /*Boolean::make(__('Приватний будинок'), 'is_private')
+                ->trueValue(1)
+                ->falseValue(0)
+                ->hideFromIndex(),*/
 
-            Text::make(__('Поверх'),'floor')
-                ->sortable()
-                ->rules('required', 'max:255', function($attribute, $value, $fail) {
-                    $house = \App\Models\House::find(\request()->get('house'));
-                    if ($house->floors_number < $value) {
-                        return $fail("Неправильний номер під'їзду! У домі " . $house->floors_number. " поверх(ів)");
-                    }
-                }),
+            NovaDependencyContainer::make([
+                Text::make(__('Квартира'), 'flat_number')
+                    ->sortable()
+                    ->rules('required', 'max:255'),
 
-            BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
+                Text::make(__("Під'їзд"), 'entrance')
+                    ->sortable()
+                    ->rules('required', 'max:255', function ($attribute, $value, $fail) {
+                        $house = \App\Models\House::find(\request()->get('house'));
+                        if ($house->entrances_number < $value) {
+                            return $fail("Неправильний номер під'їзду! У домі " . $house->entrances_number . " під'їзд(ів)");
+                        }
+                    }),
+
+                Text::make(__('Поверх'), 'floor')
+                    ->sortable()
+                    ->rules('required', 'max:255', function ($attribute, $value, $fail) {
+                        $house = \App\Models\House::find(\request()->get('house'));
+                        if ($house->floors_number < $value) {
+                            return $fail("Неправильний номер під'їзду! У домі " . $house->floors_number . " поверх(ів)");
+                        }
+                    }),
+            ])->dependsOn('is_private', '0'),
+            BelongsTo::make(__('Громадянин'), 'citizen', 'App\Nova\Citizen')->searchable(),
 
             /*BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),*/
 
@@ -94,7 +108,7 @@ class HousesCitizen extends Resource
     /**
      * Get the cards available for the request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function cards(Request $request)
@@ -105,7 +119,7 @@ class HousesCitizen extends Resource
     /**
      * Get the filters available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function filters(Request $request)
@@ -116,7 +130,7 @@ class HousesCitizen extends Resource
     /**
      * Get the lenses available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function lenses(Request $request)
@@ -127,7 +141,7 @@ class HousesCitizen extends Resource
     /**
      * Get the actions available for the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function actions(Request $request)
