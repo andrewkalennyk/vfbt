@@ -45,9 +45,7 @@ class House extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make(__('Кількість квартир'), 'flat_number')
-                ->sortable()
-                ->rules('required', 'max:255'),
+
 
             Boolean::make(__('Приватний будинок'), 'is_private')
                 ->trueValue(1)
@@ -55,6 +53,10 @@ class House extends HandBookResource
                 ->hideFromIndex(),
 
             NovaDependency::make([
+                Text::make(__('Кількість квартир'), 'flat_number')
+                    ->sortable()
+                    ->rules('required', 'max:255'),
+                
                 Text::make(__("Кількість під'їздів"), 'entrances_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
