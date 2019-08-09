@@ -2,6 +2,8 @@
 
 namespace App\Nova;
 
+use Annyk\NovaDependency\NovaDependency;
+use Epartment\NovaDependencyContainer\HasDependencies;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
@@ -14,6 +16,7 @@ use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class HousesCitizen extends Resource
 {
+    use HasDependencies;
     /**
      * The model the resource corresponds to.
      *
@@ -65,12 +68,17 @@ class HousesCitizen extends Resource
                 })
                 ->dependsOn('street'),
 
-            Select::make(__('Приватний будинок'), 'is_private')->options([
+            Boolean::make(__('Приватний будинок'), 'is_private')
+                ->trueValue(1)
+                ->falseValue(0)
+                ->hideFromIndex(),
+
+            /*Select::make(__('Приватний будинок'), 'is_private')->options([
                 0 => 'Ні',
                 1 => 'Так'
-            ])->displayUsingLabels(),
+            ])->displayUsingLabels(),*/
 
-            NovaDependencyContainer::make([
+            NovaDependency::make([
                 Text::make(__('Квартира'), 'flat_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
@@ -92,10 +100,8 @@ class HousesCitizen extends Resource
                             return $fail("Неправильний номер під'їзду! У домі " . $house->floors_number . " поверх(ів)");
                         }
                     }),
-            ])->dependsOn('is_private', '0'),
+            ])->dependsOnFalse('is_private', 1),
             BelongsTo::make(__('Громадянин'), 'citizen', 'App\Nova\Citizen')->searchable(),
-
-            /*BelongsTo::make(__('Cтатус') ,'citizen_status','App\Nova\CitizensStatus')->nullable(),*/
 
         ];
     }

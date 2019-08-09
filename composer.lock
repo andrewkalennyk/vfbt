@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bac04c1c99cab982b9478dfca5e8e5ce",
+    "content-hash": "fc6c74cba889bb23cf40bc2168842888",
     "packages": [
         {
             "name": "annyk/citizen-finder",
@@ -133,6 +133,39 @@
                 "MIT"
             ],
             "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ]
+        },
+        {
+            "name": "annyk/nova-dependency",
+            "version": "dev-dev",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/NovaDependency",
+                "reference": "504035c065c8af02144ecdce9eb8edd06ebb960e"
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Annyk\\NovaDependency\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Annyk\\NovaDependency\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
             "keywords": [
                 "laravel",
                 "nova"
