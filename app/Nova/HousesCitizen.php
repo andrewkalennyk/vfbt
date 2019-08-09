@@ -73,11 +73,6 @@ class HousesCitizen extends Resource
                 ->falseValue(0)
                 ->hideFromIndex(),
 
-            /*Select::make(__('Приватний будинок'), 'is_private')->options([
-                0 => 'Ні',
-                1 => 'Так'
-            ])->displayUsingLabels(),*/
-
             NovaDependency::make([
                 Text::make(__('Квартира'), 'flat_number')
                     ->sortable()

@@ -2,9 +2,11 @@
 
 namespace App\Nova;
 
+use Annyk\NovaDependency\NovaDependency;
 use App\Models\HouseCitizensFields;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
+use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -43,17 +45,24 @@ class House extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Text::make(__("Кількість під'їздів"), 'entrances_number')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
-            Text::make(__('Кількість поверхів'), 'floors_number')
-                ->sortable()
-                ->rules('required', 'max:255'),
-
             Text::make(__('Кількість квартир'), 'flat_number')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Boolean::make(__('Приватний будинок'), 'is_private')
+                ->trueValue(1)
+                ->falseValue(0)
+                ->hideFromIndex(),
+
+            NovaDependency::make([
+                Text::make(__("Кількість під'їздів"), 'entrances_number')
+                    ->sortable()
+                    ->rules('required', 'max:255'),
+
+                Text::make(__('Кількість поверхів'), 'floors_number')
+                    ->sortable()
+                    ->rules('required', 'max:255'),
+            ])->dependsOnFalse('is_private', 1),
 
             BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
 
