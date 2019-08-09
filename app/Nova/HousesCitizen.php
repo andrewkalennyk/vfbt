@@ -68,12 +68,7 @@ class HousesCitizen extends Resource
             Select::make(__('Приватний будинок'), 'is_private')->options([
                 0 => 'Ні',
                 1 => 'Так'
-            ]),
-
-            /*Boolean::make(__('Приватний будинок'), 'is_private')
-                ->trueValue(1)
-                ->falseValue(0)
-                ->hideFromIndex(),*/
+            ])->displayUsingLabels(),
 
             NovaDependencyContainer::make([
                 Text::make(__('Квартира'), 'flat_number')
