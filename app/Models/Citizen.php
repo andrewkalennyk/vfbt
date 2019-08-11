@@ -92,14 +92,14 @@ class Citizen extends Model
         foreach ($statuses as $status) {
             $citStatus = $status->citizen_status->title ?? '';
             $citSubStatus = $status->citizen_sub_status->title ?? '';
-            $indexStatuses[] = $citStatus . '(' . $citSubStatus .')';
+            $indexStatuses[] = $citStatus . '(' . $citSubStatus . ')';
         }
         return implode($indexStatuses, ',<br>');
     }
 
 
-
-    public static function importCitizen($item) {
+    public static function importCitizen($item)
+    {
         return Citizen::updateOrCreate(
             [
                 'last_name' => $item['prizvishche'],
@@ -150,6 +150,13 @@ class Citizen extends Model
             $query = $query->where('patronymic_name', 'like', '%' . $input['patronymic_name'] . '%');
         }
         return $query;
+    }
+
+    public function scopeByFullName($query, $input)
+    {
+        $query->where('last_name', 'like', $input['last_name'])
+            ->where('first_name', 'like', $input['first_name'])
+            ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
 
 }

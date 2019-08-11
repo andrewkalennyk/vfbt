@@ -82,7 +82,7 @@ class Citizen extends Resource
             Text::make(__('Фамилия'), 'last_name')
                 ->sortable()
                 ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::searchByName($request->all())->first();
+                    $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
                     }
@@ -91,7 +91,7 @@ class Citizen extends Resource
             Text::make(__('Имя'), 'first_name')
                 ->sortable()
                 ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::searchByName($request->all())->first();
+                    $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
                     }
@@ -100,7 +100,7 @@ class Citizen extends Resource
             Text::make(__('Отчество'), 'patronymic_name')
                 ->sortable()
                 ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::searchByName($request->all())->first();
+                    $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
                     }
