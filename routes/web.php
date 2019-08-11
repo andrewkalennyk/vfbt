@@ -38,6 +38,15 @@ Route::get('/mutators', function () {
     dr($citizen);
 });
 
+
+
+Route::middleware(['nova'])->group(function () {
+    Route::get('get-houses-by-street/{street}', 'DependecyController@getHousesByStreet');
+    Route::get('get-entities-by-house/{house_id}/{entity_type}', 'DependecyController@getEntityByHouse');
+    Route::get('get-is-private-by-house/{house_id}', 'DependecyController@getIsPrivateByHouse');
+});
+
+
 // todo: go to Controller!!!!!!
 Route::get('api/type-list/{type_list}', function($typeId) {
     $messages = \App\Models\BadListReason::where('type', $typeId)->get();
@@ -46,3 +55,4 @@ Route::get('api/type-list/{type_list}', function($typeId) {
         return [ 'value' => $message->id, 'display' => $message->message ];
     });
 })->middleware(['nova']);
+

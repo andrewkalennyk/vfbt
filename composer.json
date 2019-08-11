@@ -31,7 +31,8 @@
         "predis/predis": "^1.1",
         "titasgailius/search-relations": "^1.0",
         "wemersonrv/input-mask": "^0.1.2",
-        "annyk/nova-dependency": "*"
+        "annyk/nova-dependency": "*",
+        "annyk/checkbox-dependent": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -73,6 +74,10 @@
         {
             "type": "path",
             "url": "./nova-components/NovaDependency"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/CheckboxDependent"
         }
     ],
     "config": {

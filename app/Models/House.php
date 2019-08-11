@@ -65,4 +65,9 @@ class House extends Model
     {
         return $this->title . ' ' . ($this->is_private == 1 ? ' (П/C)' : '') ;
     }
+
+    public function scopeByStreet($query, $id)
+    {
+        return $query->where('street_id', $id);
+    }
 }

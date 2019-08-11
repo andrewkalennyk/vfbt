@@ -19,7 +19,9 @@
         "build-navigation-builder": "cd nova-components/NavigationBuilder && npm run dev",
         "build-navigation-builder-prod": "cd nova-components/NavigationBuilder && npm run prod",
         "build-nova-dependency": "cd nova-components/NovaDependency && npm run dev",
-        "build-nova-dependency-prod": "cd nova-components/NovaDependency && npm run prod"
+        "build-nova-dependency-prod": "cd nova-components/NovaDependency && npm run prod",
+        "build-checkbox-dependent": "cd nova-components/CheckboxDependent && npm run dev",
+        "build-checkbox-dependent-prod": "cd nova-components/CheckboxDependent && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",

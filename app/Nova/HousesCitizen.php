@@ -2,17 +2,15 @@
 
 namespace App\Nova;
 
+use Annyk\CheckboxDependent\CheckboxDependent;
 use Annyk\NovaDependency\NovaDependency;
 use Epartment\NovaDependencyContainer\HasDependencies;
-use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Http\Requests\NovaRequest;
-use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use NovaAjaxSelect\AjaxSelect;
 
 class HousesCitizen extends Resource
 {
@@ -58,43 +56,32 @@ class HousesCitizen extends Resource
         return [
             ID::make()->sortable(),
 
-            NovaBelongsToDepend::make(__('Вулиця'), 'street', 'App\Nova\Street')
-                ->options(\App\Models\Street::all()),
+            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
 
-            NovaBelongsToDepend::make(__('Будинок'), 'house', 'App\Nova\House')
-                ->optionsResolve(function ($street) {
-                    // Reduce the amount of unnecessary data sent
-                    return $street->houses()->get(['id', 'title']);
-                })
-                ->dependsOn('street'),
+            AjaxSelect::make(__('Будинок'), 'house_id')
+                ->get('/get-houses-by-street/{street}')
+                ->parent('street'),
 
-            Boolean::make(__('Приватний будинок'), 'is_private')
+            CheckboxDependent::make(__('Приватний будинок'), 'is_private')
                 ->trueValue(1)
                 ->falseValue(0)
-                ->hideFromIndex(),
+                ->hideFromIndex()
+                ->depends('house_id')
+                ->get('/get-is-private-by-house/{house_id}'),
+
+            AjaxSelect::make(__("Під'їзд"), 'entrance')
+                ->get('/get-entities-by-house/{house_id}/entrances_number')
+                ->parent('house_id'),
+
+            AjaxSelect::make(__('Поверх'), 'floor')
+                ->get('/get-entities-by-house/{house_id}/floors_number')
+                ->parent('house_id'),
+
 
             NovaDependency::make([
                 Text::make(__('Квартира'), 'flat_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
-
-                Text::make(__("Під'їзд"), 'entrance')
-                    ->sortable()
-                    ->rules('required', 'max:255', function ($attribute, $value, $fail) {
-                        $house = \App\Models\House::find(\request()->get('house'));
-                        if ($house->entrances_number < $value) {
-                            return $fail("Неправильний номер під'їзду! У домі " . $house->entrances_number . " під'їзд(ів)");
-                        }
-                    }),
-
-                Text::make(__('Поверх'), 'floor')
-                    ->sortable()
-                    ->rules('required', 'max:255', function ($attribute, $value, $fail) {
-                        $house = \App\Models\House::find(\request()->get('house'));
-                        if ($house->floors_number < $value) {
-                            return $fail("Неправильний номер під'їзду! У домі " . $house->floors_number . " поверх(ів)");
-                        }
-                    }),
             ])->dependsOnFalse('is_private', 1),
             BelongsTo::make(__('Громадянин'), 'citizen', 'App\Nova\Citizen')->searchable(),
 
