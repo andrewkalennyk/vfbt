@@ -22,11 +22,15 @@ class CitizenStreetHouseFilter extends DependentFilter
     {
         $filters = $request->filters();
 
+
         return $query->whereHas('house_citizens', function ($subQuery) use($filters) {
 
             if ($filters) {
                 foreach ($filters as $filter) {
-                    $subQuery = $subQuery->where($filter->filter->attribute, $filter->value);
+                    if (in_array($filter->filter->attribute, ['house_id', 'street_id'])) {
+                        $subQuery = $subQuery->where($filter->filter->attribute, $filter->value);
+                    }
+
                 }
             }
 

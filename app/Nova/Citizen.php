@@ -3,9 +3,12 @@
 namespace App\Nova;
 
 use App\Models\GeneralInfoCitizen;
+use App\Nova\Filters\CitizenElectivePlotFilter;
+use App\Nova\Filters\CitizenOfficeFilter;
 use App\Nova\Filters\CitizensCategoryFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
+use AwesomeNova\Filters\DependentFilter;
 use Dniccum\PhoneNumber\PhoneNumber;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Laravel\Nova\Fields\BelongsTo;
@@ -23,6 +26,10 @@ use NrmlCo\NovaBigFilter\NovaBigFilter;
 use Wemersonrv\InputMask\InputMask;
 use NovaAjaxSelect\AjaxSelect;
 use App\Models\Citizen as CitizenModel;
+use App\Models\House;
+use App\Models\Street;
+use App\Models\ElectivePlot;
+use App\Models\Office;
 
 class Citizen extends Resource
 {
@@ -81,7 +88,7 @@ class Citizen extends Resource
 
             Text::make(__('Фамилия'), 'last_name')
                 ->sortable()
-                ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
+                ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
@@ -90,7 +97,7 @@ class Citizen extends Resource
 
             Text::make(__('Имя'), 'first_name')
                 ->sortable()
-                ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
+                ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
@@ -99,7 +106,7 @@ class Citizen extends Resource
 
             Text::make(__('Отчество'), 'patronymic_name')
                 ->sortable()
-                ->rules('required', 'max:255', function($attribute, $value, $fail) use($request) {
+                ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $exist = CitizenModel::byFullName($request->all())->first();
                     if ($exist) {
                         return $fail('Користувач з таким ФІО вже зареєстрований');
@@ -209,18 +216,26 @@ class Citizen extends Resource
     public function filters(Request $request)
     {
         return [
+            CitizenOfficeFilter::make('Приймальня', 'office_id')
+                ->withOptions(function (Request $request, $filters) {
+                    return Office::filter($filters)->pluck('title', 'id');
+                }),
+                //->dependentOf(['elective_plot_id','street_id']),
+            CitizenElectivePlotFilter::make('Дільниця', 'elective_plot_id')
+                ->withOptions(function (Request $request, $filters) {
+                    return ElectivePlot::filter($filters)->pluck('title', 'id');
+                }),
+                //->dependentOf(['office_id','street_id']),
             CitizenStreetHouseFilter::make('Вулиця', 'street_id')
                 ->withOptions(function (Request $request, $filters) {
-                    return \App\Models\Street::pluck('title', 'id');
-                })
-                ->hideWhenEmpty(),
+                    return Street::filter($filters)->pluck('title', 'id');
+                }),
+                //->dependentOf(['office_id','house_id','elective_plot_id']),
             CitizenStreetHouseFilter::make('Будинок', 'house_id')
                 ->dependentOf('street_id')
                 ->withOptions(function (Request $request, $filters) {
-                    return \App\Models\House::where('street_id', $filters['street_id'])
-                        ->pluck('title', 'id');
-                })
-                ->hideWhenEmpty(),
+                    return House::filter($filters)->pluck('title', 'id');
+                }),
             new CitizensCategoryFilter()
 
         ];

@@ -10,6 +10,7 @@ namespace App\Models;
 
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 
 class Street extends Model
@@ -40,5 +41,14 @@ class Street extends Model
     public function houses()
     {
         return $this->hasMany('App\Models\House');
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+       if (Arr::get($filters,'house_id')) {
+           /*$ids = House::find(Arr::get($filters,'house_id'));
+           $query = $query->where();*/
+       }
+       return $query;
     }
 }

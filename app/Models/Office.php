@@ -10,6 +10,7 @@ namespace App\Models;
 
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 
 class Office extends Model
@@ -36,5 +37,19 @@ class Office extends Model
     public function elective_plots()
     {
         return $this->hasMany('App\Models\ElectivePlot');
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+
+        if (Arr::get($filters, 'elective_plot_id')) {
+            $officeId = ElectivePlot::where('id', Arr::get($filters, 'elective_plot_id'))->pluck('office_id');
+            $query = $query->whereIn('id', $officeId);
+        }
+        /*if (Arr::get($filters, 'elective_plot_id')) {
+            $officeId = ElectivePlot::where('id', Arr::get($filters, 'elective_plot_id'))->pluck('office_id');
+            $query = $query->whereIn('id', $officeId);
+        }*/
+        return $query;
     }
 }

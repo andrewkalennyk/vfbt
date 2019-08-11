@@ -10,6 +10,7 @@ namespace App\Models;
 
 use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Arr;
 
 
 class ElectivePlot extends Model
@@ -42,5 +43,14 @@ class ElectivePlot extends Model
     public function streets()
     {
         return $this->hasMany('App\Models\Street');
+    }
+
+    public function scopeFilter($query, $filters)
+    {
+
+        if (Arr::get($filters, 'office_id')) {
+            $query = $query->where('office_id', Arr::get($filters, 'office_id'));
+        }
+        return $query;
     }
 }
