@@ -44,6 +44,7 @@ Route::middleware(['nova'])->group(function () {
     Route::get('get-houses-by-street/{street}', 'DependecyController@getHousesByStreet');
     Route::get('get-entities-by-house/{house_id}/{entity_type}', 'DependecyController@getEntityByHouse');
     Route::get('get-is-private-by-house/{house_id}', 'DependecyController@getIsPrivateByHouse');
+    Route::get('get-street-by-elective-plot/{elective_plot}', 'DependecyController@getStreetsByElectivePlot');
 });
 
 

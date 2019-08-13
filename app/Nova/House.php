@@ -3,16 +3,14 @@
 namespace App\Nova;
 
 use Annyk\NovaDependency\NovaDependency;
-use App\Models\HouseCitizensFields;
-use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
-use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
+use App\Models\ElectivePlot;
 
 class House extends HandBookResource
 {
@@ -71,9 +69,19 @@ class House extends HandBookResource
                     ->rules('required', 'max:255'),
             ])->dependsOnFalse('is_private', 1),
 
-            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
+            NovaBelongsToDepend::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot')
+                ->options(ElectivePlot::all())
+                ->nullable(),
 
-            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot'),
+            /*BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),*/
+
+            NovaBelongsToDepend::make(__('Вулиця'), 'street', 'App\Nova\Street')
+                ->dependsOn('elective_plot')
+                ->optionsResolve(function ($electivePlot) {
+                    // Reduce the amount of unnecessary data sent
+                    return $electivePlot->streets()->get(['id','title']);
+                })
+                ->nullable(),
 
             HasMany::make(__(''), 'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
         ];

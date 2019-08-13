@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\House;
+use App\Models\Street;
 
 class DependecyController extends Controller
 {
@@ -35,5 +36,12 @@ class DependecyController extends Controller
         $house = House::find($houseId);
 
         return $house->is_private ?? false;
+    }
+
+    public function getStreetsByElectivePlot($electivePlotId)
+    {
+        return Street::byElectivePlot($electivePlotId)->get()->map(function($item) {
+            return [ 'value' => $item->id, 'display' => $item->title ];
+        });
     }
 }

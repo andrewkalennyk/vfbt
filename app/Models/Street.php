@@ -51,4 +51,9 @@ class Street extends Model
        }
        return $query;
     }
+
+    public function scopeByElectivePlot($query, $id)
+    {
+        return $query->where('elective_plot_id', $id);
+    }
 }
