@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
@@ -41,6 +42,8 @@ class Street extends HandBookResource
                 ->rules('required', 'max:255'),
 
             BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot'),
+
+            BelongsToMany::make(__('Дільниці'), 'electivePlots','App\Nova\ElectivePlot'),
 
             HasMany::make(__('Будинки'), 'houses', 'App\Nova\House')
         ];
