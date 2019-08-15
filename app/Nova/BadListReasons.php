@@ -19,6 +19,8 @@ class BadListReasons extends HandBookResource
 
     public static $displayInNavigation = true;
 
+    public static $globallySearchable = false;
+
     public static function label()
     {
         return 'Причини попадання у список';
