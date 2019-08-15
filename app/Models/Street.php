@@ -33,10 +33,12 @@ class Street extends Model
         'slug' => 'streets'
     ];
 
-    public function elective_plot()
+    protected $savingElectivePlots = [];
+
+    /*public function elective_plot()
     {
        return $this->belongsTo('App\Models\ElectivePlot');
-    }
+    }*/
 
     public function electivePlots()
     {
@@ -64,5 +66,30 @@ class Street extends Model
     public function scopeByElectivePlot($query, $id)
     {
         return $query->where('elective_plot_id', $id);
+    }
+
+    public function getElectivePlotListAttribute()
+    {
+        return !empty($this->electivePlots) ? $this->electivePlots->pluck('id')->all() : collect([]);
+    }
+
+    public function setElectivePlotListAttribute($value)
+    {
+        $this->savingElectivePlots = explode(",", $value);
+
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created( function ($object) {
+            $object->electivePlots()->sync($object->savingElectivePlots);
+        });
+
+        static::saved(function ($object) {
+            $object->electivePlots()->sync($object->savingElectivePlots);
+        });
+
     }
 }

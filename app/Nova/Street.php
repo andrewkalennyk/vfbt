@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use KossShtukert\LaravelNovaSelect2\Select2;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\HasMany;
@@ -9,6 +10,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use App\Models\ElectivePlot;
 
 class Street extends HandBookResource
 {
@@ -41,7 +43,15 @@ class Street extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot'),
+            Select2::make('Дільниці', 'elective_plot_list')
+                ->sortable()
+                ->options(ElectivePlot::pluck('title', 'id'))
+                ->configuration([
+                    'placeholder'             => __('Choose options'),
+                    'allowClear'              => true,
+                    'minimumResultsForSearch' => 1,
+                    'multiple'                => true,
+                ]),
 
             BelongsToMany::make(__('Дільниці'), 'electivePlots','App\Nova\ElectivePlot'),
 

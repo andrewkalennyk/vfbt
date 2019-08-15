@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a2f074bb89c7da8938c14303098e4e3f",
+    "content-hash": "31ae03f1d14b6da9fb057ed7c16695c5",
     "packages": [
         {
             "name": "annyk/checkbox-dependent",
@@ -1345,6 +1345,47 @@
             ],
             "description": "Highlight PHP code in terminal",
             "time": "2018-09-29T18:48:56+00:00"
+        },
+        {
+            "name": "koss-shtukert/laravel-nova-select2-auto-complete",
+            "version": "v1.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/koss-shtukert/laravel-nova-select2-auto-complete.git",
+                "reference": "3bc2d0c4c285e8ff778c48fd8ab2a3d3e0841886"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/koss-shtukert/laravel-nova-select2-auto-complete/zipball/3bc2d0c4c285e8ff778c48fd8ab2a3d3e0841886",
+                "reference": "3bc2d0c4c285e8ff778c48fd8ab2a3d3e0841886",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KossShtukert\\LaravelNovaSelect2\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KossShtukert\\LaravelNovaSelect2\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova field.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "time": "2019-08-13T09:42:44+00:00"
         },
         {
             "name": "laravel/framework",
