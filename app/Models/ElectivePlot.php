@@ -45,6 +45,11 @@ class ElectivePlot extends Model
         return $this->hasMany('App\Models\Street');
     }
 
+    public function houses()
+    {
+        return $this->hasMany('App\Models\House');
+    }
+
     public function scopeFilter($query, $filters)
     {
 

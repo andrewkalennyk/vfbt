@@ -25,6 +25,8 @@ class House extends HandBookResource
 
     public static $group = 'Облік';
 
+    public static $perPageViaRelationship = 15;
+
     public static function label()
     {
         return 'Будинки';
@@ -49,6 +51,9 @@ class House extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255')
                 ->hideFromIndex(),
+
+            /*fucking ajax select*/
+            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street')->exceptOnForms(),
 
             BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot')
                 ->nullable(),

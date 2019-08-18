@@ -46,6 +46,7 @@ class Street extends HandBookResource
             Select2::make('Дільниці', 'elective_plot_list')
                 ->sortable()
                 ->options(ElectivePlot::pluck('title', 'id'))
+                ->hideFromIndex()
                 ->configuration([
                     'placeholder'             => __('Choose options'),
                     'allowClear'              => true,

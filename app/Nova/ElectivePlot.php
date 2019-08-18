@@ -45,7 +45,9 @@ class ElectivePlot extends HandBookResource
 
             BelongsTo::make(__('Громадська приймальня'), 'office','App\Nova\Office'),
 
-            HasMany::make(__('Вулиці'),'streets','App\Nova\Street')
+            HasMany::make(__('Вулиці'),'streets','App\Nova\Street'),
+
+            HasMany::make(__('Будинки'),'houses','App\Nova\House'),
         ];
     }
 
