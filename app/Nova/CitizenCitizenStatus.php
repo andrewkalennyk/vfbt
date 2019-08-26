@@ -2,9 +2,16 @@
 
 namespace App\Nova;
 
+use Annyk\NovaDependency\NovaDependency;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
+use Laravel\Nova\Fields\Text;
+use NovaAjaxSelect\AjaxSelect;
+use App\Models\CitizensStatus;
+use App\Models\Street;
+use App\Models\RegionalEstablishmentType;
 use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 
 class CitizenCitizenStatus extends HandBookResource
@@ -48,22 +55,53 @@ class CitizenCitizenStatus extends HandBookResource
      */
     public function fields(Request $request)
     {
+        $responsibleId = CitizensStatus::byType('responsible')->first()->id;
+        $parentComiteeId = CitizensStatus::byType('parent_committee')->first()->id;
+        //$otherIds = CitizensStatus::byType(null)->pluck('id')->toArray();
+
         return [
             ID::make()->sortable(),
 
             BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
 
-            NovaBelongsToDepend::make(__('Cтатус') , 'citizen_status', 'App\Nova\CitizensStatus')
-                ->options(\App\Models\CitizensStatus::all())
-                ->nullable(),
+            Select::make(__('Cтатус'), 'citizen_status_id')
+                ->options(CitizensStatus::pluck('title','id'))->displayUsingLabels(),
 
-            NovaBelongsToDepend::make(__('Cтатус 2 категорія') ,'citizen_sub_status','App\Nova\CitizensSubStatus')
-                ->dependsOn('citizen_status')
-                ->optionsResolve(function ($citizenStatus) {
-                    // Reduce the amount of unnecessary data sent
-                    return $citizenStatus->citizen_sub_statuses()->get(['id','title']);
-                })
-                ->nullable(),
+            BelongsTo::make(__('Cтатус 2 категорія'), 'citizen_sub_status', 'App\Nova\CitizensSubStatus')->exceptOnForms(),
+
+            Text::make(__('Докладніше'),'details')->exceptOnForms(),
+
+            NovaDependency::make([
+                Select::make(__('Вулиця'), 'street_id')
+                    ->options(Street::pluck('title','id'))
+                    ->displayUsingLabels(),
+
+                AjaxSelect::make(__('Будинок'), 'house_id')
+                    ->get('/get-houses-by-street/{street_id}')
+                    ->parent('street_id'),
+
+                AjaxSelect::make(__("Під'їзд"), 'entrance')
+                    ->get('/get-entities-by-house/{house_id}/entrances_number')
+                    ->parent('house_id')
+            ])->dependsOn('citizen_status_id', $responsibleId),
+
+            NovaDependency::make([
+                Select::make(__('Тип Районого закладу'), 'regional_establishment_type_id')
+                    ->options(RegionalEstablishmentType::pluck('title','id'))
+                    ->displayUsingLabels(),
+
+                AjaxSelect::make(__("Заклад"), 'regional_establishment_id')
+                    ->get('/get-regional-establishment-by-type/{regional_establishment_type_id}')
+                    ->parent('regional_establishment_type_id')
+
+            ])->dependsOn('citizen_status_id', $parentComiteeId),
+
+            AjaxSelect::make(__('Cтатус 2 категорія'), 'citizen_sub_status_id')
+                ->get('/get-sub-status-by-status/{citizen_status_id}')
+                ->parent('citizen_status_id'),
+
+
+
 
         ];
     }

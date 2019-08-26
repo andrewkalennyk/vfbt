@@ -12,11 +12,11 @@ use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
-class CitizensStatus extends Model
+class RegionalEstablishmentType extends Model
 {
     use RevisionMaker;
 
-    protected $table = 'citizens_statuses';
+    protected $table = 'regional_establishment_types';
 
     protected $fillable = [
         'title'
@@ -27,18 +27,14 @@ class CitizensStatus extends Model
             'id' => 'ID',
             'title' => 'Назва',
         ],
-        'name' => 'Статус громадянина',
-        'slug' => 'citizens-statuses'
+        'name' => 'Тип Районного закладу',
+        'slug' => 'regional-establishment-types'
     ];
 
-    public function citizen_sub_statuses()
-    {
-        return $this->hasMany('App\Models\CitizensSubStatus');
-    }
 
-    public function scopeByType($query, $type)
+    public function regionalEstablishments()
     {
-        return $query->whereType($type);
+        return $this->hasMany('App\Models\RegionalEstablishment');
     }
 
 }

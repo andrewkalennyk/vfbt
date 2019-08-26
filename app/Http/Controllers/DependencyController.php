@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CitizensSubStatus;
 use App\Models\House;
+use App\Models\RegionalEstablishment;
 use App\Models\Street;
 use Illuminate\Support\Facades\DB;
 
-class DependecyController extends Controller
+class DependencyController extends Controller
 {
 
     public function getHousesByStreet($streetId)
@@ -43,6 +45,20 @@ class DependecyController extends Controller
     {
         $streetIds = DB::table('elective_plots_streets')->where('elective_plot_id', $electivePlotId)->pluck('street_id');
         return Street::whereIn('id', $streetIds)->get()->map(function ($item) {
+            return ['value' => $item->id, 'display' => $item->title];
+        });
+    }
+
+    public function getRegionalEstablishmentByType($typeId)
+    {
+        return RegionalEstablishment::where('regional_establishment_type_id', $typeId)->get()->map(function ($item) {
+            return ['value' => $item->id, 'display' => $item->title];
+        });
+    }
+
+    public function getCitizenSubStatusByStatus($statusId)
+    {
+        return CitizensSubStatus::where('citizens_status_id', $statusId)->get()->map(function ($item) {
             return ['value' => $item->id, 'display' => $item->title];
         });
     }

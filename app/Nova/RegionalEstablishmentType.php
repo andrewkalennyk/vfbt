@@ -10,18 +10,18 @@ use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class CitizensStatus extends HandBookResource
+class RegionalEstablishmentType extends HandBookResource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = 'App\Models\CitizensStatus';
+    public static $model = 'App\Models\RegionalEstablishmentType';
 
     public static function label()
     {
-        return 'Статус громадянина';
+        return 'Тип Районного закладу';
     }
 
     public function fields(Request $request)
@@ -33,19 +33,7 @@ class CitizensStatus extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
-            Select::make(__('Тип'), 'type')
-                ->options(
-                    [
-                        'responsible' => 'відповідальний',
-                        'parent_committee' => 'голова батьківського комітету'
-                    ]
-                )
-                ->displayUsingLabels()
-                ->nullable(),
-
-
-            HasMany::make(__('Статус 2 рівня'), 'citizen_sub_statuses', 'App\Nova\CitizensSubStatus')
-
+            HasMany::make(__('Заклади'),'regionalEstablishments','App\Nova\RegionalEstablishment'),
 
         ];
     }

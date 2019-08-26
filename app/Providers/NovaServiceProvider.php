@@ -19,6 +19,8 @@ use App\Nova\Metrics\CitizenCount;
 use App\Nova\NavigationMenuItem;
 use App\Nova\Office;
 use App\Nova\Promotion;
+use App\Nova\RegionalEstablishment;
+use App\Nova\RegionalEstablishmentType;
 use App\Nova\Revision;
 use App\Nova\Street;
 use App\Nova\User;
@@ -113,7 +115,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Revision::class,
             User::class,
             UserRole::class,
-            NavigationMenuItem::class
+            NavigationMenuItem::class,
+            RegionalEstablishmentType::class,
+            RegionalEstablishment::class
         ]);
 
     }

@@ -1,0 +1,49 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: andrewkalennyk
+ * Date: 2/14/19
+ * Time: 7:46 AM
+ */
+
+namespace App\Models;
+
+use App\Traits\RevisionMaker;
+use Illuminate\Database\Eloquent\Model;
+
+
+class RegionalEstablishment extends Model
+{
+    use RevisionMaker;
+
+    protected $table = 'regional_establishments';
+
+    protected $fillable = [
+        'title'
+    ];
+
+    protected $transcript = [
+        'fields' => [
+            'id' => 'ID',
+            'title' => 'Назва',
+        ],
+        'name' => 'Районний заклад',
+        'slug' => 'regional-establishments'
+    ];
+
+    public function regionalEstablishmentType()
+    {
+        return $this->belongsTo('App\Models\RegionalEstablishmentType');
+    }
+
+    public function street()
+    {
+        return $this->belongsTo('App\Models\Street');
+    }
+
+    public function house()
+    {
+        return $this->BelongsTo('App\Models\House');
+    }
+
+}

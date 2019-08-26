@@ -66,18 +66,27 @@ export default {
         },
 
         updateDependencyStatus() {
+
             for (let dependency of this.field.dependencies) {
+
+
                 if(dependency.hasOwnProperty('notEmpty') && ! this.dependencyValues[dependency.field]) {
                     this.dependenciesSatisfied = false;
                     return;
                 }
 
-                if(dependency.hasOwnProperty('value') && this.dependencyValues[dependency.field] !== dependency.value) {
+                if(dependency.hasOwnProperty('value') && this.dependencyValues[dependency.field] != dependency.value) {
                     this.dependenciesSatisfied = false;
                     return;
                 }
 
                 if(dependency.hasOwnProperty('falseValue') && this.dependencyValues[dependency.field] == dependency.falseValue) {
+                    this.dependenciesSatisfied = false;
+                    return;
+                }
+
+                if(dependency.hasOwnProperty('arrayValues') /*&& dependency.arrayValues.indexOf(this.dependencyValues[dependency.field])*/) {
+                    console.log(dependency.arrayValues.indexOf('0'));
                     this.dependenciesSatisfied = false;
                     return;
                 }

@@ -41,10 +41,12 @@ Route::get('/mutators', function () {
 
 
 Route::middleware(['nova'])->group(function () {
-    Route::get('get-houses-by-street/{street}', 'DependecyController@getHousesByStreet');
-    Route::get('get-entities-by-house/{house_id}/{entity_type}', 'DependecyController@getEntityByHouse');
-    Route::get('get-is-private-by-house/{house_id}', 'DependecyController@getIsPrivateByHouse');
-    Route::get('get-street-by-elective-plot/{elective_plot}', 'DependecyController@getStreetsByElectivePlot');
+    Route::get('get-houses-by-street/{street}', 'DependencyController@getHousesByStreet');
+    Route::get('get-entities-by-house/{house_id}/{entity_type}', 'DependencyController@getEntityByHouse');
+    Route::get('get-is-private-by-house/{house_id}', 'DependencyController@getIsPrivateByHouse');
+    Route::get('get-street-by-elective-plot/{elective_plot}', 'DependencyController@getStreetsByElectivePlot');
+    Route::get('get-regional-establishment-by-type/{regional_establishment_type_id}', 'DependencyController@getRegionalEstablishmentByType');
+    Route::get('get-sub-status-by-status/{citizen_status_id}', 'DependencyController@getCitizenSubStatusByStatus');
 });
 
 

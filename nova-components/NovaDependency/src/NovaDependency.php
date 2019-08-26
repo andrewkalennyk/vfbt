@@ -45,22 +45,33 @@ class NovaDependency extends Field
         ]);
     }
 
+    public function dependsInArray($field, $array)
+    {
+        return $this->withMeta([
+            'dependencies' => array_merge($this->meta['dependencies'], [['field' => $field, 'arrayValues' => $array]])
+        ]);
+    }
+
     public function resolveForDisplay($resource, $attribute = null)
     {
         parent::resolveForDisplay($resource, $attribute);
 
         foreach ($this->meta['dependencies'] as $index => $dependency) {
-            if(array_key_exists('notEmpty', $dependency) && ! empty($resource->{$dependency['field']})) {
+            if (array_key_exists('notEmpty', $dependency) && !empty($resource->{$dependency['field']})) {
                 $this->meta['dependencies'][$index]['satisfied'] = true;
             }
 
-            if(array_key_exists('value', $dependency) && $dependency['value'] == $resource->{$dependency['field']}) {
+            if (array_key_exists('value', $dependency) && $dependency['value'] == $resource->{$dependency['field']}) {
                 $this->meta['dependencies'][$index]['satisfied'] = true;
             }
 
-            if(array_key_exists('falseValue', $dependency) && $dependency['falseValue'] !== $resource->{$dependency['field']}) {
+            if (array_key_exists('falseValue', $dependency) && $dependency['falseValue'] !== $resource->{$dependency['field']}) {
                 $this->meta['dependencies'][$index]['satisfied'] = true;
             }
+
+            /*if (array_key_exists('falseArray', $dependency) && $dependency['falseArray'] !== $resource->{$dependency['field']}) {
+                $this->meta['dependencies'][$index]['satisfied'] = true;
+            }*/
         }
     }
 

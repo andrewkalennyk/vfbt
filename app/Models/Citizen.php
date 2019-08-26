@@ -91,7 +91,7 @@ class Citizen extends Model
         $indexStatuses = [];
         foreach ($statuses as $status) {
             $citStatus = $status->citizen_status->title ?? '';
-            $citSubStatus = $status->citizen_sub_status->title ?? '';
+            $citSubStatus = $status->citizen_sub_status->title ?? $status->details;
             $indexStatuses[] = $citStatus . '(' . $citSubStatus . ')';
         }
         return implode($indexStatuses, ',<br>');

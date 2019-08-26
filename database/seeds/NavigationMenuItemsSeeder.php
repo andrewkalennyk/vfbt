@@ -27,6 +27,8 @@ class NavigationMenuItemsSeeder extends Seeder
             'App\Nova\User',
             'App\Nova\UserRole',
             'App\Nova\NavigationMenuItem',
+            'App\Nova\RegionalEstablishmentType',
+            'App\Nova\RegionalEstablishment',
         ];
 
         foreach ($resources as $resource) {
