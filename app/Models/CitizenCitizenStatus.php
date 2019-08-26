@@ -77,12 +77,21 @@ class CitizenCitizenStatus extends Model
 
     public function prepareResponsibleDetails()
     {
-        return $this->street->title . ' ' . $this->house->title . ' (' . $this->entrance. " під'їзд)";
+        if ($this->street && $this->house) {
+            return $this->street->title . ' ' . $this->house->title . ' (' . $this->entrance. " під'їзд)";
+        }
+
+        return '';
+
     }
 
     public function prepareParentCommitteeDetails()
     {
-        return $this->regionalEstablishmentType->title . ' ' .$this->regionalEstablishment->title;
+        if ($this->regionalEstablishmentType && $this->regionalEstablishment) {
+            return $this->regionalEstablishmentType->title . ' ' .$this->regionalEstablishment->title;
+        }
+
+        return '';
     }
 
 }
