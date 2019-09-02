@@ -65,9 +65,7 @@ class CitizenCitizenStatus extends Model
 
     public function getDetailsAttribute()
     {
-        $type = $this->citizen_status->type;
-
-        if ($type) {
+        if ($this->citizen_status && $type = $this->citizen_status->type) {
             $method = $this->statusTypesMethods[$type];
             return $this->$method();
         }
