@@ -2,10 +2,12 @@
 
 namespace App\Nova;
 
+use Annyk\InputFilter\InputFilter;
 use App\Models\GeneralInfoCitizen;
 use App\Nova\Filters\CitizenElectivePlotFilter;
 use App\Nova\Filters\CitizenOfficeFilter;
 use App\Nova\Filters\CitizensCategoryFilter;
+use App\Nova\Filters\CitizenStatusFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
 use Dniccum\PhoneNumber\PhoneNumber;
@@ -214,6 +216,9 @@ class Citizen extends Resource
     public function filters(Request $request)
     {
         return [
+
+            InputFilter::make('Прізвище', 'last_name'),
+
             CitizenOfficeFilter::make('Приймальня', 'office_id')
                 ->withOptions(function (Request $request, $filters) {
                     return Office::filter($filters)->pluck('title', 'id');
@@ -234,7 +239,9 @@ class Citizen extends Resource
                 ->withOptions(function (Request $request, $filters) {
                     return House::filter($filters)->pluck('title', 'id');
                 }),
-            new CitizensCategoryFilter()
+            new CitizensCategoryFilter(),
+
+            new CitizenStatusFilter(),
 
         ];
     }

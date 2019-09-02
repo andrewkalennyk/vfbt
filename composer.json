@@ -33,7 +33,8 @@
         "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
         "titasgailius/search-relations": "^1.0",
-        "wemersonrv/input-mask": "^0.1.2"
+        "wemersonrv/input-mask": "^0.1.2",
+        "annyk/input-filter": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -79,6 +80,10 @@
         {
             "type": "path",
             "url": "./nova-components/CheckboxDependent"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/InputFilter"
         }
     ],
     "config": {

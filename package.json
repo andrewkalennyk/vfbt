@@ -21,7 +21,9 @@
         "build-nova-dependency": "cd nova-components/NovaDependency && npm run dev",
         "build-nova-dependency-prod": "cd nova-components/NovaDependency && npm run prod",
         "build-checkbox-dependent": "cd nova-components/CheckboxDependent && npm run dev",
-        "build-checkbox-dependent-prod": "cd nova-components/CheckboxDependent && npm run prod"
+        "build-checkbox-dependent-prod": "cd nova-components/CheckboxDependent && npm run prod",
+        "build-input-filter": "cd nova-components/InputFilter && npm run dev",
+        "build-input-filter-prod": "cd nova-components/InputFilter && npm run prod"
     },
     "devDependencies": {
         "axios": "^0.18",
