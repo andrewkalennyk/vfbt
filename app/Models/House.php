@@ -17,12 +17,18 @@ class House extends Model
 {
     use RevisionMaker;
 
+    const HOUSE_TYPE = 'house';
+    const PRIVATE_TYPE = 'private';
+    const DISTRICT_TYPE = 'district';
+    const SPECIAL_SECTION_TYPE = 'special_section';
+
     protected $table = 'houses';
 
     protected $fillable = [
         'street_id',
         'elective_plot_id',
         'title',
+        'type',
         'entrances_number',
         'floors_number',
         'flat_number',
@@ -40,6 +46,13 @@ class House extends Model
         ],
         'name' => 'Будинки',
         'slug' => 'houses'
+    ];
+
+    protected $typeLabel = [
+        self::HOUSE_TYPE => '',
+        self::PRIVATE_TYPE => '(П/C)',
+        self::DISTRICT_TYPE => '',
+        self::SPECIAL_SECTION_TYPE => '(Спец)',
     ];
 
     public function street()
@@ -62,9 +75,14 @@ class House extends Model
         return $this->belongsTo('App\Models\ElectivePlot');
     }
 
+    public function getTypeLabel()
+    {
+        return Arr::get($this->typeLabel, $this->type, '');
+    }
+
     public function getIndexTitleAttribute()
     {
-        return $this->title . ' ' . ($this->is_private == 1 ? ' (П/C)' : '') ;
+        return $this->title . ' ' . $this->getTypeLabel() ;
     }
 
     public function scopeByStreet($query, $id)

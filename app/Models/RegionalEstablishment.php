@@ -46,4 +46,9 @@ class RegionalEstablishment extends Model
         return $this->BelongsTo('App\Models\House');
     }
 
+    public function citizens()
+    {
+        return $this->belongsToMany(Citizen::class, 'citizen_citizen_statuses', 'regional_establishment_id', 'citizen_id');
+    }
+
 }

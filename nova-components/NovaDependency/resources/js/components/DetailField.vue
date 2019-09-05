@@ -6,6 +6,7 @@
                     :resource-id="resourceId"
                     :resource-name="resourceName"
                     :field="childField"
+                    :options="childField.options"
                     :ref="'field-' + childField.attribute"
             />
         </div>
@@ -29,6 +30,7 @@
         methods: {
 
             updateDependencyStatus() {
+
                 for (let dependency of this.field.dependencies) {
                     if(! dependency.satisfied) {
                         this.dependenciesSatisfied = false;

@@ -4,15 +4,16 @@ namespace App\Nova;
 
 use Annyk\NovaDependency\NovaDependency;
 use Laravel\Nova\Fields\BelongsTo;
-use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use NovaAjaxSelect\AjaxSelect;
-use Orlyapps\NovaBelongsToDepend\NovaBelongsToDepend;
 use App\Models\ElectivePlot;
+use App\Models\Street;
+use App\Models\House as HouseModel;
 
 class House extends HandBookResource
 {
@@ -43,30 +44,38 @@ class House extends HandBookResource
         return [
             ID::make()->sortable(),
 
-            Text::make(__('Назва'), 'index_title')
-                ->sortable()
-                ->onlyOnIndex(),
+            /*for views*/
+            Text::make(__('Назва'), 'index_title')->sortable()->onlyOnIndex(),
+            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot')->exceptOnForms(),
+            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street')->exceptOnForms(),
+            /*for views*/
 
             Text::make(__('Назва'), 'title')
                 ->sortable()
                 ->rules('required', 'max:255')
                 ->hideFromIndex(),
 
-            /*fucking ajax select*/
-            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street')->exceptOnForms(),
+            Select::make(__('Тип'), 'type')
+                ->options([
+                    HouseModel::HOUSE_TYPE => 'Будинок',
+                    HouseModel::PRIVATE_TYPE => 'Приватний будинок',
+                    HouseModel::DISTRICT_TYPE => 'Районний заклад',
+                    HouseModel::SPECIAL_SECTION_TYPE => 'Спец дільниця',
+                ])
+                ->nullable()
+                ->displayUsingLabels(),
 
-            BelongsTo::make(__('Дільниця'), 'elective_plot', 'App\Nova\ElectivePlot')
-                ->nullable(),
+            /*except district*/
+            NovaDependency::make([
+                Select::make(__('Дільниця'), 'elective_plot_id')
+                    ->options(ElectivePlot::pluck('title','id'))->displayUsingLabels(),
 
-            AjaxSelect::make(__('Вулиця'), 'street_id')
-                ->get('/get-street-by-elective-plot/{elective_plot}')
-                ->parent('elective_plot'),
+                AjaxSelect::make(__('Вулиця'), 'street_id')
+                    ->get('/get-street-by-elective-plot/{elective_plot_id}')
+                    ->parent('elective_plot_id'),
+            ])->dependsOnFalse('type', 'district')->onlyOnForms(),
 
-            Boolean::make(__('Приватний будинок'), 'is_private')
-                ->trueValue(1)
-                ->falseValue(0)
-                ->hideFromIndex(),
-
+            /*only if house*/
             NovaDependency::make([
                 Text::make(__('Кількість квартир'), 'flat_number')
                     ->sortable()
@@ -79,7 +88,12 @@ class House extends HandBookResource
                 Text::make(__('Кількість поверхів'), 'floors_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
-            ])->dependsOnFalse('is_private', 1),
+            ])->dependsOn('type', 'house')->onlyOnForms(),
+
+            /*only if district*/
+            NovaDependency::make([
+                Select::make(__('Вулиця'), 'street_id')->options(Street::pluck('title','id'))->hideFromDetail(),
+            ])->dependsOn('type', 'district')->onlyOnForms(),
 
             HasMany::make(__('Громадяни'), 'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false)
         ];
@@ -89,9 +103,9 @@ class House extends HandBookResource
     {
         $user = $request->user();
         if ($user->isCoordinator()) {
-            $electivePlot = \App\Models\ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
+            $electivePlot = ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
                 ->pluck('id');
-            $streets = \App\Models\Street::where('elective_plot_id', $electivePlot)->pluck('id');
+            $streets = Street::where('elective_plot_id', $electivePlot)->pluck('id');
             $query = $query->where('street_id', $streets);
         }
 

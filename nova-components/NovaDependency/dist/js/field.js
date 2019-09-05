@@ -339,6 +339,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['resource', 'resourceName', 'resourceId', 'field'],
@@ -360,6 +361,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _iteratorError = undefined;
 
             try {
+
                 for (var _iterator = this.field.dependencies[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var dependency = _step.value;
 
@@ -410,7 +412,8 @@ var render = function() {
                 attrs: {
                   "resource-id": _vm.resourceId,
                   "resource-name": _vm.resourceName,
-                  field: childField
+                  field: childField,
+                  options: childField.options
                 }
               })
             ],

@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -53,7 +54,9 @@ class RegionalEstablishment extends HandBookResource
                 ->disableValidation(true)
                 ->placeholder('+380__-___-__-__'),
 
-            Textarea::make(__('Лояльність до нас'), 'loyalty')->alwaysShow()
+            Textarea::make(__('Лояльність до нас'), 'loyalty')->alwaysShow(),
+
+            BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen')
 
         ];
     }
