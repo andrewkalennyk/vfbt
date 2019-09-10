@@ -14,8 +14,8 @@ class AddPhoneEstablishment extends Migration
     public function up()
     {
         Schema::table('regional_establishments', function (Blueprint $table) {
-            $table->string('phone_second')->after('phone');
-            $table->string('phone_third')->after('phone_second');
+            $table->string('phone_second')->after('phone')->nullable();
+            $table->string('phone_third')->after('phone_second')->nullable();
         });
     }
 
