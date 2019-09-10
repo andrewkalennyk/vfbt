@@ -51,4 +51,11 @@ class RegionalEstablishment extends Model
         return $this->belongsToMany(Citizen::class, 'citizen_citizen_statuses', 'regional_establishment_id', 'citizen_id');
     }
 
+    public function getPhoneIndexAttribute()
+    {
+        return implode(',<br>', array_filter([
+            $this->phone, $this->phone_second, $this->phone_third
+        ]));
+    }
+
 }

@@ -48,10 +48,27 @@ class RegionalEstablishment extends HandBookResource
                 ->sortable()
                 ->rules('required', 'max:255'),
 
+            Text::make(__('Телефони'),'phone_index')->exceptOnForms()->asHtml(),
+
             PhoneNumber::make(__('Телефон'), 'phone')
                 ->sortable()
                 ->format('+380' . '##-###-##-##')
                 ->disableValidation(true)
+                ->onlyOnForms()
+                ->placeholder('+380__-___-__-__'),
+
+            PhoneNumber::make(__('Телефон (дод 1)'), 'phone_second')
+                ->sortable()
+                ->format('+380' . '##-###-##-##')
+                ->disableValidation(true)
+                ->onlyOnForms()
+                ->placeholder('+380__-___-__-__'),
+
+            PhoneNumber::make(__('Телефон (дод 2)'), 'phone_third')
+                ->sortable()
+                ->format('+380' . '##-###-##-##')
+                ->disableValidation(true)
+                ->onlyOnForms()
                 ->placeholder('+380__-___-__-__'),
 
             Textarea::make(__('Лояльність до нас'), 'loyalty')->alwaysShow(),
