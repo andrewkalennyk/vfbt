@@ -11,10 +11,11 @@
     },
     "devDependencies": {
         "cross-env": "^5.0.0",
-        "laravel-mix": "^1.0",
-        "tailwindcss": "^0.7.4"
+        "laravel-mix": "^1.0"
     },
     "dependencies": {
-        "vue": "^2.5.0"
+        "vue": "^2.5.0",
+        "vue-masked-input": "^0.5.2",
+        "vue-the-mask": "^0.11.1"
     }
 }

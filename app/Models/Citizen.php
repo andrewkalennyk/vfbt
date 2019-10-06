@@ -50,6 +50,15 @@ class Citizen extends Model
         'slug' => 'citizens'
     ];
 
+    protected $searchExcludeFields = [
+        'last_name',
+        'first_name',
+        'patronymic_name',
+        'elective_plot_id',
+        'street_id',
+        'house_id'
+    ];
+
     /*public function citizens_category()
     {
         return $this->BelongsTo('App\Models\CitizensCategory');
@@ -137,18 +146,48 @@ class Citizen extends Model
         return $this->is_in_black == 1 ? 'Так ' : '';
     }
 
-    public function scopeSearchByName($query, $input)
+    public function scopeSearch($query, $searchValues)
     {
-
-        $query = $query->where('last_name', 'like', '%' . $input['last_name'] . '%');
-
-        if (!empty($initials['first_name'])) {
-            $query = $query->where('first_name', 'like', '%' . $input['first_name'] . '%');
+        if (!empty($searchValues['last_name'])) {
+            $query = $query->where('last_name', 'like', '%' . $searchValues['last_name'] . '%');
         }
 
-        if (!empty($initials['patronymic_name'])) {
-            $query = $query->where('patronymic_name', 'like', '%' . $input['patronymic_name'] . '%');
+        if (!empty($searchValues['first_name'])) {
+            $query = $query->where('first_name', 'like', '%' . $searchValues['first_name'] . '%');
         }
+
+        if (!empty($searchValues['patronymic_name'])) {
+            $query = $query->where('patronymic_name', 'like', '%' . $searchValues['patronymic_name'] . '%');
+        }
+
+        if (!empty($searchValues['elective_plot_id']) && empty($searchValues['street_id'])) {
+            $electivePlot = ElectivePlot::with('streets')->find($searchValues['elective_plot_id']);
+            $streets = Street::with('houses')->whereIn('id', $electivePlot->streets->pluck('id'))->get();
+            $houses = House::whereIn('street_id', $streets->pluck('id'))->get();
+            $citizenIds = HouseCitizen::whereIn('house_id', $houses->pluck('id'))->pluck('citizen_id');
+            $query = $query->whereIn('id', $citizenIds);
+        }
+
+        if (!empty($searchValues['street_id']) && empty($searchValues['house_id'])) {
+            $street = Street::with('houses')->find($searchValues['street_id']);
+            $houses = House::whereIn('id', $street->houses->pluck('id'))->get();
+            $citizenIds = HouseCitizen::whereIn('house_id', $houses->pluck('id'))->pluck('citizen_id');
+            $query = $query->whereIn('id', $citizenIds);
+        }
+
+        if (!empty($searchValues['house_id'])) {
+            $house = House::with('citizens')->find($searchValues['house_id']);
+            $query = $query->whereIn('id', $house->citizens->pluck('id'));
+        }
+
+        if (is_array($searchValues) && count($searchValues)) {
+            foreach ($searchValues as $key => $value) {
+                if (!in_array($key, $this->searchExcludeFields)) {
+                    $query = $query->where($key, $value);
+                }
+            }
+        }
+
         return $query;
     }
 

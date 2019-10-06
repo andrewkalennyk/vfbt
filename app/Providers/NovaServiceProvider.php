@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use Annyk\CitizenFinder\CitizenFinder;
-use Annyk\ExportHandBooks\ExportHandBooks;
 use Annyk\NavigationBuilder\NavigationBuilder;
 use App\Nova\BadListReasons;
 use App\Nova\CitizenCitizenStatus;
@@ -27,7 +26,6 @@ use App\Nova\User;
 use App\Nova\UserRole;
 use Joedixon\NovaTranslation\NovaTranslation;
 use Laravel\Nova\Nova;
-use Laravel\Nova\Cards\Help;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\NovaApplicationServiceProvider;
 
@@ -130,9 +128,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     public function tools()
     {
         return [
-            //new NovaTranslation,
-            new CitizenFinder(),
-            new NavigationBuilder()
+            new NavigationBuilder(),
+            new CitizenFinder()
         ];
     }
 

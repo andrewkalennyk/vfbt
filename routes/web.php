@@ -20,6 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/search-citizen','Backend\SearchController@doSearch');
     Route::post('/get-info-for-new','Backend\InfoController@getInfo');
     Route::post('/save-citizen','Backend\CitizenController@saveCitizen');
+
+    Route::post('get-related-entities-by-street', 'Backend\SearchController@getEntititesByStreet');
+    Route::post('get-related-entities-by-elective-plot', 'Backend\SearchController@getEntititesByElectivePlot');
 });
 
 Route::get('/export-handbooks','Backend\ExportHandbookController@doExport');

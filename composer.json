@@ -10,7 +10,6 @@
     "require": {
         "php": "^7.1.3",
         "annyk/checkbox-dependent": "*",
-        "annyk/citizen-finder": "*",
         "annyk/exportHandBooks": "*",
         "annyk/import-files": "*",
         "annyk/navigation-builder": "*",
@@ -33,7 +32,8 @@
         "orlyapps/nova-belongsto-depend": "^2.0",
         "predis/predis": "^1.1",
         "titasgailius/search-relations": "^1.0",
-        "wemersonrv/input-mask": "^0.1.2"
+        "wemersonrv/input-mask": "^0.1.2",
+        "annyk/citizen-finder": "*"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
@@ -46,7 +46,7 @@
     "repositories": [
         {
             "type": "path",
-            "url": "./nova20"
+            "url": "./nova"
         },
         {
             "type": "path",
@@ -55,10 +55,6 @@
         {
             "type": "path",
             "url": "./nova-components/ExportHandBooks"
-        },
-        {
-            "type": "path",
-            "url": "./nova-components/CitizenFinder"
         },
         {
             "type": "path",
@@ -79,6 +75,10 @@
         {
             "type": "path",
             "url": "./nova-components/CheckboxDependent"
+        },
+        {
+            "type": "path",
+            "url": "./nova-components/CitizenFinder"
         }
     ],
     "config": {
