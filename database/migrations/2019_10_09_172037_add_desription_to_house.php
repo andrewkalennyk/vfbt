@@ -14,7 +14,7 @@ class AddDesriptionToHouse extends Migration
     public function up()
     {
         Schema::table('houses', function (Blueprint $table) {
-            $table->text('description')->after('type');
+            $table->text('description')->after('type')->nullable();
         });
     }
 
