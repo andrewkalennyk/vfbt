@@ -182,7 +182,7 @@ class Citizen extends Model
 
         if (is_array($searchValues) && count($searchValues)) {
             foreach ($searchValues as $key => $value) {
-                if (!in_array($key, $this->searchExcludeFields)) {
+                if (!in_array($key, $this->searchExcludeFields) && $value) {
                     $query = $query->where($key, $value);
                 }
             }
