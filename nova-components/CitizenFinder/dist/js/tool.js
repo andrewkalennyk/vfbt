@@ -1,1 +1,4349 @@
-!function(t){var e={};function i(n){if(e[n])return e[n].exports;var r=e[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,i),r.l=!0,r.exports}i.m=t,i.c=e,i.d=function(t,e,n){i.o(t,e)||Object.defineProperty(t,e,{configurable:!1,enumerable:!0,get:n})},i.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(e,"a",e),e},i.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},i.p="",i(i.s=4)}([function(t,e){t.exports=function(t,e,i,n,r,s){var o,a=t=t||{},l=typeof t.default;"object"!==l&&"function"!==l||(o=t,a=t.default);var c,u="function"==typeof a?a.options:a;if(e&&(u.render=e.render,u.staticRenderFns=e.staticRenderFns,u._compiled=!0),i&&(u.functional=!0),r&&(u._scopeId=r),s?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(s)},u._ssrRegister=c):n&&(c=n),c){var p=u.functional,d=p?u.render:u.beforeCreate;p?(u._injectStyles=c,u.render=function(t,e){return c.call(e),d(t,e)}):u.beforeCreate=d?[].concat(d,c):[c]}return{esModule:o,exports:a,options:u}}},function(t,e){t.exports=function(t){var e=[];return e.toString=function(){return this.map(function(e){var i=function(t,e){var i=t[1]||"",n=t[3];if(!n)return i;if(e&&"function"==typeof btoa){var r=(o=n,"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */"),s=n.sources.map(function(t){return"/*# sourceURL="+n.sourceRoot+t+" */"});return[i].concat(s).concat([r]).join("\n")}var o;return[i].join("\n")}(e,t);return e[2]?"@media "+e[2]+"{"+i+"}":i}).join("")},e.i=function(t,i){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},r=0;r<this.length;r++){var s=this[r][0];"number"==typeof s&&(n[s]=!0)}for(r=0;r<t.length;r++){var o=t[r];"number"==typeof o[0]&&n[o[0]]||(i&&!o[2]?o[2]=i:i&&(o[2]="("+o[2]+") and ("+i+")"),e.push(o))}},e}},function(t,e,i){var n="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!n)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var r=i(9),s={},o=n&&(document.head||document.getElementsByTagName("head")[0]),a=null,l=0,c=!1,u=function(){},p=null,d="data-vue-ssr-id",f="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function h(t){for(var e=0;e<t.length;e++){var i=t[e],n=s[i.id];if(n){n.refs++;for(var r=0;r<n.parts.length;r++)n.parts[r](i.parts[r]);for(;r<i.parts.length;r++)n.parts.push(g(i.parts[r]));n.parts.length>i.parts.length&&(n.parts.length=i.parts.length)}else{var o=[];for(r=0;r<i.parts.length;r++)o.push(g(i.parts[r]));s[i.id]={id:i.id,refs:1,parts:o}}}}function v(){var t=document.createElement("style");return t.type="text/css",o.appendChild(t),t}function g(t){var e,i,n=document.querySelector("style["+d+'~="'+t.id+'"]');if(n){if(c)return u;n.parentNode.removeChild(n)}if(f){var r=l++;n=a||(a=v()),e=_.bind(null,n,r,!1),i=_.bind(null,n,r,!0)}else n=v(),e=function(t,e){var i=e.css,n=e.media,r=e.sourceMap;n&&t.setAttribute("media",n);p.ssrId&&t.setAttribute(d,e.id);r&&(i+="\n/*# sourceURL="+r.sources[0]+" */",i+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(r))))+" */");if(t.styleSheet)t.styleSheet.cssText=i;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(i))}}.bind(null,n),i=function(){n.parentNode.removeChild(n)};return e(t),function(n){if(n){if(n.css===t.css&&n.media===t.media&&n.sourceMap===t.sourceMap)return;e(t=n)}else i()}}t.exports=function(t,e,i,n){c=i,p=n||{};var o=r(t,e);return h(o),function(e){for(var i=[],n=0;n<o.length;n++){var a=o[n];(l=s[a.id]).refs--,i.push(l)}e?h(o=r(t,e)):o=[];for(n=0;n<i.length;n++){var l;if(0===(l=i[n]).refs){for(var c=0;c<l.parts.length;c++)l.parts[c]();delete s[l.id]}}}};var m,b=(m=[],function(t,e){return m[t]=e,m.filter(Boolean).join("\n")});function _(t,e,i,n){var r=i?"":n.css;if(t.styleSheet)t.styleSheet.cssText=b(e,r);else{var s=document.createTextNode(r),o=t.childNodes;o[e]&&t.removeChild(o[e]),o.length?t.insertBefore(s,o[e]):t.appendChild(s)}}},function(t,e,i){var n;n=function(){return function(t){function e(n){if(i[n])return i[n].exports;var r=i[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p=".",e(e.s=10)}([function(t,e){t.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(t){return t.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(t){return t.toLocaleLowerCase()}},"!":{escape:!0}}},function(t,e,i){"use strict";function n(t){var e=document.createEvent("Event");return e.initEvent(t,!0,!0),e}var r=i(2),s=i(0),o=i.n(s);e.a=function(t,e){var s=e.value;if((Array.isArray(s)||"string"==typeof s)&&(s={mask:s,tokens:o.a}),"INPUT"!==t.tagName.toLocaleUpperCase()){var a=t.getElementsByTagName("input");if(1!==a.length)throw new Error("v-mask directive requires 1 input, found "+a.length);t=a[0]}t.oninput=function(e){if(e.isTrusted){var o=t.selectionEnd,a=t.value[o-1];for(t.value=i.i(r.a)(t.value,s.mask,!0,s.tokens);o<t.value.length&&t.value.charAt(o-1)!==a;)o++;t===document.activeElement&&(t.setSelectionRange(o,o),setTimeout(function(){t.setSelectionRange(o,o)},0)),t.dispatchEvent(n("input"))}};var l=i.i(r.a)(t.value,s.mask,!0,s.tokens);l!==t.value&&(t.value=l,t.dispatchEvent(n("input")))}},function(t,e,i){"use strict";var n=i(6),r=i(5);e.a=function(t,e){var s=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],o=arguments[3];return Array.isArray(e)?i.i(r.a)(n.a,e,o)(t,e,s,o):i.i(n.a)(t,e,s,o)}},function(t,e,i){"use strict";function n(t){t.component(l.a.name,l.a),t.directive("mask",o.a)}Object.defineProperty(e,"__esModule",{value:!0});var r=i(0),s=i.n(r),o=i(1),a=i(7),l=i.n(a);i.d(e,"TheMask",function(){return l.a}),i.d(e,"mask",function(){return o.a}),i.d(e,"tokens",function(){return s.a}),i.d(e,"version",function(){return c});var c="0.11.1";e.default=n,"undefined"!=typeof window&&window.Vue&&window.Vue.use(n)},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(1),r=i(0),s=i.n(r),o=i(2);e.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return s.a}}},directives:{mask:n.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(t){t!==this.lastValue&&(this.display=t)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(t){t.isTrusted||this.refresh(t.target.value)},refresh:function(t){this.display=t,(t=i.i(o.a)(t,this.mask,this.masked,this.tokens))!==this.lastValue&&(this.lastValue=t,this.$emit("input",t))}}}},function(t,e,i){"use strict";e.a=function(t,e,i){return e=e.sort(function(t,e){return t.length-e.length}),function(n,r){for(var s=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],o=0;o<e.length;){var a=e[o],l=e[++o];if(!(l&&t(n,l,!0,i).length>a.length))return t(n,a,s,i)}return""}}},function(t,e,i){"use strict";e.a=function(t,e){var i=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],n=arguments[3];t=t||"",e=e||"";for(var r=0,s=0,o="";r<e.length&&s<t.length;){var a=n[u=e[r]],l=t[s];a&&!a.escape?(a.pattern.test(l)&&(o+=a.transform?a.transform(l):l,r++),s++):(a&&a.escape&&(u=e[++r]),i&&(o+=u),l===u&&s++,r++)}for(var c="";r<e.length&&i;){var u;if(n[u=e[r]]){c="";break}c+=u,r++}return o+c}},function(t,e,i){var n=i(8)(i(4),i(9),null,null);t.exports=n.exports},function(t,e){t.exports=function(t,e,i,n){var r,s=t=t||{},o=typeof t.default;"object"!==o&&"function"!==o||(r=t,s=t.default);var a="function"==typeof s?s.options:s;if(e&&(a.render=e.render,a.staticRenderFns=e.staticRenderFns),i&&(a._scopeId=i),n){var l=a.computed||(a.computed={});Object.keys(n).forEach(function(t){var e=n[t];l[t]=function(){return e}})}return{esModule:r,exports:s,options:a}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement;return(t._self._c||e)("input",{directives:[{name:"mask",rawName:"v-mask",value:t.config,expression:"config"}],attrs:{type:"text"},domProps:{value:t.display},on:{input:t.onInput}})},staticRenderFns:[]}},function(t,e,i){t.exports=i(3)}])},t.exports=n()},function(t,e,i){i(5),t.exports=i(26)},function(t,e,i){Nova.booting(function(t,e,n){e.addRoutes([{name:"citizen-finder",path:"/citizen-finder",component:i(6)}])})},function(t,e,i){var n=i(0)(i(10),i(25),!1,function(t){i(7)},null,null);t.exports=n.exports},function(t,e,i){var n=i(8);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);i(2)("9055558a",n,!0,{})},function(t,e,i){(t.exports=i(1)(!1)).push([t.i,"*,:after,:before{border:0 solid #dae1e7}.bg-grey-lighter{background-color:#f1f5f8}.bg-blue{background-color:#3490dc}.border-teal{border-color:#4dc0b5}.bg-teal{background-color:#4dc0b5}",""])},function(t,e){t.exports=function(t,e){for(var i=[],n={},r=0;r<e.length;r++){var s=e[r],o=s[0],a={id:t+":"+r,css:s[1],media:s[2],sourceMap:s[3]};n[o]?n[o].parts.push(a):i.push(n[o]={id:o,parts:[a]})}return i}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(3),r=(i.n(n),i(11)),s=i.n(r),o=i(14),a=i.n(o);e.default={directives:{mask:n.mask},mounted:function(){this.getInfo()},data:function(){return{fullData:{},working:!1,citizen:!1,noCitizens:!1,newCitizenForm:!1,electivePlotId:"",streetId:"",houseId:"",electivePlots:[],streets:[],houses:[],findCitizens:[]}},components:{citizenView:s.a,newCitizenView:a.a},methods:{processFind:function(){var t=this;this.working=!0,Nova.request().post("/search-citizen",{first_name:this.firstName,last_name:this.lastName,patronymic_name:this.patronymicName,phone:this.phone,date_birth:this.birthDate,certificate_number:this.certificateNumber,elective_plot_id:this.electivePlotId,street_id:this.streetId,house_id:this.houseId}).then(function(e){var i=e.data;t.findCitizens=i.citizens,0===i.citizens.length?t.$toasted.error("Нічого не знайдено!"):t.$toasted.success(i.message),t.working=!1})},choseCitizen:function(t){var e=!1;this.findCitizens.forEach(function(i,n){i.id===parseInt(t.currentTarget.id)&&(e=i)}),this.citizen=e,this.findCitizens=[],this.newCitizenForm=!1},getInfo:function(){var t=this;Nova.request().post("/get-info-for-new").then(function(e){var i=e.data;t.electivePlots=i.elective_plots,t.streets=i.streets})},changeStreet:function(){var t=this;Nova.request().post("/get-related-entities-by-street",{street_id:this.streetId}).then(function(e){var i=e.data;t.electivePlots=i.elective_plots,t.houses=i.houses,console.log(t.houseId)})},changeHouse:function(){var t="",e=this.houseId,i=this.electivePlots,n="";console.log("changeHouse"),this.houses.forEach(function(i,n){i.id===parseInt(e)&&(t=i)}),t&&""===this.electivePlotId&&(i.forEach(function(e,i){e.id===parseInt(t.elective_plot_id)&&(n=t.elective_plot_id)}),this.electivePlotId=n)},changeElectivePlot:function(){var t=this;Nova.request().post("/get-related-entities-by-elective-plot",{elective_plot_id:this.electivePlotId}).then(function(e){var i=e.data;t.streets=i.streets})},openForm:function(){this.citizen=!1,this.newCitizenForm=!0}}}},function(t,e,i){var n=i(0)(i(12),i(13),!1,null,null,null);t.exports=n.exports},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"citizenView",props:["citizen"],mounted:function(){}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{attrs:{id:"citizenView"}},[t.citizen?i("div",{staticClass:"mt-6  rounded overflow-hidden shadow-lg"},[i("div",{staticClass:"px-6 py-4"},[i("div",{staticClass:"font-bold text-xl mb-4"},[t._v(t._s(t.citizen.last_name)+" "+t._s(t.citizen.first_name)+" "+t._s(t.citizen.patronymic_name))]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Дата Народження")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(t.citizen.birthDay))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Телефон")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(t.citizen.phone))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Категория")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.category))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("# посв")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.certificate_number))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Чорний список")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.black_list))])]),t._v(" "),i("div",{staticClass:"font-bold text-xl mb-4"},[t._v("Адресса ")]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Громадська приймальня")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.office))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Дільниця")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.elective_plot))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Bулиця")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.street))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Дім")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.house))])]),t._v(" "),i("div",{staticClass:"flex -mb-3"},[i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v("Квартира")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12"},[t._v(" — ")]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12"},[t._v(t._s(this.citizen.flat))])])])]):t._e()])},staticRenderFns:[]}},function(t,e,i){var n=i(0)(i(19),i(24),!1,function(t){i(15),i(17)},"data-v-fca6bb7c",null);t.exports=n.exports},function(t,e,i){var n=i(16);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);i(2)("79fd4a36",n,!0,{})},function(t,e,i){(t.exports=i(1)(!1)).push([t.i,'fieldset[disabled] .multiselect{pointer-events:none}.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block}.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:"";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border:2px solid transparent;border-top-color:#41b883;-webkit-box-shadow:0 0 0 1px transparent;box-shadow:0 0 0 1px transparent}.multiselect__spinner:before{-webkit-animation:spinning 2.4s cubic-bezier(.41,.26,.2,.62);animation:spinning 2.4s cubic-bezier(.41,.26,.2,.62);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}.multiselect__spinner:after{-webkit-animation:spinning 2.4s cubic-bezier(.51,.09,.21,.8);animation:spinning 2.4s cubic-bezier(.51,.09,.21,.8);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite}.multiselect__loading-enter-active,.multiselect__loading-leave-active{-webkit-transition:opacity .4s ease-in-out;transition:opacity .4s ease-in-out;opacity:1}.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0}.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:16px;-ms-touch-action:manipulation;touch-action:manipulation}.multiselect{-webkit-box-sizing:content-box;box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e}.multiselect *{-webkit-box-sizing:border-box;box-sizing:border-box}.multiselect:focus{outline:none}.multiselect--disabled{background:#ededed;pointer-events:none;opacity:.6}.multiselect--active{z-index:50}.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0}.multiselect--active .multiselect__select{-webkit-transform:rotate(180deg);transform:rotate(180deg)}.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0}.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:0 0 0 5px;width:100%;-webkit-transition:border .1s ease;transition:border .1s ease;-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:8px;vertical-align:top}.multiselect__input:-ms-input-placeholder{color:#35495e}.multiselect__input::-webkit-input-placeholder{color:#35495e}.multiselect__input::-moz-placeholder{color:#35495e}.multiselect__input::-ms-input-placeholder{color:#35495e}.multiselect__input::placeholder{color:#35495e}.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto}.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf}.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none}.multiselect__single{padding-left:5px;margin-bottom:8px}.multiselect__tags-wrap{display:inline}.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff;font-size:14px}.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:5px;white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis}.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;-webkit-transition:all .2s ease;transition:all .2s ease;border-radius:5px}.multiselect__tag-icon:after{content:"\\D7";color:#266d4d;font-size:14px}.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e}.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff}.multiselect__current{min-height:40px;overflow:hidden;padding:8px 30px 0 12px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8}.multiselect__current,.multiselect__select{line-height:16px;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer}.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;-webkit-transition:-webkit-transform .2s ease;transition:-webkit-transform .2s ease;transition:transform .2s ease;transition:transform .2s ease,-webkit-transform .2s ease}.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-color:#999 transparent transparent;border-style:solid;border-width:5px 5px 0;content:""}.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px}.multiselect--active .multiselect__placeholder{display:none}.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:50;-webkit-overflow-scrolling:touch}.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top}.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8}.multiselect__content::webkit-scrollbar{display:none}.multiselect__element{display:block}.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap}.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px;font-size:13px}.multiselect__option--highlight{background:#41b883;outline:none;color:#fff}.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff}.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700}.multiselect__option--selected:after{content:attr(data-selected);color:silver}.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff}.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff}.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select{background:#ededed;color:#a6a6a6}.multiselect__option--disabled{background:#ededed!important;color:#a6a6a6!important;cursor:text;pointer-events:none}.multiselect__option--group{background:#ededed;color:#35495e}.multiselect__option--group.multiselect__option--highlight{background:#35495e;color:#fff}.multiselect__option--group.multiselect__option--highlight:after{background:#35495e}.multiselect__option--disabled.multiselect__option--highlight{background:#dedede}.multiselect__option--group-selected.multiselect__option--highlight{background:#ff6a6a;color:#fff}.multiselect__option--group-selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff}.multiselect-enter-active,.multiselect-leave-active{-webkit-transition:all .15s ease;transition:all .15s ease}.multiselect-enter,.multiselect-leave-active{opacity:0}.multiselect__strong{margin-bottom:8px;line-height:20px;display:inline-block;vertical-align:top}[dir=rtl] .multiselect{text-align:right}[dir=rtl] .multiselect__select{right:auto;left:1px}[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px}[dir=rtl] .multiselect__content{text-align:right}[dir=rtl] .multiselect__option:after{right:auto;left:0}[dir=rtl] .multiselect__clear{right:auto;left:12px}[dir=rtl] .multiselect__spinner{right:auto;left:1px}@-webkit-keyframes spinning{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(2turn);transform:rotate(2turn)}}@keyframes spinning{0%{-webkit-transform:rotate(0);transform:rotate(0)}to{-webkit-transform:rotate(2turn);transform:rotate(2turn)}}',""])},function(t,e,i){var n=i(18);"string"==typeof n&&(n=[[t.i,n,""]]),n.locals&&(t.exports=n.locals);i(2)("498fb82a",n,!0,{})},function(t,e,i){(t.exports=i(1)(!1)).push([t.i,".category-select[data-v-fca6bb7c] .multiselect__input,.category-select[data-v-fca6bb7c] .multiselect__single,.category-select[data-v-fca6bb7c] .multiselect__tags{background:#f1f5f8}",""])},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(3),r=(i.n(n),i(20)),s=i.n(r),o=i(21),a=i.n(o);e.default={directives:{mask:n.mask},name:"newCitizenView",components:{Multiselect:s.a,citizenStatusView:a.a},data:function(){return{citizenCategories:[],electivePlots:[],streets:[],filteredStreets:[],houses:[],filteredHouses:[],statuses:[],electivePlotId:"",streetId:"",houseId:"",isCertificateNumber:"",citizenCategoriesValue:[]}},props:["newCitizenForm"],methods:{getInfo:function(){var t=this;Nova.request().post("/get-info-for-new").then(function(e){var i=e.data;t.citizenCategories=i.categories,t.electivePlots=i.elective_plots,t.streets=i.streets,t.houses=i.houses,t.statuses=i.statuses})},newCitizen:function(){var t=this,e=document.getElementById("new_citizen_form"),i=new FormData(e);Nova.request().post("/save-citizen",i).then(function(e){var i=e.data;t.$toasted.success(i.message),t.$emit("assignCitizenChild",i.citizen)})},filterStreets:function(){var t=[],e=this.electivePlotId;this.streets.forEach(function(i,n){i.elective_plot_id===parseInt(e)&&t.push(i)}),this.filteredStreets=t},filterHouses:function(){var t=[],e=this.streetId;this.electivePlotId;this.houses.forEach(function(i,n){i.street_id===parseInt(e)&&t.push(i)}),this.filteredHouses=t}},mounted:function(){this.getInfo()}}},function(t,e,i){var n;n=function(){return function(t){function e(n){if(i[n])return i[n].exports;var r=i[n]={i:n,l:!1,exports:{}};return t[n].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/",e(e.s=60)}([function(t,e){var i=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=i)},function(t,e,i){var n=i(49)("wks"),r=i(30),s=i(0).Symbol,o="function"==typeof s;(t.exports=function(t){return n[t]||(n[t]=o&&s[t]||(o?s:r)("Symbol."+t))}).store=n},function(t,e,i){var n=i(5);t.exports=function(t){if(!n(t))throw TypeError(t+" is not an object!");return t}},function(t,e,i){var n=i(0),r=i(10),s=i(8),o=i(6),a=i(11),l=function(t,e,i){var c,u,p,d,f=t&l.F,h=t&l.G,v=t&l.S,g=t&l.P,m=t&l.B,b=h?n:v?n[e]||(n[e]={}):(n[e]||{}).prototype,_=h?r:r[e]||(r[e]={}),y=_.prototype||(_.prototype={});for(c in h&&(i=e),i)p=((u=!f&&b&&void 0!==b[c])?b:i)[c],d=m&&u?a(p,n):g&&"function"==typeof p?a(Function.call,p):p,b&&o(b,c,p,t&l.U),_[c]!=p&&s(_,c,d),g&&y[c]!=p&&(y[c]=p)};n.core=r,l.F=1,l.G=2,l.S=4,l.P=8,l.B=16,l.W=32,l.U=64,l.R=128,t.exports=l},function(t,e,i){t.exports=!i(7)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,i){var n=i(0),r=i(8),s=i(12),o=i(30)("src"),a=Function.toString,l=(""+a).split("toString");i(10).inspectSource=function(t){return a.call(t)},(t.exports=function(t,e,i,a){var c="function"==typeof i;c&&(s(i,"name")||r(i,"name",e)),t[e]!==i&&(c&&(s(i,o)||r(i,o,t[e]?""+t[e]:l.join(String(e)))),t===n?t[e]=i:a?t[e]?t[e]=i:r(t,e,i):(delete t[e],r(t,e,i)))})(Function.prototype,"toString",function(){return"function"==typeof this&&this[o]||a.call(this)})},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e,i){var n=i(13),r=i(25);t.exports=i(4)?function(t,e,i){return n.f(t,e,r(1,i))}:function(t,e,i){return t[e]=i,t}},function(t,e){var i={}.toString;t.exports=function(t){return i.call(t).slice(8,-1)}},function(t,e){var i=t.exports={version:"2.5.7"};"number"==typeof __e&&(__e=i)},function(t,e,i){var n=i(14);t.exports=function(t,e,i){if(n(t),void 0===e)return t;switch(i){case 1:return function(i){return t.call(e,i)};case 2:return function(i,n){return t.call(e,i,n)};case 3:return function(i,n,r){return t.call(e,i,n,r)}}return function(){return t.apply(e,arguments)}}},function(t,e){var i={}.hasOwnProperty;t.exports=function(t,e){return i.call(t,e)}},function(t,e,i){var n=i(2),r=i(41),s=i(29),o=Object.defineProperty;e.f=i(4)?Object.defineProperty:function(t,e,i){if(n(t),e=s(e,!0),n(i),r)try{return o(t,e,i)}catch(t){}if("get"in i||"set"in i)throw TypeError("Accessors not supported!");return"value"in i&&(t[e]=i.value),t}},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e){t.exports={}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e,i){"use strict";var n=i(7);t.exports=function(t,e){return!!t&&n(function(){e?t.call(null,function(){},1):t.call(null)})}},function(t,e,i){var n=i(23),r=i(16);t.exports=function(t){return n(r(t))}},function(t,e,i){var n=i(53),r=Math.min;t.exports=function(t){return t>0?r(n(t),9007199254740991):0}},function(t,e,i){var n=i(11),r=i(23),s=i(28),o=i(19),a=i(64);t.exports=function(t,e){var i=1==t,l=2==t,c=3==t,u=4==t,p=6==t,d=5==t||p,f=e||a;return function(e,a,h){for(var v,g,m=s(e),b=r(m),_=n(a,h,3),y=o(b.length),x=0,w=i?f(e,y):l?f(e,0):void 0;y>x;x++)if((d||x in b)&&(g=_(v=b[x],x,m),t))if(i)w[x]=g;else if(g)switch(t){case 3:return!0;case 5:return v;case 6:return x;case 2:w.push(v)}else if(u)return!1;return p?-1:c||u?u:w}}},function(t,e,i){var n=i(5),r=i(0).document,s=n(r)&&n(r.createElement);t.exports=function(t){return s?r.createElement(t):{}}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e,i){var n=i(9);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==n(t)?t.split(""):Object(t)}},function(t,e){t.exports=!1},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e,i){var n=i(13).f,r=i(12),s=i(1)("toStringTag");t.exports=function(t,e,i){t&&!r(t=i?t:t.prototype,s)&&n(t,s,{configurable:!0,value:e})}},function(t,e,i){var n=i(49)("keys"),r=i(30);t.exports=function(t){return n[t]||(n[t]=r(t))}},function(t,e,i){var n=i(16);t.exports=function(t){return Object(n(t))}},function(t,e,i){var n=i(5);t.exports=function(t,e){if(!n(t))return t;var i,r;if(e&&"function"==typeof(i=t.toString)&&!n(r=i.call(t)))return r;if("function"==typeof(i=t.valueOf)&&!n(r=i.call(t)))return r;if(!e&&"function"==typeof(i=t.toString)&&!n(r=i.call(t)))return r;throw TypeError("Can't convert object to primitive value")}},function(t,e){var i=0,n=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++i+n).toString(36))}},function(t,e,i){"use strict";var n=i(0),r=i(12),s=i(9),o=i(67),a=i(29),l=i(7),c=i(77).f,u=i(45).f,p=i(13).f,d=i(51).trim,f=n.Number,h=f,v=f.prototype,g="Number"==s(i(44)(v)),m="trim"in String.prototype,b=function(t){var e=a(t,!1);if("string"==typeof e&&e.length>2){var i,n,r,s=(e=m?e.trim():d(e,3)).charCodeAt(0);if(43===s||45===s){if(88===(i=e.charCodeAt(2))||120===i)return NaN}else if(48===s){switch(e.charCodeAt(1)){case 66:case 98:n=2,r=49;break;case 79:case 111:n=8,r=55;break;default:return+e}for(var o,l=e.slice(2),c=0,u=l.length;c<u;c++)if((o=l.charCodeAt(c))<48||o>r)return NaN;return parseInt(l,n)}}return+e};if(!f(" 0o1")||!f("0b1")||f("+0x1")){f=function(t){var e=arguments.length<1?0:t,i=this;return i instanceof f&&(g?l(function(){v.valueOf.call(i)}):"Number"!=s(i))?o(new h(b(e)),i,f):b(e)};for(var _,y=i(4)?c(h):"MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger".split(","),x=0;y.length>x;x++)r(h,_=y[x])&&!r(f,_)&&p(f,_,u(h,_));f.prototype=v,v.constructor=f,i(6)(n,"Number",f)}},function(t,e,i){"use strict";function n(t){return!(0===t||(!Array.isArray(t)||0!==t.length)&&t)}function r(t,e,i,n){return t.filter(function(t){return function(t,e){return void 0===t&&(t="undefined"),null===t&&(t="null"),!1===t&&(t="false"),-1!==t.toString().toLowerCase().indexOf(e.trim())}(n(t,i),e)})}function s(t){return t.filter(function(t){return!t.$isLabel})}function o(t,e){return function(i){return i.reduce(function(i,n){return n[t]&&n[t].length?(i.push({$groupLabel:n[e],$isLabel:!0}),i.concat(n[t])):i},[])}}function a(t,e,n,s,o){return function(a){return a.map(function(a){var l;if(!a[n])return console.warn("Options passed to vue-multiselect do not contain groups, despite the config."),[];var c=r(a[n],t,e,o);return c.length?(l={},i.i(d.a)(l,s,a[s]),i.i(d.a)(l,n,c),l):[]})}}var l=i(59),c=i(54),u=(i.n(c),i(95)),p=(i.n(u),i(31)),d=(i.n(p),i(58)),f=i(91),h=(i.n(f),i(98)),v=(i.n(h),i(92)),g=(i.n(v),i(88)),m=(i.n(g),i(97)),b=(i.n(m),i(89)),_=(i.n(b),i(96)),y=(i.n(_),i(93)),x=(i.n(y),i(90)),w=(i.n(x),function(){for(var t=arguments.length,e=new Array(t),i=0;i<t;i++)e[i]=arguments[i];return function(t){return e.reduce(function(t,e){return e(t)},t)}});e.a={data:function(){return{search:"",isOpen:!1,preferredOpenDirection:"below",optimizedHeight:this.maxHeight}},props:{internalSearch:{type:Boolean,default:!0},options:{type:Array,required:!0},multiple:{type:Boolean,default:!1},value:{type:null,default:function(){return[]}},trackBy:{type:String},label:{type:String},searchable:{type:Boolean,default:!0},clearOnSelect:{type:Boolean,default:!0},hideSelected:{type:Boolean,default:!1},placeholder:{type:String,default:"Select option"},allowEmpty:{type:Boolean,default:!0},resetAfter:{type:Boolean,default:!1},closeOnSelect:{type:Boolean,default:!0},customLabel:{type:Function,default:function(t,e){return n(t)?"":e?t[e]:t}},taggable:{type:Boolean,default:!1},tagPlaceholder:{type:String,default:"Press enter to create a tag"},tagPosition:{type:String,default:"top"},max:{type:[Number,Boolean],default:!1},id:{default:null},optionsLimit:{type:Number,default:1e3},groupValues:{type:String},groupLabel:{type:String},groupSelect:{type:Boolean,default:!1},blockKeys:{type:Array,default:function(){return[]}},preserveSearch:{type:Boolean,default:!1},preselectFirst:{type:Boolean,default:!1}},mounted:function(){!this.multiple&&this.max&&console.warn("[Vue-Multiselect warn]: Max prop should not be used when prop Multiple equals false."),this.preselectFirst&&!this.internalValue.length&&this.options.length&&this.select(this.filteredOptions[0])},computed:{internalValue:function(){return this.value||0===this.value?Array.isArray(this.value)?this.value:[this.value]:[]},filteredOptions:function(){var t=this.search||"",e=t.toLowerCase().trim(),i=this.options.concat();return i=this.internalSearch?this.groupValues?this.filterAndFlat(i,e,this.label):r(i,e,this.label,this.customLabel):this.groupValues?o(this.groupValues,this.groupLabel)(i):i,i=this.hideSelected?i.filter(function(t){return function(){return!t.apply(void 0,arguments)}}(this.isSelected)):i,this.taggable&&e.length&&!this.isExistingOption(e)&&("bottom"===this.tagPosition?i.push({isTag:!0,label:t}):i.unshift({isTag:!0,label:t})),i.slice(0,this.optionsLimit)},valueKeys:function(){var t=this;return this.trackBy?this.internalValue.map(function(e){return e[t.trackBy]}):this.internalValue},optionKeys:function(){var t=this;return(this.groupValues?this.flatAndStrip(this.options):this.options).map(function(e){return t.customLabel(e,t.label).toString().toLowerCase()})},currentOptionLabel:function(){return this.multiple?this.searchable?"":this.placeholder:this.internalValue.length?this.getOptionLabel(this.internalValue[0]):this.searchable?"":this.placeholder}},watch:{internalValue:function(){this.resetAfter&&this.internalValue.length&&(this.search="",this.$emit("input",this.multiple?[]:null))},search:function(){this.$emit("search-change",this.search,this.id)}},methods:{getValue:function(){return this.multiple?this.internalValue:0===this.internalValue.length?null:this.internalValue[0]},filterAndFlat:function(t,e,i){return w(a(e,i,this.groupValues,this.groupLabel,this.customLabel),o(this.groupValues,this.groupLabel))(t)},flatAndStrip:function(t){return w(o(this.groupValues,this.groupLabel),s)(t)},updateSearch:function(t){this.search=t},isExistingOption:function(t){return!!this.options&&this.optionKeys.indexOf(t)>-1},isSelected:function(t){var e=this.trackBy?t[this.trackBy]:t;return this.valueKeys.indexOf(e)>-1},isOptionDisabled:function(t){return!!t.$isDisabled},getOptionLabel:function(t){if(n(t))return"";if(t.isTag)return t.label;if(t.$isLabel)return t.$groupLabel;var e=this.customLabel(t,this.label);return n(e)?"":e},select:function(t,e){if(t.$isLabel&&this.groupSelect)this.selectGroup(t);else if(!(-1!==this.blockKeys.indexOf(e)||this.disabled||t.$isDisabled||t.$isLabel)&&(!this.max||!this.multiple||this.internalValue.length!==this.max)&&("Tab"!==e||this.pointerDirty)){if(t.isTag)this.$emit("tag",t.label,this.id),this.search="",this.closeOnSelect&&!this.multiple&&this.deactivate();else{if(this.isSelected(t))return void("Tab"!==e&&this.removeElement(t));this.$emit("select",t,this.id),this.multiple?this.$emit("input",this.internalValue.concat([t]),this.id):this.$emit("input",t,this.id),this.clearOnSelect&&(this.search="")}this.closeOnSelect&&this.deactivate()}},selectGroup:function(t){var e=this,i=this.options.find(function(i){return i[e.groupLabel]===t.$groupLabel});if(i)if(this.wholeGroupSelected(i)){this.$emit("remove",i[this.groupValues],this.id);var n=this.internalValue.filter(function(t){return-1===i[e.groupValues].indexOf(t)});this.$emit("input",n,this.id)}else{var r=i[this.groupValues].filter(function(t){return!(e.isOptionDisabled(t)||e.isSelected(t))});this.$emit("select",r,this.id),this.$emit("input",this.internalValue.concat(r),this.id)}},wholeGroupSelected:function(t){var e=this;return t[this.groupValues].every(function(t){return e.isSelected(t)||e.isOptionDisabled(t)})},wholeGroupDisabled:function(t){return t[this.groupValues].every(this.isOptionDisabled)},removeElement:function(t){var e=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];if(!this.disabled&&!t.$isDisabled){if(!this.allowEmpty&&this.internalValue.length<=1)return void this.deactivate();var n="object"===i.i(l.a)(t)?this.valueKeys.indexOf(t[this.trackBy]):this.valueKeys.indexOf(t);if(this.$emit("remove",t,this.id),this.multiple){var r=this.internalValue.slice(0,n).concat(this.internalValue.slice(n+1));this.$emit("input",r,this.id)}else this.$emit("input",null,this.id);this.closeOnSelect&&e&&this.deactivate()}},removeLastElement:function(){-1===this.blockKeys.indexOf("Delete")&&0===this.search.length&&Array.isArray(this.internalValue)&&this.internalValue.length&&this.removeElement(this.internalValue[this.internalValue.length-1],!1)},activate:function(){var t=this;this.isOpen||this.disabled||(this.adjustPosition(),this.groupValues&&0===this.pointer&&this.filteredOptions.length&&(this.pointer=1),this.isOpen=!0,this.searchable?(this.preserveSearch||(this.search=""),this.$nextTick(function(){return t.$refs.search.focus()})):this.$el.focus(),this.$emit("open",this.id))},deactivate:function(){this.isOpen&&(this.isOpen=!1,this.searchable?this.$refs.search.blur():this.$el.blur(),this.preserveSearch||(this.search=""),this.$emit("close",this.getValue(),this.id))},toggle:function(){this.isOpen?this.deactivate():this.activate()},adjustPosition:function(){if("undefined"!=typeof window){var t=this.$el.getBoundingClientRect().top,e=window.innerHeight-this.$el.getBoundingClientRect().bottom;e>this.maxHeight||e>t||"below"===this.openDirection||"bottom"===this.openDirection?(this.preferredOpenDirection="below",this.optimizedHeight=Math.min(e-40,this.maxHeight)):(this.preferredOpenDirection="above",this.optimizedHeight=Math.min(t-40,this.maxHeight))}}}}},function(t,e,i){"use strict";var n=i(54),r=(i.n(n),i(31));i.n(r),e.a={data:function(){return{pointer:0,pointerDirty:!1}},props:{showPointer:{type:Boolean,default:!0},optionHeight:{type:Number,default:40}},computed:{pointerPosition:function(){return this.pointer*this.optionHeight},visibleElements:function(){return this.optimizedHeight/this.optionHeight}},watch:{filteredOptions:function(){this.pointerAdjust()},isOpen:function(){this.pointerDirty=!1}},methods:{optionHighlight:function(t,e){return{"multiselect__option--highlight":t===this.pointer&&this.showPointer,"multiselect__option--selected":this.isSelected(e)}},groupHighlight:function(t,e){var i=this;if(!this.groupSelect)return["multiselect__option--group","multiselect__option--disabled"];var n=this.options.find(function(t){return t[i.groupLabel]===e.$groupLabel});return n&&!this.wholeGroupDisabled(n)?["multiselect__option--group",{"multiselect__option--highlight":t===this.pointer&&this.showPointer},{"multiselect__option--group-selected":this.wholeGroupSelected(n)}]:"multiselect__option--disabled"},addPointerElement:function(){var t=(arguments.length>0&&void 0!==arguments[0]?arguments[0]:"Enter").key;this.filteredOptions.length>0&&this.select(this.filteredOptions[this.pointer],t),this.pointerReset()},pointerForward:function(){this.pointer<this.filteredOptions.length-1&&(this.pointer++,this.$refs.list.scrollTop<=this.pointerPosition-(this.visibleElements-1)*this.optionHeight&&(this.$refs.list.scrollTop=this.pointerPosition-(this.visibleElements-1)*this.optionHeight),this.filteredOptions[this.pointer]&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerForward()),this.pointerDirty=!0},pointerBackward:function(){this.pointer>0?(this.pointer--,this.$refs.list.scrollTop>=this.pointerPosition&&(this.$refs.list.scrollTop=this.pointerPosition),this.filteredOptions[this.pointer]&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerBackward()):this.filteredOptions[this.pointer]&&this.filteredOptions[0].$isLabel&&!this.groupSelect&&this.pointerForward(),this.pointerDirty=!0},pointerReset:function(){this.closeOnSelect&&(this.pointer=0,this.$refs.list&&(this.$refs.list.scrollTop=0))},pointerAdjust:function(){this.pointer>=this.filteredOptions.length-1&&(this.pointer=this.filteredOptions.length?this.filteredOptions.length-1:0),this.filteredOptions.length>0&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerForward()},pointerSet:function(t){this.pointer=t,this.pointerDirty=!0}}}},function(t,e,i){"use strict";var n=i(36),r=i(74),s=i(15),o=i(18);t.exports=i(72)(Array,"Array",function(t,e){this._t=o(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,i=this._i++;return!t||i>=t.length?(this._t=void 0,r(1)):r(0,"keys"==e?i:"values"==e?t[i]:[i,t[i]])},"values"),s.Arguments=s.Array,n("keys"),n("values"),n("entries")},function(t,e,i){"use strict";var n=i(31),r=(i.n(n),i(32)),s=i(33);e.a={name:"vue-multiselect",mixins:[r.a,s.a],props:{name:{type:String,default:""},selectLabel:{type:String,default:"Press enter to select"},selectGroupLabel:{type:String,default:"Press enter to select group"},selectedLabel:{type:String,default:"Selected"},deselectLabel:{type:String,default:"Press enter to remove"},deselectGroupLabel:{type:String,default:"Press enter to deselect group"},showLabels:{type:Boolean,default:!0},limit:{type:Number,default:99999},maxHeight:{type:Number,default:300},limitText:{type:Function,default:function(t){return"and ".concat(t," more")}},loading:{type:Boolean,default:!1},disabled:{type:Boolean,default:!1},openDirection:{type:String,default:""},showNoOptions:{type:Boolean,default:!0},showNoResults:{type:Boolean,default:!0},tabindex:{type:Number,default:0}},computed:{isSingleLabelVisible:function(){return(this.singleValue||0===this.singleValue)&&(!this.isOpen||!this.searchable)&&!this.visibleValues.length},isPlaceholderVisible:function(){return!(this.internalValue.length||this.searchable&&this.isOpen)},visibleValues:function(){return this.multiple?this.internalValue.slice(0,this.limit):[]},singleValue:function(){return this.internalValue[0]},deselectLabelText:function(){return this.showLabels?this.deselectLabel:""},deselectGroupLabelText:function(){return this.showLabels?this.deselectGroupLabel:""},selectLabelText:function(){return this.showLabels?this.selectLabel:""},selectGroupLabelText:function(){return this.showLabels?this.selectGroupLabel:""},selectedLabelText:function(){return this.showLabels?this.selectedLabel:""},inputStyle:function(){if(this.searchable||this.multiple&&this.value&&this.value.length)return this.isOpen?{width:"100%"}:{width:"0",position:"absolute",padding:"0"}},contentStyle:function(){return this.options.length?{display:"inline-block"}:{display:"block"}},isAbove:function(){return"above"===this.openDirection||"top"===this.openDirection||"below"!==this.openDirection&&"bottom"!==this.openDirection&&"above"===this.preferredOpenDirection},showSearchInput:function(){return this.searchable&&(!this.hasSingleSelectedSlot||!this.visibleSingleValue&&0!==this.visibleSingleValue||this.isOpen)}}}},function(t,e,i){var n=i(1)("unscopables"),r=Array.prototype;void 0==r[n]&&i(8)(r,n,{}),t.exports=function(t){r[n][t]=!0}},function(t,e,i){var n=i(18),r=i(19),s=i(85);t.exports=function(t){return function(e,i,o){var a,l=n(e),c=r(l.length),u=s(o,c);if(t&&i!=i){for(;c>u;)if((a=l[u++])!=a)return!0}else for(;c>u;u++)if((t||u in l)&&l[u]===i)return t||u||0;return!t&&-1}}},function(t,e,i){var n=i(9),r=i(1)("toStringTag"),s="Arguments"==n(function(){return arguments}());t.exports=function(t){var e,i,o;return void 0===t?"Undefined":null===t?"Null":"string"==typeof(i=function(t,e){try{return t[e]}catch(t){}}(e=Object(t),r))?i:s?n(e):"Object"==(o=n(e))&&"function"==typeof e.callee?"Arguments":o}},function(t,e,i){"use strict";var n=i(2);t.exports=function(){var t=n(this),e="";return t.global&&(e+="g"),t.ignoreCase&&(e+="i"),t.multiline&&(e+="m"),t.unicode&&(e+="u"),t.sticky&&(e+="y"),e}},function(t,e,i){var n=i(0).document;t.exports=n&&n.documentElement},function(t,e,i){t.exports=!i(4)&&!i(7)(function(){return 7!=Object.defineProperty(i(21)("div"),"a",{get:function(){return 7}}).a})},function(t,e,i){var n=i(9);t.exports=Array.isArray||function(t){return"Array"==n(t)}},function(t,e,i){"use strict";var n=i(14);t.exports.f=function(t){return new function(t){var e,i;this.promise=new t(function(t,n){if(void 0!==e||void 0!==i)throw TypeError("Bad Promise constructor");e=t,i=n}),this.resolve=n(e),this.reject=n(i)}(t)}},function(t,e,i){var n=i(2),r=i(76),s=i(22),o=i(27)("IE_PROTO"),a=function(){},l=function(){var t,e=i(21)("iframe"),n=s.length;for(e.style.display="none",i(40).appendChild(e),e.src="javascript:",(t=e.contentWindow.document).open(),t.write("<script>document.F=Object<\/script>"),t.close(),l=t.F;n--;)delete l.prototype[s[n]];return l()};t.exports=Object.create||function(t,e){var i;return null!==t?(a.prototype=n(t),i=new a,a.prototype=null,i[o]=t):i=l(),void 0===e?i:r(i,e)}},function(t,e,i){var n=i(79),r=i(25),s=i(18),o=i(29),a=i(12),l=i(41),c=Object.getOwnPropertyDescriptor;e.f=i(4)?c:function(t,e){if(t=s(t),e=o(e,!0),l)try{return c(t,e)}catch(t){}if(a(t,e))return r(!n.f.call(t,e),t[e])}},function(t,e,i){var n=i(12),r=i(18),s=i(37)(!1),o=i(27)("IE_PROTO");t.exports=function(t,e){var i,a=r(t),l=0,c=[];for(i in a)i!=o&&n(a,i)&&c.push(i);for(;e.length>l;)n(a,i=e[l++])&&(~s(c,i)||c.push(i));return c}},function(t,e,i){var n=i(46),r=i(22);t.exports=Object.keys||function(t){return n(t,r)}},function(t,e,i){var n=i(2),r=i(5),s=i(43);t.exports=function(t,e){if(n(t),r(e)&&e.constructor===t)return e;var i=s.f(t);return(0,i.resolve)(e),i.promise}},function(t,e,i){var n=i(10),r=i(0),s=r["__core-js_shared__"]||(r["__core-js_shared__"]={});(t.exports=function(t,e){return s[t]||(s[t]=void 0!==e?e:{})})("versions",[]).push({version:n.version,mode:i(24)?"pure":"global",copyright:"© 2018 Denis Pushkarev (zloirock.ru)"})},function(t,e,i){var n=i(2),r=i(14),s=i(1)("species");t.exports=function(t,e){var i,o=n(t).constructor;return void 0===o||void 0==(i=n(o)[s])?e:r(i)}},function(t,e,i){var n=i(3),r=i(16),s=i(7),o=i(84),a="["+o+"]",l=RegExp("^"+a+a+"*"),c=RegExp(a+a+"*$"),u=function(t,e,i){var r={},a=s(function(){return!!o[t]()||"​"!="​"[t]()}),l=r[t]=a?e(p):o[t];i&&(r[i]=l),n(n.P+n.F*a,"String",r)},p=u.trim=function(t,e){return t=String(r(t)),1&e&&(t=t.replace(l,"")),2&e&&(t=t.replace(c,"")),t};t.exports=u},function(t,e,i){var n,r,s,o=i(11),a=i(68),l=i(40),c=i(21),u=i(0),p=u.process,d=u.setImmediate,f=u.clearImmediate,h=u.MessageChannel,v=u.Dispatch,g=0,m={},b=function(){var t=+this;if(m.hasOwnProperty(t)){var e=m[t];delete m[t],e()}},_=function(t){b.call(t.data)};d&&f||(d=function(t){for(var e=[],i=1;arguments.length>i;)e.push(arguments[i++]);return m[++g]=function(){a("function"==typeof t?t:Function(t),e)},n(g),g},f=function(t){delete m[t]},"process"==i(9)(p)?n=function(t){p.nextTick(o(b,t,1))}:v&&v.now?n=function(t){v.now(o(b,t,1))}:h?(s=(r=new h).port2,r.port1.onmessage=_,n=o(s.postMessage,s,1)):u.addEventListener&&"function"==typeof postMessage&&!u.importScripts?(n=function(t){u.postMessage(t+"","*")},u.addEventListener("message",_,!1)):n="onreadystatechange"in c("script")?function(t){l.appendChild(c("script")).onreadystatechange=function(){l.removeChild(this),b.call(t)}}:function(t){setTimeout(o(b,t,1),0)}),t.exports={set:d,clear:f}},function(t,e){var i=Math.ceil,n=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?n:i)(t)}},function(t,e,i){"use strict";var n=i(3),r=i(20)(5),s=!0;"find"in[]&&Array(1).find(function(){s=!1}),n(n.P+n.F*s,"Array",{find:function(t){return r(this,t,arguments.length>1?arguments[1]:void 0)}}),i(36)("find")},function(t,e,i){"use strict";var n,r,s,o,a=i(24),l=i(0),c=i(11),u=i(38),p=i(3),d=i(5),f=i(14),h=i(61),v=i(66),g=i(50),m=i(52).set,b=i(75)(),_=i(43),y=i(80),x=i(86),w=i(48),k=l.TypeError,C=l.process,S=C&&C.versions,O=S&&S.v8||"",P=l.Promise,z="process"==u(C),N=function(){},E=r=_.f,L=!!function(){try{var t=P.resolve(1),e=(t.constructor={})[i(1)("species")]=function(t){t(N,N)};return(z||"function"==typeof PromiseRejectionEvent)&&t.then(N)instanceof e&&0!==O.indexOf("6.6")&&-1===x.indexOf("Chrome/66")}catch(t){}}(),T=function(t){var e;return!(!d(t)||"function"!=typeof(e=t.then))&&e},V=function(t,e){if(!t._n){t._n=!0;var i=t._c;b(function(){for(var n=t._v,r=1==t._s,s=0;i.length>s;)!function(e){var i,s,o,a=r?e.ok:e.fail,l=e.resolve,c=e.reject,u=e.domain;try{a?(r||(2==t._h&&j(t),t._h=1),!0===a?i=n:(u&&u.enter(),i=a(n),u&&(u.exit(),o=!0)),i===e.promise?c(k("Promise-chain cycle")):(s=T(i))?s.call(i,l,c):l(i)):c(n)}catch(t){u&&!o&&u.exit(),c(t)}}(i[s++]);t._c=[],t._n=!1,e&&!t._h&&A(t)})}},A=function(t){m.call(l,function(){var e,i,n,r=t._v,s=I(t);if(s&&(e=y(function(){z?C.emit("unhandledRejection",r,t):(i=l.onunhandledrejection)?i({promise:t,reason:r}):(n=l.console)&&n.error&&n.error("Unhandled promise rejection",r)}),t._h=z||I(t)?2:1),t._a=void 0,s&&e.e)throw e.v})},I=function(t){return 1!==t._h&&0===(t._a||t._c).length},j=function(t){m.call(l,function(){var e;z?C.emit("rejectionHandled",t):(e=l.onrejectionhandled)&&e({promise:t,reason:t._v})})},D=function(t){var e=this;e._d||(e._d=!0,(e=e._w||e)._v=t,e._s=2,e._a||(e._a=e._c.slice()),V(e,!0))},M=function(t){var e,i=this;if(!i._d){i._d=!0,i=i._w||i;try{if(i===t)throw k("Promise can't be resolved itself");(e=T(t))?b(function(){var n={_w:i,_d:!1};try{e.call(t,c(M,n,1),c(D,n,1))}catch(t){D.call(n,t)}}):(i._v=t,i._s=1,V(i,!1))}catch(t){D.call({_w:i,_d:!1},t)}}};L||(P=function(t){h(this,P,"Promise","_h"),f(t),n.call(this);try{t(c(M,this,1),c(D,this,1))}catch(t){D.call(this,t)}},(n=function(t){this._c=[],this._a=void 0,this._s=0,this._d=!1,this._v=void 0,this._h=0,this._n=!1}).prototype=i(81)(P.prototype,{then:function(t,e){var i=E(g(this,P));return i.ok="function"!=typeof t||t,i.fail="function"==typeof e&&e,i.domain=z?C.domain:void 0,this._c.push(i),this._a&&this._a.push(i),this._s&&V(this,!1),i.promise},catch:function(t){return this.then(void 0,t)}}),s=function(){var t=new n;this.promise=t,this.resolve=c(M,t,1),this.reject=c(D,t,1)},_.f=E=function(t){return t===P||t===o?new s(t):r(t)}),p(p.G+p.W+p.F*!L,{Promise:P}),i(26)(P,"Promise"),i(83)("Promise"),o=i(10).Promise,p(p.S+p.F*!L,"Promise",{reject:function(t){var e=E(this);return(0,e.reject)(t),e.promise}}),p(p.S+p.F*(a||!L),"Promise",{resolve:function(t){return w(a&&this===o?P:this,t)}}),p(p.S+p.F*!(L&&i(73)(function(t){P.all(t).catch(N)})),"Promise",{all:function(t){var e=this,i=E(e),n=i.resolve,r=i.reject,s=y(function(){var i=[],s=0,o=1;v(t,!1,function(t){var a=s++,l=!1;i.push(void 0),o++,e.resolve(t).then(function(t){l||(l=!0,i[a]=t,--o||n(i))},r)}),--o||n(i)});return s.e&&r(s.v),i.promise},race:function(t){var e=this,i=E(e),n=i.reject,r=y(function(){v(t,!1,function(t){e.resolve(t).then(i.resolve,n)})});return r.e&&n(r.v),i.promise}})},function(t,e,i){"use strict";var n=i(3),r=i(10),s=i(0),o=i(50),a=i(48);n(n.P+n.R,"Promise",{finally:function(t){var e=o(this,r.Promise||s.Promise),i="function"==typeof t;return this.then(i?function(i){return a(e,t()).then(function(){return i})}:t,i?function(i){return a(e,t()).then(function(){throw i})}:t)}})},function(t,e,i){"use strict";var n=i(35),r=i(101),s=function(t){i(99)},o=i(100)(n.a,r.a,!1,s,null,null);e.a=o.exports},function(t,e,i){"use strict";e.a=function(t,e,i){return e in t?Object.defineProperty(t,e,{value:i,enumerable:!0,configurable:!0,writable:!0}):t[e]=i,t}},function(t,e,i){"use strict";function n(t){return(n="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function r(t){return(r="function"==typeof Symbol&&"symbol"===n(Symbol.iterator)?function(t){return n(t)}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":n(t)})(t)}e.a=r},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(34),r=(i.n(n),i(55)),s=(i.n(r),i(56)),o=(i.n(s),i(57)),a=i(32),l=i(33);i.d(e,"Multiselect",function(){return o.a}),i.d(e,"multiselectMixin",function(){return a.a}),i.d(e,"pointerMixin",function(){return l.a}),e.default=o.a},function(t,e){t.exports=function(t,e,i,n){if(!(t instanceof e)||void 0!==n&&n in t)throw TypeError(i+": incorrect invocation!");return t}},function(t,e,i){var n=i(14),r=i(28),s=i(23),o=i(19);t.exports=function(t,e,i,a,l){n(e);var c=r(t),u=s(c),p=o(c.length),d=l?p-1:0,f=l?-1:1;if(i<2)for(;;){if(d in u){a=u[d],d+=f;break}if(d+=f,l?d<0:p<=d)throw TypeError("Reduce of empty array with no initial value")}for(;l?d>=0:p>d;d+=f)d in u&&(a=e(a,u[d],d,c));return a}},function(t,e,i){var n=i(5),r=i(42),s=i(1)("species");t.exports=function(t){var e;return r(t)&&("function"!=typeof(e=t.constructor)||e!==Array&&!r(e.prototype)||(e=void 0),n(e)&&null===(e=e[s])&&(e=void 0)),void 0===e?Array:e}},function(t,e,i){var n=i(63);t.exports=function(t,e){return new(n(t))(e)}},function(t,e,i){"use strict";var n=i(8),r=i(6),s=i(7),o=i(16),a=i(1);t.exports=function(t,e,i){var l=a(t),c=i(o,l,""[t]),u=c[0],p=c[1];s(function(){var e={};return e[l]=function(){return 7},7!=""[t](e)})&&(r(String.prototype,t,u),n(RegExp.prototype,l,2==e?function(t,e){return p.call(t,this,e)}:function(t){return p.call(t,this)}))}},function(t,e,i){var n=i(11),r=i(70),s=i(69),o=i(2),a=i(19),l=i(87),c={},u={};(e=t.exports=function(t,e,i,p,d){var f,h,v,g,m=d?function(){return t}:l(t),b=n(i,p,e?2:1),_=0;if("function"!=typeof m)throw TypeError(t+" is not iterable!");if(s(m)){for(f=a(t.length);f>_;_++)if((g=e?b(o(h=t[_])[0],h[1]):b(t[_]))===c||g===u)return g}else for(v=m.call(t);!(h=v.next()).done;)if((g=r(v,b,h.value,e))===c||g===u)return g}).BREAK=c,e.RETURN=u},function(t,e,i){var n=i(5),r=i(82).set;t.exports=function(t,e,i){var s,o=e.constructor;return o!==i&&"function"==typeof o&&(s=o.prototype)!==i.prototype&&n(s)&&r&&r(t,s),t}},function(t,e){t.exports=function(t,e,i){var n=void 0===i;switch(e.length){case 0:return n?t():t.call(i);case 1:return n?t(e[0]):t.call(i,e[0]);case 2:return n?t(e[0],e[1]):t.call(i,e[0],e[1]);case 3:return n?t(e[0],e[1],e[2]):t.call(i,e[0],e[1],e[2]);case 4:return n?t(e[0],e[1],e[2],e[3]):t.call(i,e[0],e[1],e[2],e[3])}return t.apply(i,e)}},function(t,e,i){var n=i(15),r=i(1)("iterator"),s=Array.prototype;t.exports=function(t){return void 0!==t&&(n.Array===t||s[r]===t)}},function(t,e,i){var n=i(2);t.exports=function(t,e,i,r){try{return r?e(n(i)[0],i[1]):e(i)}catch(e){var s=t.return;throw void 0!==s&&n(s.call(t)),e}}},function(t,e,i){"use strict";var n=i(44),r=i(25),s=i(26),o={};i(8)(o,i(1)("iterator"),function(){return this}),t.exports=function(t,e,i){t.prototype=n(o,{next:r(1,i)}),s(t,e+" Iterator")}},function(t,e,i){"use strict";var n=i(24),r=i(3),s=i(6),o=i(8),a=i(15),l=i(71),c=i(26),u=i(78),p=i(1)("iterator"),d=!([].keys&&"next"in[].keys()),f=function(){return this};t.exports=function(t,e,i,h,v,g,m){l(i,e,h);var b,_,y,x=function(t){if(!d&&t in S)return S[t];switch(t){case"keys":case"values":return function(){return new i(this,t)}}return function(){return new i(this,t)}},w=e+" Iterator",k="values"==v,C=!1,S=t.prototype,O=S[p]||S["@@iterator"]||v&&S[v],P=O||x(v),z=v?k?x("entries"):P:void 0,N="Array"==e&&S.entries||O;if(N&&(y=u(N.call(new t)))!==Object.prototype&&y.next&&(c(y,w,!0),n||"function"==typeof y[p]||o(y,p,f)),k&&O&&"values"!==O.name&&(C=!0,P=function(){return O.call(this)}),n&&!m||!d&&!C&&S[p]||o(S,p,P),a[e]=P,a[w]=f,v)if(b={values:k?P:x("values"),keys:g?P:x("keys"),entries:z},m)for(_ in b)_ in S||s(S,_,b[_]);else r(r.P+r.F*(d||C),e,b);return b}},function(t,e,i){var n=i(1)("iterator"),r=!1;try{var s=[7][n]();s.return=function(){r=!0},Array.from(s,function(){throw 2})}catch(t){}t.exports=function(t,e){if(!e&&!r)return!1;var i=!1;try{var s=[7],o=s[n]();o.next=function(){return{done:i=!0}},s[n]=function(){return o},t(s)}catch(t){}return i}},function(t,e){t.exports=function(t,e){return{value:e,done:!!t}}},function(t,e,i){var n=i(0),r=i(52).set,s=n.MutationObserver||n.WebKitMutationObserver,o=n.process,a=n.Promise,l="process"==i(9)(o);t.exports=function(){var t,e,i,c=function(){var n,r;for(l&&(n=o.domain)&&n.exit();t;){r=t.fn,t=t.next;try{r()}catch(n){throw t?i():e=void 0,n}}e=void 0,n&&n.enter()};if(l)i=function(){o.nextTick(c)};else if(!s||n.navigator&&n.navigator.standalone)if(a&&a.resolve){var u=a.resolve(void 0);i=function(){u.then(c)}}else i=function(){r.call(n,c)};else{var p=!0,d=document.createTextNode("");new s(c).observe(d,{characterData:!0}),i=function(){d.data=p=!p}}return function(n){var r={fn:n,next:void 0};e&&(e.next=r),t||(t=r,i()),e=r}}},function(t,e,i){var n=i(13),r=i(2),s=i(47);t.exports=i(4)?Object.defineProperties:function(t,e){r(t);for(var i,o=s(e),a=o.length,l=0;a>l;)n.f(t,i=o[l++],e[i]);return t}},function(t,e,i){var n=i(46),r=i(22).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return n(t,r)}},function(t,e,i){var n=i(12),r=i(28),s=i(27)("IE_PROTO"),o=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=r(t),n(t,s)?t[s]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?o:null}},function(t,e){e.f={}.propertyIsEnumerable},function(t,e){t.exports=function(t){try{return{e:!1,v:t()}}catch(t){return{e:!0,v:t}}}},function(t,e,i){var n=i(6);t.exports=function(t,e,i){for(var r in e)n(t,r,e[r],i);return t}},function(t,e,i){var n=i(5),r=i(2),s=function(t,e){if(r(t),!n(e)&&null!==e)throw TypeError(e+": can't set as prototype!")};t.exports={set:Object.setPrototypeOf||("__proto__"in{}?function(t,e,n){try{(n=i(11)(Function.call,i(45).f(Object.prototype,"__proto__").set,2))(t,[]),e=!(t instanceof Array)}catch(t){e=!0}return function(t,i){return s(t,i),e?t.__proto__=i:n(t,i),t}}({},!1):void 0),check:s}},function(t,e,i){"use strict";var n=i(0),r=i(13),s=i(4),o=i(1)("species");t.exports=function(t){var e=n[t];s&&e&&!e[o]&&r.f(e,o,{configurable:!0,get:function(){return this}})}},function(t,e){t.exports="\t\n\v\f\r   ᠎             　\u2028\u2029\ufeff"},function(t,e,i){var n=i(53),r=Math.max,s=Math.min;t.exports=function(t,e){return(t=n(t))<0?r(t+e,0):s(t,e)}},function(t,e,i){var n=i(0).navigator;t.exports=n&&n.userAgent||""},function(t,e,i){var n=i(38),r=i(1)("iterator"),s=i(15);t.exports=i(10).getIteratorMethod=function(t){if(void 0!=t)return t[r]||t["@@iterator"]||s[n(t)]}},function(t,e,i){"use strict";var n=i(3),r=i(20)(2);n(n.P+n.F*!i(17)([].filter,!0),"Array",{filter:function(t){return r(this,t,arguments[1])}})},function(t,e,i){"use strict";var n=i(3),r=i(37)(!1),s=[].indexOf,o=!!s&&1/[1].indexOf(1,-0)<0;n(n.P+n.F*(o||!i(17)(s)),"Array",{indexOf:function(t){return o?s.apply(this,arguments)||0:r(this,t,arguments[1])}})},function(t,e,i){var n=i(3);n(n.S,"Array",{isArray:i(42)})},function(t,e,i){"use strict";var n=i(3),r=i(20)(1);n(n.P+n.F*!i(17)([].map,!0),"Array",{map:function(t){return r(this,t,arguments[1])}})},function(t,e,i){"use strict";var n=i(3),r=i(62);n(n.P+n.F*!i(17)([].reduce,!0),"Array",{reduce:function(t){return r(this,t,arguments.length,arguments[1],!1)}})},function(t,e,i){var n=Date.prototype,r=n.toString,s=n.getTime;new Date(NaN)+""!="Invalid Date"&&i(6)(n,"toString",function(){var t=s.call(this);return t==t?r.call(this):"Invalid Date"})},function(t,e,i){i(4)&&"g"!=/./g.flags&&i(13).f(RegExp.prototype,"flags",{configurable:!0,get:i(39)})},function(t,e,i){i(65)("search",1,function(t,e,i){return[function(i){"use strict";var n=t(this),r=void 0==i?void 0:i[e];return void 0!==r?r.call(i,n):new RegExp(i)[e](String(n))},i]})},function(t,e,i){"use strict";i(94);var n=i(2),r=i(39),s=i(4),o=/./.toString,a=function(t){i(6)(RegExp.prototype,"toString",t,!0)};i(7)(function(){return"/a/b"!=o.call({source:"a",flags:"b"})})?a(function(){var t=n(this);return"/".concat(t.source,"/","flags"in t?t.flags:!s&&t instanceof RegExp?r.call(t):void 0)}):"toString"!=o.name&&a(function(){return o.call(this)})},function(t,e,i){"use strict";i(51)("trim",function(t){return function(){return t(this,3)}})},function(t,e,i){for(var n=i(34),r=i(47),s=i(6),o=i(0),a=i(8),l=i(15),c=i(1),u=c("iterator"),p=c("toStringTag"),d=l.Array,f={CSSRuleList:!0,CSSStyleDeclaration:!1,CSSValueList:!1,ClientRectList:!1,DOMRectList:!1,DOMStringList:!1,DOMTokenList:!0,DataTransferItemList:!1,FileList:!1,HTMLAllCollection:!1,HTMLCollection:!1,HTMLFormElement:!1,HTMLSelectElement:!1,MediaList:!0,MimeTypeArray:!1,NamedNodeMap:!1,NodeList:!0,PaintRequestList:!1,Plugin:!1,PluginArray:!1,SVGLengthList:!1,SVGNumberList:!1,SVGPathSegList:!1,SVGPointList:!1,SVGStringList:!1,SVGTransformList:!1,SourceBufferList:!1,StyleSheetList:!0,TextTrackCueList:!1,TextTrackList:!1,TouchList:!1},h=r(f),v=0;v<h.length;v++){var g,m=h[v],b=f[m],_=o[m],y=_&&_.prototype;if(y&&(y[u]||a(y,u,d),y[p]||a(y,p,m),l[m]=d,b))for(g in n)y[g]||s(y,g,n[g],!0)}},function(t,e){},function(t,e){t.exports=function(t,e,i,n,r,s){var o,a=t=t||{},l=typeof t.default;"object"!==l&&"function"!==l||(o=t,a=t.default);var c,u="function"==typeof a?a.options:a;if(e&&(u.render=e.render,u.staticRenderFns=e.staticRenderFns,u._compiled=!0),i&&(u.functional=!0),r&&(u._scopeId=r),s?(c=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),n&&n.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(s)},u._ssrRegister=c):n&&(c=n),c){var p=u.functional,d=p?u.render:u.beforeCreate;p?(u._injectStyles=c,u.render=function(t,e){return c.call(e),d(t,e)}):u.beforeCreate=d?[].concat(d,c):[c]}return{esModule:o,exports:a,options:u}}},function(t,e,i){"use strict";var n={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{staticClass:"multiselect",class:{"multiselect--active":t.isOpen,"multiselect--disabled":t.disabled,"multiselect--above":t.isAbove},attrs:{tabindex:t.searchable?-1:t.tabindex},on:{focus:function(e){t.activate()},blur:function(e){!t.searchable&&t.deactivate()},keydown:[function(e){return"button"in e||!t._k(e.keyCode,"down",40,e.key,["Down","ArrowDown"])?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerForward()):null},function(e){return"button"in e||!t._k(e.keyCode,"up",38,e.key,["Up","ArrowUp"])?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerBackward()):null}],keypress:function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key,"Enter")||!t._k(e.keyCode,"tab",9,e.key,"Tab")?(e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null},keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27,e.key,"Escape"))return null;t.deactivate()}}},[t._t("caret",[i("div",{staticClass:"multiselect__select",on:{mousedown:function(e){e.preventDefault(),e.stopPropagation(),t.toggle()}}})],{toggle:t.toggle}),t._v(" "),t._t("clear",null,{search:t.search}),t._v(" "),i("div",{ref:"tags",staticClass:"multiselect__tags"},[t._t("selection",[i("div",{directives:[{name:"show",rawName:"v-show",value:t.visibleValues.length>0,expression:"visibleValues.length > 0"}],staticClass:"multiselect__tags-wrap"},[t._l(t.visibleValues,function(e,n){return[t._t("tag",[i("span",{key:n,staticClass:"multiselect__tag"},[i("span",{domProps:{textContent:t._s(t.getOptionLabel(e))}}),t._v(" "),i("i",{staticClass:"multiselect__tag-icon",attrs:{"aria-hidden":"true",tabindex:"1"},on:{keypress:function(i){if(!("button"in i)&&t._k(i.keyCode,"enter",13,i.key,"Enter"))return null;i.preventDefault(),t.removeElement(e)},mousedown:function(i){i.preventDefault(),t.removeElement(e)}}})])],{option:e,search:t.search,remove:t.removeElement})]})],2),t._v(" "),t.internalValue&&t.internalValue.length>t.limit?[t._t("limit",[i("strong",{staticClass:"multiselect__strong",domProps:{textContent:t._s(t.limitText(t.internalValue.length-t.limit))}})])]:t._e()],{search:t.search,remove:t.removeElement,values:t.visibleValues,isOpen:t.isOpen}),t._v(" "),i("transition",{attrs:{name:"multiselect__loading"}},[t._t("loading",[i("div",{directives:[{name:"show",rawName:"v-show",value:t.loading,expression:"loading"}],staticClass:"multiselect__spinner"})])],2),t._v(" "),t.searchable?i("input",{ref:"search",staticClass:"multiselect__input",style:t.inputStyle,attrs:{name:t.name,id:t.id,type:"text",autocomplete:"nope",placeholder:t.placeholder,disabled:t.disabled,tabindex:t.tabindex},domProps:{value:t.search},on:{input:function(e){t.updateSearch(e.target.value)},focus:function(e){e.preventDefault(),t.activate()},blur:function(e){e.preventDefault(),t.deactivate()},keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27,e.key,"Escape"))return null;t.deactivate()},keydown:[function(e){if(!("button"in e)&&t._k(e.keyCode,"down",40,e.key,["Down","ArrowDown"]))return null;e.preventDefault(),t.pointerForward()},function(e){if(!("button"in e)&&t._k(e.keyCode,"up",38,e.key,["Up","ArrowUp"]))return null;e.preventDefault(),t.pointerBackward()},function(e){if(!("button"in e)&&t._k(e.keyCode,"delete",[8,46],e.key,["Backspace","Delete"]))return null;e.stopPropagation(),t.removeLastElement()}],keypress:function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key,"Enter")?(e.preventDefault(),e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null}}}):t._e(),t._v(" "),t.isSingleLabelVisible?i("span",{staticClass:"multiselect__single",on:{mousedown:function(e){return e.preventDefault(),t.toggle(e)}}},[t._t("singleLabel",[[t._v(t._s(t.currentOptionLabel))]],{option:t.singleValue})],2):t._e(),t._v(" "),t.isPlaceholderVisible?i("span",{staticClass:"multiselect__placeholder",on:{mousedown:function(e){return e.preventDefault(),t.toggle(e)}}},[t._t("placeholder",[t._v("\n          "+t._s(t.placeholder)+"\n        ")])],2):t._e()],2),t._v(" "),i("transition",{attrs:{name:"multiselect"}},[i("div",{directives:[{name:"show",rawName:"v-show",value:t.isOpen,expression:"isOpen"}],ref:"list",staticClass:"multiselect__content-wrapper",style:{maxHeight:t.optimizedHeight+"px"},attrs:{tabindex:"-1"},on:{focus:t.activate,mousedown:function(t){t.preventDefault()}}},[i("ul",{staticClass:"multiselect__content",style:t.contentStyle},[t._t("beforeList"),t._v(" "),t.multiple&&t.max===t.internalValue.length?i("li",[i("span",{staticClass:"multiselect__option"},[t._t("maxElements",[t._v("Maximum of "+t._s(t.max)+" options selected. First remove a selected option to select another.")])],2)]):t._e(),t._v(" "),!t.max||t.internalValue.length<t.max?t._l(t.filteredOptions,function(e,n){return i("li",{key:n,staticClass:"multiselect__element"},[e&&(e.$isLabel||e.$isDisabled)?t._e():i("span",{staticClass:"multiselect__option",class:t.optionHighlight(n,e),attrs:{"data-select":e&&e.isTag?t.tagPlaceholder:t.selectLabelText,"data-selected":t.selectedLabelText,"data-deselect":t.deselectLabelText},on:{click:function(i){i.stopPropagation(),t.select(e)},mouseenter:function(e){if(e.target!==e.currentTarget)return null;t.pointerSet(n)}}},[t._t("option",[i("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2),t._v(" "),e&&(e.$isLabel||e.$isDisabled)?i("span",{staticClass:"multiselect__option",class:t.groupHighlight(n,e),attrs:{"data-select":t.groupSelect&&t.selectGroupLabelText,"data-deselect":t.groupSelect&&t.deselectGroupLabelText},on:{mouseenter:function(e){if(e.target!==e.currentTarget)return null;t.groupSelect&&t.pointerSet(n)},mousedown:function(i){i.preventDefault(),t.selectGroup(e)}}},[t._t("option",[i("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2):t._e()])}):t._e(),t._v(" "),i("li",{directives:[{name:"show",rawName:"v-show",value:t.showNoResults&&0===t.filteredOptions.length&&t.search&&!t.loading,expression:"showNoResults && (filteredOptions.length === 0 && search && !loading)"}]},[i("span",{staticClass:"multiselect__option"},[t._t("noResult",[t._v("No elements found. Consider changing the search query.")],{search:t.search})],2)]),t._v(" "),i("li",{directives:[{name:"show",rawName:"v-show",value:t.showNoOptions&&0===t.options.length&&!t.search&&!t.loading,expression:"showNoOptions && (options.length === 0 && !search && !loading)"}]},[i("span",{staticClass:"multiselect__option"},[t._t("noOptions",[t._v("List is empty.")])],2)]),t._v(" "),t._t("afterList")],2)])])],2)},staticRenderFns:[]};e.a=n}])},t.exports=n()},function(t,e,i){var n=i(0)(i(22),i(23),!1,null,null,null);t.exports=n.exports},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0}),e.default={name:"citizenStatusView",data:function(){return{citizenStatus:"",citizenSubStatus:"",type:"",statusObj:"",regionalEstablishmentType:"",regionalEstablishment:"",responsibleStreet:"",responsibleHouse:"",entrance:[],statuses:[],chosenStatuses:[],regionalEstablishmentTypes:[],regionalEstablishments:[],regionalEstablishmentsAll:[],citizenSubStatuses:[],streets:[],houses:[]}},methods:{getInfo:function(){var t=this;Nova.request().post("/get-info-for-new").then(function(e){var i=e.data;t.statuses=i.statuses,t.regionalEstablishmentTypes=i.regional_establishment_types,t.regionalEstablishments=i.regional_establishments,t.citizenSubStatuses=i.citizen_sub_statuses,t.streets=i.streets,t.houses=i.houses})},changeStatuses:function(){var t=this.citizenStatus,e="";this.statuses.forEach(function(i,n){i.id===parseInt(t)&&(e=i)}),e&&(this.type=e.type),this.statusObj=e},getEntrance:function(){var t="",e=[],i=this.responsibleHouse;this.houses.forEach(function(e,n){e.id===parseInt(i)&&(t=e)});for(var n=0;n<t.entrances_number;)n++,e.push(n);this.entrance=e},addStatus:function(){var t={};null===this.type&&(t={id:this.chosenStatuses.length+1,params:{type:this.getTitleOfSelected(this.type,"chosenStatuses"),subStatus:this.citizenSubStatus.text}}),this.chosenStatuses.push(t)},getTitleOfSelected:function(t,e){var i=[];"chosenStatuses"===e&&(i=this.statuses),console.log(i),console.log(t),i.forEach(function(e,i){if(e.id===parseInt(t))return e.title})}},mounted:function(){this.getInfo()}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{attrs:{id:"citizenStatusView"}},[i("h2",[t._v("Статус")]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-2 mt-3"},[i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-citizen-status"}},[t._v("\n                Статус\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.citizenStatus,expression:"citizenStatus"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-citizen-status",name:"status_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.citizenStatus=e.target.multiple?i:i[0]},t.changeStatuses]}},[i("option",{attrs:{value:""}},[t._v("Виберіть статус")]),t._v(" "),t._l(t.statuses,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]),t._v(" "),"parent_committee"==t.type?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-regional-establishment-type"}},[t._v("\n                Тип Районого закладу\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.regionalEstablishmentType,expression:"regionalEstablishmentType"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-regional-establishment-type",name:"regional_establishment_type_id"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.regionalEstablishmentType=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть тип")]),t._v(" "),t._l(t.regionalEstablishmentTypes,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e(),t._v(" "),"parent_committee"==t.type&&t.regionalEstablishments&&t.regionalEstablishmentType?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-regional-establishment"}},[t._v("\n                Районний заклад\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.regionalEstablishment,expression:"regionalEstablishment"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-regional-establishment",name:"regional_establishment_id"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.regionalEstablishment=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть заклад")]),t._v(" "),t._l(t.regionalEstablishments,function(e){return e.regional_establishment_type_id==t.regionalEstablishmentType?i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))]):t._e()})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e(),t._v(" "),null==t.type&&t.citizenStatus?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-citizen-sub-status"}},[t._v("\n                Cтатус 2 категорія\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.citizenSubStatus,expression:"citizenSubStatus"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-citizen-sub-status",name:"citizen_sub_status_id"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.citizenSubStatus=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть cтатус")]),t._v(" "),t._l(t.citizenSubStatuses,function(e){return e.citizens_status_id==t.citizenStatus?i("option",{attrs:{text:e.title},domProps:{value:e.id}},[t._v(t._s(e.title))]):t._e()})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e(),t._v(" "),"responsible"==t.type?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-street"}},[t._v("\n                Вулиця\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.responsibleStreet,expression:"responsibleStreet"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-street",name:"responsible_street"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.responsibleStreet=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть вулицю")]),t._v(" "),t._l(t.streets,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e(),t._v(" "),"responsible"==t.type&&t.responsibleStreet?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-house"}},[t._v("\n                Вулиця\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.responsibleHouse,expression:"responsibleHouse"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-house",name:"responsible_house"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.responsibleHouse=e.target.multiple?i:i[0]},t.getEntrance]}},[i("option",{attrs:{value:""}},[t._v("Виберіть будинок")]),t._v(" "),t._l(t.houses,function(e){return e.street_id==t.responsibleStreet?i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))]):t._e()})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e()]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-2 mt-3"},["responsible"==t.type&&t.responsibleHouse?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-entrance"}},[t._v("\n                Під'їзд\n            ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.responsibleEntrance,expression:"responsibleEntrance"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-entrance",name:"responsible_entrance"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.responsibleEntrance=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть під'їзд")]),t._v(" "),t._l(t.entrance,function(e){return i("option",{domProps:{value:e}},[t._v(t._s(e))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e()]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-2 mt-3"},[i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"}),t._v(" "),i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"}),t._v(" "),i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("a",{staticClass:"bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",attrs:{href:"javascript:void(0)"},on:{click:t.addStatus}},[t._v("\n                Добавить статус\n            ")])])])])},staticRenderFns:[]}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",{attrs:{id:"newCitizenView"}},[t.newCitizenForm?i("div",{staticClass:"relative rounded overflow-hidden mb-8 shadow-lg mt-6"},[i("div",{staticClass:" border-grey-light p-4 flex justify-center p-8"},[i("form",{staticClass:"w-full justify-center",attrs:{id:"new_citizen_form"},on:{submit:function(e){return e.preventDefault(),t.newCitizen(e)}}},[i("div",{staticClass:"flex flex-wrap -mx-3 mb-4"},[i("div",{staticClass:"w-1/3 md:w-1/3 px-3 mb-6 md:mb-0"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-last-name"}},[t._v("\n                            Прізвище\n                        ")]),t._v(" "),i("input",{ref:"citizenValue",staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",attrs:{id:"grid-last-name",name:"last_name",type:"text",placeholder:""}})]),t._v(" "),i("div",{staticClass:"w-1/3 md:w-1/3 px-3"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-first-name"}},[t._v("\n                            Ім'я\n                        ")]),t._v(" "),i("input",{ref:"citizenValue",staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-first-name",name:"first_name",type:"text",placeholder:""}})]),t._v(" "),i("div",{staticClass:"w-1/3 md:w-1/3 px-3"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-patronymic-name"}},[t._v("\n                            По-Батькові\n                        ")]),t._v(" "),i("input",{ref:"citizenValue",staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-patronymic-name",name:"patronymic_name",type:"text",placeholder:""}})])]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-4"},[i("div",{staticClass:"w-1/3 md:w-1/3 px-3 mb-6 md:mb-0"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-birthdate-name"}},[t._v("\n                            Дата Народження\n                        ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.birthDate,expression:"birthDate"},{name:"mask",rawName:"v-mask",value:"##-##-####",expression:"'##-##-####'"}],ref:"citizenValue",staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",attrs:{id:"grid-birthdate-name",name:"date_birth",type:"text",placeholder:"12-05-2019"},domProps:{value:t.birthDate},on:{input:function(e){e.target.composing||(t.birthDate=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 md:w-1/3 px-3"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-phone-name"}},[t._v("\n                            Телефон\n                        ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.phone,expression:"phone"},{name:"mask",rawName:"v-mask",value:"+380##-###-##-##",expression:"'+380##-###-##-##'"}],ref:"citizenValue",staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-phone-name",name:"phone",type:"text",placeholder:""},domProps:{value:t.phone},on:{input:function(e){e.target.composing||(t.phone=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 md:w-1/3 px-3 mb-8"},[i("div",{staticClass:"category-select"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-category"}},[t._v("\n                                Категорія\n                            ")]),t._v(" "),i("multiselect",{staticClass:"multiselect-grey",attrs:{id:"grid-category",options:t.citizenCategories,multiple:!0,"close-on-select":!1,"clear-on-select":!1,placeholder:"Виберіть категорію",label:"title","track-by":"id","preselect-first":!1},scopedSlots:t._u([{key:"selection",fn:function(e){var n=e.values,r=(e.search,e.isOpen);return[n.length&&!r?i("span",{staticClass:"multiselect__single"},[t._v(t._s(n.length)+" options selected")]):t._e()]}}],null,!1,249740006),model:{value:t.citizenCategoriesValue,callback:function(e){t.citizenCategoriesValue=e},expression:"citizenCategoriesValue"}})],1)])]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-4"},[i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-6 md:mb-0"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"is-certificagte-number"}},[t._v("\n                            Чи є посвідчення?\n                        ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.isCertificateNumber,expression:"isCertificateNumber"}],staticClass:"mr-2 bg-grey-lighter leading-tight",attrs:{id:"is-certificagte-number",type:"checkbox"},domProps:{checked:Array.isArray(t.isCertificateNumber)?t._i(t.isCertificateNumber,null)>-1:t.isCertificateNumber},on:{change:function(e){var i=t.isCertificateNumber,n=e.target,r=!!n.checked;if(Array.isArray(i)){var s=t._i(i,null);n.checked?s<0&&(t.isCertificateNumber=i.concat([null])):s>-1&&(t.isCertificateNumber=i.slice(0,s).concat(i.slice(s+1)))}else t.isCertificateNumber=r}}})]),t._v(" "),t.isCertificateNumber?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-6 md:mb-0"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-certificagte-name"}},[t._v("\n                            № посвідчення\n                        ")]),t._v(" "),i("input",{staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",attrs:{id:"grid-certificagte-name",name:"certificate_number",type:"text"}})]):t._e()]),t._v(" "),i("h2",[t._v("Адреса")]),t._v(" "),i("div",{staticClass:"flex flex-wrap -mx-3 mb-2 mt-3"},[i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-category"}},[t._v("\n                            Дільниця\n                        ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.electivePlotId,expression:"electivePlotId"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-elective-plot",name:"elective_plot_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.electivePlotId=e.target.multiple?i:i[0]},t.filterStreets]}},[i("option",{attrs:{value:""}},[t._v("Виберіть дільницю")]),t._v(" "),t._l(t.electivePlots,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]),t._v(" "),t.electivePlotId?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-category"}},[t._v("\n                            Вулиця\n                        ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.streetId,expression:"streetId"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-street-plot",name:"street_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.streetId=e.target.multiple?i:i[0]},t.filterHouses]}},[i("option",{attrs:{value:""}},[t._v("Виберіть вулицю")]),t._v(" "),t._l(t.filteredStreets,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e(),t._v(" "),t.streetId?i("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-8"},[i("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-category"}},[t._v("\n                            Дім\n                        ")]),t._v(" "),i("div",{staticClass:"relative"},[i("select",{directives:[{name:"model",rawName:"v-model",value:t.houseId,expression:"houseId"}],staticClass:"block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-house-plot",name:"house_id"},on:{change:function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.houseId=e.target.multiple?i:i[0]}}},[i("option",{attrs:{value:""}},[t._v("Виберіть дім")]),t._v(" "),t._l(t.filteredHouses,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2),t._v(" "),i("div",{staticClass:"pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"},[i("svg",{staticClass:"fill-current h-4 w-4",attrs:{xmlns:"http://www.w3.org/2000/svg",viewBox:"0 0 20 20"}},[i("path",{attrs:{d:"M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"}})])])])]):t._e()]),t._v(" "),t.houseId?i("div",{staticClass:"flex flex-wrap -mx-3 mb-2 mt-3"},[t._m(0)]):t._e(),t._v(" "),i("citizen-status-view")],1)])]):t._e()])},staticRenderFns:[function(){var t=this.$createElement,e=this._self._c||t;return e("div",{staticClass:"md:w-1/3 w-1/3 px-3 mb-6 md:mb-0"},[e("label",{staticClass:"block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",attrs:{for:"grid-flat-name"}},[this._v("\n                            Квартира\n                        ")]),this._v(" "),e("input",{staticClass:"appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",attrs:{id:"grid-flat-name",name:"flat_number",type:"text",placeholder:""}})])}]}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement,i=t._self._c||e;return i("div",[i("heading",{staticClass:"mb-6"},[t._v("Citizen Finder")]),t._v(" "),i("card",{staticClass:"bg-white flex flex-col rounded",staticStyle:{"min-height":"300px"}},[i("form",{staticClass:"px-8 pt-6 pb-8",on:{submit:function(e){return e.preventDefault(),t.processFind(e)}}},[i("div",{staticClass:"flex mb-4"},[i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"lastName"}},[t._v("\n                        Прізвище\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.lastName,expression:"lastName"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"lastName",placeholder:"Прізвище",type:"text"},domProps:{value:t.lastName},on:{input:function(e){e.target.composing||(t.lastName=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12 mt-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"first_name"}},[t._v("\n                        Ім'я\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.firstName,expression:"firstName"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"first_name",type:"text",name:"first_name",placeholder:"Ім'я"},domProps:{value:t.firstName},on:{input:function(e){e.target.composing||(t.firstName=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12 mt-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"patronymic_name"}},[t._v("\n                        По-Батькові\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.patronymicName,expression:"patronymicName"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"patronymic_name",type:"text",name:"patronymic_name",placeholder:"По-Батькові"},domProps:{value:t.patronymicName},on:{input:function(e){e.target.composing||(t.patronymicName=e.target.value)}}})])]),t._v(" "),i("div",{staticClass:"flex mb-4"},[i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"phone"}},[t._v("\n                        Телефон\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.phone,expression:"phone"},{name:"mask",rawName:"v-mask",value:"+380##-###-##-##",expression:"'+380##-###-##-##'"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"phone",name:"phone",placeholder:"+380__-___-__-__",type:"text"},domProps:{value:t.phone},on:{input:function(e){e.target.composing||(t.phone=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"birth_date"}},[t._v("\n                        Дата Народження\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.birthDate,expression:"birthDate"},{name:"mask",rawName:"v-mask",value:"##-##-####",expression:"'##-##-####'"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"birth_date",name:"birthDate",placeholder:"__-__-____",type:"text"},domProps:{value:t.birthDate},on:{input:function(e){e.target.composing||(t.birthDate=e.target.value)}}})]),t._v(" "),i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"certificate_number"}},[t._v("\n                        Номер посвідчення\n                    ")]),t._v(" "),i("input",{directives:[{name:"model",rawName:"v-model",value:t.certificateNumber,expression:"certificateNumber"}],staticClass:"shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",attrs:{id:"certificate_number",name:"certificateNumber",type:"text"},domProps:{value:t.certificateNumber},on:{input:function(e){e.target.composing||(t.certificateNumber=e.target.value)}}})])]),t._v(" "),i("div",{staticClass:"flex mb-4"},[i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"grid-elective-plot"}},[t._v("\n                        Дільниця\n                    ")]),t._v(" "),i("select",{directives:[{name:"model",rawName:"v-model",value:t.electivePlotId,expression:"electivePlotId"}],staticClass:"block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-elective-plot",name:"elective_plot_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.electivePlotId=e.target.multiple?i:i[0]},t.changeElectivePlot]}},[i("option",{attrs:{value:""}},[t._v("Виберіть дільницю")]),t._v(" "),t._l(t.electivePlots,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2)]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12 mt-2 mr-2"},[i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"grid-elective-plot"}},[t._v("\n                        Вулиця\n                    ")]),t._v(" "),i("select",{directives:[{name:"model",rawName:"v-model",value:t.streetId,expression:"streetId"}],staticClass:"block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-street",name:"street_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.streetId=e.target.multiple?i:i[0]},t.changeStreet]}},[i("option",{attrs:{value:""}},[t._v("Виберіть вулицю")]),t._v(" "),t._l(t.streets,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2)]),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12 mt-2 mr-2"},[t.houses.length?i("label",{staticClass:"block text-grey-darker text-sm font-bold m-2",attrs:{for:"grid-house"}},[t._v("\n                        Будинок\n                    ")]):t._e(),t._v(" "),t.houses.length?i("select",{directives:[{name:"model",rawName:"v-model",value:t.houseId,expression:"houseId"}],staticClass:"block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",attrs:{id:"grid-house",name:"house_id"},on:{change:[function(e){var i=Array.prototype.filter.call(e.target.options,function(t){return t.selected}).map(function(t){return"_value"in t?t._value:t.value});t.houseId=e.target.multiple?i:i[0]},t.changeHouse]}},[i("option",{attrs:{value:""}},[t._v("Виберіть будинок")]),t._v(" "),t._l(t.houses,function(e){return i("option",{domProps:{value:e.id}},[t._v(t._s(e.title))])})],2):t._e()])]),t._v(" "),i("div",{staticClass:"flex mb-4"},[i("div",{staticClass:"w-1/3 mt-2 ml-2 mr-2"}),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey h-12 mt-2 mr-2"}),t._v(" "),i("div",{staticClass:"w-1/3 bg-grey-light h-12 mt-2 mr-2 align-content-end"},[i("button",{staticClass:"flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded",attrs:{disabled:t.working,type:"submit"}},[t._v("\n                        Пошук\n                    ")]),t._v(" "),i("a",{staticClass:"flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer",on:{click:t.openForm}},[t._v("\n                        Новий\n                    ")])])])]),t._v(" "),this.findCitizens.length?i("div",{staticClass:"px-8 pt-6 pb-8 bg-grey-lighter"},[i("h2",[t._v("Результати")]),t._v(" "),t._l(t.findCitizens,function(e){return i("a",{staticClass:"block px-4 py-2 hover:bg-20 text-80 no-underline",attrs:{href:"javascript:void(0)",id:e.id},on:{click:t.choseCitizen}},[t._v(t._s(e.last_name)+" "+t._s(e.first_name)+" "+t._s(e.patronymic_name))])})],2):t._e()]),t._v(" "),i("citizen-view",{attrs:{citizen:this.citizen}}),t._v(" "),i("new-citizen-view",{attrs:{newCitizenForm:this.newCitizenForm,citizen:this.citizen},on:{assignCitizenChild:t.assignCitizen}})],1)},staticRenderFns:[]}},function(t,e){}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ })
+/************************************************************************/
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+  Modified by Evan You @yyx990803
+*/
+
+var hasDocument = typeof document !== 'undefined'
+
+if (typeof DEBUG !== 'undefined' && DEBUG) {
+  if (!hasDocument) {
+    throw new Error(
+    'vue-style-loader cannot be used in a non-browser environment. ' +
+    "Use { target: 'node' } in your Webpack config to indicate a server-rendering environment."
+  ) }
+}
+
+var listToStyles = __webpack_require__(9)
+
+/*
+type StyleObject = {
+  id: number;
+  parts: Array<StyleObjectPart>
+}
+
+type StyleObjectPart = {
+  css: string;
+  media: string;
+  sourceMap: ?string
+}
+*/
+
+var stylesInDom = {/*
+  [id: number]: {
+    id: number,
+    refs: number,
+    parts: Array<(obj?: StyleObjectPart) => void>
+  }
+*/}
+
+var head = hasDocument && (document.head || document.getElementsByTagName('head')[0])
+var singletonElement = null
+var singletonCounter = 0
+var isProduction = false
+var noop = function () {}
+var options = null
+var ssrIdKey = 'data-vue-ssr-id'
+
+// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+// tags it will allow on a page
+var isOldIE = typeof navigator !== 'undefined' && /msie [6-9]\b/.test(navigator.userAgent.toLowerCase())
+
+module.exports = function (parentId, list, _isProduction, _options) {
+  isProduction = _isProduction
+
+  options = _options || {}
+
+  var styles = listToStyles(parentId, list)
+  addStylesToDom(styles)
+
+  return function update (newList) {
+    var mayRemove = []
+    for (var i = 0; i < styles.length; i++) {
+      var item = styles[i]
+      var domStyle = stylesInDom[item.id]
+      domStyle.refs--
+      mayRemove.push(domStyle)
+    }
+    if (newList) {
+      styles = listToStyles(parentId, newList)
+      addStylesToDom(styles)
+    } else {
+      styles = []
+    }
+    for (var i = 0; i < mayRemove.length; i++) {
+      var domStyle = mayRemove[i]
+      if (domStyle.refs === 0) {
+        for (var j = 0; j < domStyle.parts.length; j++) {
+          domStyle.parts[j]()
+        }
+        delete stylesInDom[domStyle.id]
+      }
+    }
+  }
+}
+
+function addStylesToDom (styles /* Array<StyleObject> */) {
+  for (var i = 0; i < styles.length; i++) {
+    var item = styles[i]
+    var domStyle = stylesInDom[item.id]
+    if (domStyle) {
+      domStyle.refs++
+      for (var j = 0; j < domStyle.parts.length; j++) {
+        domStyle.parts[j](item.parts[j])
+      }
+      for (; j < item.parts.length; j++) {
+        domStyle.parts.push(addStyle(item.parts[j]))
+      }
+      if (domStyle.parts.length > item.parts.length) {
+        domStyle.parts.length = item.parts.length
+      }
+    } else {
+      var parts = []
+      for (var j = 0; j < item.parts.length; j++) {
+        parts.push(addStyle(item.parts[j]))
+      }
+      stylesInDom[item.id] = { id: item.id, refs: 1, parts: parts }
+    }
+  }
+}
+
+function createStyleElement () {
+  var styleElement = document.createElement('style')
+  styleElement.type = 'text/css'
+  head.appendChild(styleElement)
+  return styleElement
+}
+
+function addStyle (obj /* StyleObjectPart */) {
+  var update, remove
+  var styleElement = document.querySelector('style[' + ssrIdKey + '~="' + obj.id + '"]')
+
+  if (styleElement) {
+    if (isProduction) {
+      // has SSR styles and in production mode.
+      // simply do nothing.
+      return noop
+    } else {
+      // has SSR styles but in dev mode.
+      // for some reason Chrome can't handle source map in server-rendered
+      // style tags - source maps in <style> only works if the style tag is
+      // created and inserted dynamically. So we remove the server rendered
+      // styles and inject new ones.
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  if (isOldIE) {
+    // use singleton mode for IE9.
+    var styleIndex = singletonCounter++
+    styleElement = singletonElement || (singletonElement = createStyleElement())
+    update = applyToSingletonTag.bind(null, styleElement, styleIndex, false)
+    remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true)
+  } else {
+    // use multi-style-tag mode in all other cases
+    styleElement = createStyleElement()
+    update = applyToTag.bind(null, styleElement)
+    remove = function () {
+      styleElement.parentNode.removeChild(styleElement)
+    }
+  }
+
+  update(obj)
+
+  return function updateStyle (newObj /* StyleObjectPart */) {
+    if (newObj) {
+      if (newObj.css === obj.css &&
+          newObj.media === obj.media &&
+          newObj.sourceMap === obj.sourceMap) {
+        return
+      }
+      update(obj = newObj)
+    } else {
+      remove()
+    }
+  }
+}
+
+var replaceText = (function () {
+  var textStore = []
+
+  return function (index, replacement) {
+    textStore[index] = replacement
+    return textStore.filter(Boolean).join('\n')
+  }
+})()
+
+function applyToSingletonTag (styleElement, index, remove, obj) {
+  var css = remove ? '' : obj.css
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = replaceText(index, css)
+  } else {
+    var cssNode = document.createTextNode(css)
+    var childNodes = styleElement.childNodes
+    if (childNodes[index]) styleElement.removeChild(childNodes[index])
+    if (childNodes.length) {
+      styleElement.insertBefore(cssNode, childNodes[index])
+    } else {
+      styleElement.appendChild(cssNode)
+    }
+  }
+}
+
+function applyToTag (styleElement, obj) {
+  var css = obj.css
+  var media = obj.media
+  var sourceMap = obj.sourceMap
+
+  if (media) {
+    styleElement.setAttribute('media', media)
+  }
+  if (options.ssrId) {
+    styleElement.setAttribute(ssrIdKey, obj.id)
+  }
+
+  if (sourceMap) {
+    // https://developer.chrome.com/devtools/docs/javascript-debugging
+    // this makes source maps inside style tags work properly in Chrome
+    css += '\n/*# sourceURL=' + sourceMap.sources[0] + ' */'
+    // http://stackoverflow.com/a/26603875
+    css += '\n/*# sourceMappingURL=data:application/json;base64,' + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + ' */'
+  }
+
+  if (styleElement.styleSheet) {
+    styleElement.styleSheet.cssText = css
+  } else {
+    while (styleElement.firstChild) {
+      styleElement.removeChild(styleElement.firstChild)
+    }
+    styleElement.appendChild(document.createTextNode(css))
+  }
+}
+
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports.VueTheMask=t():e.VueTheMask=t()})(this,function(){return function(e){function t(r){if(n[r])return n[r].exports;var a=n[r]={i:r,l:!1,exports:{}};return e[r].call(a.exports,a,a.exports,t),a.l=!0,a.exports}var n={};return t.m=e,t.c=n,t.i=function(e){return e},t.d=function(e,n,r){t.o(e,n)||Object.defineProperty(e,n,{configurable:!1,enumerable:!0,get:r})},t.n=function(e){var n=e&&e.__esModule?function(){return e.default}:function(){return e};return t.d(n,"a",n),n},t.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},t.p=".",t(t.s=10)}([function(e,t){e.exports={"#":{pattern:/\d/},X:{pattern:/[0-9a-zA-Z]/},S:{pattern:/[a-zA-Z]/},A:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleUpperCase()}},a:{pattern:/[a-zA-Z]/,transform:function(e){return e.toLocaleLowerCase()}},"!":{escape:!0}}},function(e,t,n){"use strict";function r(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!0),t}var a=n(2),o=n(0),i=n.n(o);t.a=function(e,t){var o=t.value;if((Array.isArray(o)||"string"==typeof o)&&(o={mask:o,tokens:i.a}),"INPUT"!==e.tagName.toLocaleUpperCase()){var u=e.getElementsByTagName("input");if(1!==u.length)throw new Error("v-mask directive requires 1 input, found "+u.length);e=u[0]}e.oninput=function(t){if(t.isTrusted){var i=e.selectionEnd,u=e.value[i-1];for(e.value=n.i(a.a)(e.value,o.mask,!0,o.tokens);i<e.value.length&&e.value.charAt(i-1)!==u;)i++;e===document.activeElement&&(e.setSelectionRange(i,i),setTimeout(function(){e.setSelectionRange(i,i)},0)),e.dispatchEvent(r("input"))}};var s=n.i(a.a)(e.value,o.mask,!0,o.tokens);s!==e.value&&(e.value=s,e.dispatchEvent(r("input")))}},function(e,t,n){"use strict";var r=n(6),a=n(5);t.a=function(e,t){var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=arguments[3];return Array.isArray(t)?n.i(a.a)(r.a,t,i)(e,t,o,i):n.i(r.a)(e,t,o,i)}},function(e,t,n){"use strict";function r(e){e.component(s.a.name,s.a),e.directive("mask",i.a)}Object.defineProperty(t,"__esModule",{value:!0});var a=n(0),o=n.n(a),i=n(1),u=n(7),s=n.n(u);n.d(t,"TheMask",function(){return s.a}),n.d(t,"mask",function(){return i.a}),n.d(t,"tokens",function(){return o.a}),n.d(t,"version",function(){return c});var c="0.11.1";t.default=r,"undefined"!=typeof window&&window.Vue&&window.Vue.use(r)},function(e,t,n){"use strict";Object.defineProperty(t,"__esModule",{value:!0});var r=n(1),a=n(0),o=n.n(a),i=n(2);t.default={name:"TheMask",props:{value:[String,Number],mask:{type:[String,Array],required:!0},masked:{type:Boolean,default:!1},tokens:{type:Object,default:function(){return o.a}}},directives:{mask:r.a},data:function(){return{lastValue:null,display:this.value}},watch:{value:function(e){e!==this.lastValue&&(this.display=e)},masked:function(){this.refresh(this.display)}},computed:{config:function(){return{mask:this.mask,tokens:this.tokens,masked:this.masked}}},methods:{onInput:function(e){e.isTrusted||this.refresh(e.target.value)},refresh:function(e){this.display=e;var e=n.i(i.a)(e,this.mask,this.masked,this.tokens);e!==this.lastValue&&(this.lastValue=e,this.$emit("input",e))}}}},function(e,t,n){"use strict";function r(e,t,n){return t=t.sort(function(e,t){return e.length-t.length}),function(r,a){for(var o=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],i=0;i<t.length;){var u=t[i];i++;var s=t[i];if(!(s&&e(r,s,!0,n).length>u.length))return e(r,u,o,n)}return""}}t.a=r},function(e,t,n){"use strict";function r(e,t){var n=!(arguments.length>2&&void 0!==arguments[2])||arguments[2],r=arguments[3];e=e||"",t=t||"";for(var a=0,o=0,i="";a<t.length&&o<e.length;){var u=t[a],s=r[u],c=e[o];s&&!s.escape?(s.pattern.test(c)&&(i+=s.transform?s.transform(c):c,a++),o++):(s&&s.escape&&(a++,u=t[a]),n&&(i+=u),c===u&&o++,a++)}for(var f="";a<t.length&&n;){var u=t[a];if(r[u]){f="";break}f+=u,a++}return i+f}t.a=r},function(e,t,n){var r=n(8)(n(4),n(9),null,null);e.exports=r.exports},function(e,t){e.exports=function(e,t,n,r){var a,o=e=e||{},i=typeof e.default;"object"!==i&&"function"!==i||(a=e,o=e.default);var u="function"==typeof o?o.options:o;if(t&&(u.render=t.render,u.staticRenderFns=t.staticRenderFns),n&&(u._scopeId=n),r){var s=u.computed||(u.computed={});Object.keys(r).forEach(function(e){var t=r[e];s[e]=function(){return t}})}return{esModule:a,exports:o,options:u}}},function(e,t){e.exports={render:function(){var e=this,t=e.$createElement;return(e._self._c||t)("input",{directives:[{name:"mask",rawName:"v-mask",value:e.config,expression:"config"}],attrs:{type:"text"},domProps:{value:e.display},on:{input:e.onInput}})},staticRenderFns:[]}},function(e,t,n){e.exports=n(3)}])});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(5);
+module.exports = __webpack_require__(26);
+
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+Nova.booting(function (Vue, router, store) {
+    router.addRoutes([{
+        name: 'citizen-finder',
+        path: '/citizen-finder',
+        component: __webpack_require__(6)
+    }]);
+});
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(7)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(10)
+/* template */
+var __vue_template__ = __webpack_require__(25)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Tool.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-68ff5483", Component.options)
+  } else {
+    hotAPI.reload("data-v-68ff5483", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(8);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("6e5db1d0", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-68ff5483\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Tool.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n*,:after,:before {\n    border: 0 solid #dae1e7;\n}\n.bg-grey-lighter {\n    background-color: #f1f5f8\n}\n.bg-blue {\n    background-color: #3490dc;\n}\n.border-teal {\n    border-color: #4dc0b5;\n}\n.bg-teal {\n    background-color: #4dc0b5;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+/**
+ * Translates the list format produced by css-loader into something
+ * easier to manipulate.
+ */
+module.exports = function listToStyles (parentId, list) {
+  var styles = []
+  var newStyles = {}
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    var id = item[0]
+    var css = item[1]
+    var media = item[2]
+    var sourceMap = item[3]
+    var part = {
+      id: parentId + ':' + i,
+      css: css,
+      media: media,
+      sourceMap: sourceMap
+    }
+    if (!newStyles[id]) {
+      styles.push(newStyles[id] = { id: id, parts: [part] })
+    } else {
+      newStyles[id].parts.push(part)
+    }
+  }
+  return styles
+}
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_the_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__citizenView__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__citizenView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__citizenView__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newCitizenView__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__newCitizenView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__newCitizenView__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    directives: { mask: __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__["mask"] },
+    mounted: function mounted() {
+        this.getInfo();
+    },
+    data: function data() {
+        return {
+            fullData: {},
+            working: false,
+            citizen: false,
+            noCitizens: false,
+            newCitizenForm: false,
+            electivePlotId: '',
+            streetId: '',
+            houseId: '',
+            electivePlots: [],
+            streets: [],
+            houses: [],
+            findCitizens: []
+        };
+    },
+
+    components: {
+        citizenView: __WEBPACK_IMPORTED_MODULE_1__citizenView___default.a,
+        newCitizenView: __WEBPACK_IMPORTED_MODULE_2__newCitizenView___default.a
+    },
+    methods: {
+        processFind: function processFind() {
+            var _this = this;
+
+            this.working = true;
+            Nova.request().post('/search-citizen', {
+                first_name: this.firstName,
+                last_name: this.lastName,
+                patronymic_name: this.patronymicName,
+                phone: this.phone,
+                date_birth: this.birthDate,
+                certificate_number: this.certificateNumber,
+                elective_plot_id: this.electivePlotId,
+                street_id: this.streetId,
+                house_id: this.houseId
+            }).then(function (_ref) {
+                var data = _ref.data;
+
+                _this.findCitizens = data.citizens;
+                if (data.citizens.length === 0) {
+                    _this.$toasted.error('Нічого не знайдено!');
+                } else {
+                    _this.$toasted.success(data.message);
+                }
+                _this.working = false;
+            });
+        },
+        choseCitizen: function choseCitizen(event) {
+            var citizen = false;
+            this.findCitizens.forEach(function (value, key) {
+                if (value.id === parseInt(event.currentTarget.id)) {
+                    citizen = value;
+                }
+            });
+            this.citizen = citizen;
+            this.findCitizens = [];
+            this.newCitizenForm = false;
+        },
+        getInfo: function getInfo() {
+            var _this2 = this;
+
+            Nova.request().post('/get-info-for-new').then(function (_ref2) {
+                var data = _ref2.data;
+
+                _this2.electivePlots = data.elective_plots;
+                _this2.streets = data.streets;
+            });
+        },
+        changeStreet: function changeStreet() {
+            var _this3 = this;
+
+            Nova.request().post('/get-related-entities-by-street', {
+                street_id: this.streetId
+            }).then(function (_ref3) {
+                var data = _ref3.data;
+
+                _this3.electivePlots = data.elective_plots;
+                _this3.houses = data.houses;
+                console.log(_this3.houseId);
+            });
+        },
+        changeHouse: function changeHouse() {
+            var house = '';
+            var id = this.houseId;
+            var electivePlots = this.electivePlots;
+            var electivePlotChosen = '';
+            console.log('changeHouse');
+            this.houses.forEach(function (value, key) {
+                if (value.id === parseInt(id)) {
+                    house = value;
+                }
+            });
+
+            if (house && this.electivePlotId === '') {
+                electivePlots.forEach(function (value, key) {
+                    if (value.id === parseInt(house.elective_plot_id)) {
+                        electivePlotChosen = house.elective_plot_id;
+                    }
+                });
+                this.electivePlotId = electivePlotChosen;
+            }
+        },
+        changeElectivePlot: function changeElectivePlot() {
+            var _this4 = this;
+
+            Nova.request().post('/get-related-entities-by-elective-plot', {
+                elective_plot_id: this.electivePlotId
+            }).then(function (_ref4) {
+                var data = _ref4.data;
+
+                _this4.streets = data.streets;
+            });
+        },
+        openForm: function openForm() {
+            this.citizen = false;
+            this.newCitizenForm = true;
+        }
+    }
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(12)
+/* template */
+var __vue_template__ = __webpack_require__(13)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/citizenView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1b961ab2", Component.options)
+  } else {
+    hotAPI.reload("data-v-1b961ab2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 12 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'citizenView',
+    props: ['citizen'],
+    mounted: function mounted() {}
+});
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "citizenView" } }, [
+    _vm.citizen
+      ? _c("div", { staticClass: "mt-6  rounded overflow-hidden shadow-lg" }, [
+          _c("div", { staticClass: "px-6 py-4" }, [
+            _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+              _vm._v(
+                _vm._s(_vm.citizen.last_name) +
+                  " " +
+                  _vm._s(_vm.citizen.first_name) +
+                  " " +
+                  _vm._s(_vm.citizen.patronymic_name)
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Дата Народження")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(_vm.citizen.birthDay))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Телефон")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(_vm.citizen.phone))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Категория")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.category))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("# посв")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.certificate_number))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Чорний список")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.black_list))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+              _vm._v("Адресса ")
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Громадська приймальня")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.office))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Дільниця")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.elective_plot))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Bулиця")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.street))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Дім")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.house))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Квартира")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(this.citizen.flat))
+              ])
+            ])
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1b961ab2", module.exports)
+  }
+}
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(15)
+  __webpack_require__(17)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(19)
+/* template */
+var __vue_template__ = __webpack_require__(24)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-d101be10"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/newCitizenView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d101be10", Component.options)
+  } else {
+    hotAPI.reload("data-v-d101be10", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(16);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("3f7879cb", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d101be10\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css", function() {
+     var newContent = require("!!../../css-loader/index.js!../../vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d101be10\",\"scoped\":false,\"hasInlineConfig\":true}!./vue-multiselect.min.css");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\nfieldset[disabled] .multiselect{pointer-events:none\n}\n.multiselect__spinner{position:absolute;right:1px;top:1px;width:48px;height:35px;background:#fff;display:block\n}\n.multiselect__spinner:after,.multiselect__spinner:before{position:absolute;content:\"\";top:50%;left:50%;margin:-8px 0 0 -8px;width:16px;height:16px;border-radius:100%;border:2px solid transparent;border-top-color:#41b883;-webkit-box-shadow:0 0 0 1px transparent;box-shadow:0 0 0 1px transparent\n}\n.multiselect__spinner:before{-webkit-animation:spinning 2.4s cubic-bezier(.41,.26,.2,.62);animation:spinning 2.4s cubic-bezier(.41,.26,.2,.62);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__spinner:after{-webkit-animation:spinning 2.4s cubic-bezier(.51,.09,.21,.8);animation:spinning 2.4s cubic-bezier(.51,.09,.21,.8);-webkit-animation-iteration-count:infinite;animation-iteration-count:infinite\n}\n.multiselect__loading-enter-active,.multiselect__loading-leave-active{-webkit-transition:opacity .4s ease-in-out;transition:opacity .4s ease-in-out;opacity:1\n}\n.multiselect__loading-enter,.multiselect__loading-leave-active{opacity:0\n}\n.multiselect,.multiselect__input,.multiselect__single{font-family:inherit;font-size:16px;-ms-touch-action:manipulation;touch-action:manipulation\n}\n.multiselect{-webkit-box-sizing:content-box;box-sizing:content-box;display:block;position:relative;width:100%;min-height:40px;text-align:left;color:#35495e\n}\n.multiselect *{-webkit-box-sizing:border-box;box-sizing:border-box\n}\n.multiselect:focus{outline:none\n}\n.multiselect--disabled{background:#ededed;pointer-events:none;opacity:.6\n}\n.multiselect--active{z-index:50\n}\n.multiselect--active:not(.multiselect--above) .multiselect__current,.multiselect--active:not(.multiselect--above) .multiselect__input,.multiselect--active:not(.multiselect--above) .multiselect__tags{border-bottom-left-radius:0;border-bottom-right-radius:0\n}\n.multiselect--active .multiselect__select{-webkit-transform:rotate(180deg);transform:rotate(180deg)\n}\n.multiselect--above.multiselect--active .multiselect__current,.multiselect--above.multiselect--active .multiselect__input,.multiselect--above.multiselect--active .multiselect__tags{border-top-left-radius:0;border-top-right-radius:0\n}\n.multiselect__input,.multiselect__single{position:relative;display:inline-block;min-height:20px;line-height:20px;border:none;border-radius:5px;background:#fff;padding:0 0 0 5px;width:100%;-webkit-transition:border .1s ease;transition:border .1s ease;-webkit-box-sizing:border-box;box-sizing:border-box;margin-bottom:8px;vertical-align:top\n}\n.multiselect__input:-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::-webkit-input-placeholder{color:#35495e\n}\n.multiselect__input::-moz-placeholder{color:#35495e\n}\n.multiselect__input::-ms-input-placeholder{color:#35495e\n}\n.multiselect__input::placeholder{color:#35495e\n}\n.multiselect__tag~.multiselect__input,.multiselect__tag~.multiselect__single{width:auto\n}\n.multiselect__input:hover,.multiselect__single:hover{border-color:#cfcfcf\n}\n.multiselect__input:focus,.multiselect__single:focus{border-color:#a8a8a8;outline:none\n}\n.multiselect__single{padding-left:5px;margin-bottom:8px\n}\n.multiselect__tags-wrap{display:inline\n}\n.multiselect__tags{min-height:40px;display:block;padding:8px 40px 0 8px;border-radius:5px;border:1px solid #e8e8e8;background:#fff;font-size:14px\n}\n.multiselect__tag{position:relative;display:inline-block;padding:4px 26px 4px 10px;border-radius:5px;margin-right:10px;color:#fff;line-height:1;background:#41b883;margin-bottom:5px;white-space:nowrap;overflow:hidden;max-width:100%;text-overflow:ellipsis\n}\n.multiselect__tag-icon{cursor:pointer;margin-left:7px;position:absolute;right:0;top:0;bottom:0;font-weight:700;font-style:normal;width:22px;text-align:center;line-height:22px;-webkit-transition:all .2s ease;transition:all .2s ease;border-radius:5px\n}\n.multiselect__tag-icon:after{content:\"\\D7\";color:#266d4d;font-size:14px\n}\n.multiselect__tag-icon:focus,.multiselect__tag-icon:hover{background:#369a6e\n}\n.multiselect__tag-icon:focus:after,.multiselect__tag-icon:hover:after{color:#fff\n}\n.multiselect__current{min-height:40px;overflow:hidden;padding:8px 30px 0 12px;white-space:nowrap;border-radius:5px;border:1px solid #e8e8e8\n}\n.multiselect__current,.multiselect__select{line-height:16px;-webkit-box-sizing:border-box;box-sizing:border-box;display:block;margin:0;text-decoration:none;cursor:pointer\n}\n.multiselect__select{position:absolute;width:40px;height:38px;right:1px;top:1px;padding:4px 8px;text-align:center;-webkit-transition:-webkit-transform .2s ease;transition:-webkit-transform .2s ease;transition:transform .2s ease;transition:transform .2s ease, -webkit-transform .2s ease\n}\n.multiselect__select:before{position:relative;right:0;top:65%;color:#999;margin-top:4px;border-color:#999 transparent transparent;border-style:solid;border-width:5px 5px 0;content:\"\"\n}\n.multiselect__placeholder{color:#adadad;display:inline-block;margin-bottom:10px;padding-top:2px\n}\n.multiselect--active .multiselect__placeholder{display:none\n}\n.multiselect__content-wrapper{position:absolute;display:block;background:#fff;width:100%;max-height:240px;overflow:auto;border:1px solid #e8e8e8;border-top:none;border-bottom-left-radius:5px;border-bottom-right-radius:5px;z-index:50;-webkit-overflow-scrolling:touch\n}\n.multiselect__content{list-style:none;display:inline-block;padding:0;margin:0;min-width:100%;vertical-align:top\n}\n.multiselect--above .multiselect__content-wrapper{bottom:100%;border-bottom-left-radius:0;border-bottom-right-radius:0;border-top-left-radius:5px;border-top-right-radius:5px;border-bottom:none;border-top:1px solid #e8e8e8\n}\n.multiselect__content::webkit-scrollbar{display:none\n}\n.multiselect__element{display:block\n}\n.multiselect__option{display:block;padding:12px;min-height:40px;line-height:16px;text-decoration:none;text-transform:none;vertical-align:middle;position:relative;cursor:pointer;white-space:nowrap\n}\n.multiselect__option:after{top:0;right:0;position:absolute;line-height:40px;padding-right:12px;padding-left:20px;font-size:13px\n}\n.multiselect__option--highlight{background:#41b883;outline:none;color:#fff\n}\n.multiselect__option--highlight:after{content:attr(data-select);background:#41b883;color:#fff\n}\n.multiselect__option--selected{background:#f3f3f3;color:#35495e;font-weight:700\n}\n.multiselect__option--selected:after{content:attr(data-selected);color:silver\n}\n.multiselect__option--selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect--disabled .multiselect__current,.multiselect--disabled .multiselect__select{background:#ededed;color:#a6a6a6\n}\n.multiselect__option--disabled{background:#ededed!important;color:#a6a6a6!important;cursor:text;pointer-events:none\n}\n.multiselect__option--group{background:#ededed;color:#35495e\n}\n.multiselect__option--group.multiselect__option--highlight{background:#35495e;color:#fff\n}\n.multiselect__option--group.multiselect__option--highlight:after{background:#35495e\n}\n.multiselect__option--disabled.multiselect__option--highlight{background:#dedede\n}\n.multiselect__option--group-selected.multiselect__option--highlight{background:#ff6a6a;color:#fff\n}\n.multiselect__option--group-selected.multiselect__option--highlight:after{background:#ff6a6a;content:attr(data-deselect);color:#fff\n}\n.multiselect-enter-active,.multiselect-leave-active{-webkit-transition:all .15s ease;transition:all .15s ease\n}\n.multiselect-enter,.multiselect-leave-active{opacity:0\n}\n.multiselect__strong{margin-bottom:8px;line-height:20px;display:inline-block;vertical-align:top\n}\n[dir=rtl] .multiselect{text-align:right\n}\n[dir=rtl] .multiselect__select{right:auto;left:1px\n}\n[dir=rtl] .multiselect__tags{padding:8px 8px 0 40px\n}\n[dir=rtl] .multiselect__content{text-align:right\n}\n[dir=rtl] .multiselect__option:after{right:auto;left:0\n}\n[dir=rtl] .multiselect__clear{right:auto;left:12px\n}\n[dir=rtl] .multiselect__spinner{right:auto;left:1px\n}\n@-webkit-keyframes spinning{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}\n@keyframes spinning{\n0%{-webkit-transform:rotate(0);transform:rotate(0)\n}\nto{-webkit-transform:rotate(2turn);transform:rotate(2turn)\n}\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(18);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("b7a42c28", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d101be10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./newCitizenView.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-d101be10\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=1!./newCitizenView.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.category-select[data-v-d101be10] .multiselect__tags {\n    background: #f1f5f8;\n}\n.category-select[data-v-d101be10] .multiselect__single {\n    background: #f1f5f8;\n}\n.category-select[data-v-d101be10] .multiselect__input {\n    background: #f1f5f8;\n}\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_the_mask___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue_the_mask__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_multiselect__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_multiselect___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_multiselect__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__citizenStatusView__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__citizenStatusView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__citizenStatusView__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    directives: { mask: __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__["mask"] },
+    name: 'newCitizenView',
+    components: {
+        Multiselect: __WEBPACK_IMPORTED_MODULE_1_vue_multiselect___default.a,
+        citizenStatusView: __WEBPACK_IMPORTED_MODULE_2__citizenStatusView___default.a
+    },
+    data: function data() {
+        return {
+            citizenCategories: [],
+            electivePlots: [],
+            streets: [],
+            filteredStreets: [],
+            houses: [],
+            filteredHouses: [],
+            statuses: [],
+            electivePlotId: '',
+            streetId: '',
+            houseId: '',
+            isCertificateNumber: '',
+            citizenCategoriesValue: []
+        };
+    },
+
+    props: ['newCitizenForm'],
+    methods: {
+        getInfo: function getInfo() {
+            var _this = this;
+
+            Nova.request().post('/get-info-for-new').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.citizenCategories = data.categories;
+                _this.electivePlots = data.elective_plots;
+                _this.streets = data.streets;
+                _this.houses = data.houses;
+                _this.statuses = data.statuses;
+            });
+        },
+        newCitizen: function newCitizen() {
+            var _this2 = this;
+
+            var myForm = document.getElementById('new_citizen_form'),
+                data = new FormData(myForm);
+
+            Nova.request().post('/save-citizen', data).then(function (_ref2) {
+                var data = _ref2.data;
+
+                _this2.$toasted.success(data.message);
+                _this2.$emit('assignCitizenChild', data.citizen);
+            });
+        },
+        filterStreets: function filterStreets() {
+            var streets = [],
+                electivePlotId = this.electivePlotId;
+            this.streets.forEach(function (value, key) {
+                if (value.elective_plot_id === parseInt(electivePlotId)) {
+                    streets.push(value);
+                }
+            });
+            this.filteredStreets = streets;
+        },
+        filterHouses: function filterHouses() {
+            var houses = [],
+                streetId = this.streetId,
+                electivePlotId = this.electivePlotId;
+            this.houses.forEach(function (value, key) {
+                if (value.street_id === parseInt(streetId)) {
+                    houses.push(value);
+                }
+            });
+            this.filteredHouses = houses;
+        }
+    },
+    mounted: function mounted() {
+        this.getInfo();
+    }
+});
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():"function"==typeof define&&define.amd?define([],e):"object"==typeof exports?exports.VueMultiselect=e():t.VueMultiselect=e()}(this,function(){return function(t){function e(i){if(n[i])return n[i].exports;var r=n[i]={i:i,l:!1,exports:{}};return t[i].call(r.exports,r,r.exports,e),r.l=!0,r.exports}var n={};return e.m=t,e.c=n,e.i=function(t){return t},e.d=function(t,n,i){e.o(t,n)||Object.defineProperty(t,n,{configurable:!1,enumerable:!0,get:i})},e.n=function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,"a",n),n},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/",e(e.s=60)}([function(t,e){var n=t.exports="undefined"!=typeof window&&window.Math==Math?window:"undefined"!=typeof self&&self.Math==Math?self:Function("return this")();"number"==typeof __g&&(__g=n)},function(t,e,n){var i=n(49)("wks"),r=n(30),o=n(0).Symbol,s="function"==typeof o;(t.exports=function(t){return i[t]||(i[t]=s&&o[t]||(s?o:r)("Symbol."+t))}).store=i},function(t,e,n){var i=n(5);t.exports=function(t){if(!i(t))throw TypeError(t+" is not an object!");return t}},function(t,e,n){var i=n(0),r=n(10),o=n(8),s=n(6),u=n(11),a=function(t,e,n){var l,c,f,p,h=t&a.F,d=t&a.G,v=t&a.S,g=t&a.P,y=t&a.B,m=d?i:v?i[e]||(i[e]={}):(i[e]||{}).prototype,b=d?r:r[e]||(r[e]={}),_=b.prototype||(b.prototype={});d&&(n=e);for(l in n)c=!h&&m&&void 0!==m[l],f=(c?m:n)[l],p=y&&c?u(f,i):g&&"function"==typeof f?u(Function.call,f):f,m&&s(m,l,f,t&a.U),b[l]!=f&&o(b,l,p),g&&_[l]!=f&&(_[l]=f)};i.core=r,a.F=1,a.G=2,a.S=4,a.P=8,a.B=16,a.W=32,a.U=64,a.R=128,t.exports=a},function(t,e,n){t.exports=!n(7)(function(){return 7!=Object.defineProperty({},"a",{get:function(){return 7}}).a})},function(t,e){t.exports=function(t){return"object"==typeof t?null!==t:"function"==typeof t}},function(t,e,n){var i=n(0),r=n(8),o=n(12),s=n(30)("src"),u=Function.toString,a=(""+u).split("toString");n(10).inspectSource=function(t){return u.call(t)},(t.exports=function(t,e,n,u){var l="function"==typeof n;l&&(o(n,"name")||r(n,"name",e)),t[e]!==n&&(l&&(o(n,s)||r(n,s,t[e]?""+t[e]:a.join(String(e)))),t===i?t[e]=n:u?t[e]?t[e]=n:r(t,e,n):(delete t[e],r(t,e,n)))})(Function.prototype,"toString",function(){return"function"==typeof this&&this[s]||u.call(this)})},function(t,e){t.exports=function(t){try{return!!t()}catch(t){return!0}}},function(t,e,n){var i=n(13),r=n(25);t.exports=n(4)?function(t,e,n){return i.f(t,e,r(1,n))}:function(t,e,n){return t[e]=n,t}},function(t,e){var n={}.toString;t.exports=function(t){return n.call(t).slice(8,-1)}},function(t,e){var n=t.exports={version:"2.5.7"};"number"==typeof __e&&(__e=n)},function(t,e,n){var i=n(14);t.exports=function(t,e,n){if(i(t),void 0===e)return t;switch(n){case 1:return function(n){return t.call(e,n)};case 2:return function(n,i){return t.call(e,n,i)};case 3:return function(n,i,r){return t.call(e,n,i,r)}}return function(){return t.apply(e,arguments)}}},function(t,e){var n={}.hasOwnProperty;t.exports=function(t,e){return n.call(t,e)}},function(t,e,n){var i=n(2),r=n(41),o=n(29),s=Object.defineProperty;e.f=n(4)?Object.defineProperty:function(t,e,n){if(i(t),e=o(e,!0),i(n),r)try{return s(t,e,n)}catch(t){}if("get"in n||"set"in n)throw TypeError("Accessors not supported!");return"value"in n&&(t[e]=n.value),t}},function(t,e){t.exports=function(t){if("function"!=typeof t)throw TypeError(t+" is not a function!");return t}},function(t,e){t.exports={}},function(t,e){t.exports=function(t){if(void 0==t)throw TypeError("Can't call method on  "+t);return t}},function(t,e,n){"use strict";var i=n(7);t.exports=function(t,e){return!!t&&i(function(){e?t.call(null,function(){},1):t.call(null)})}},function(t,e,n){var i=n(23),r=n(16);t.exports=function(t){return i(r(t))}},function(t,e,n){var i=n(53),r=Math.min;t.exports=function(t){return t>0?r(i(t),9007199254740991):0}},function(t,e,n){var i=n(11),r=n(23),o=n(28),s=n(19),u=n(64);t.exports=function(t,e){var n=1==t,a=2==t,l=3==t,c=4==t,f=6==t,p=5==t||f,h=e||u;return function(e,u,d){for(var v,g,y=o(e),m=r(y),b=i(u,d,3),_=s(m.length),x=0,w=n?h(e,_):a?h(e,0):void 0;_>x;x++)if((p||x in m)&&(v=m[x],g=b(v,x,y),t))if(n)w[x]=g;else if(g)switch(t){case 3:return!0;case 5:return v;case 6:return x;case 2:w.push(v)}else if(c)return!1;return f?-1:l||c?c:w}}},function(t,e,n){var i=n(5),r=n(0).document,o=i(r)&&i(r.createElement);t.exports=function(t){return o?r.createElement(t):{}}},function(t,e){t.exports="constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf".split(",")},function(t,e,n){var i=n(9);t.exports=Object("z").propertyIsEnumerable(0)?Object:function(t){return"String"==i(t)?t.split(""):Object(t)}},function(t,e){t.exports=!1},function(t,e){t.exports=function(t,e){return{enumerable:!(1&t),configurable:!(2&t),writable:!(4&t),value:e}}},function(t,e,n){var i=n(13).f,r=n(12),o=n(1)("toStringTag");t.exports=function(t,e,n){t&&!r(t=n?t:t.prototype,o)&&i(t,o,{configurable:!0,value:e})}},function(t,e,n){var i=n(49)("keys"),r=n(30);t.exports=function(t){return i[t]||(i[t]=r(t))}},function(t,e,n){var i=n(16);t.exports=function(t){return Object(i(t))}},function(t,e,n){var i=n(5);t.exports=function(t,e){if(!i(t))return t;var n,r;if(e&&"function"==typeof(n=t.toString)&&!i(r=n.call(t)))return r;if("function"==typeof(n=t.valueOf)&&!i(r=n.call(t)))return r;if(!e&&"function"==typeof(n=t.toString)&&!i(r=n.call(t)))return r;throw TypeError("Can't convert object to primitive value")}},function(t,e){var n=0,i=Math.random();t.exports=function(t){return"Symbol(".concat(void 0===t?"":t,")_",(++n+i).toString(36))}},function(t,e,n){"use strict";var i=n(0),r=n(12),o=n(9),s=n(67),u=n(29),a=n(7),l=n(77).f,c=n(45).f,f=n(13).f,p=n(51).trim,h=i.Number,d=h,v=h.prototype,g="Number"==o(n(44)(v)),y="trim"in String.prototype,m=function(t){var e=u(t,!1);if("string"==typeof e&&e.length>2){e=y?e.trim():p(e,3);var n,i,r,o=e.charCodeAt(0);if(43===o||45===o){if(88===(n=e.charCodeAt(2))||120===n)return NaN}else if(48===o){switch(e.charCodeAt(1)){case 66:case 98:i=2,r=49;break;case 79:case 111:i=8,r=55;break;default:return+e}for(var s,a=e.slice(2),l=0,c=a.length;l<c;l++)if((s=a.charCodeAt(l))<48||s>r)return NaN;return parseInt(a,i)}}return+e};if(!h(" 0o1")||!h("0b1")||h("+0x1")){h=function(t){var e=arguments.length<1?0:t,n=this;return n instanceof h&&(g?a(function(){v.valueOf.call(n)}):"Number"!=o(n))?s(new d(m(e)),n,h):m(e)};for(var b,_=n(4)?l(d):"MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger".split(","),x=0;_.length>x;x++)r(d,b=_[x])&&!r(h,b)&&f(h,b,c(d,b));h.prototype=v,v.constructor=h,n(6)(i,"Number",h)}},function(t,e,n){"use strict";function i(t){return 0!==t&&(!(!Array.isArray(t)||0!==t.length)||!t)}function r(t){return function(){return!t.apply(void 0,arguments)}}function o(t,e){return void 0===t&&(t="undefined"),null===t&&(t="null"),!1===t&&(t="false"),-1!==t.toString().toLowerCase().indexOf(e.trim())}function s(t,e,n,i){return t.filter(function(t){return o(i(t,n),e)})}function u(t){return t.filter(function(t){return!t.$isLabel})}function a(t,e){return function(n){return n.reduce(function(n,i){return i[t]&&i[t].length?(n.push({$groupLabel:i[e],$isLabel:!0}),n.concat(i[t])):n},[])}}function l(t,e,i,r,o){return function(u){return u.map(function(u){var a;if(!u[i])return console.warn("Options passed to vue-multiselect do not contain groups, despite the config."),[];var l=s(u[i],t,e,o);return l.length?(a={},n.i(d.a)(a,r,u[r]),n.i(d.a)(a,i,l),a):[]})}}var c=n(59),f=n(54),p=(n.n(f),n(95)),h=(n.n(p),n(31)),d=(n.n(h),n(58)),v=n(91),g=(n.n(v),n(98)),y=(n.n(g),n(92)),m=(n.n(y),n(88)),b=(n.n(m),n(97)),_=(n.n(b),n(89)),x=(n.n(_),n(96)),w=(n.n(x),n(93)),S=(n.n(w),n(90)),O=(n.n(S),function(){for(var t=arguments.length,e=new Array(t),n=0;n<t;n++)e[n]=arguments[n];return function(t){return e.reduce(function(t,e){return e(t)},t)}});e.a={data:function(){return{search:"",isOpen:!1,preferredOpenDirection:"below",optimizedHeight:this.maxHeight}},props:{internalSearch:{type:Boolean,default:!0},options:{type:Array,required:!0},multiple:{type:Boolean,default:!1},value:{type:null,default:function(){return[]}},trackBy:{type:String},label:{type:String},searchable:{type:Boolean,default:!0},clearOnSelect:{type:Boolean,default:!0},hideSelected:{type:Boolean,default:!1},placeholder:{type:String,default:"Select option"},allowEmpty:{type:Boolean,default:!0},resetAfter:{type:Boolean,default:!1},closeOnSelect:{type:Boolean,default:!0},customLabel:{type:Function,default:function(t,e){return i(t)?"":e?t[e]:t}},taggable:{type:Boolean,default:!1},tagPlaceholder:{type:String,default:"Press enter to create a tag"},tagPosition:{type:String,default:"top"},max:{type:[Number,Boolean],default:!1},id:{default:null},optionsLimit:{type:Number,default:1e3},groupValues:{type:String},groupLabel:{type:String},groupSelect:{type:Boolean,default:!1},blockKeys:{type:Array,default:function(){return[]}},preserveSearch:{type:Boolean,default:!1},preselectFirst:{type:Boolean,default:!1}},mounted:function(){!this.multiple&&this.max&&console.warn("[Vue-Multiselect warn]: Max prop should not be used when prop Multiple equals false."),this.preselectFirst&&!this.internalValue.length&&this.options.length&&this.select(this.filteredOptions[0])},computed:{internalValue:function(){return this.value||0===this.value?Array.isArray(this.value)?this.value:[this.value]:[]},filteredOptions:function(){var t=this.search||"",e=t.toLowerCase().trim(),n=this.options.concat();return n=this.internalSearch?this.groupValues?this.filterAndFlat(n,e,this.label):s(n,e,this.label,this.customLabel):this.groupValues?a(this.groupValues,this.groupLabel)(n):n,n=this.hideSelected?n.filter(r(this.isSelected)):n,this.taggable&&e.length&&!this.isExistingOption(e)&&("bottom"===this.tagPosition?n.push({isTag:!0,label:t}):n.unshift({isTag:!0,label:t})),n.slice(0,this.optionsLimit)},valueKeys:function(){var t=this;return this.trackBy?this.internalValue.map(function(e){return e[t.trackBy]}):this.internalValue},optionKeys:function(){var t=this;return(this.groupValues?this.flatAndStrip(this.options):this.options).map(function(e){return t.customLabel(e,t.label).toString().toLowerCase()})},currentOptionLabel:function(){return this.multiple?this.searchable?"":this.placeholder:this.internalValue.length?this.getOptionLabel(this.internalValue[0]):this.searchable?"":this.placeholder}},watch:{internalValue:function(){this.resetAfter&&this.internalValue.length&&(this.search="",this.$emit("input",this.multiple?[]:null))},search:function(){this.$emit("search-change",this.search,this.id)}},methods:{getValue:function(){return this.multiple?this.internalValue:0===this.internalValue.length?null:this.internalValue[0]},filterAndFlat:function(t,e,n){return O(l(e,n,this.groupValues,this.groupLabel,this.customLabel),a(this.groupValues,this.groupLabel))(t)},flatAndStrip:function(t){return O(a(this.groupValues,this.groupLabel),u)(t)},updateSearch:function(t){this.search=t},isExistingOption:function(t){return!!this.options&&this.optionKeys.indexOf(t)>-1},isSelected:function(t){var e=this.trackBy?t[this.trackBy]:t;return this.valueKeys.indexOf(e)>-1},isOptionDisabled:function(t){return!!t.$isDisabled},getOptionLabel:function(t){if(i(t))return"";if(t.isTag)return t.label;if(t.$isLabel)return t.$groupLabel;var e=this.customLabel(t,this.label);return i(e)?"":e},select:function(t,e){if(t.$isLabel&&this.groupSelect)return void this.selectGroup(t);if(!(-1!==this.blockKeys.indexOf(e)||this.disabled||t.$isDisabled||t.$isLabel)&&(!this.max||!this.multiple||this.internalValue.length!==this.max)&&("Tab"!==e||this.pointerDirty)){if(t.isTag)this.$emit("tag",t.label,this.id),this.search="",this.closeOnSelect&&!this.multiple&&this.deactivate();else{if(this.isSelected(t))return void("Tab"!==e&&this.removeElement(t));this.$emit("select",t,this.id),this.multiple?this.$emit("input",this.internalValue.concat([t]),this.id):this.$emit("input",t,this.id),this.clearOnSelect&&(this.search="")}this.closeOnSelect&&this.deactivate()}},selectGroup:function(t){var e=this,n=this.options.find(function(n){return n[e.groupLabel]===t.$groupLabel});if(n)if(this.wholeGroupSelected(n)){this.$emit("remove",n[this.groupValues],this.id);var i=this.internalValue.filter(function(t){return-1===n[e.groupValues].indexOf(t)});this.$emit("input",i,this.id)}else{var r=n[this.groupValues].filter(function(t){return!(e.isOptionDisabled(t)||e.isSelected(t))});this.$emit("select",r,this.id),this.$emit("input",this.internalValue.concat(r),this.id)}},wholeGroupSelected:function(t){var e=this;return t[this.groupValues].every(function(t){return e.isSelected(t)||e.isOptionDisabled(t)})},wholeGroupDisabled:function(t){return t[this.groupValues].every(this.isOptionDisabled)},removeElement:function(t){var e=!(arguments.length>1&&void 0!==arguments[1])||arguments[1];if(!this.disabled&&!t.$isDisabled){if(!this.allowEmpty&&this.internalValue.length<=1)return void this.deactivate();var i="object"===n.i(c.a)(t)?this.valueKeys.indexOf(t[this.trackBy]):this.valueKeys.indexOf(t);if(this.$emit("remove",t,this.id),this.multiple){var r=this.internalValue.slice(0,i).concat(this.internalValue.slice(i+1));this.$emit("input",r,this.id)}else this.$emit("input",null,this.id);this.closeOnSelect&&e&&this.deactivate()}},removeLastElement:function(){-1===this.blockKeys.indexOf("Delete")&&0===this.search.length&&Array.isArray(this.internalValue)&&this.internalValue.length&&this.removeElement(this.internalValue[this.internalValue.length-1],!1)},activate:function(){var t=this;this.isOpen||this.disabled||(this.adjustPosition(),this.groupValues&&0===this.pointer&&this.filteredOptions.length&&(this.pointer=1),this.isOpen=!0,this.searchable?(this.preserveSearch||(this.search=""),this.$nextTick(function(){return t.$refs.search.focus()})):this.$el.focus(),this.$emit("open",this.id))},deactivate:function(){this.isOpen&&(this.isOpen=!1,this.searchable?this.$refs.search.blur():this.$el.blur(),this.preserveSearch||(this.search=""),this.$emit("close",this.getValue(),this.id))},toggle:function(){this.isOpen?this.deactivate():this.activate()},adjustPosition:function(){if("undefined"!=typeof window){var t=this.$el.getBoundingClientRect().top,e=window.innerHeight-this.$el.getBoundingClientRect().bottom;e>this.maxHeight||e>t||"below"===this.openDirection||"bottom"===this.openDirection?(this.preferredOpenDirection="below",this.optimizedHeight=Math.min(e-40,this.maxHeight)):(this.preferredOpenDirection="above",this.optimizedHeight=Math.min(t-40,this.maxHeight))}}}}},function(t,e,n){"use strict";var i=n(54),r=(n.n(i),n(31));n.n(r);e.a={data:function(){return{pointer:0,pointerDirty:!1}},props:{showPointer:{type:Boolean,default:!0},optionHeight:{type:Number,default:40}},computed:{pointerPosition:function(){return this.pointer*this.optionHeight},visibleElements:function(){return this.optimizedHeight/this.optionHeight}},watch:{filteredOptions:function(){this.pointerAdjust()},isOpen:function(){this.pointerDirty=!1}},methods:{optionHighlight:function(t,e){return{"multiselect__option--highlight":t===this.pointer&&this.showPointer,"multiselect__option--selected":this.isSelected(e)}},groupHighlight:function(t,e){var n=this;if(!this.groupSelect)return["multiselect__option--group","multiselect__option--disabled"];var i=this.options.find(function(t){return t[n.groupLabel]===e.$groupLabel});return i&&!this.wholeGroupDisabled(i)?["multiselect__option--group",{"multiselect__option--highlight":t===this.pointer&&this.showPointer},{"multiselect__option--group-selected":this.wholeGroupSelected(i)}]:"multiselect__option--disabled"},addPointerElement:function(){var t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:"Enter",e=t.key;this.filteredOptions.length>0&&this.select(this.filteredOptions[this.pointer],e),this.pointerReset()},pointerForward:function(){this.pointer<this.filteredOptions.length-1&&(this.pointer++,this.$refs.list.scrollTop<=this.pointerPosition-(this.visibleElements-1)*this.optionHeight&&(this.$refs.list.scrollTop=this.pointerPosition-(this.visibleElements-1)*this.optionHeight),this.filteredOptions[this.pointer]&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerForward()),this.pointerDirty=!0},pointerBackward:function(){this.pointer>0?(this.pointer--,this.$refs.list.scrollTop>=this.pointerPosition&&(this.$refs.list.scrollTop=this.pointerPosition),this.filteredOptions[this.pointer]&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerBackward()):this.filteredOptions[this.pointer]&&this.filteredOptions[0].$isLabel&&!this.groupSelect&&this.pointerForward(),this.pointerDirty=!0},pointerReset:function(){this.closeOnSelect&&(this.pointer=0,this.$refs.list&&(this.$refs.list.scrollTop=0))},pointerAdjust:function(){this.pointer>=this.filteredOptions.length-1&&(this.pointer=this.filteredOptions.length?this.filteredOptions.length-1:0),this.filteredOptions.length>0&&this.filteredOptions[this.pointer].$isLabel&&!this.groupSelect&&this.pointerForward()},pointerSet:function(t){this.pointer=t,this.pointerDirty=!0}}}},function(t,e,n){"use strict";var i=n(36),r=n(74),o=n(15),s=n(18);t.exports=n(72)(Array,"Array",function(t,e){this._t=s(t),this._i=0,this._k=e},function(){var t=this._t,e=this._k,n=this._i++;return!t||n>=t.length?(this._t=void 0,r(1)):"keys"==e?r(0,n):"values"==e?r(0,t[n]):r(0,[n,t[n]])},"values"),o.Arguments=o.Array,i("keys"),i("values"),i("entries")},function(t,e,n){"use strict";var i=n(31),r=(n.n(i),n(32)),o=n(33);e.a={name:"vue-multiselect",mixins:[r.a,o.a],props:{name:{type:String,default:""},selectLabel:{type:String,default:"Press enter to select"},selectGroupLabel:{type:String,default:"Press enter to select group"},selectedLabel:{type:String,default:"Selected"},deselectLabel:{type:String,default:"Press enter to remove"},deselectGroupLabel:{type:String,default:"Press enter to deselect group"},showLabels:{type:Boolean,default:!0},limit:{type:Number,default:99999},maxHeight:{type:Number,default:300},limitText:{type:Function,default:function(t){return"and ".concat(t," more")}},loading:{type:Boolean,default:!1},disabled:{type:Boolean,default:!1},openDirection:{type:String,default:""},showNoOptions:{type:Boolean,default:!0},showNoResults:{type:Boolean,default:!0},tabindex:{type:Number,default:0}},computed:{isSingleLabelVisible:function(){return(this.singleValue||0===this.singleValue)&&(!this.isOpen||!this.searchable)&&!this.visibleValues.length},isPlaceholderVisible:function(){return!(this.internalValue.length||this.searchable&&this.isOpen)},visibleValues:function(){return this.multiple?this.internalValue.slice(0,this.limit):[]},singleValue:function(){return this.internalValue[0]},deselectLabelText:function(){return this.showLabels?this.deselectLabel:""},deselectGroupLabelText:function(){return this.showLabels?this.deselectGroupLabel:""},selectLabelText:function(){return this.showLabels?this.selectLabel:""},selectGroupLabelText:function(){return this.showLabels?this.selectGroupLabel:""},selectedLabelText:function(){return this.showLabels?this.selectedLabel:""},inputStyle:function(){if(this.searchable||this.multiple&&this.value&&this.value.length)return this.isOpen?{width:"100%"}:{width:"0",position:"absolute",padding:"0"}},contentStyle:function(){return this.options.length?{display:"inline-block"}:{display:"block"}},isAbove:function(){return"above"===this.openDirection||"top"===this.openDirection||"below"!==this.openDirection&&"bottom"!==this.openDirection&&"above"===this.preferredOpenDirection},showSearchInput:function(){return this.searchable&&(!this.hasSingleSelectedSlot||!this.visibleSingleValue&&0!==this.visibleSingleValue||this.isOpen)}}}},function(t,e,n){var i=n(1)("unscopables"),r=Array.prototype;void 0==r[i]&&n(8)(r,i,{}),t.exports=function(t){r[i][t]=!0}},function(t,e,n){var i=n(18),r=n(19),o=n(85);t.exports=function(t){return function(e,n,s){var u,a=i(e),l=r(a.length),c=o(s,l);if(t&&n!=n){for(;l>c;)if((u=a[c++])!=u)return!0}else for(;l>c;c++)if((t||c in a)&&a[c]===n)return t||c||0;return!t&&-1}}},function(t,e,n){var i=n(9),r=n(1)("toStringTag"),o="Arguments"==i(function(){return arguments}()),s=function(t,e){try{return t[e]}catch(t){}};t.exports=function(t){var e,n,u;return void 0===t?"Undefined":null===t?"Null":"string"==typeof(n=s(e=Object(t),r))?n:o?i(e):"Object"==(u=i(e))&&"function"==typeof e.callee?"Arguments":u}},function(t,e,n){"use strict";var i=n(2);t.exports=function(){var t=i(this),e="";return t.global&&(e+="g"),t.ignoreCase&&(e+="i"),t.multiline&&(e+="m"),t.unicode&&(e+="u"),t.sticky&&(e+="y"),e}},function(t,e,n){var i=n(0).document;t.exports=i&&i.documentElement},function(t,e,n){t.exports=!n(4)&&!n(7)(function(){return 7!=Object.defineProperty(n(21)("div"),"a",{get:function(){return 7}}).a})},function(t,e,n){var i=n(9);t.exports=Array.isArray||function(t){return"Array"==i(t)}},function(t,e,n){"use strict";function i(t){var e,n;this.promise=new t(function(t,i){if(void 0!==e||void 0!==n)throw TypeError("Bad Promise constructor");e=t,n=i}),this.resolve=r(e),this.reject=r(n)}var r=n(14);t.exports.f=function(t){return new i(t)}},function(t,e,n){var i=n(2),r=n(76),o=n(22),s=n(27)("IE_PROTO"),u=function(){},a=function(){var t,e=n(21)("iframe"),i=o.length;for(e.style.display="none",n(40).appendChild(e),e.src="javascript:",t=e.contentWindow.document,t.open(),t.write("<script>document.F=Object<\/script>"),t.close(),a=t.F;i--;)delete a.prototype[o[i]];return a()};t.exports=Object.create||function(t,e){var n;return null!==t?(u.prototype=i(t),n=new u,u.prototype=null,n[s]=t):n=a(),void 0===e?n:r(n,e)}},function(t,e,n){var i=n(79),r=n(25),o=n(18),s=n(29),u=n(12),a=n(41),l=Object.getOwnPropertyDescriptor;e.f=n(4)?l:function(t,e){if(t=o(t),e=s(e,!0),a)try{return l(t,e)}catch(t){}if(u(t,e))return r(!i.f.call(t,e),t[e])}},function(t,e,n){var i=n(12),r=n(18),o=n(37)(!1),s=n(27)("IE_PROTO");t.exports=function(t,e){var n,u=r(t),a=0,l=[];for(n in u)n!=s&&i(u,n)&&l.push(n);for(;e.length>a;)i(u,n=e[a++])&&(~o(l,n)||l.push(n));return l}},function(t,e,n){var i=n(46),r=n(22);t.exports=Object.keys||function(t){return i(t,r)}},function(t,e,n){var i=n(2),r=n(5),o=n(43);t.exports=function(t,e){if(i(t),r(e)&&e.constructor===t)return e;var n=o.f(t);return(0,n.resolve)(e),n.promise}},function(t,e,n){var i=n(10),r=n(0),o=r["__core-js_shared__"]||(r["__core-js_shared__"]={});(t.exports=function(t,e){return o[t]||(o[t]=void 0!==e?e:{})})("versions",[]).push({version:i.version,mode:n(24)?"pure":"global",copyright:"© 2018 Denis Pushkarev (zloirock.ru)"})},function(t,e,n){var i=n(2),r=n(14),o=n(1)("species");t.exports=function(t,e){var n,s=i(t).constructor;return void 0===s||void 0==(n=i(s)[o])?e:r(n)}},function(t,e,n){var i=n(3),r=n(16),o=n(7),s=n(84),u="["+s+"]",a="​",l=RegExp("^"+u+u+"*"),c=RegExp(u+u+"*$"),f=function(t,e,n){var r={},u=o(function(){return!!s[t]()||a[t]()!=a}),l=r[t]=u?e(p):s[t];n&&(r[n]=l),i(i.P+i.F*u,"String",r)},p=f.trim=function(t,e){return t=String(r(t)),1&e&&(t=t.replace(l,"")),2&e&&(t=t.replace(c,"")),t};t.exports=f},function(t,e,n){var i,r,o,s=n(11),u=n(68),a=n(40),l=n(21),c=n(0),f=c.process,p=c.setImmediate,h=c.clearImmediate,d=c.MessageChannel,v=c.Dispatch,g=0,y={},m=function(){var t=+this;if(y.hasOwnProperty(t)){var e=y[t];delete y[t],e()}},b=function(t){m.call(t.data)};p&&h||(p=function(t){for(var e=[],n=1;arguments.length>n;)e.push(arguments[n++]);return y[++g]=function(){u("function"==typeof t?t:Function(t),e)},i(g),g},h=function(t){delete y[t]},"process"==n(9)(f)?i=function(t){f.nextTick(s(m,t,1))}:v&&v.now?i=function(t){v.now(s(m,t,1))}:d?(r=new d,o=r.port2,r.port1.onmessage=b,i=s(o.postMessage,o,1)):c.addEventListener&&"function"==typeof postMessage&&!c.importScripts?(i=function(t){c.postMessage(t+"","*")},c.addEventListener("message",b,!1)):i="onreadystatechange"in l("script")?function(t){a.appendChild(l("script")).onreadystatechange=function(){a.removeChild(this),m.call(t)}}:function(t){setTimeout(s(m,t,1),0)}),t.exports={set:p,clear:h}},function(t,e){var n=Math.ceil,i=Math.floor;t.exports=function(t){return isNaN(t=+t)?0:(t>0?i:n)(t)}},function(t,e,n){"use strict";var i=n(3),r=n(20)(5),o=!0;"find"in[]&&Array(1).find(function(){o=!1}),i(i.P+i.F*o,"Array",{find:function(t){return r(this,t,arguments.length>1?arguments[1]:void 0)}}),n(36)("find")},function(t,e,n){"use strict";var i,r,o,s,u=n(24),a=n(0),l=n(11),c=n(38),f=n(3),p=n(5),h=n(14),d=n(61),v=n(66),g=n(50),y=n(52).set,m=n(75)(),b=n(43),_=n(80),x=n(86),w=n(48),S=a.TypeError,O=a.process,L=O&&O.versions,k=L&&L.v8||"",P=a.Promise,T="process"==c(O),V=function(){},E=r=b.f,A=!!function(){try{var t=P.resolve(1),e=(t.constructor={})[n(1)("species")]=function(t){t(V,V)};return(T||"function"==typeof PromiseRejectionEvent)&&t.then(V)instanceof e&&0!==k.indexOf("6.6")&&-1===x.indexOf("Chrome/66")}catch(t){}}(),C=function(t){var e;return!(!p(t)||"function"!=typeof(e=t.then))&&e},D=function(t,e){if(!t._n){t._n=!0;var n=t._c;m(function(){for(var i=t._v,r=1==t._s,o=0;n.length>o;)!function(e){var n,o,s,u=r?e.ok:e.fail,a=e.resolve,l=e.reject,c=e.domain;try{u?(r||(2==t._h&&$(t),t._h=1),!0===u?n=i:(c&&c.enter(),n=u(i),c&&(c.exit(),s=!0)),n===e.promise?l(S("Promise-chain cycle")):(o=C(n))?o.call(n,a,l):a(n)):l(i)}catch(t){c&&!s&&c.exit(),l(t)}}(n[o++]);t._c=[],t._n=!1,e&&!t._h&&j(t)})}},j=function(t){y.call(a,function(){var e,n,i,r=t._v,o=N(t);if(o&&(e=_(function(){T?O.emit("unhandledRejection",r,t):(n=a.onunhandledrejection)?n({promise:t,reason:r}):(i=a.console)&&i.error&&i.error("Unhandled promise rejection",r)}),t._h=T||N(t)?2:1),t._a=void 0,o&&e.e)throw e.v})},N=function(t){return 1!==t._h&&0===(t._a||t._c).length},$=function(t){y.call(a,function(){var e;T?O.emit("rejectionHandled",t):(e=a.onrejectionhandled)&&e({promise:t,reason:t._v})})},F=function(t){var e=this;e._d||(e._d=!0,e=e._w||e,e._v=t,e._s=2,e._a||(e._a=e._c.slice()),D(e,!0))},M=function(t){var e,n=this;if(!n._d){n._d=!0,n=n._w||n;try{if(n===t)throw S("Promise can't be resolved itself");(e=C(t))?m(function(){var i={_w:n,_d:!1};try{e.call(t,l(M,i,1),l(F,i,1))}catch(t){F.call(i,t)}}):(n._v=t,n._s=1,D(n,!1))}catch(t){F.call({_w:n,_d:!1},t)}}};A||(P=function(t){d(this,P,"Promise","_h"),h(t),i.call(this);try{t(l(M,this,1),l(F,this,1))}catch(t){F.call(this,t)}},i=function(t){this._c=[],this._a=void 0,this._s=0,this._d=!1,this._v=void 0,this._h=0,this._n=!1},i.prototype=n(81)(P.prototype,{then:function(t,e){var n=E(g(this,P));return n.ok="function"!=typeof t||t,n.fail="function"==typeof e&&e,n.domain=T?O.domain:void 0,this._c.push(n),this._a&&this._a.push(n),this._s&&D(this,!1),n.promise},catch:function(t){return this.then(void 0,t)}}),o=function(){var t=new i;this.promise=t,this.resolve=l(M,t,1),this.reject=l(F,t,1)},b.f=E=function(t){return t===P||t===s?new o(t):r(t)}),f(f.G+f.W+f.F*!A,{Promise:P}),n(26)(P,"Promise"),n(83)("Promise"),s=n(10).Promise,f(f.S+f.F*!A,"Promise",{reject:function(t){var e=E(this);return(0,e.reject)(t),e.promise}}),f(f.S+f.F*(u||!A),"Promise",{resolve:function(t){return w(u&&this===s?P:this,t)}}),f(f.S+f.F*!(A&&n(73)(function(t){P.all(t).catch(V)})),"Promise",{all:function(t){var e=this,n=E(e),i=n.resolve,r=n.reject,o=_(function(){var n=[],o=0,s=1;v(t,!1,function(t){var u=o++,a=!1;n.push(void 0),s++,e.resolve(t).then(function(t){a||(a=!0,n[u]=t,--s||i(n))},r)}),--s||i(n)});return o.e&&r(o.v),n.promise},race:function(t){var e=this,n=E(e),i=n.reject,r=_(function(){v(t,!1,function(t){e.resolve(t).then(n.resolve,i)})});return r.e&&i(r.v),n.promise}})},function(t,e,n){"use strict";var i=n(3),r=n(10),o=n(0),s=n(50),u=n(48);i(i.P+i.R,"Promise",{finally:function(t){var e=s(this,r.Promise||o.Promise),n="function"==typeof t;return this.then(n?function(n){return u(e,t()).then(function(){return n})}:t,n?function(n){return u(e,t()).then(function(){throw n})}:t)}})},function(t,e,n){"use strict";function i(t){n(99)}var r=n(35),o=n(101),s=n(100),u=i,a=s(r.a,o.a,!1,u,null,null);e.a=a.exports},function(t,e,n){"use strict";function i(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}e.a=i},function(t,e,n){"use strict";function i(t){return(i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function r(t){return(r="function"==typeof Symbol&&"symbol"===i(Symbol.iterator)?function(t){return i(t)}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":i(t)})(t)}e.a=r},function(t,e,n){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var i=n(34),r=(n.n(i),n(55)),o=(n.n(r),n(56)),s=(n.n(o),n(57)),u=n(32),a=n(33);n.d(e,"Multiselect",function(){return s.a}),n.d(e,"multiselectMixin",function(){return u.a}),n.d(e,"pointerMixin",function(){return a.a}),e.default=s.a},function(t,e){t.exports=function(t,e,n,i){if(!(t instanceof e)||void 0!==i&&i in t)throw TypeError(n+": incorrect invocation!");return t}},function(t,e,n){var i=n(14),r=n(28),o=n(23),s=n(19);t.exports=function(t,e,n,u,a){i(e);var l=r(t),c=o(l),f=s(l.length),p=a?f-1:0,h=a?-1:1;if(n<2)for(;;){if(p in c){u=c[p],p+=h;break}if(p+=h,a?p<0:f<=p)throw TypeError("Reduce of empty array with no initial value")}for(;a?p>=0:f>p;p+=h)p in c&&(u=e(u,c[p],p,l));return u}},function(t,e,n){var i=n(5),r=n(42),o=n(1)("species");t.exports=function(t){var e;return r(t)&&(e=t.constructor,"function"!=typeof e||e!==Array&&!r(e.prototype)||(e=void 0),i(e)&&null===(e=e[o])&&(e=void 0)),void 0===e?Array:e}},function(t,e,n){var i=n(63);t.exports=function(t,e){return new(i(t))(e)}},function(t,e,n){"use strict";var i=n(8),r=n(6),o=n(7),s=n(16),u=n(1);t.exports=function(t,e,n){var a=u(t),l=n(s,a,""[t]),c=l[0],f=l[1];o(function(){var e={};return e[a]=function(){return 7},7!=""[t](e)})&&(r(String.prototype,t,c),i(RegExp.prototype,a,2==e?function(t,e){return f.call(t,this,e)}:function(t){return f.call(t,this)}))}},function(t,e,n){var i=n(11),r=n(70),o=n(69),s=n(2),u=n(19),a=n(87),l={},c={},e=t.exports=function(t,e,n,f,p){var h,d,v,g,y=p?function(){return t}:a(t),m=i(n,f,e?2:1),b=0;if("function"!=typeof y)throw TypeError(t+" is not iterable!");if(o(y)){for(h=u(t.length);h>b;b++)if((g=e?m(s(d=t[b])[0],d[1]):m(t[b]))===l||g===c)return g}else for(v=y.call(t);!(d=v.next()).done;)if((g=r(v,m,d.value,e))===l||g===c)return g};e.BREAK=l,e.RETURN=c},function(t,e,n){var i=n(5),r=n(82).set;t.exports=function(t,e,n){var o,s=e.constructor;return s!==n&&"function"==typeof s&&(o=s.prototype)!==n.prototype&&i(o)&&r&&r(t,o),t}},function(t,e){t.exports=function(t,e,n){var i=void 0===n;switch(e.length){case 0:return i?t():t.call(n);case 1:return i?t(e[0]):t.call(n,e[0]);case 2:return i?t(e[0],e[1]):t.call(n,e[0],e[1]);case 3:return i?t(e[0],e[1],e[2]):t.call(n,e[0],e[1],e[2]);case 4:return i?t(e[0],e[1],e[2],e[3]):t.call(n,e[0],e[1],e[2],e[3])}return t.apply(n,e)}},function(t,e,n){var i=n(15),r=n(1)("iterator"),o=Array.prototype;t.exports=function(t){return void 0!==t&&(i.Array===t||o[r]===t)}},function(t,e,n){var i=n(2);t.exports=function(t,e,n,r){try{return r?e(i(n)[0],n[1]):e(n)}catch(e){var o=t.return;throw void 0!==o&&i(o.call(t)),e}}},function(t,e,n){"use strict";var i=n(44),r=n(25),o=n(26),s={};n(8)(s,n(1)("iterator"),function(){return this}),t.exports=function(t,e,n){t.prototype=i(s,{next:r(1,n)}),o(t,e+" Iterator")}},function(t,e,n){"use strict";var i=n(24),r=n(3),o=n(6),s=n(8),u=n(15),a=n(71),l=n(26),c=n(78),f=n(1)("iterator"),p=!([].keys&&"next"in[].keys()),h=function(){return this};t.exports=function(t,e,n,d,v,g,y){a(n,e,d);var m,b,_,x=function(t){if(!p&&t in L)return L[t];switch(t){case"keys":case"values":return function(){return new n(this,t)}}return function(){return new n(this,t)}},w=e+" Iterator",S="values"==v,O=!1,L=t.prototype,k=L[f]||L["@@iterator"]||v&&L[v],P=k||x(v),T=v?S?x("entries"):P:void 0,V="Array"==e?L.entries||k:k;if(V&&(_=c(V.call(new t)))!==Object.prototype&&_.next&&(l(_,w,!0),i||"function"==typeof _[f]||s(_,f,h)),S&&k&&"values"!==k.name&&(O=!0,P=function(){return k.call(this)}),i&&!y||!p&&!O&&L[f]||s(L,f,P),u[e]=P,u[w]=h,v)if(m={values:S?P:x("values"),keys:g?P:x("keys"),entries:T},y)for(b in m)b in L||o(L,b,m[b]);else r(r.P+r.F*(p||O),e,m);return m}},function(t,e,n){var i=n(1)("iterator"),r=!1;try{var o=[7][i]();o.return=function(){r=!0},Array.from(o,function(){throw 2})}catch(t){}t.exports=function(t,e){if(!e&&!r)return!1;var n=!1;try{var o=[7],s=o[i]();s.next=function(){return{done:n=!0}},o[i]=function(){return s},t(o)}catch(t){}return n}},function(t,e){t.exports=function(t,e){return{value:e,done:!!t}}},function(t,e,n){var i=n(0),r=n(52).set,o=i.MutationObserver||i.WebKitMutationObserver,s=i.process,u=i.Promise,a="process"==n(9)(s);t.exports=function(){var t,e,n,l=function(){var i,r;for(a&&(i=s.domain)&&i.exit();t;){r=t.fn,t=t.next;try{r()}catch(i){throw t?n():e=void 0,i}}e=void 0,i&&i.enter()};if(a)n=function(){s.nextTick(l)};else if(!o||i.navigator&&i.navigator.standalone)if(u&&u.resolve){var c=u.resolve(void 0);n=function(){c.then(l)}}else n=function(){r.call(i,l)};else{var f=!0,p=document.createTextNode("");new o(l).observe(p,{characterData:!0}),n=function(){p.data=f=!f}}return function(i){var r={fn:i,next:void 0};e&&(e.next=r),t||(t=r,n()),e=r}}},function(t,e,n){var i=n(13),r=n(2),o=n(47);t.exports=n(4)?Object.defineProperties:function(t,e){r(t);for(var n,s=o(e),u=s.length,a=0;u>a;)i.f(t,n=s[a++],e[n]);return t}},function(t,e,n){var i=n(46),r=n(22).concat("length","prototype");e.f=Object.getOwnPropertyNames||function(t){return i(t,r)}},function(t,e,n){var i=n(12),r=n(28),o=n(27)("IE_PROTO"),s=Object.prototype;t.exports=Object.getPrototypeOf||function(t){return t=r(t),i(t,o)?t[o]:"function"==typeof t.constructor&&t instanceof t.constructor?t.constructor.prototype:t instanceof Object?s:null}},function(t,e){e.f={}.propertyIsEnumerable},function(t,e){t.exports=function(t){try{return{e:!1,v:t()}}catch(t){return{e:!0,v:t}}}},function(t,e,n){var i=n(6);t.exports=function(t,e,n){for(var r in e)i(t,r,e[r],n);return t}},function(t,e,n){var i=n(5),r=n(2),o=function(t,e){if(r(t),!i(e)&&null!==e)throw TypeError(e+": can't set as prototype!")};t.exports={set:Object.setPrototypeOf||("__proto__"in{}?function(t,e,i){try{i=n(11)(Function.call,n(45).f(Object.prototype,"__proto__").set,2),i(t,[]),e=!(t instanceof Array)}catch(t){e=!0}return function(t,n){return o(t,n),e?t.__proto__=n:i(t,n),t}}({},!1):void 0),check:o}},function(t,e,n){"use strict";var i=n(0),r=n(13),o=n(4),s=n(1)("species");t.exports=function(t){var e=i[t];o&&e&&!e[s]&&r.f(e,s,{configurable:!0,get:function(){return this}})}},function(t,e){t.exports="\t\n\v\f\r   ᠎             　\u2028\u2029\ufeff"},function(t,e,n){var i=n(53),r=Math.max,o=Math.min;t.exports=function(t,e){return t=i(t),t<0?r(t+e,0):o(t,e)}},function(t,e,n){var i=n(0),r=i.navigator;t.exports=r&&r.userAgent||""},function(t,e,n){var i=n(38),r=n(1)("iterator"),o=n(15);t.exports=n(10).getIteratorMethod=function(t){if(void 0!=t)return t[r]||t["@@iterator"]||o[i(t)]}},function(t,e,n){"use strict";var i=n(3),r=n(20)(2);i(i.P+i.F*!n(17)([].filter,!0),"Array",{filter:function(t){return r(this,t,arguments[1])}})},function(t,e,n){"use strict";var i=n(3),r=n(37)(!1),o=[].indexOf,s=!!o&&1/[1].indexOf(1,-0)<0;i(i.P+i.F*(s||!n(17)(o)),"Array",{indexOf:function(t){return s?o.apply(this,arguments)||0:r(this,t,arguments[1])}})},function(t,e,n){var i=n(3);i(i.S,"Array",{isArray:n(42)})},function(t,e,n){"use strict";var i=n(3),r=n(20)(1);i(i.P+i.F*!n(17)([].map,!0),"Array",{map:function(t){return r(this,t,arguments[1])}})},function(t,e,n){"use strict";var i=n(3),r=n(62);i(i.P+i.F*!n(17)([].reduce,!0),"Array",{reduce:function(t){return r(this,t,arguments.length,arguments[1],!1)}})},function(t,e,n){var i=Date.prototype,r=i.toString,o=i.getTime;new Date(NaN)+""!="Invalid Date"&&n(6)(i,"toString",function(){var t=o.call(this);return t===t?r.call(this):"Invalid Date"})},function(t,e,n){n(4)&&"g"!=/./g.flags&&n(13).f(RegExp.prototype,"flags",{configurable:!0,get:n(39)})},function(t,e,n){n(65)("search",1,function(t,e,n){return[function(n){"use strict";var i=t(this),r=void 0==n?void 0:n[e];return void 0!==r?r.call(n,i):new RegExp(n)[e](String(i))},n]})},function(t,e,n){"use strict";n(94);var i=n(2),r=n(39),o=n(4),s=/./.toString,u=function(t){n(6)(RegExp.prototype,"toString",t,!0)};n(7)(function(){return"/a/b"!=s.call({source:"a",flags:"b"})})?u(function(){var t=i(this);return"/".concat(t.source,"/","flags"in t?t.flags:!o&&t instanceof RegExp?r.call(t):void 0)}):"toString"!=s.name&&u(function(){return s.call(this)})},function(t,e,n){"use strict";n(51)("trim",function(t){return function(){return t(this,3)}})},function(t,e,n){for(var i=n(34),r=n(47),o=n(6),s=n(0),u=n(8),a=n(15),l=n(1),c=l("iterator"),f=l("toStringTag"),p=a.Array,h={CSSRuleList:!0,CSSStyleDeclaration:!1,CSSValueList:!1,ClientRectList:!1,DOMRectList:!1,DOMStringList:!1,DOMTokenList:!0,DataTransferItemList:!1,FileList:!1,HTMLAllCollection:!1,HTMLCollection:!1,HTMLFormElement:!1,HTMLSelectElement:!1,MediaList:!0,MimeTypeArray:!1,NamedNodeMap:!1,NodeList:!0,PaintRequestList:!1,Plugin:!1,PluginArray:!1,SVGLengthList:!1,SVGNumberList:!1,SVGPathSegList:!1,SVGPointList:!1,SVGStringList:!1,SVGTransformList:!1,SourceBufferList:!1,StyleSheetList:!0,TextTrackCueList:!1,TextTrackList:!1,TouchList:!1},d=r(h),v=0;v<d.length;v++){var g,y=d[v],m=h[y],b=s[y],_=b&&b.prototype;if(_&&(_[c]||u(_,c,p),_[f]||u(_,f,y),a[y]=p,m))for(g in i)_[g]||o(_,g,i[g],!0)}},function(t,e){},function(t,e){t.exports=function(t,e,n,i,r,o){var s,u=t=t||{},a=typeof t.default;"object"!==a&&"function"!==a||(s=t,u=t.default);var l="function"==typeof u?u.options:u;e&&(l.render=e.render,l.staticRenderFns=e.staticRenderFns,l._compiled=!0),n&&(l.functional=!0),r&&(l._scopeId=r);var c;if(o?(c=function(t){t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext,t||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),i&&i.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(o)},l._ssrRegister=c):i&&(c=i),c){var f=l.functional,p=f?l.render:l.beforeCreate;f?(l._injectStyles=c,l.render=function(t,e){return c.call(e),p(t,e)}):l.beforeCreate=p?[].concat(p,c):[c]}return{esModule:s,exports:u,options:l}}},function(t,e,n){"use strict";var i=function(){var t=this,e=t.$createElement,n=t._self._c||e;return n("div",{staticClass:"multiselect",class:{"multiselect--active":t.isOpen,"multiselect--disabled":t.disabled,"multiselect--above":t.isAbove},attrs:{tabindex:t.searchable?-1:t.tabindex},on:{focus:function(e){t.activate()},blur:function(e){!t.searchable&&t.deactivate()},keydown:[function(e){return"button"in e||!t._k(e.keyCode,"down",40,e.key,["Down","ArrowDown"])?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerForward()):null},function(e){return"button"in e||!t._k(e.keyCode,"up",38,e.key,["Up","ArrowUp"])?e.target!==e.currentTarget?null:(e.preventDefault(),void t.pointerBackward()):null}],keypress:function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key,"Enter")||!t._k(e.keyCode,"tab",9,e.key,"Tab")?(e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null},keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27,e.key,"Escape"))return null;t.deactivate()}}},[t._t("caret",[n("div",{staticClass:"multiselect__select",on:{mousedown:function(e){e.preventDefault(),e.stopPropagation(),t.toggle()}}})],{toggle:t.toggle}),t._v(" "),t._t("clear",null,{search:t.search}),t._v(" "),n("div",{ref:"tags",staticClass:"multiselect__tags"},[t._t("selection",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.visibleValues.length>0,expression:"visibleValues.length > 0"}],staticClass:"multiselect__tags-wrap"},[t._l(t.visibleValues,function(e,i){return[t._t("tag",[n("span",{key:i,staticClass:"multiselect__tag"},[n("span",{domProps:{textContent:t._s(t.getOptionLabel(e))}}),t._v(" "),n("i",{staticClass:"multiselect__tag-icon",attrs:{"aria-hidden":"true",tabindex:"1"},on:{keypress:function(n){if(!("button"in n)&&t._k(n.keyCode,"enter",13,n.key,"Enter"))return null;n.preventDefault(),t.removeElement(e)},mousedown:function(n){n.preventDefault(),t.removeElement(e)}}})])],{option:e,search:t.search,remove:t.removeElement})]})],2),t._v(" "),t.internalValue&&t.internalValue.length>t.limit?[t._t("limit",[n("strong",{staticClass:"multiselect__strong",domProps:{textContent:t._s(t.limitText(t.internalValue.length-t.limit))}})])]:t._e()],{search:t.search,remove:t.removeElement,values:t.visibleValues,isOpen:t.isOpen}),t._v(" "),n("transition",{attrs:{name:"multiselect__loading"}},[t._t("loading",[n("div",{directives:[{name:"show",rawName:"v-show",value:t.loading,expression:"loading"}],staticClass:"multiselect__spinner"})])],2),t._v(" "),t.searchable?n("input",{ref:"search",staticClass:"multiselect__input",style:t.inputStyle,attrs:{name:t.name,id:t.id,type:"text",autocomplete:"nope",placeholder:t.placeholder,disabled:t.disabled,tabindex:t.tabindex},domProps:{value:t.search},on:{input:function(e){t.updateSearch(e.target.value)},focus:function(e){e.preventDefault(),t.activate()},blur:function(e){e.preventDefault(),t.deactivate()},keyup:function(e){if(!("button"in e)&&t._k(e.keyCode,"esc",27,e.key,"Escape"))return null;t.deactivate()},keydown:[function(e){if(!("button"in e)&&t._k(e.keyCode,"down",40,e.key,["Down","ArrowDown"]))return null;e.preventDefault(),t.pointerForward()},function(e){if(!("button"in e)&&t._k(e.keyCode,"up",38,e.key,["Up","ArrowUp"]))return null;e.preventDefault(),t.pointerBackward()},function(e){if(!("button"in e)&&t._k(e.keyCode,"delete",[8,46],e.key,["Backspace","Delete"]))return null;e.stopPropagation(),t.removeLastElement()}],keypress:function(e){return"button"in e||!t._k(e.keyCode,"enter",13,e.key,"Enter")?(e.preventDefault(),e.stopPropagation(),e.target!==e.currentTarget?null:void t.addPointerElement(e)):null}}}):t._e(),t._v(" "),t.isSingleLabelVisible?n("span",{staticClass:"multiselect__single",on:{mousedown:function(e){return e.preventDefault(),t.toggle(e)}}},[t._t("singleLabel",[[t._v(t._s(t.currentOptionLabel))]],{option:t.singleValue})],2):t._e(),t._v(" "),t.isPlaceholderVisible?n("span",{staticClass:"multiselect__placeholder",on:{mousedown:function(e){return e.preventDefault(),t.toggle(e)}}},[t._t("placeholder",[t._v("\n          "+t._s(t.placeholder)+"\n        ")])],2):t._e()],2),t._v(" "),n("transition",{attrs:{name:"multiselect"}},[n("div",{directives:[{name:"show",rawName:"v-show",value:t.isOpen,expression:"isOpen"}],ref:"list",staticClass:"multiselect__content-wrapper",style:{maxHeight:t.optimizedHeight+"px"},attrs:{tabindex:"-1"},on:{focus:t.activate,mousedown:function(t){t.preventDefault()}}},[n("ul",{staticClass:"multiselect__content",style:t.contentStyle},[t._t("beforeList"),t._v(" "),t.multiple&&t.max===t.internalValue.length?n("li",[n("span",{staticClass:"multiselect__option"},[t._t("maxElements",[t._v("Maximum of "+t._s(t.max)+" options selected. First remove a selected option to select another.")])],2)]):t._e(),t._v(" "),!t.max||t.internalValue.length<t.max?t._l(t.filteredOptions,function(e,i){return n("li",{key:i,staticClass:"multiselect__element"},[e&&(e.$isLabel||e.$isDisabled)?t._e():n("span",{staticClass:"multiselect__option",class:t.optionHighlight(i,e),attrs:{"data-select":e&&e.isTag?t.tagPlaceholder:t.selectLabelText,"data-selected":t.selectedLabelText,"data-deselect":t.deselectLabelText},on:{click:function(n){n.stopPropagation(),t.select(e)},mouseenter:function(e){if(e.target!==e.currentTarget)return null;t.pointerSet(i)}}},[t._t("option",[n("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2),t._v(" "),e&&(e.$isLabel||e.$isDisabled)?n("span",{staticClass:"multiselect__option",class:t.groupHighlight(i,e),attrs:{"data-select":t.groupSelect&&t.selectGroupLabelText,"data-deselect":t.groupSelect&&t.deselectGroupLabelText},on:{mouseenter:function(e){if(e.target!==e.currentTarget)return null;t.groupSelect&&t.pointerSet(i)},mousedown:function(n){n.preventDefault(),t.selectGroup(e)}}},[t._t("option",[n("span",[t._v(t._s(t.getOptionLabel(e)))])],{option:e,search:t.search})],2):t._e()])}):t._e(),t._v(" "),n("li",{directives:[{name:"show",rawName:"v-show",value:t.showNoResults&&0===t.filteredOptions.length&&t.search&&!t.loading,expression:"showNoResults && (filteredOptions.length === 0 && search && !loading)"}]},[n("span",{staticClass:"multiselect__option"},[t._t("noResult",[t._v("No elements found. Consider changing the search query.")],{search:t.search})],2)]),t._v(" "),n("li",{directives:[{name:"show",rawName:"v-show",value:t.showNoOptions&&0===t.options.length&&!t.search&&!t.loading,expression:"showNoOptions && (options.length === 0 && !search && !loading)"}]},[n("span",{staticClass:"multiselect__option"},[t._t("noOptions",[t._v("List is empty.")])],2)]),t._v(" "),t._t("afterList")],2)])])],2)},r=[],o={render:i,staticRenderFns:r};e.a=o}])});
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(22)
+/* template */
+var __vue_template__ = __webpack_require__(23)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/citizenStatusView.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6fa5b104", Component.options)
+  } else {
+    hotAPI.reload("data-v-6fa5b104", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 22 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'citizenStatusView',
+    data: function data() {
+        return {
+            citizenStatus: '',
+            citizenSubStatus: '',
+            regionalEstablishmentType: '',
+            regionalEstablishment: '',
+            responsibleStreet: '',
+            responsibleHouse: '',
+
+            entrance: [],
+            statuses: [],
+            chosenStatuses: [],
+            regionalEstablishmentTypes: [],
+            regionalEstablishments: [],
+            regionalEstablishmentsAll: [],
+            citizenSubStatuses: [],
+            streets: [],
+            houses: []
+
+        };
+    },
+
+    methods: {
+        getInfo: function getInfo() {
+            var _this = this;
+
+            Nova.request().post('/get-info-for-new').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.statuses = data.statuses;
+                _this.regionalEstablishmentTypes = data.regional_establishment_types;
+                _this.regionalEstablishments = data.regional_establishments;
+                _this.citizenSubStatuses = data.citizen_sub_statuses;
+                _this.streets = data.streets;
+                _this.houses = data.houses;
+            });
+        },
+        getEntrance: function getEntrance() {
+            var entrances = [];
+            var n = 0;
+            console.log(this.responsibleHouse.entrances_number);
+            while (n < this.responsibleHouse.entrances_number) {
+                n++;
+                entrances.push(n);
+            }
+            this.entrance = entrances;
+        },
+        addStatus: function addStatus() {
+            var status = {};
+
+            if (this.citizenStatus.type === null) {
+                status = {
+                    id: this.chosenStatuses.length + 1,
+                    params: {
+                        type: this.citizenStatus.type,
+                        statusTitle: this.citizenStatus.title,
+                        subStatus: this.citizenSubStatus.title
+                    }
+
+                };
+            } else if (this.citizenStatus.type === 'parent_committee') {
+                status = {
+                    id: this.chosenStatuses.length + 1,
+                    params: {
+                        type: this.citizenStatus.type,
+                        statusTitle: this.citizenStatus.title,
+                        regionalEstablishmentType: this.regionalEstablishmentType.title,
+                        regionalEstablishment: this.regionalEstablishment.title
+                    }
+
+                };
+            } else if (this.citizenStatus.type === 'responsible') {
+                status = {
+                    id: this.chosenStatuses.length + 1,
+                    params: {
+                        type: this.citizenStatus.type,
+                        statusTitle: this.citizenStatus.title,
+                        responsibleStreet: this.responsibleStreet.title,
+                        responsibleHouse: this.responsibleHouse.title,
+                        responsibleEntrance: this.responsibleEntrance
+                    }
+
+                };
+            }
+            this.chosenStatuses.push(status);
+            this.citizenStatus = '';
+        },
+        removeStatus: function removeStatus(key) {
+            this.chosenStatuses.splice(key, 1);
+        }
+    },
+    mounted: function mounted() {
+        this.getInfo();
+    }
+});
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "citizenStatusView" } }, [
+    _c("h2", [_vm._v("Статус")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" }, [
+      _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+        _c(
+          "label",
+          {
+            staticClass:
+              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+            attrs: { for: "grid-citizen-status" }
+          },
+          [_vm._v("\n                Статус\n            ")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "relative" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.citizenStatus,
+                  expression: "citizenStatus"
+                }
+              ],
+              staticClass:
+                "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+              attrs: { id: "grid-citizen-status", name: "status_id" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.citizenStatus = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Виберіть статус")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.statuses, function(status) {
+                return _c("option", { domProps: { value: status } }, [
+                  _vm._v(_vm._s(status.title))
+                ])
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "fill-current h-4 w-4",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.citizenStatus.type == "parent_committee"
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-regional-establishment-type" }
+              },
+              [_vm._v("\n                Тип Районого закладу\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.regionalEstablishmentType,
+                      expression: "regionalEstablishmentType"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: {
+                    id: "grid-regional-establishment-type",
+                    name: "regional_establishment_type_id"
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.regionalEstablishmentType = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть тип")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.regionalEstablishmentTypes, function(
+                    establishmentType
+                  ) {
+                    return _c(
+                      "option",
+                      { domProps: { value: establishmentType } },
+                      [_vm._v(_vm._s(establishmentType.title))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.citizenStatus.type == "parent_committee" &&
+      _vm.regionalEstablishments &&
+      _vm.regionalEstablishmentType
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-regional-establishment" }
+              },
+              [_vm._v("\n                Районний заклад\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.regionalEstablishment,
+                      expression: "regionalEstablishment"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: {
+                    id: "grid-regional-establishment",
+                    name: "regional_establishment_id"
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.regionalEstablishment = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть заклад")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.regionalEstablishments, function(establishment) {
+                    return establishment.regional_establishment_type_id ==
+                      _vm.regionalEstablishmentType.id
+                      ? _c("option", { domProps: { value: establishment } }, [
+                          _vm._v(_vm._s(establishment.title))
+                        ])
+                      : _vm._e()
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.citizenStatus.type == null && _vm.citizenStatus
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-citizen-sub-status" }
+              },
+              [_vm._v("\n                Cтатус 2 категорія\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.citizenSubStatus,
+                      expression: "citizenSubStatus"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: {
+                    id: "grid-citizen-sub-status",
+                    name: "citizen_sub_status_id"
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.citizenSubStatus = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть cтатус")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.citizenSubStatuses, function(status) {
+                    return status.citizens_status_id == _vm.citizenStatus.id
+                      ? _c(
+                          "option",
+                          {
+                            attrs: { text: status.title },
+                            domProps: { value: status }
+                          },
+                          [_vm._v(_vm._s(status.title))]
+                        )
+                      : _vm._e()
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.citizenStatus.type == "responsible"
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-street" }
+              },
+              [_vm._v("\n                Вулиця\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.responsibleStreet,
+                      expression: "responsibleStreet"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: { id: "grid-street", name: "responsible_street" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.responsibleStreet = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть вулицю")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.streets, function(street) {
+                    return _c("option", { domProps: { value: street } }, [
+                      _vm._v(_vm._s(street.title))
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.citizenStatus.type == "responsible" && _vm.responsibleStreet
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-house" }
+              },
+              [_vm._v("\n                Вулиця\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.responsibleHouse,
+                      expression: "responsibleHouse"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: { id: "grid-house", name: "responsible_house" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.responsibleHouse = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.getEntrance
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть будинок")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.houses, function(house) {
+                    return house.street_id == _vm.responsibleStreet.id
+                      ? _c("option", { domProps: { value: house } }, [
+                          _vm._v(_vm._s(house.title))
+                        ])
+                      : _vm._e()
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" }, [
+      _vm.citizenStatus.type == "responsible" && _vm.responsibleHouse
+        ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-entrance" }
+              },
+              [_vm._v("\n                Під'їзд\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.responsibleEntrance,
+                      expression: "responsibleEntrance"
+                    }
+                  ],
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: { id: "grid-entrance", name: "responsible_entrance" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.responsibleEntrance = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть під'їзд")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.entrance, function(n) {
+                    return _c("option", { domProps: { value: n } }, [
+                      _vm._v(_vm._s(n))
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" }, [
+      _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }),
+      _vm._v(" "),
+      _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded",
+            attrs: { href: "javascript:void(0)" },
+            on: { click: _vm.addStatus }
+          },
+          [_vm._v("\n                Добавить статус\n            ")]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm.chosenStatuses.length
+      ? _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "relative" }, [
+            _c(
+              "div",
+              { staticClass: "overflow-hidden overflow-x-auto relative" },
+              [
+                _c(
+                  "table",
+                  {
+                    staticClass: "table w-full",
+                    attrs: {
+                      cellpadding: "0",
+                      cellspacing: "0",
+                      "data-testid": "resource-table"
+                    }
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.chosenStatuses, function(status, key) {
+                        return _c("tr", [
+                          _c("td", [
+                            _c("div", { staticClass: "text-left text-left" }, [
+                              _c(
+                                "span",
+                                { staticClass: "whitespace-no-wrap" },
+                                [_vm._v(_vm._s(status.id))]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          status.params.type === "responsible"
+                            ? _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "text-left text-left" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "whitespace-no-wrap" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            status.params.responsibleStreet
+                                          ) +
+                                            " " +
+                                            _vm._s(
+                                              status.params.responsibleHouse
+                                            ) +
+                                            " (" +
+                                            _vm._s(
+                                              status.params.responsibleEntrance
+                                            ) +
+                                            " під'їзд)"
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          status.params.type === null
+                            ? _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "text-left text-left" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "whitespace-no-wrap" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(status.params.statusTitle) +
+                                            "(" +
+                                            _vm._s(status.params.subStatus) +
+                                            ")"
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          status.params.type === "parent_committee"
+                            ? _c("td", [
+                                _c(
+                                  "div",
+                                  { staticClass: "text-left text-left" },
+                                  [
+                                    _c(
+                                      "span",
+                                      { staticClass: "whitespace-no-wrap" },
+                                      [
+                                        _vm._v(
+                                          _vm._s(
+                                            status.params
+                                              .regionalEstablishmentType
+                                          ) +
+                                            " - " +
+                                            _vm._s(
+                                              status.params
+                                                .regionalEstablishment
+                                            )
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c("td", [
+                            _c("div", { staticClass: "text-left text-left" }, [
+                              _c(
+                                "span",
+                                { staticClass: "whitespace-no-wrap" },
+                                [_vm._v(_vm._s(status.params.statusTitle))]
+                              )
+                            ])
+                          ]),
+                          _vm._v(" "),
+                          _c("td", { staticClass: "td-fit text-right pr-6" }, [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "appearance-none cursor-pointer text-70 hover:text-primary mr-3",
+                                attrs: { title: "Видалити" },
+                                on: {
+                                  click: function($event) {
+                                    return _vm.removeStatus(key)
+                                  }
+                                }
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "fill-current",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      width: "20",
+                                      height: "20",
+                                      viewBox: "0 0 20 20",
+                                      "aria-labelledby": "delete",
+                                      role: "presentation"
+                                    }
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        "fill-rule": "nonzero",
+                                        d:
+                                          "M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("div", {
+                              staticClass: "v-portal",
+                              staticStyle: { display: "none" }
+                            })
+                          ])
+                        ])
+                      }),
+                      0
+                    )
+                  ]
+                )
+              ]
+            )
+          ])
+        ])
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { staticClass: "text-left" }, [
+          _c(
+            "span",
+            { staticClass: "cursor-pointer inline-flex items-center" },
+            [_vm._v("ID")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [
+          _c(
+            "span",
+            { staticClass: "cursor-pointer inline-flex items-center" },
+            [_vm._v("Назва")]
+          )
+        ]),
+        _vm._v(" "),
+        _c("th", { staticClass: "text-left" }, [_c("span", [_vm._v("Тип")])]),
+        _vm._v(" "),
+        _c("th", [_vm._v(" ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6fa5b104", module.exports)
+  }
+}
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "newCitizenView" } }, [
+    _vm.newCitizenForm
+      ? _c(
+          "div",
+          {
+            staticClass: "relative rounded overflow-hidden mb-8 shadow-lg mt-6"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: " border-grey-light p-4 flex justify-center p-8" },
+              [
+                _c(
+                  "form",
+                  {
+                    staticClass: "w-full justify-center",
+                    attrs: { id: "new_citizen_form" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.newCitizen($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "w-1/3 md:w-1/3 px-3 mb-6 md:mb-0" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-last-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Прізвище\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            ref: "citizenValue",
+                            staticClass:
+                              "appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+                            attrs: {
+                              id: "grid-last-name",
+                              name: "last_name",
+                              type: "text",
+                              placeholder: ""
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                            attrs: { for: "grid-first-name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Ім'я\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "citizenValue",
+                          staticClass:
+                            "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                          attrs: {
+                            id: "grid-first-name",
+                            name: "first_name",
+                            type: "text",
+                            placeholder: ""
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                            attrs: { for: "grid-patronymic-name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            По-Батькові\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          ref: "citizenValue",
+                          staticClass:
+                            "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                          attrs: {
+                            id: "grid-patronymic-name",
+                            name: "patronymic_name",
+                            type: "text",
+                            placeholder: ""
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "w-1/3 md:w-1/3 px-3 mb-6 md:mb-0" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-birthdate-name" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Дата Народження\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.birthDate,
+                                expression: "birthDate"
+                              },
+                              {
+                                name: "mask",
+                                rawName: "v-mask",
+                                value: "##-##-####",
+                                expression: "'##-##-####'"
+                              }
+                            ],
+                            ref: "citizenValue",
+                            staticClass:
+                              "appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",
+                            attrs: {
+                              id: "grid-birthdate-name",
+                              name: "date_birth",
+                              type: "text",
+                              placeholder: "12-05-2019"
+                            },
+                            domProps: { value: _vm.birthDate },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.birthDate = $event.target.value
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                            attrs: { for: "grid-phone-name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Телефон\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.phone,
+                              expression: "phone"
+                            },
+                            {
+                              name: "mask",
+                              rawName: "v-mask",
+                              value: "+380##-###-##-##",
+                              expression: "'+380##-###-##-##'"
+                            }
+                          ],
+                          ref: "citizenValue",
+                          staticClass:
+                            "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                          attrs: {
+                            id: "grid-phone-name",
+                            name: "phone",
+                            type: "text",
+                            placeholder: ""
+                          },
+                          domProps: { value: _vm.phone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.phone = $event.target.value
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3 mb-8" }, [
+                        _c(
+                          "div",
+                          { staticClass: "category-select" },
+                          [
+                            _c(
+                              "label",
+                              {
+                                staticClass:
+                                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                attrs: { for: "grid-category" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Категорія\n                            "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c("multiselect", {
+                              staticClass: "multiselect-grey",
+                              attrs: {
+                                id: "grid-category",
+                                options: _vm.citizenCategories,
+                                multiple: true,
+                                "close-on-select": false,
+                                "clear-on-select": false,
+                                placeholder: "Виберіть категорію",
+                                label: "title",
+                                "track-by": "id",
+                                "preselect-first": false
+                              },
+                              scopedSlots: _vm._u(
+                                [
+                                  {
+                                    key: "selection",
+                                    fn: function(ref) {
+                                      var values = ref.values
+                                      var search = ref.search
+                                      var isOpen = ref.isOpen
+                                      return [
+                                        values.length && !isOpen
+                                          ? _c(
+                                              "span",
+                                              {
+                                                staticClass:
+                                                  "multiselect__single"
+                                              },
+                                              [
+                                                _vm._v(
+                                                  _vm._s(values.length) +
+                                                    " options selected"
+                                                )
+                                              ]
+                                            )
+                                          : _vm._e()
+                                      ]
+                                    }
+                                  }
+                                ],
+                                null,
+                                false,
+                                249740006
+                              ),
+                              model: {
+                                value: _vm.citizenCategoriesValue,
+                                callback: function($$v) {
+                                  _vm.citizenCategoriesValue = $$v
+                                },
+                                expression: "citizenCategoriesValue"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      _c(
+                        "div",
+                        { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "is-certificagte-number" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Чи є посвідчення?\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.isCertificateNumber,
+                                expression: "isCertificateNumber"
+                              }
+                            ],
+                            staticClass: "mr-2 bg-grey-lighter leading-tight",
+                            attrs: {
+                              id: "is-certificagte-number",
+                              type: "checkbox"
+                            },
+                            domProps: {
+                              checked: Array.isArray(_vm.isCertificateNumber)
+                                ? _vm._i(_vm.isCertificateNumber, null) > -1
+                                : _vm.isCertificateNumber
+                            },
+                            on: {
+                              change: function($event) {
+                                var $$a = _vm.isCertificateNumber,
+                                  $$el = $event.target,
+                                  $$c = $$el.checked ? true : false
+                                if (Array.isArray($$a)) {
+                                  var $$v = null,
+                                    $$i = _vm._i($$a, $$v)
+                                  if ($$el.checked) {
+                                    $$i < 0 &&
+                                      (_vm.isCertificateNumber = $$a.concat([
+                                        $$v
+                                      ]))
+                                  } else {
+                                    $$i > -1 &&
+                                      (_vm.isCertificateNumber = $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1)))
+                                  }
+                                } else {
+                                  _vm.isCertificateNumber = $$c
+                                }
+                              }
+                            }
+                          })
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.isCertificateNumber
+                        ? _c(
+                            "div",
+                            { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" },
+                            [
+                              _c(
+                                "label",
+                                {
+                                  staticClass:
+                                    "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                  attrs: { for: "grid-certificagte-name" }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                            № посвідчення\n                        "
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("input", {
+                                staticClass:
+                                  "appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input",
+                                attrs: {
+                                  id: "grid-certificagte-name",
+                                  name: "certificate_number",
+                                  type: "text"
+                                }
+                              })
+                            ]
+                          )
+                        : _vm._e()
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", [_vm._v("Адреса")]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" },
+                      [
+                        _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                              attrs: { for: "grid-category" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Дільниця\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "relative" }, [
+                            _c(
+                              "select",
+                              {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.electivePlotId,
+                                    expression: "electivePlotId"
+                                  }
+                                ],
+                                staticClass:
+                                  "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                attrs: {
+                                  id: "grid-elective-plot",
+                                  name: "elective_plot_id"
+                                },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$selectedVal = Array.prototype.filter
+                                        .call($event.target.options, function(
+                                          o
+                                        ) {
+                                          return o.selected
+                                        })
+                                        .map(function(o) {
+                                          var val =
+                                            "_value" in o ? o._value : o.value
+                                          return val
+                                        })
+                                      _vm.electivePlotId = $event.target
+                                        .multiple
+                                        ? $$selectedVal
+                                        : $$selectedVal[0]
+                                    },
+                                    _vm.filterStreets
+                                  ]
+                                }
+                              },
+                              [
+                                _c("option", { attrs: { value: "" } }, [
+                                  _vm._v("Виберіть дільницю")
+                                ]),
+                                _vm._v(" "),
+                                _vm._l(_vm.electivePlots, function(
+                                  electivePlot
+                                ) {
+                                  return _c(
+                                    "option",
+                                    { domProps: { value: electivePlot.id } },
+                                    [_vm._v(_vm._s(electivePlot.title))]
+                                  )
+                                })
+                              ],
+                              2
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                              },
+                              [
+                                _c(
+                                  "svg",
+                                  {
+                                    staticClass: "fill-current h-4 w-4",
+                                    attrs: {
+                                      xmlns: "http://www.w3.org/2000/svg",
+                                      viewBox: "0 0 20 20"
+                                    }
+                                  },
+                                  [
+                                    _c("path", {
+                                      attrs: {
+                                        d:
+                                          "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                      }
+                                    })
+                                  ]
+                                )
+                              ]
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm.electivePlotId
+                          ? _c(
+                              "div",
+                              { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                    attrs: { for: "grid-category" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Вулиця\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "relative" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.streetId,
+                                          expression: "streetId"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                      attrs: {
+                                        id: "grid-street-plot",
+                                        name: "street_id"
+                                      },
+                                      on: {
+                                        change: [
+                                          function($event) {
+                                            var $$selectedVal = Array.prototype.filter
+                                              .call(
+                                                $event.target.options,
+                                                function(o) {
+                                                  return o.selected
+                                                }
+                                              )
+                                              .map(function(o) {
+                                                var val =
+                                                  "_value" in o
+                                                    ? o._value
+                                                    : o.value
+                                                return val
+                                              })
+                                            _vm.streetId = $event.target
+                                              .multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          },
+                                          _vm.filterHouses
+                                        ]
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Виберіть вулицю")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.filteredStreets, function(
+                                        street
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: street.id } },
+                                          [_vm._v(_vm._s(street.title))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "fill-current h-4 w-4",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              d:
+                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.streetId
+                          ? _c(
+                              "div",
+                              { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" },
+                              [
+                                _c(
+                                  "label",
+                                  {
+                                    staticClass:
+                                      "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                                    attrs: { for: "grid-category" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                            Дім\n                        "
+                                    )
+                                  ]
+                                ),
+                                _vm._v(" "),
+                                _c("div", { staticClass: "relative" }, [
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: _vm.houseId,
+                                          expression: "houseId"
+                                        }
+                                      ],
+                                      staticClass:
+                                        "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                                      attrs: {
+                                        id: "grid-house-plot",
+                                        name: "house_id"
+                                      },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.houseId = $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Виберіть дім")
+                                      ]),
+                                      _vm._v(" "),
+                                      _vm._l(_vm.filteredHouses, function(
+                                        house
+                                      ) {
+                                        return _c(
+                                          "option",
+                                          { domProps: { value: house.id } },
+                                          [_vm._v(_vm._s(house.title))]
+                                        )
+                                      })
+                                    ],
+                                    2
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass:
+                                        "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                                    },
+                                    [
+                                      _c(
+                                        "svg",
+                                        {
+                                          staticClass: "fill-current h-4 w-4",
+                                          attrs: {
+                                            xmlns: "http://www.w3.org/2000/svg",
+                                            viewBox: "0 0 20 20"
+                                          }
+                                        },
+                                        [
+                                          _c("path", {
+                                            attrs: {
+                                              d:
+                                                "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                                            }
+                                          })
+                                        ]
+                                      )
+                                    ]
+                                  )
+                                ])
+                              ]
+                            )
+                          : _vm._e()
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _vm.houseId
+                      ? _c(
+                          "div",
+                          { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" },
+                          [_vm._m(0)]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c("citizen-status-view")
+                  ],
+                  1
+                )
+              ]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" }, [
+      _c(
+        "label",
+        {
+          staticClass:
+            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+          attrs: { for: "grid-flat-name" }
+        },
+        [
+          _vm._v(
+            "\n                            Квартира\n                        "
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        staticClass:
+          "appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
+        attrs: {
+          id: "grid-flat-name",
+          name: "flat_number",
+          type: "text",
+          placeholder: ""
+        }
+      })
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d101be10", module.exports)
+  }
+}
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("heading", { staticClass: "mb-6" }, [_vm._v("Citizen Finder")]),
+      _vm._v(" "),
+      _c(
+        "card",
+        {
+          staticClass: "bg-white flex flex-col rounded",
+          staticStyle: { "min-height": "300px" }
+        },
+        [
+          _c(
+            "form",
+            {
+              staticClass: "px-8 pt-6 pb-8",
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.processFind($event)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "lastName" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Прізвище\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.lastName,
+                        expression: "lastName"
+                      }
+                    ],
+                    staticClass:
+                      "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      id: "lastName",
+                      placeholder: "Прізвище",
+                      type: "text"
+                    },
+                    domProps: { value: _vm.lastName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.lastName = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12 mt-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "first_name" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Ім'я\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.firstName,
+                        expression: "firstName"
+                      }
+                    ],
+                    staticClass:
+                      "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      id: "first_name",
+                      type: "text",
+                      name: "first_name",
+                      placeholder: "Ім'я"
+                    },
+                    domProps: { value: _vm.firstName },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.firstName = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "w-1/3 bg-grey-light h-12 mt-2 mr-2" },
+                  [
+                    _c(
+                      "label",
+                      {
+                        staticClass:
+                          "block text-grey-darker text-sm font-bold m-2",
+                        attrs: { for: "patronymic_name" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        По-Батькові\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.patronymicName,
+                          expression: "patronymicName"
+                        }
+                      ],
+                      staticClass:
+                        "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                      attrs: {
+                        id: "patronymic_name",
+                        type: "text",
+                        name: "patronymic_name",
+                        placeholder: "По-Батькові"
+                      },
+                      domProps: { value: _vm.patronymicName },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.patronymicName = $event.target.value
+                        }
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "phone" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Телефон\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.phone,
+                        expression: "phone"
+                      },
+                      {
+                        name: "mask",
+                        rawName: "v-mask",
+                        value: "+380##-###-##-##",
+                        expression: "'+380##-###-##-##'"
+                      }
+                    ],
+                    staticClass:
+                      "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      id: "phone",
+                      name: "phone",
+                      placeholder: "+380__-___-__-__",
+                      type: "text"
+                    },
+                    domProps: { value: _vm.phone },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.phone = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "birth_date" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Дата Народження\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.birthDate,
+                        expression: "birthDate"
+                      },
+                      {
+                        name: "mask",
+                        rawName: "v-mask",
+                        value: "##-##-####",
+                        expression: "'##-##-####'"
+                      }
+                    ],
+                    staticClass:
+                      "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      id: "birth_date",
+                      name: "birthDate",
+                      placeholder: "__-__-____",
+                      type: "text"
+                    },
+                    domProps: { value: _vm.birthDate },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.birthDate = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "certificate_number" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Номер посвідчення\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.certificateNumber,
+                        expression: "certificateNumber"
+                      }
+                    ],
+                    staticClass:
+                      "shadow appearance-none border bg-grey-lighter rounded w-full py-2 px-3 text-grey-darker leading-tight focus:outline-none focus:shadow-outline",
+                    attrs: {
+                      id: "certificate_number",
+                      name: "certificateNumber",
+                      type: "text"
+                    },
+                    domProps: { value: _vm.certificateNumber },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.certificateNumber = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "grid-elective-plot" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Дільниця\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.electivePlotId,
+                          expression: "electivePlotId"
+                        }
+                      ],
+                      staticClass:
+                        "block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                      attrs: {
+                        id: "grid-elective-plot",
+                        name: "elective_plot_id"
+                      },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.electivePlotId = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.changeElectivePlot
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Виберіть дільницю")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.electivePlots, function(electivePlot) {
+                        return _c(
+                          "option",
+                          { domProps: { value: electivePlot.id } },
+                          [_vm._v(_vm._s(electivePlot.title))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12 mt-2 mr-2" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass:
+                        "block text-grey-darker text-sm font-bold m-2",
+                      attrs: { for: "grid-elective-plot" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                        Вулиця\n                    "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.streetId,
+                          expression: "streetId"
+                        }
+                      ],
+                      staticClass:
+                        "block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                      attrs: { id: "grid-street", name: "street_id" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.streetId = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.changeStreet
+                        ]
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Виберіть вулицю")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.streets, function(street) {
+                        return _c(
+                          "option",
+                          { domProps: { value: street.id } },
+                          [_vm._v(_vm._s(street.title))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12 mt-2 mr-2" }, [
+                  _vm.houses.length
+                    ? _c(
+                        "label",
+                        {
+                          staticClass:
+                            "block text-grey-darker text-sm font-bold m-2",
+                          attrs: { for: "grid-house" }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        Будинок\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm.houses.length
+                    ? _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.houseId,
+                              expression: "houseId"
+                            }
+                          ],
+                          staticClass:
+                            "block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                          attrs: { id: "grid-house", name: "house_id" },
+                          on: {
+                            change: [
+                              function($event) {
+                                var $$selectedVal = Array.prototype.filter
+                                  .call($event.target.options, function(o) {
+                                    return o.selected
+                                  })
+                                  .map(function(o) {
+                                    var val = "_value" in o ? o._value : o.value
+                                    return val
+                                  })
+                                _vm.houseId = $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              },
+                              _vm.changeHouse
+                            ]
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Виберіть будинок")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.houses, function(house) {
+                            return _c(
+                              "option",
+                              { domProps: { value: house.id } },
+                              [_vm._v(_vm._s(house.title))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex mb-4" }, [
+                _c("div", { staticClass: "w-1/3 mt-2 ml-2 mr-2" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12 mt-2 mr-2" }),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "w-1/3 bg-grey-light h-12 mt-2 mr-2 align-content-end"
+                  },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "flex-no-shrink bg-teal hover:bg-teal-dark border-teal hover:border-teal-dark text-sm border-4 text-white py-1 px-2 rounded",
+                        attrs: { disabled: _vm.working, type: "submit" }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Пошук\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass:
+                          "flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer",
+                        on: { click: _vm.openForm }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Новий\n                    "
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          this.findCitizens.length
+            ? _c(
+                "div",
+                { staticClass: "px-8 pt-6 pb-8 bg-grey-lighter" },
+                [
+                  _c("h2", [_vm._v("Результати")]),
+                  _vm._v(" "),
+                  _vm._l(_vm.findCitizens, function(citizen) {
+                    return _c(
+                      "a",
+                      {
+                        staticClass:
+                          "block px-4 py-2 hover:bg-20 text-80 no-underline",
+                        attrs: { href: "javascript:void(0)", id: citizen.id },
+                        on: { click: _vm.choseCitizen }
+                      },
+                      [
+                        _vm._v(
+                          _vm._s(citizen.last_name) +
+                            " " +
+                            _vm._s(citizen.first_name) +
+                            " " +
+                            _vm._s(citizen.patronymic_name)
+                        )
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            : _vm._e()
+        ]
+      ),
+      _vm._v(" "),
+      _c("citizen-view", { attrs: { citizen: this.citizen } }),
+      _vm._v(" "),
+      _c("new-citizen-view", {
+        attrs: { newCitizenForm: this.newCitizenForm, citizen: this.citizen },
+        on: { assignCitizenChild: _vm.assignCitizen }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-68ff5483", module.exports)
+  }
+}
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ })
+/******/ ]);

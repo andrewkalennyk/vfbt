@@ -10,12 +10,11 @@
                 </label>
                 <div class="relative">
                     <select id="grid-citizen-status"
-                            @change="changeStatuses"
                             v-model="citizenStatus"
                             name="status_id"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть статус</option>
-                        <option v-for="status in statuses" :value="status.id">{{status.title}}</option>
+                        <option v-for="status in statuses" :value="status">{{status.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -25,7 +24,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == 'parent_committee'">
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == 'parent_committee'">
                 <label for="grid-regional-establishment-type"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Тип Районого закладу
@@ -36,7 +35,7 @@
                             name="regional_establishment_type_id"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть тип</option>
-                        <option v-for="establishmentType in regionalEstablishmentTypes" :value="establishmentType.id">{{establishmentType.title}}</option>
+                        <option v-for="establishmentType in regionalEstablishmentTypes" :value="establishmentType">{{establishmentType.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -46,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == 'parent_committee' && regionalEstablishments && regionalEstablishmentType">
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == 'parent_committee' && regionalEstablishments && regionalEstablishmentType">
                 <label for="grid-regional-establishment"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Районний заклад
@@ -58,8 +57,8 @@
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть заклад</option>
                         <option v-for="establishment in regionalEstablishments"
-                                v-if="establishment.regional_establishment_type_id == regionalEstablishmentType"
-                                :value="establishment.id"
+                                v-if="establishment.regional_establishment_type_id == regionalEstablishmentType.id"
+                                :value="establishment"
                         >{{establishment.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
@@ -70,7 +69,8 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == null && citizenStatus">
+
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == null && citizenStatus">
                 <label for="grid-citizen-sub-status"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Cтатус 2 категорія
@@ -81,7 +81,10 @@
                             name="citizen_sub_status_id"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть cтатус</option>
-                        <option v-for="status in citizenSubStatuses" v-if="status.citizens_status_id == citizenStatus" :value="status.id" :text="status.title">{{status.title}}</option>
+                        <option v-for="status in citizenSubStatuses"
+                                v-if="status.citizens_status_id == citizenStatus.id"
+                                :value="status"
+                                :text="status.title">{{status.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -92,7 +95,7 @@
                 </div>
             </div>
 
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == 'responsible'">
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == 'responsible'">
                 <label for="grid-street"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Вулиця
@@ -103,7 +106,7 @@
                             name="responsible_street"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть вулицю</option>
-                        <option v-for="street in streets"  :value="street.id">{{street.title}}</option>
+                        <option v-for="street in streets"  :value="street">{{street.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -113,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == 'responsible' && responsibleStreet">
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == 'responsible' && responsibleStreet">
                 <label for="grid-house"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Вулиця
@@ -125,7 +128,7 @@
                             name="responsible_house"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть будинок</option>
-                        <option v-for="house in houses" v-if="house.street_id == responsibleStreet" :value="house.id">{{house.title}}</option>
+                        <option v-for="house in houses" v-if="house.street_id == responsibleStreet.id" :value="house">{{house.title}}</option>
                     </select>
                     <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
@@ -137,7 +140,7 @@
             </div>
         </div>
         <div class="flex flex-wrap -mx-3 mb-2 mt-3">
-            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="type == 'responsible' && responsibleHouse">
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="citizenStatus.type == 'responsible' && responsibleHouse">
                 <label for="grid-entrance"
                        class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Під'їзд
@@ -170,6 +173,69 @@
                 </a>
             </div>
         </div>
+
+        <div class="card" v-if="chosenStatuses.length">
+            <div class="relative"><!---->
+                <div class="overflow-hidden overflow-x-auto relative" style="">
+                    <table cellpadding="0" cellspacing="0" data-testid="resource-table" class="table w-full">
+                        <thead>
+                            <tr>
+                                <th class="text-left">
+                                    <span class="cursor-pointer inline-flex items-center">ID</span>
+                                </th>
+                                <th class="text-left">
+                                    <span class="cursor-pointer inline-flex items-center">Назва</span>
+                                </th>
+                                <th class="text-left"><span>Тип</span></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(status, key) in chosenStatuses">
+                                <td>
+                                    <div class="text-left text-left">
+                                        <span class="whitespace-no-wrap">{{status.id}}</span>
+                                    </div>
+                                </td>
+                                <td v-if="status.params.type === 'responsible'">
+                                    <div class="text-left text-left">
+                                        <span class="whitespace-no-wrap">{{status.params.responsibleStreet}} {{status.params.responsibleHouse}} ({{status.params.responsibleEntrance}} під'їзд)</span>
+                                    </div>
+                                </td>
+                                <td v-if="status.params.type === null">
+                                    <div class="text-left text-left">
+                                        <span class="whitespace-no-wrap">{{status.params.statusTitle}}({{status.params.subStatus}})</span>
+                                    </div>
+                                </td>
+                                <td v-if="status.params.type === 'parent_committee'">
+                                    <div class="text-left text-left">
+                                        <span class="whitespace-no-wrap">{{status.params.regionalEstablishmentType}} - {{status.params.regionalEstablishment}}</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="text-left text-left">
+                                        <span class="whitespace-no-wrap">{{status.params.statusTitle}}</span>
+                                    </div>
+                                </td>
+                                <td class="td-fit text-right pr-6">
+                                    <button title="Видалити"
+                                            @click="removeStatus(key)"
+                                            class="appearance-none cursor-pointer text-70 hover:text-primary mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                             aria-labelledby="delete" role="presentation" class="fill-current">
+                                            <path fill-rule="nonzero"
+                                                  d="M6 4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2h5a1 1 0 0 1 0 2h-1v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6H1a1 1 0 1 1 0-2h5zM4 6v12h12V6H4zm8-2V2H8v2h4zM8 8a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1zm4 0a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V9a1 1 0 0 1 1-1z"></path>
+                                        </svg>
+                                    </button>
+                                    <div class="v-portal" style="display: none;"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
@@ -180,8 +246,6 @@
             return {
                 citizenStatus: '',
                 citizenSubStatus: '',
-                type: '',
-                statusObj: '',
                 regionalEstablishmentType: '',
                 regionalEstablishment: '',
                 responsibleStreet: '',
@@ -216,35 +280,11 @@
                     })
             },
 
-            changeStatuses() {
-                let statusId = this.citizenStatus;
-                let obj = '';
-                this.statuses.forEach(function(value, key) {
-                    if (value.id === parseInt(statusId)) {
-                        obj = value;
-                    }
-                });
-
-                if (obj) {
-                    this.type = obj.type;
-                }
-
-                this.statusObj = obj;
-
-            },
-
             getEntrance() {
-                let house = '';
                 let entrances = [];
-                let houseId = this.responsibleHouse;
-                this.houses.forEach(function(value, key) {
-                    if (value.id === parseInt(houseId)) {
-                        house = value;
-                    }
-                });
-
                 let n = 0;
-                while (n < house.entrances_number) {
+                console.log(this.responsibleHouse.entrances_number);
+                while (n < this.responsibleHouse.entrances_number) {
                     n++;
                     entrances.push(n);
                 }
@@ -254,32 +294,47 @@
             addStatus() {
                 let status = {};
 
-                if (this.type === null) {
+                if (this.citizenStatus.type === null) {
                     status = {
                         id: this.chosenStatuses.length + 1,
                         params: {
-                            type: this.getTitleOfSelected(this.type, 'chosenStatuses'),
-                            subStatus: this.citizenSubStatus.text
+                            type: this.citizenStatus.type,
+                            statusTitle: this.citizenStatus.title,
+                            subStatus: this.citizenSubStatus.title
+                        }
+
+                    }
+                } else if(this.citizenStatus.type === 'parent_committee') {
+                    status = {
+                        id: this.chosenStatuses.length + 1,
+                        params: {
+                            type: this.citizenStatus.type,
+                            statusTitle: this.citizenStatus.title,
+                            regionalEstablishmentType: this.regionalEstablishmentType.title,
+                            regionalEstablishment: this.regionalEstablishment.title
+                        }
+
+                    }
+                } else if(this.citizenStatus.type === 'responsible') {
+                    status = {
+                        id: this.chosenStatuses.length + 1,
+                        params: {
+                            type: this.citizenStatus.type,
+                            statusTitle: this.citizenStatus.title,
+                            responsibleStreet: this.responsibleStreet.title,
+                            responsibleHouse: this.responsibleHouse.title,
+                            responsibleEntrance: this.responsibleEntrance
                         }
 
                     }
                 }
                 this.chosenStatuses.push(status);
+                this.citizenStatus = '';
             },
-            getTitleOfSelected(id, model) {
-                let items = [];
-                if (model === 'chosenStatuses') {
-                    items = this.statuses;
-                }
-                console.log(items);
-                console.log(id);
-                items.forEach(function(value, key) {
-                    if (value.id === parseInt(id)) {
-                        return value.title;
-                    }
-                });
-            }
 
+            removeStatus(key) {
+                this.chosenStatuses.splice(key,1)
+            }
         },
         mounted() {
             this.getInfo();
