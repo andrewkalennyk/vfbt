@@ -131,6 +131,10 @@
                                 type="submit">
                             Пошук
                         </button>
+                        <a class="flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer"
+                           @click="openForm">
+                            Новий
+                        </a>
                     </div>
                 </div>
             </form>
@@ -147,12 +151,18 @@
         </card>
 
         <citizen-view :citizen="this.citizen"/>
+
+        <new-citizen-view
+                @assignCitizenChild="assignCitizen"
+                :newCitizenForm="this.newCitizenForm"
+                :citizen="this.citizen" />
     </div>
 </template>
 
 <script>
 import {mask} from 'vue-the-mask'
 import citizenView from './citizenView';
+import newCitizenView from './newCitizenView';
 
 export default {
     directives: {mask},
@@ -176,7 +186,8 @@ export default {
         }
     },
     components: {
-        citizenView
+        citizenView,
+        newCitizenView
     },
     methods: {
 
@@ -280,14 +291,14 @@ export default {
                 .then(({data}) => {
                     this.streets = data.streets;
                 })
-        }
+        },
 
-        /* openForm() {
+         openForm() {
             this.citizen = false;
             this.newCitizenForm = true;
         },
 
-        assignCitizen(citizen) {
+        /*assignCitizen(citizen) {
             this.citizen = citizen;
             this.newCitizenForm = false;
         },*/
