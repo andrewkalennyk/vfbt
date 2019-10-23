@@ -23,6 +23,7 @@ class HouseCitizen extends Model
         'house_id',
         'citizen_id',
         'citizen_status_id',
+        'is_private',
         'flat_number'
     ];
 

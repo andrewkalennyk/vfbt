@@ -301,6 +301,10 @@
                             type: this.citizenStatus.type,
                             statusTitle: this.citizenStatus.title,
                             subStatus: this.citizenSubStatus.title
+                        },
+                        values: {
+                            citizen_status_id: this.citizenStatus.id,
+                            citizen_sub_status_id: this.citizenSubStatus.id
                         }
 
                     }
@@ -312,6 +316,11 @@
                             statusTitle: this.citizenStatus.title,
                             regionalEstablishmentType: this.regionalEstablishmentType.title,
                             regionalEstablishment: this.regionalEstablishment.title
+                        },
+                        values: {
+                            citizen_status_id: this.citizenStatus.id,
+                            regional_establishment_type_id: this.regionalEstablishmentType.id,
+                            regional_establishment_id: this.regionalEstablishment.id,
                         }
 
                     }
@@ -324,16 +333,24 @@
                             responsibleStreet: this.responsibleStreet.title,
                             responsibleHouse: this.responsibleHouse.title,
                             responsibleEntrance: this.responsibleEntrance
+                        },
+                        values: {
+                            citizen_status_id: this.citizenStatus.id,
+                            street_id: this.responsibleStreet.id,
+                            house_id: this.responsibleHouse.id,
+                            entrance: this.responsibleEntrance,
                         }
 
                     }
                 }
                 this.chosenStatuses.push(status);
                 this.citizenStatus = '';
+                this.$emit('assignStatusesChild', this.chosenStatuses);
             },
 
             removeStatus(key) {
                 this.chosenStatuses.splice(key,1)
+                this.$emit('assignStatusesChild', this.chosenStatuses);
             }
         },
         mounted() {

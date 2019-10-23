@@ -298,10 +298,10 @@ export default {
             this.newCitizenForm = true;
         },
 
-        /*assignCitizen(citizen) {
+        assignCitizen(citizen) {
             this.citizen = citizen;
             this.newCitizenForm = false;
-        },*/
+        },
 
     }
 }

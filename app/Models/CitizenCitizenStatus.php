@@ -20,6 +20,11 @@ class CitizenCitizenStatus extends Model
         'citizen_id',
         'citizens_status_id',
         'citizens_sub_status_id',
+        'street_id',
+        'house_id',
+        'regional_establishment_type_id',
+        'entrance',
+        'regional_establishment_id',
     ];
 
     protected $statusTypesMethods = [

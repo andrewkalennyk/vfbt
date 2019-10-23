@@ -32,6 +32,7 @@ class Citizen extends Model
         'phone',
         'certificate_number',
         'date_birth',
+        'is_certificate',
         'is_in_black'
     ];
 
