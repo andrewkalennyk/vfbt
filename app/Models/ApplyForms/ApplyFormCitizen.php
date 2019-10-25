@@ -25,7 +25,7 @@ class ApplyFormCitizen extends Citizen
     {
         $this->inputData = $inputData;
         $this->inputData['date_birth'] = date('Y-m-d',strtotime($this->inputData['date_birth']));
-        $this->inputData['is_certificate'] = $this->inputData['is_certificate'] == 'on' ? 1 : 0;
+        $this->inputData['is_certificate'] = !empty($this->inputData['is_certificate']) && $this->inputData['is_certificate'] == 'on' ? 1 : 0;
     }
 
 
