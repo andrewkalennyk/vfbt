@@ -79,6 +79,16 @@ class Street extends Model
 
     }
 
+    public function getIndexElectivePlotsAttribute()
+    {
+        return $this->electivePlots->pluck('title')->implode(',<br>');
+    }
+
+    public function getHouseCountAttribute()
+    {
+        return $this->houses->count();
+    }
+
     protected static function boot()
     {
         parent::boot();

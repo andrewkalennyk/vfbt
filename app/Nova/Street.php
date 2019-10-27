@@ -54,6 +54,13 @@ class Street extends HandBookResource
                     'multiple'                => true,
                 ]),
 
+            Text::make(__('Дільниці'),'index_elective_plots')
+                ->onlyOnIndex()
+                ->asHtml(),
+
+            Text::make(__('Кількість будинкив'),'house_count')
+                ->onlyOnIndex(),
+
             BelongsToMany::make(__('Дільниці'), 'electivePlots','App\Nova\ElectivePlot'),
 
             HasMany::make(__('Будинки'), 'houses', 'App\Nova\House')
