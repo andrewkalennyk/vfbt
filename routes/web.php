@@ -52,7 +52,14 @@ Route::get('/analytics', function () {
        $electivePlotsIds = $street->electivePlots->pluck('id');
        $diff = $housesElectivePlots->diff($electivePlotsIds);
        if ($diff->count()) {
-           $needUpdate[] = $street->title . '(' . $street->id . ')';
+           $housesNeeded = $street->houses->whereIn('elective_plot_id', $diff->toArray())->map(function ($item, $key) {
+               return $item->title . '(' . $item->elective_plot->title . '(' . $item->elective_plot_id . ')) ';
+           });
+
+           $needUpdate[$street->id]['title'] = $street->title;
+           $needUpdate[$street->id]['as'] = $electivePlotsIds->implode(',');
+           $needUpdate[$street->id]['need'] = $housesElectivePlots->implode(',');
+           $needUpdate[$street->id]['housesNeeded'] = $housesNeeded->implode(',');
        }
    }
    dd($needUpdate);
