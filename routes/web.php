@@ -42,6 +42,22 @@ Route::get('/mutators', function () {
 });
 
 
+Route::get('/analytics', function () {
+   $streets =\App\Models\Street::with(['electivePlots','houses'])->whereHas('houses')->get();
+   $needUpdate = [];
+   foreach ($streets as $street) {
+       $housesElectivePlots =  $street->houses->pluck('elective_plot_id')->unique()->filter(function ($value, $key) {
+           return !empty($value);
+       });
+       $electivePlotsIds = $street->electivePlots->pluck('id');
+       $diff = $housesElectivePlots->diff($electivePlotsIds);
+       if ($diff->count()) {
+           $needUpdate[] = $street->title . '(' . $street->id . ')';
+       }
+   }
+   dd($needUpdate);
+});
+
 
 Route::middleware(['nova'])->group(function () {
     Route::get('get-houses-by-street/{street}', 'DependencyController@getHousesByStreet');
