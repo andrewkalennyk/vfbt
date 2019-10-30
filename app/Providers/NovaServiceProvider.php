@@ -13,6 +13,7 @@ use App\Nova\CitizensCategory;
 use App\Nova\CitizensStatus;
 use App\Nova\ElectivePlot;
 use App\Nova\House;
+use App\Nova\HouseCitizen;
 use App\Nova\HousesCitizen;
 use App\Nova\Metrics\CitizenCount;
 use App\Nova\NavigationMenuItem;
@@ -108,6 +109,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
             Street::class,
             House::class,
             HousesCitizen::class,
+            HouseCitizen::class,
             GeneralInfoCitizens::class,
             Promotion::class,
             Revision::class,

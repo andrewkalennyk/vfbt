@@ -96,7 +96,7 @@ class House extends HandBookResource
                 Select::make(__('Вулиця'), 'street_id')->options(Street::pluck('title','id'))->hideFromDetail(),
             ])->dependsOn('type', 'district')->onlyOnForms(),
 
-            HasMany::make(__('Громадяни'), 'house_citizens', 'App\Nova\HousesCitizen')->onlyOnDetail(false),
+            HasMany::make(__("Зв'язок з громадянином"), 'house_citizens', 'App\Nova\HouseCitizen')->onlyOnDetail(false),
 
             Textarea::make(__('Коментар'),'description')->alwaysShow()
         ];
