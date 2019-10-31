@@ -3001,6 +3001,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenAddressView',
@@ -3033,13 +3034,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         changeStreet: function changeStreet() {
             var _this2 = this;
 
-            Nova.request().post('/get-related-entities-by-street', {
-                street_id: this.street.id
-            }).then(function (_ref2) {
-                var data = _ref2.data;
+            if (this.electivePlot === '') {
+                Nova.request().post('/get-related-entities-by-street', {
+                    street_id: this.street.id
+                }).then(function (_ref2) {
+                    var data = _ref2.data;
 
-                _this2.electivePlots = data.elective_plots;
-            });
+                    _this2.electivePlots = data.elective_plots;
+                });
+            }
         },
         changeHouse: function changeHouse() {
             var electivePlotChosen = '',
@@ -3060,6 +3063,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 street_id: this.street.id,
                 house_id: this.house.id
             });
+        },
+        changeElectivePlot: function changeElectivePlot() {
+            var _this3 = this;
+
+            if (this.street === '') {
+                Nova.request().post('/get-related-entities-by-elective-plot', {
+                    elective_plot_id: this.electivePlot.id
+                }).then(function (_ref3) {
+                    var data = _ref3.data;
+
+                    _this3.streets = data.streets;
+                });
+            }
         }
     },
     mounted: function mounted() {
@@ -3106,19 +3122,22 @@ var render = function() {
                 "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
               attrs: { id: "grid-elective-plot", name: "elective_plot_id" },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.electivePlot = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                }
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.electivePlot = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.changeElectivePlot
+                ]
               }
             },
             [

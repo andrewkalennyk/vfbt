@@ -11,6 +11,7 @@
                 <div class="relative">
                     <select id="grid-elective-plot"
                             v-model="electivePlot"
+                            @change="changeElectivePlot"
                             name="elective_plot_id"
                             class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         <option value="">Виберіть дільницю</option>
@@ -113,16 +114,18 @@
             },
 
             changeStreet() {
-                Nova.request()
-                    .post(
-                        '/get-related-entities-by-street',
-                        {
-                            street_id: this.street.id,
-                        }
-                    )
-                    .then(({data}) => {
-                        this.electivePlots = data.elective_plots;
-                    })
+                if (this.electivePlot === '') {
+                    Nova.request()
+                        .post(
+                            '/get-related-entities-by-street',
+                            {
+                                street_id: this.street.id,
+                            }
+                        )
+                        .then(({data}) => {
+                            this.electivePlots = data.elective_plots;
+                        })
+                }
             },
             changeHouse() {
                 let electivePlotChosen = '',
@@ -144,6 +147,21 @@
                     street_id: this.street.id,
                     house_id: this.house.id,
                 });
+
+            },
+            changeElectivePlot() {
+                if (this.street === '') {
+                    Nova.request()
+                        .post(
+                            '/get-related-entities-by-elective-plot',
+                            {
+                                elective_plot_id: this.electivePlot.id,
+                            }
+                        )
+                        .then(({data}) => {
+                            this.streets = data.streets;
+                        })
+                }
 
             },
 
