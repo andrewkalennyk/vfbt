@@ -19,20 +19,20 @@
     export default {
         mixins: [HandlesValidationErrors, FormField],
 
+        props: ['resourceName', 'resourceId', 'field'],
+
         data: () => ({
             value: false,
             parentValue: null
         }),
 
         mounted() {
-            this.value = this.field.value || false
-
-            this.field.fill = formData => {
-                formData.append(this.field.attribute, this.trueValue)
-            }
-
             this.watchedComponents.forEach(component => {
-                let attribute = 'value'
+                let attribute = 'value';
+
+                if (component.field.component === 'belongs-to-field') {
+                    attribute = 'selectedResource';
+                }
 
                 component.$watch(attribute, (value) => {
                     this.parentValue = value;
@@ -44,6 +44,14 @@
         },
 
         methods: {
+            setInitialValue() {
+                this.value = this.field.value || false
+            },
+
+            fill(formData) {
+                formData.append(this.field.attribute, this.trueValue)
+            },
+
             toggle() {
                 this.value = !this.value
             },
@@ -52,7 +60,7 @@
             },
             updateOptions() {
                 this.loaded = false;
-                console.log(this.endpoint);
+
                 if(this.notWatching() || (this.parentValue != null && this.parentValue != '')) {
                     Nova.request().get(this.endpoint)
                         .then(response => {
@@ -78,7 +86,7 @@
                 return this.field.endpoint
                     .replace('{resource-name}', this.resourceName)
                     .replace('{resource-id}', this.resourceId ? this.resourceId : '')
-                    .replace('{'+ this.field.parent_attribute +'}', this.parentValue ? this.parentValue : '')
+                    .replace('{'+ this.field.parent_attribute +'}', this.parentValue ? this.parentValue.value : '')
             },
             checked() {
                 return Boolean(this.value)
