@@ -38,7 +38,7 @@ class DependencyController extends Controller
     {
         $house = House::find($houseId);
 
-        return $house->is_private ?? false;
+        return $house->is_private;
     }
 
     public function getStreetsByElectivePlot($electivePlotId)
