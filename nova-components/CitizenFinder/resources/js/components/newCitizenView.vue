@@ -50,7 +50,23 @@
                                    type="text"
                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey">
                         </div>
-                        <div class="w-1/3 md:w-1/3 px-3 mb-8">
+                        <div class="w-1/3 md:w-1/3 px-3">
+                            <label for="grid-add-phone-name" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                                Телефон (дод.)
+                            </label>
+                            <input id="grid-add-phone-name"
+                                   ref="citizenValue"
+                                   v-model="addPhone"
+                                   name="add_phone"
+                                   v-mask="'+380##-###-##-##'"
+                                   placeholder="+380__-___-__-__"
+                                   type="text"
+                                   class="appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                        </div>
+
+                    </div>
+                    <div class="flex flex-wrap -mx-3 mb-4" >
+                        <div class="w-1/3 md:w-1/3 px-3 mb-6">
                             <div class="category-select">
                                 <label for="grid-category" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                                     Категорія
@@ -70,8 +86,6 @@
                                 </multiselect>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex flex-wrap -mx-3 mb-4" >
                         <div class="md:w-1/3 w-1/3 px-3 mb-6 md:mb-0">
                             <label for="is-certificagte-number" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                                 Чи є посвідчення?

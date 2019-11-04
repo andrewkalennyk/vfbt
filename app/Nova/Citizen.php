@@ -132,6 +132,12 @@ class Citizen extends Resource
                 ->disableValidation(true)
                 ->placeholder('+380__-___-__-__'),
 
+            PhoneNumber::make(__('Доп телефон'), 'add_phone')
+                ->sortable()
+                ->format('+380' . '##-###-##-##')
+                ->disableValidation(true)
+                ->placeholder('+380__-___-__-__'),
+
             Text::make('Категорії', 'index_category')->onlyOnIndex()->asHtml(),
 
             Text::make('Статуси', 'index_status')->onlyOnIndex()->asHtml(),
@@ -144,7 +150,8 @@ class Citizen extends Resource
             NovaDependencyContainer::make([
                 Text::make(__('№ посв'), 'certificate_number')
                     ->sortable()
-                    ->rules('required', 'max:255')
+                    ->rules('max:255')
+                    ->nullable()
                     ->creationRules('unique:citizens,certificate_number')
                     ->updateRules('unique:citizens,certificate_number,{{resourceId}}')
                     ->hideFromIndex(),

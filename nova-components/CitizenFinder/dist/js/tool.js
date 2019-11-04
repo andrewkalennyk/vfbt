@@ -1056,6 +1056,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenView',
@@ -1106,6 +1111,18 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
                 _vm._v(_vm._s(_vm.citizen.phone))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "flex -mb-3" }, [
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v("Телефон (дод.)")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                _vm._v(_vm._s(_vm.citizen.add_phone))
               ])
             ]),
             _vm._v(" "),
@@ -1369,6 +1386,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__citizenStatusView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__citizenStatusView__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__citizenAddressView_vue__ = __webpack_require__(24);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__citizenAddressView_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__citizenAddressView_vue__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3642,7 +3673,60 @@ var render = function() {
                         })
                       ]),
                       _vm._v(" "),
-                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3 mb-8" }, [
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                            attrs: { for: "grid-add-phone-name" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Телефон (дод.)\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.addPhone,
+                              expression: "addPhone"
+                            },
+                            {
+                              name: "mask",
+                              rawName: "v-mask",
+                              value: "+380##-###-##-##",
+                              expression: "'+380##-###-##-##'"
+                            }
+                          ],
+                          ref: "citizenValue",
+                          staticClass:
+                            "appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                          attrs: {
+                            id: "grid-add-phone-name",
+                            name: "add_phone",
+                            placeholder: "+380__-___-__-__",
+                            type: "text"
+                          },
+                          domProps: { value: _vm.addPhone },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.addPhone = $event.target.value
+                            }
+                          }
+                        })
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3 mb-6" }, [
                         _c(
                           "div",
                           { staticClass: "category-select" },
@@ -3717,10 +3801,8 @@ var render = function() {
                           ],
                           1
                         )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      ]),
+                      _vm._v(" "),
                       _c(
                         "div",
                         { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" },

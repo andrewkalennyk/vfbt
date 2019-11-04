@@ -30,6 +30,7 @@ class Citizen extends Model
         'first_name',
         'patronymic_name',
         'phone',
+        'add_phone',
         'certificate_number',
         'date_birth',
         'is_certificate',

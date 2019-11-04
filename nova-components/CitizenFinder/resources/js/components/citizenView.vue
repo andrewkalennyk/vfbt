@@ -14,6 +14,11 @@
                     <div class="w-1/3 bg-grey-light h-12">{{ citizen.phone }}</div>
                 </div>
                 <div class="flex -mb-3">
+                    <div class="w-1/3 bg-grey-light h-12">Телефон (дод.)</div>
+                    <div class="w-1/3 bg-grey h-12"> — </div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.add_phone }}</div>
+                </div>
+                <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Категория</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.category }}</div>
