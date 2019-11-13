@@ -19,6 +19,7 @@ use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use NrmlCo\NovaBigFilter\NovaBigFilter;
 use Wemersonrv\InputMask\InputMask;
@@ -111,14 +112,6 @@ class Citizen extends Resource
                     }
                 }),
 
-            /*Date::make(__('Дата Рождения'), 'date_birth')
-                ->displayUsing(function ($date) {
-                    return $date->format('d-m-Y');
-                })
-                ->hideFromIndex()
-                ->format('d-m-Y')
-                ->rules('required'),*/
-
             InputMask::make(__('Дата Рождения'), 'date_birth')
                 ->sortable()
                 ->mask('##-##-####')
@@ -186,6 +179,8 @@ class Citizen extends Resource
                 $user = \request()->user();
                 return ($user->isSuperAdmin() || $user->isCoordinator()) ? true : false;
             }),
+
+            Textarea::make(__('Коментар'),'comment')->alwaysShow(),
 
             BelongsToMany::make(__('Акції'), 'promotions', 'App\Nova\Promotion'),
 

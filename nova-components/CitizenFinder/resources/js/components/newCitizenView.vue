@@ -106,6 +106,19 @@
                                    class="appearance-none block w-full bg-grey-lighter text-grey-darker rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white flatpickr-input">
                         </div>
                     </div>
+                    <div class="flex flex-wrap -mx-3 mb-4" >
+                        <div class="w-1/3 md:w-1/3 px-3">
+                            <label for="grid-comment" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                                Комментар
+                            </label>
+                            <textarea id="grid-comment"
+                                   ref="citizenValue"
+                                   v-model="addComment"
+                                   name="comment"
+                                   class="appearance-none block w-full bg-grey-lighter text-grey-darker border-grey-lighter rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                            </textarea>
+                        </div>
+                    </div>
 
                     <citizen-address-view @assignAddressChild="assignAddress"/>
 

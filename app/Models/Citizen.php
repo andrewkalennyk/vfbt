@@ -34,6 +34,7 @@ class Citizen extends Model
         'certificate_number',
         'date_birth',
         'is_certificate',
+        'comment',
         'is_in_black'
     ];
 

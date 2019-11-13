@@ -33,6 +33,11 @@
                     <div class="w-1/3 bg-grey h-12"> — </div>
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.black_list }}</div>
                 </div>
+                <div class="flex -mb-3">
+                    <div class="w-1/3 bg-grey-light h-12">Комментар</div>
+                    <div class="w-1/3 bg-grey h-12"> — </div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.comment }}</div>
+                </div>
 
                 <div class="font-bold text-xl mb-4">Адресса </div>
 
