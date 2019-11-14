@@ -62,6 +62,22 @@ class Citizen extends Model
         'house_id'
     ];
 
+
+    public function setFirstNameAttribute($value)
+    {
+        $this->attributes['first_name'] = mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+    }
+
+    public function setLastNameAttribute($value)
+    {
+        $this->attributes['last_name'] = mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+    }
+
+    public function setPatronymicNameAttribute($value)
+    {
+        $this->attributes['patronymic_name'] = mb_strtoupper(mb_substr($value, 0, 1)) . mb_substr($value, 1);
+    }
+
     /*public function citizens_category()
     {
         return $this->BelongsTo('App\Models\CitizensCategory');
