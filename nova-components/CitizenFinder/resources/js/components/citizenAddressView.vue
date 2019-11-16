@@ -80,6 +80,46 @@
                 </label>
                 <input id="grid-flat-name" name="flat_number" type="text" placeholder="" class="appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
             </div>
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="house.entrances_number">
+                <label for="grid-entrance" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                    Під'їзд
+                </label>
+                <div class="relative">
+                    <select id="grid-entrance"
+                            name="entrance"
+                            class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                        <option value="">Під'їзд</option>
+                        <option v-for="entrance in parseInt(house.entrances_number)"
+                                :value="entrance">{{entrance}}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                             class="fill-current h-4 w-4">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="house.floors_number">
+                <label for="grid-floor" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                    Поверх
+                </label>
+                <div class="relative">
+                    <select id="grid-floor"
+                            name="floor"
+                            class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                        <option value="">Поверх</option>
+                        <option v-for="floor in parseInt(house.floors_number)"
+                                :value="floor">{{floor}}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                             class="fill-current h-4 w-4">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </template>

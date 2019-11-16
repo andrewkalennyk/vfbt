@@ -48,6 +48,8 @@ class ApplyFormCitizen extends Citizen
                 'citizen_id' => $this->citizen->id,
                 'is_private' => 0,
                 'flat_number' => $this->inputData['flat_number'],
+                'floor' => $this->inputData['floor'],
+                'entrance' => $this->inputData['entrance'],
             ]
         );
     }
@@ -87,6 +89,8 @@ class ApplyFormCitizen extends Citizen
         $this->citizen->street = $this->houseCitizen->house->street->title;
         $this->citizen->house = $this->houseCitizen->house->title;
         $this->citizen->flat = $this->inputData['flat_number'];
+        $this->citizen->entrance = $this->inputData['entrance'];
+        $this->citizen->floor = $this->inputData['floor'];
         return $this->citizen;
     }
 

@@ -66,6 +66,16 @@
                     <div class="w-1/3 bg-grey h-12"> — </div>
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.flat }}</div>
                 </div>
+                <div class="flex -mb-3">
+                    <div class="w-1/3 bg-grey-light h-12">Під'їзд</div>
+                    <div class="w-1/3 bg-grey h-12"> — </div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.entrance }}</div>
+                </div>
+                <div class="flex -mb-3">
+                    <div class="w-1/3 bg-grey-light h-12">Поверх</div>
+                    <div class="w-1/3 bg-grey h-12"> — </div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.floor }}</div>
+                </div>
             </div>
         </div>
     </div>
