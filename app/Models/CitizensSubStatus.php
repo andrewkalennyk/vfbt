@@ -12,7 +12,7 @@ use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
-class CitizensSubStatus extends Model
+class CitizensSubStatus extends BaseClass
 {
     use RevisionMaker;
 

@@ -12,7 +12,7 @@ use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
-class RegionalEstablishmentType extends Model
+class RegionalEstablishmentType extends BaseClass
 {
     use RevisionMaker;
 

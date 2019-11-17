@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 
-class ElectivePlot extends Model
+class ElectivePlot extends BaseClass
 {
 
     use RevisionMaker;

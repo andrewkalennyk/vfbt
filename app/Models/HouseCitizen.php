@@ -53,7 +53,7 @@ class HouseCitizen extends Model
 
     public function house()
     {
-        return $this->BelongsTo('App\Models\House');
+        return $this->BelongsTo('App\Models\House')->orderBy('title','desc');
     }
 
     public function citizen_status()

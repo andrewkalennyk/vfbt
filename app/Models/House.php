@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 
-class House extends Model
+class House extends BaseClass
 {
     use RevisionMaker;
 
