@@ -9,10 +9,11 @@
 namespace App\Models;
 
 use App\Traits\RevisionMaker;
+use Faker\Provider\Base;
 use Illuminate\Database\Eloquent\Model;
 
 
-class CitizensStatus extends Model
+class CitizensStatus extends BaseClass
 {
     use RevisionMaker;
 

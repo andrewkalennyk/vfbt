@@ -29,12 +29,12 @@
         mounted() {
             this.watchedComponents.forEach(component => {
                 let attribute = 'value';
-
                 if (component.field.component === 'belongs-to-field') {
                     attribute = 'selectedResource';
                 }
 
                 component.$watch(attribute, (value) => {
+                    console.log(value);
                     this.parentValue = value;
 
                     this.updateOptions();
@@ -83,10 +83,15 @@
                 })
             },
             endpoint() {
+                let parentValue = '';
+                if (this.parentValue) {
+                    parentValue = (typeof(this.parentValue) === 'object') ? this.parentValue.value : this.parentValue;
+                }
+
                 return this.field.endpoint
                     .replace('{resource-name}', this.resourceName)
                     .replace('{resource-id}', this.resourceId ? this.resourceId : '')
-                    .replace('{'+ this.field.parent_attribute +'}', this.parentValue ? this.parentValue.value : '')
+                    .replace('{'+ this.field.parent_attribute +'}', parentValue)
             },
             checked() {
                 return Boolean(this.value)

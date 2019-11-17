@@ -73,7 +73,9 @@ class RegionalEstablishment extends HandBookResource
 
             Textarea::make(__('Лояльність до нас'), 'loyalty')->alwaysShow(),
 
-            BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen')
+            BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen'),
+
+            BelongsToMany::make(__('Будинки'), 'houses', 'App\Nova\House')
 
         ];
     }

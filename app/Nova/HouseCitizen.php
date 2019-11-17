@@ -72,12 +72,10 @@ class HouseCitizen extends Resource
                 ->get('/get-entities-by-house/{house}/floors_number')
                 ->parent('house'),
 
+            AjaxSelect::make(__('Квартира'), 'floor')
+                ->get('/get-entities-by-house/{house}/flat_number')
+                ->parent('house'),
 
-            NovaDependency::make([
-                Text::make(__('Квартира'), 'flat_number')
-                    ->sortable()
-                    ->rules('required', 'max:255'),
-            ])->dependsOnFalse('is_private', 1),
             BelongsTo::make(__('Громадянин'), 'citizen', 'App\Nova\Citizen')->searchable(),
 
         ];

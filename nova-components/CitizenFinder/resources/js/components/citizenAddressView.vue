@@ -73,12 +73,26 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap -mx-3 mb-2 mt-3" v-if="house">
+        <div class="flex flex-wrap -mx-3 mb-2 mt-3" v-if="house && house.flat_number && house.is_private == 0">
             <div class="md:w-1/3 w-1/3 px-3 mb-6 md:mb-0">
-                <label for="grid-flat-name" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
+                <label for="grid-flat-number" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">
                     Квартира
                 </label>
-                <input id="grid-flat-name" name="flat_number" type="text" placeholder="" class="appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                <div class="relative">
+                    <select id="grid-flat-number"
+                            name="flat_number"
+                            class="block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey">
+                        <option value="">Виберіть квартиру</option>
+                        <option v-for="flat_number in parseInt(house.flat_number)"
+                                :value="flat_number">{{flat_number}}</option>
+                    </select>
+                    <div class="pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                             class="fill-current h-4 w-4">
+                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"></path>
+                        </svg>
+                    </div>
+                </div>
             </div>
             <div class="md:w-1/3 w-1/3 px-3 mb-8" v-if="house.entrances_number">
                 <label for="grid-entrance" class="block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2">

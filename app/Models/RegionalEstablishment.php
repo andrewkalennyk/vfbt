@@ -12,7 +12,7 @@ use App\Traits\RevisionMaker;
 use Illuminate\Database\Eloquent\Model;
 
 
-class RegionalEstablishment extends Model
+class RegionalEstablishment extends BaseClass
 {
     use RevisionMaker;
 
@@ -49,6 +49,13 @@ class RegionalEstablishment extends Model
     public function citizens()
     {
         return $this->belongsToMany(Citizen::class, 'citizen_citizen_statuses', 'regional_establishment_id', 'citizen_id');
+    }
+
+    public function houses()
+    {
+        $houseIds = House::where('street_id', $this->street_id)->pluck('id');
+        return $this->belongsToMany(House::class, 'regional_establishment_house', 'regional_establishment_id', 'house_id')
+            ->whereIn('house_id', $houseIds);
     }
 
     public function getPhoneIndexAttribute()

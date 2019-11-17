@@ -15,14 +15,14 @@ class InfoController extends \App\Http\Controllers\Controller
 {
     public function getInfo(Request $request)
     {
-        $categories = CitizensCategory::all();
-        $electivePlot = ElectivePlot::all();
-        $streets = Street::all();
-        $houses = House::all();
-        $statuses = CitizensStatus::all();
-        $regionalEstablishmentTypes = RegionalEstablishmentType::all();
-        $regionalEstablishments = RegionalEstablishment::all();
-        $citizenSubStatuses = CitizensSubStatus::all();
+        $categories = CitizensCategory::orderByTitleAsc()->get();
+        $electivePlot = ElectivePlot::orderByTitleAsc()->get();
+        $streets = Street::orderByTitleAsc()->get();
+        $houses = House::orderByTitleAsc()->get();
+        $statuses = CitizensStatus::orderByTitleAsc()->get();
+        $regionalEstablishmentTypes = RegionalEstablishmentType::orderByTitleAsc()->get();
+        $regionalEstablishments = RegionalEstablishment::orderByTitleAsc()->get();
+        $citizenSubStatuses = CitizensSubStatus::orderByTitleAsc()->get();
 
         return [
             'categories' => $categories,

@@ -13,7 +13,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 
 
-class Street extends Model
+class Street extends BaseClass
 {
     use RevisionMaker;
 

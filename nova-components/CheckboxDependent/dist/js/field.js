@@ -439,6 +439,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_laravel_nova___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_laravel_nova__);
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 //
 //
 //
@@ -474,12 +476,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         this.watchedComponents.forEach(function (component) {
             var attribute = 'value';
-
             if (component.field.component === 'belongs-to-field') {
                 attribute = 'selectedResource';
             }
 
             component.$watch(attribute, function (value) {
+                console.log(value);
                 _this.parentValue = value;
 
                 _this.updateOptions();
@@ -527,7 +529,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         endpoint: function endpoint() {
-            return this.field.endpoint.replace('{resource-name}', this.resourceName).replace('{resource-id}', this.resourceId ? this.resourceId : '').replace('{' + this.field.parent_attribute + '}', this.parentValue ? this.parentValue.value : '');
+            var parentValue = '';
+            if (this.parentValue) {
+                parentValue = _typeof(this.parentValue) === 'object' ? this.parentValue.value : this.parentValue;
+            }
+
+            return this.field.endpoint.replace('{resource-name}', this.resourceName).replace('{resource-id}', this.resourceId ? this.resourceId : '').replace('{' + this.field.parent_attribute + '}', parentValue);
         },
         checked: function checked() {
             return Boolean(this.value);

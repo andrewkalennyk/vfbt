@@ -3137,6 +3137,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenAddressView',
@@ -3502,9 +3516,72 @@ var render = function() {
         : _vm._e()
     ]),
     _vm._v(" "),
-    _vm.house
+    _vm.house && _vm.house.flat_number && _vm.house.is_private == 0
       ? _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2 mt-3" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                attrs: { for: "grid-flat-number" }
+              },
+              [_vm._v("\n                Квартира\n            ")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "relative" }, [
+              _c(
+                "select",
+                {
+                  staticClass:
+                    "block appearance-none w-full bg-grey-lighter border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                  attrs: { id: "grid-flat-number", name: "flat_number" }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Виберіть квартиру")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(parseInt(_vm.house.flat_number), function(
+                    flat_number
+                  ) {
+                    return _c("option", { domProps: { value: flat_number } }, [
+                      _vm._v(_vm._s(flat_number))
+                    ])
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker"
+                },
+                [
+                  _c(
+                    "svg",
+                    {
+                      staticClass: "fill-current h-4 w-4",
+                      attrs: {
+                        xmlns: "http://www.w3.org/2000/svg",
+                        viewBox: "0 0 20 20"
+                      }
+                    },
+                    [
+                      _c("path", {
+                        attrs: {
+                          d:
+                            "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                        }
+                      })
+                    ]
+                  )
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _vm.house.entrances_number
             ? _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-8" }, [
@@ -3643,35 +3720,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "md:w-1/3 w-1/3 px-3 mb-6 md:mb-0" }, [
-      _c(
-        "label",
-        {
-          staticClass:
-            "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
-          attrs: { for: "grid-flat-name" }
-        },
-        [_vm._v("\n                Квартира\n            ")]
-      ),
-      _vm._v(" "),
-      _c("input", {
-        staticClass:
-          "appearance-none block w-full bg-grey-lighter text-grey-darker  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white",
-        attrs: {
-          id: "grid-flat-name",
-          name: "flat_number",
-          type: "text",
-          placeholder: ""
-        }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
