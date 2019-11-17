@@ -22,7 +22,7 @@ class DependencyController extends Controller
     {
         $house = House::find($houseId);
         $entities = [];
-
+        //dd($house);
         if ($house->$entityField && !$house->is_private) {
             for ($i = 1; $i <= $house->$entityField; $i++) {
                 $entities[] = [
