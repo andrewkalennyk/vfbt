@@ -217,4 +217,6 @@ class Citizen extends Model
             ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
 
+
+
 }

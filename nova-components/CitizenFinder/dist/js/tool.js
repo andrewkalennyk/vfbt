@@ -1076,6 +1076,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenView',
@@ -1167,15 +1172,31 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "flex -mb-3" }, [
               _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Чорний список")
+                _vm._v("Список")
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
               _vm._v(" "),
               _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.black_list))
+                _vm._v(_vm._s(this.citizen.type_list))
               ])
             ]),
+            _vm._v(" "),
+            this.citizen.type_list && this.citizen.list_reason
+              ? _c("div", { staticClass: "flex -mb-3" }, [
+                  _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                    _vm._v("Повідомлення")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                    _vm._v(" — ")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                    _vm._v(_vm._s(this.citizen.list_reason))
+                  ])
+                ])
+              : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "flex -mb-3" }, [
               _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [

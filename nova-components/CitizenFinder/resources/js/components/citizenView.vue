@@ -29,9 +29,14 @@
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.certificate_number }}</div>
                 </div>
                 <div class="flex -mb-3">
-                    <div class="w-1/3 bg-grey-light h-12">Чорний список</div>
+                    <div class="w-1/3 bg-grey-light h-12">Список</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.black_list }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.type_list }}</div>
+                </div>
+                <div class="flex -mb-3" v-if="this.citizen.type_list && this.citizen.list_reason">
+                    <div class="w-1/3 bg-grey-light h-12">Повідомлення</div>
+                    <div class="w-1/3 bg-grey h-12"> — </div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.list_reason }}</div>
                 </div>
                 <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Комментар</div>

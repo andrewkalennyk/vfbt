@@ -47,4 +47,14 @@ trait PrepareFindInfo
     {
         return !empty($this->general_info->flat_number) ? $this->general_info->flat_number : '—';
     }
+
+    public function getListTitle()
+    {
+        return $this->type_list ? ($this->type_list == 'grey' ? 'Сірий' : 'Чорний') : '-';
+    }
+
+    public function getListReason()
+    {
+        return $this->bad_list_reason ? $this->bad_list_reason->message : '-';
+    }
 }
