@@ -40,9 +40,18 @@ class ElectivePlot extends Model
        return $this->belongsTo('App\Models\Office');
     }
 
-    public function streets()
+    /*public function streets()
     {
         return $this->hasMany('App\Models\Street');
+    }*/
+
+    public function streets()
+    {
+        return $this->belongsToMany(Street::class,
+            'elective_plots_streets',
+            'elective_plot_id',
+            'street_id'
+        );
     }
 
     public function houses()
