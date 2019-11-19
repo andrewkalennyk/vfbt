@@ -19,11 +19,6 @@
                     <div class="w-1/3 bg-grey-light h-12">{{ citizen.add_phone }}</div>
                 </div>
                 <div class="flex -mb-3">
-                    <div class="w-1/3 bg-grey-light h-12">Категория</div>
-                    <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.category }}</div>
-                </div>
-                <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12"># посв</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.certificate_number }}</div>
@@ -44,42 +39,58 @@
                     <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.comment }}</div>
                 </div>
 
+                <div class="font-bold text-xl mb-4">Категорії </div>
+
+                <div class="flex -mb-3" v-if="citizen.search_categories.length" v-for="category in citizen.search_categories">
+                    <div class="w-1/3 bg-grey-light h-12"></div>
+                    <div class="w-1/3 bg-grey h-12"></div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ category }}</div>
+                </div>
+
+                <div class="font-bold text-xl mb-4">Статуси </div>
+
+                <div class="flex -mb-3" v-if="citizen.statuses.length" v-for="status in citizen.statuses">
+                    <div class="w-1/3 bg-grey-light h-12"></div>
+                    <div class="w-1/3 bg-grey h-12"></div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ status }}</div>
+                </div>
+
                 <div class="font-bold text-xl mb-4">Адресса </div>
 
                 <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Громадська приймальня</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.office }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.office }}</div>
                 </div>
                 <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Дільниця</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.elective_plot }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.elective_plot }}</div>
                 </div>
                 <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Bулиця</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.street }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.street }}</div>
                 </div>
                 <div class="flex -mb-3">
                     <div class="w-1/3 bg-grey-light h-12">Дім</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.house }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.house }}</div>
                 </div>
-                <div class="flex -mb-3">
+                <div class="flex -mb-3" v-if="citizen.flat">
                     <div class="w-1/3 bg-grey-light h-12">Квартира</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.flat }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.flat }}</div>
                 </div>
-                <div class="flex -mb-3">
+                <div class="flex -mb-3" v-if="citizen.entrance">
                     <div class="w-1/3 bg-grey-light h-12">Під'їзд</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.entrance }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.entrance }}</div>
                 </div>
-                <div class="flex -mb-3">
+                <div class="flex -mb-3" v-if="citizen.floor">
                     <div class="w-1/3 bg-grey-light h-12">Поверх</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.floor }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.floor }}</div>
                 </div>
             </div>
         </div>

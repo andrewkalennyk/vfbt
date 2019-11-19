@@ -34,7 +34,7 @@ class SearchController extends \App\Http\Controllers\Controller
         }
 
         foreach ($citizens as $citizen) {
-            $citizen->category = $citizen->getCategoryTitle();
+            //$citizen->category = $citizen->getCategoryTitle();
             $citizen->birthDay = $citizen->getBirthDate();
             $citizen->black_list = $citizen->isInBlackList();
             $citizen->office = $citizen->getOfficeTitle();
@@ -44,8 +44,9 @@ class SearchController extends \App\Http\Controllers\Controller
             $citizen->flat = $citizen->getFlatTitle();
             $citizen->type_list = $citizen->getListTitle();
             $citizen->list_reason = $citizen->getListReason();
+            $citizen->statuses = explode(',<br>', $citizen->index_status);
+            $citizen->search_categories = explode(',<br>', $citizen->index_category);
         }
-
         return $citizens;
     }
 

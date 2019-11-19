@@ -227,6 +227,7 @@ export default {
                 }
             });
             this.citizen = citizen;
+            console.log(this.citizen);
             this.findCitizens = [];
             this.newCitizenForm = false;
         },

@@ -871,6 +871,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
             this.citizen = citizen;
+            console.log(this.citizen);
             this.findCitizens = [];
             this.newCitizenForm = false;
         },
@@ -1081,6 +1082,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenView',
@@ -1099,205 +1111,266 @@ var render = function() {
   return _c("div", { attrs: { id: "citizenView" } }, [
     _vm.citizen
       ? _c("div", { staticClass: "mt-6  rounded overflow-hidden shadow-lg" }, [
-          _c("div", { staticClass: "px-6 py-4" }, [
-            _c("div", { staticClass: "font-bold text-xl mb-4" }, [
-              _vm._v(
-                _vm._s(_vm.citizen.last_name) +
-                  " " +
-                  _vm._s(_vm.citizen.first_name) +
-                  " " +
-                  _vm._s(_vm.citizen.patronymic_name)
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Дата Народження")
+          _c(
+            "div",
+            { staticClass: "px-6 py-4" },
+            [
+              _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+                _vm._v(
+                  _vm._s(_vm.citizen.last_name) +
+                    " " +
+                    _vm._s(_vm.citizen.first_name) +
+                    " " +
+                    _vm._s(_vm.citizen.patronymic_name)
+                )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(_vm.citizen.birthDay))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Телефон")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(_vm.citizen.phone))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Телефон (дод.)")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(_vm.citizen.add_phone))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Категория")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.category))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("# посв")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.certificate_number))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Список")
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.type_list))
-              ])
-            ]),
-            _vm._v(" "),
-            this.citizen.type_list && this.citizen.list_reason
-              ? _c("div", { staticClass: "flex -mb-3" }, [
-                  _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                    _vm._v("Повідомлення")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
-                    _vm._v(" — ")
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                    _vm._v(_vm._s(this.citizen.list_reason))
-                  ])
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Дата Народження")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.birthDay))
                 ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Комментар")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.comment))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "font-bold text-xl mb-4" }, [
-              _vm._v("Адресса ")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Громадська приймальня")
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Телефон")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.phone))
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.office))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Дільниця")
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Телефон (дод.)")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.add_phone))
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.elective_plot))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Bулиця")
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("# посв")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(this.citizen.certificate_number))
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.street))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Дім")
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Список")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(this.citizen.type_list))
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              this.citizen.type_list && this.citizen.list_reason
+                ? _c("div", { staticClass: "flex -mb-3" }, [
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v("Повідомлення")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                      _vm._v(" — ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v(_vm._s(this.citizen.list_reason))
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.house))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Квартира")
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Комментар")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(this.citizen.comment))
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.flat))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Під'їзд")
+              _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+                _vm._v("Категорії ")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._l(_vm.citizen.search_categories, function(category) {
+                return _vm.citizen.search_categories.length
+                  ? _c("div", { staticClass: "flex -mb-3" }, [
+                      _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 bg-grey h-12" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                        _vm._v(_vm._s(category))
+                      ])
+                    ])
+                  : _vm._e()
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.entrance))
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "flex -mb-3" }, [
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v("Поверх")
+              _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+                _vm._v("Статуси ")
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [_vm._v(" — ")]),
+              _vm._l(_vm.citizen.statuses, function(status) {
+                return _vm.citizen.statuses.length
+                  ? _c("div", { staticClass: "flex -mb-3" }, [
+                      _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 bg-grey h-12" }),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                        _vm._v(_vm._s(status))
+                      ])
+                    ])
+                  : _vm._e()
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                _vm._v(_vm._s(this.citizen.floor))
-              ])
-            ])
-          ])
+              _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+                _vm._v("Адресса ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Громадська приймальня")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.office))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Дільниця")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.elective_plot))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Bулиця")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.street))
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v("Дім")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                  _vm._v(" — ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                  _vm._v(_vm._s(_vm.citizen.house))
+                ])
+              ]),
+              _vm._v(" "),
+              _vm.citizen.flat
+                ? _c("div", { staticClass: "flex -mb-3" }, [
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v("Квартира")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                      _vm._v(" — ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v(_vm._s(_vm.citizen.flat))
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.citizen.entrance
+                ? _c("div", { staticClass: "flex -mb-3" }, [
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v("Під'їзд")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                      _vm._v(" — ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v(_vm._s(_vm.citizen.entrance))
+                    ])
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.citizen.floor
+                ? _c("div", { staticClass: "flex -mb-3" }, [
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v("Поверх")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey h-12" }, [
+                      _vm._v(" — ")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
+                      _vm._v(_vm._s(_vm.citizen.floor))
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
         ])
       : _vm._e()
   ])

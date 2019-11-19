@@ -40,12 +40,12 @@ trait PrepareFindInfo
 
     public function getHouseTitle()
     {
-        return !empty($this->general_info->house) ? $this->general_info->house->title : '—';
+        return !empty($this->general_info->house) ? $this->general_info->house->index_title : '—';
     }
 
     public function getFlatTitle()
     {
-        return !empty($this->general_info->flat_number) ? $this->general_info->flat_number : '—';
+        return !empty($this->general_info->flat_number) ? $this->general_info->flat_number : '';
     }
 
     public function getListTitle()
