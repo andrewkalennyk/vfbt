@@ -57,4 +57,14 @@ trait PrepareFindInfo
     {
         return $this->bad_list_reason ? $this->bad_list_reason->message : '-';
     }
+
+    public function getEntranceTitle()
+    {
+        return $this->house_citizens ? $this->house_citizens->entrance : '';
+    }
+
+    public function getFloorTitle()
+    {
+        return $this->house_citizens ? $this->house_citizens->floor : '';
+    }
 }

@@ -1321,7 +1321,7 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm.citizen.flat
+              this.citizen.flat
                 ? _c("div", { staticClass: "flex -mb-3" }, [
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
                       _vm._v("Квартира")
@@ -1332,12 +1332,12 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                      _vm._v(_vm._s(_vm.citizen.flat))
+                      _vm._v(_vm._s(this.citizen.flat))
                     ])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.citizen.entrance
+              this.citizen.entrance
                 ? _c("div", { staticClass: "flex -mb-3" }, [
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
                       _vm._v("Під'їзд")
@@ -1348,12 +1348,12 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                      _vm._v(_vm._s(_vm.citizen.entrance))
+                      _vm._v(_vm._s(this.citizen.entrance))
                     ])
                   ])
                 : _vm._e(),
               _vm._v(" "),
-              _vm.citizen.floor
+              this.citizen.floor
                 ? _c("div", { staticClass: "flex -mb-3" }, [
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
                       _vm._v("Поверх")
@@ -1364,7 +1364,7 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "w-1/3 bg-grey-light h-12" }, [
-                      _vm._v(_vm._s(_vm.citizen.floor))
+                      _vm._v(_vm._s(this.citizen.floor))
                     ])
                   ])
                 : _vm._e()

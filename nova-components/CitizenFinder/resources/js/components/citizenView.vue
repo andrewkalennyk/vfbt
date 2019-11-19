@@ -77,20 +77,20 @@
                     <div class="w-1/3 bg-grey h-12"> — </div>
                     <div class="w-1/3 bg-grey-light h-12">{{ citizen.house }}</div>
                 </div>
-                <div class="flex -mb-3" v-if="citizen.flat">
+                <div class="flex -mb-3" v-if="this.citizen.flat">
                     <div class="w-1/3 bg-grey-light h-12">Квартира</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.flat }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.flat }}</div>
                 </div>
-                <div class="flex -mb-3" v-if="citizen.entrance">
+                <div class="flex -mb-3" v-if="this.citizen.entrance">
                     <div class="w-1/3 bg-grey-light h-12">Під'їзд</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.entrance }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.entrance }}</div>
                 </div>
-                <div class="flex -mb-3" v-if="citizen.floor">
+                <div class="flex -mb-3" v-if="this.citizen.floor">
                     <div class="w-1/3 bg-grey-light h-12">Поверх</div>
                     <div class="w-1/3 bg-grey h-12"> — </div>
-                    <div class="w-1/3 bg-grey-light h-12">{{ citizen.floor }}</div>
+                    <div class="w-1/3 bg-grey-light h-12">{{ this.citizen.floor }}</div>
                 </div>
             </div>
         </div>

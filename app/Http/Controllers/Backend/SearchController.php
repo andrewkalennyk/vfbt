@@ -42,6 +42,8 @@ class SearchController extends \App\Http\Controllers\Controller
             $citizen->street = $citizen->getStreetTitle();
             $citizen->house = $citizen->getHouseTitle();
             $citizen->flat = $citizen->getFlatTitle();
+            $citizen->entrance = $citizen->getEntranceTitle();
+            $citizen->floor = $citizen->getFloorTitle();
             $citizen->type_list = $citizen->getListTitle();
             $citizen->list_reason = $citizen->getListReason();
             $citizen->statuses = explode(',<br>', $citizen->index_status);
