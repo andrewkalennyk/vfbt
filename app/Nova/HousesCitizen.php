@@ -77,7 +77,7 @@ class HousesCitizen extends Resource
                 ->get('/get-entities-by-house/{house_id}/floors_number')
                 ->parent('house_id'),
 
-            AjaxSelect::make(__('Квартира'), 'floor')
+            AjaxSelect::make(__('Квартира'), 'flat_number')
                 ->get('/get-entities-by-house/{house_id}/flat_number')
                 ->parent('house_id'),
 

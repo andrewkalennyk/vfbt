@@ -135,6 +135,8 @@ class Citizen extends Resource
 
             Text::make('Статуси', 'index_status')->exceptOnForms()->asHtml(),
 
+            Text::make('Адресса', 'detail_address')->onlyOnDetail()->asHtml(),
+
             Boolean::make(__('Чи є посвідчення?'), 'is_certificate')
                 ->trueValue(1)
                 ->falseValue(0)

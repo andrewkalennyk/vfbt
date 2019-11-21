@@ -53,9 +53,7 @@ class RegionalEstablishment extends BaseClass
 
     public function houses()
     {
-        $houseIds = House::where('street_id', $this->street_id)->pluck('id');
-        return $this->belongsToMany(House::class, 'regional_establishment_house', 'regional_establishment_id', 'house_id')
-            ->whereIn('house_id', $houseIds);
+        return $this->belongsToMany(House::class, 'regional_establishment_house', 'regional_establishment_id', 'house_id');
     }
 
     public function getPhoneIndexAttribute()

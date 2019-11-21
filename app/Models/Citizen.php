@@ -113,6 +113,28 @@ class Citizen extends Model
         return $this->categories->pluck('title')->implode(',<br>');
     }
 
+    public function getDetailAddressAttribute()
+    {
+        $house = $this->house_citizens;
+
+        if ($house) {
+            $streetTitle = $house->street ? $house->street->title : '';
+            $houseTitle = $house->house ? $house->house->index_title : '';
+            $floorTitle = $house->floor ? $house->floor . '(поверх)' : '';
+            $entranceTitle = $house->entrance ? $house->entrance . "(під'їзд)" : '';
+            $flatTitle = $house->flat_number ? $house->flat_number . '(квартира)' : '';
+
+            $addressTitle = $streetTitle . ' ' . $houseTitle;
+
+            if (!$house->is_private) {
+                $addressTitle = $addressTitle . '</br>' . $entranceTitle . '</br>' . $floorTitle . '</br>' . $flatTitle;
+            }
+            return $addressTitle;
+        }
+
+        return ' - ';
+    }
+
     public function getIndexStatusAttribute()
     {
         $statuses = $this->citizen_statuses;
@@ -216,7 +238,6 @@ class Citizen extends Model
             ->where('first_name', 'like', $input['first_name'])
             ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
-
 
 
 }
