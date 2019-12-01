@@ -2,7 +2,9 @@
 
 namespace App\Nova;
 
+use Annyk\ImportFiles\ImportFiles;
 use App\Models\GeneralInfoCitizen;
+use App\Nova\Actions\CitizenExport;
 use App\Nova\Filters\CitizenElectivePlotFilter;
 use App\Nova\Filters\CitizenOfficeFilter;
 use App\Nova\Filters\CitizensCategoryFilter;
@@ -262,7 +264,10 @@ class Citizen extends Resource
      */
     public function actions(Request $request)
     {
-        return [];
+        libxml_use_internal_errors(true);
+        return [
+            (new CitizenExport()),
+        ];
     }
 
     public static function indexQuery(NovaRequest $request, $query)

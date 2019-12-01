@@ -10,6 +10,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Textarea;
 use NovaAjaxSelect\AjaxSelect;
 use Dniccum\PhoneNumber\PhoneNumber;
+use Benjacho\BelongsToManyField\BelongsToManyField;
 
 class RegionalEstablishment extends HandBookResource
 {
@@ -75,7 +76,12 @@ class RegionalEstablishment extends HandBookResource
 
             BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen'),
 
-            BelongsToMany::make(__('Будинки'), 'houses', 'App\Nova\House')
+            BelongsToManyField::make(__('Будинки'), 'houses', 'App\Nova\House')
+                ->options(\App\Models\House::where('street_id',$this->street_id)->get())
+                ->optionsLabel('title')
+
+
+           // BelongsToMany::make(__('Будинки'), 'houses', 'App\Nova\House')
 
         ];
     }
