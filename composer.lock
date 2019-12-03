@@ -1,19 +1,18 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "d67b0bc1ceed1df3272f30d81e07f6e3",
     "packages": [
         {
             "name": "annyk/citizen-finder",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/CitizenFinder",
-                "reference": "ffa8c3597862cc5c2d6444b89d3b66fe9541c9c8",
-                "shasum": null
+                "reference": "ffa8c3597862cc5c2d6444b89d3b66fe9541c9c8"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -42,12 +41,11 @@
         },
         {
             "name": "annyk/exportHandBooks",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/ExportHandBooks",
-                "reference": "84d365e4e44598153bc67035dda157878ccdb604",
-                "shasum": null
+                "reference": "84d365e4e44598153bc67035dda157878ccdb604"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -76,12 +74,11 @@
         },
         {
             "name": "annyk/import-files",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/ImportFiles",
-                "reference": "f309a9d74f849dfe858e227cdc7beff215f5db2f",
-                "shasum": null
+                "reference": "f309a9d74f849dfe858e227cdc7beff215f5db2f"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -110,12 +107,11 @@
         },
         {
             "name": "annyk/navigation-builder",
-            "version": "9999999-dev",
+            "version": "dev-master",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/NavigationBuilder",
-                "reference": "e81729c64685e169d4a2b76ce6197c3ac6dc269c",
-                "shasum": null
+                "reference": "e81729c64685e169d4a2b76ce6197c3ac6dc269c"
             },
             "require": {
                 "php": ">=7.1.0"
@@ -948,8 +944,7 @@
             "dist": {
                 "type": "path",
                 "url": "./nova20",
-                "reference": "145b8daa2cee422e828fc75d39bce148863ee326",
-                "shasum": null
+                "reference": "145b8daa2cee422e828fc75d39bce148863ee326"
             },
             "require": {
                 "cakephp/chronos": "^1.0",
@@ -2893,30 +2888,31 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.2.8",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "1ea878bd3af18f934dedb8c0de60656a9a31a718"
+                "reference": "8bccc59e61b41963d14c3dbdb23181e5c932a1d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/1ea878bd3af18f934dedb8c0de60656a9a31a718",
-                "reference": "1ea878bd3af18f934dedb8c0de60656a9a31a718",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/8bccc59e61b41963d14c3dbdb23181e5c932a1d5",
+                "reference": "8bccc59e61b41963d14c3dbdb23181e5c932a1d5",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
+                "symfony/mime": "^4.3|^5.0",
                 "symfony/polyfill-mbstring": "~1.1"
             },
             "require-dev": {
                 "predis/predis": "~1.0",
-                "symfony/expression-language": "~3.4|~4.0"
+                "symfony/expression-language": "^3.4|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.2-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -2943,7 +2939,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-01T08:36:31+00:00"
+            "time": "2019-11-28T13:33:56+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -3035,6 +3031,68 @@
             "time": "2019-05-01T13:31:08+00:00"
         },
         {
+            "name": "symfony/mime",
+            "version": "v4.4.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/mime.git",
+                "reference": "010cc488e56cafe5f7494dea70aea93100c234df"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/010cc488e56cafe5f7494dea70aea93100c234df",
+                "reference": "010cc488e56cafe5f7494dea70aea93100c234df",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/polyfill-intl-idn": "^1.10",
+                "symfony/polyfill-mbstring": "^1.0"
+            },
+            "conflict": {
+                "symfony/mailer": "<4.4"
+            },
+            "require-dev": {
+                "egulias/email-validator": "^2.1.10",
+                "symfony/dependency-injection": "^3.4|^4.1|^5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Mime\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "A library to manipulate MIME messages",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "mime",
+                "mime-type"
+            ],
+            "time": "2019-11-30T08:27:26+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.11.0",
             "source": {
@@ -3079,7 +3137,7 @@
                 },
                 {
                     "name": "Gert de Pagter",
-                    "email": "backendtea@gmail.com"
+                    "email": "BackEndTea@gmail.com"
                 }
             ],
             "description": "Symfony polyfill for ctype functions",
@@ -3215,16 +3273,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.11.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/fe5e94c604826c35a32fa832f35bd036b6799609",
-                "reference": "fe5e94c604826c35a32fa832f35bd036b6799609",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -3236,7 +3294,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.11-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -3270,7 +3328,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-02-06T07:57:58+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
