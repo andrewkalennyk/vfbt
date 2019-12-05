@@ -79,6 +79,7 @@ class RegionalEstablishment extends HandBookResource
             BelongsToManyField::make(__('Будинки'), 'houses', 'App\Nova\House')
                 ->options(\App\Models\House::where('street_id',$this->street_id)->get())
                 ->optionsLabel('title')
+                ->showOnUpdating()
 
 
            // BelongsToMany::make(__('Будинки'), 'houses', 'App\Nova\House')
