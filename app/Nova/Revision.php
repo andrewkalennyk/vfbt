@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\DateTime;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
@@ -80,6 +81,8 @@ class Revision extends Resource
             Text::make(__('Силка'), 'link')
                 ->asHtml()
                 ->nullable(),
+
+            DateTime::make(__('Дата Створення'), 'created_at'),
         ];
     }
 
