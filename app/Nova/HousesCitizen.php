@@ -56,6 +56,9 @@ class HousesCitizen extends Resource
         return [
             ID::make()->sortable(),
 
+            Text::make(__('Дільниця'), 'index_elective_plot')
+                ->onlyOnIndex(),
+
             BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
 
             AjaxSelect::make(__('Будинок'), 'house_id')

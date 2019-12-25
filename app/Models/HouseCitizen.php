@@ -66,4 +66,17 @@ class HouseCitizen extends Model
         return $this->citizen_status ? $this->citizen_status->title : '';
     }
 
+    public function getIndexElectivePlotAttribute()
+    {
+        $street = $this->street;
+
+        $electivePlots = '';
+
+        if ($street) {
+            $electivePlots = $street->electivePlots->pluck('title')->implode(',');
+        }
+
+        return $electivePlots;
+    }
+
 }
