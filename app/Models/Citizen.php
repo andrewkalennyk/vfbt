@@ -14,6 +14,7 @@ use App\Traits\RevisionMaker;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
@@ -147,6 +148,17 @@ class Citizen extends Model
         return implode($indexStatuses, ',<br>');
     }
 
+    public function getBadListStatusAttribute()
+    {
+        $transList = [
+            'grey' => 'Сірий',
+            'black' => 'Чорний'
+        ];
+
+        $typeList = $this->type_list ?? '';
+
+        return Arr::get($transList, $typeList, '');
+    }
 
     public static function importCitizen($item)
     {
@@ -238,6 +250,16 @@ class Citizen extends Model
             ->where('first_name', 'like', $input['first_name'])
             ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
+
+    public function scopeExportCitiesFilter($query, $filters) {
+        if ($filters) {
+            foreach ($filters as $filter) {
+                $query = $filter->filter->apply(request(), $query, $filter->value);
+            }
+        }
+        return $query;
+    }
+
 
 
 }

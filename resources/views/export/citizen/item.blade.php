@@ -18,7 +18,5 @@
         @endif
     </td>
     <td align="left" valign="middle">{{$citizen->comment}}</td>
-    <td align="left" valign="middle">
-        {{$citizen->bad_list ? $citizen->bad_list->type : ''}}
-    </td>
+    <td align="left" valign="middle">{{$citizen->bad_list_status}}</td>
 </tr>

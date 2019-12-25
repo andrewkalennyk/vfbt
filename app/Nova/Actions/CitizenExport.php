@@ -30,10 +30,9 @@ class CitizenExport extends ExportFromView implements FromView, ShouldAutoSize
     public function getCitizens()
     {
         $ids = explode(',', $this->request->get('resources'));
-
         if (Arr::first($ids) == 'all') {
-            //$filters = $this->request->filters();
-            return Citizen::all();
+            $filters = $this->request->filters();
+            return Citizen::exportCitiesFilter($filters)->get();
         }
 
         return Citizen::whereIn('id', $ids)->get();

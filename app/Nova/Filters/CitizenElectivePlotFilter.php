@@ -2,6 +2,7 @@
 
 namespace App\Nova\Filters;
 
+use App\Models\ElectivePlot;
 use App\Models\Street;
 use AwesomeNova\Filters\DependentFilter;
 use Illuminate\Http\Request;
@@ -19,7 +20,9 @@ class CitizenElectivePlotFilter extends DependentFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        $streetsIds = Street::where('elective_plot_id', $value)->pluck('id');
+        $electivePlot = ElectivePlot::with('streets')->find($value);
+
+        $streetsIds = $electivePlot->streets->pluck('id');
 
         return $query->whereHas('house_citizens', function ($subQuery) use($streetsIds) {
             return $subQuery->whereIn('street_id', $streetsIds);

@@ -10,8 +10,10 @@ use App\Nova\Filters\CitizenOfficeFilter;
 use App\Nova\Filters\CitizensCategoryFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
+use App\Nova\Filters\FlatFilter;
 use Dniccum\PhoneNumber\PhoneNumber;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
+use Illuminate\Support\Arr;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -31,6 +33,7 @@ use App\Models\House;
 use App\Models\Street;
 use App\Models\ElectivePlot;
 use App\Models\Office;
+use App\Models\HouseCitizen;
 
 class Citizen extends Resource
 {
@@ -161,9 +164,9 @@ class Citizen extends Resource
 
             NovaDependencyContainer::make([
                 Select::make(__('Тип'), 'type_list')->options([
-                    'grey' => 'Grey',
-                    'black' => 'Black'
-                ]),
+                    'grey' => 'Сірий',
+                    'black' => 'Чорний'
+                ])->nullable(),
 
                 AjaxSelect::make(__('Повідомлення'), 'bad_list_reason_id')
                     ->get('/api/type-list/{type_list}')
@@ -240,6 +243,23 @@ class Citizen extends Resource
                 ->withOptions(function (Request $request, $filters) {
                     return House::filter($filters)->pluck('title', 'id');
                 }),
+            FlatFilter::make('Квартира', 'flat_number')
+                ->dependentOf('house_id')
+                ->withOptions(function (Request $request, $filters) {
+                    $house = House::find(Arr::get($filters, 'house_id'));
+                    $entities = collect([]);
+                    $i = 1;
+                    if ($house) {
+                        if ($house->flat_number && !$house->is_private) {
+                            for ($i; $i <= $house->flat_number; $i++) {
+                                $entities[$i] = $i;
+                            }
+                        }
+                    }
+
+                    return $entities;
+                }),
+
             new CitizensCategoryFilter()
 
         ];
