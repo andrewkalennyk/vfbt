@@ -26,6 +26,10 @@ class BadListReasons extends HandBookResource
         return 'Причини попадання у список';
     }
 
+    public static $search = [
+        'id', 'type', 'message'
+    ];
+
     public static $title = 'message';
 
 
@@ -35,9 +39,9 @@ class BadListReasons extends HandBookResource
             ID::make()->sortable(),
 
             Select::make(__('Тип'), 'type')->options([
-                'grey' => 'Grey',
-                'black' => 'Black'
-            ]),
+                'grey' => 'Сірий',
+                'black' => 'Чорний'
+            ])->displayUsingLabels(),
 
             Text::make(__('Повідомлення'), 'message')
                 ->rules('required', 'max:255'),

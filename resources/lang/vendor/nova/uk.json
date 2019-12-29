@@ -1,6 +1,7 @@
 {
     "Actions": "Дії",
     "Details": "Деталі",
+    ":resource Details": "Деталі",
     "If you did not request a password reset, no further action is required.": "Якщо Ви не запитували скидання пароля, ніяких додаткових дій не потрібно.",
     "Reset Password": "Скидання Пароля",
     "Sorry! You are not authorized to perform this action.": "Шкода! Ви не авторизовані для виконання цієї дії.",
@@ -29,7 +30,8 @@
     "Restore": "Відновити",
     "Force Delete Resource": "Примусово Вилучити Ресурс",
     "Force Delete": "Примусово Видалити",
-    "The :resource was created!": ":resource був створений!",
+    "The :resource was created!": ":resource Створено!",
+    "The :resource was deleted!": ":resource Видалено!",
     "Are you sure you want to delete this resource?": "Ви впевнені, що хочете видалити цей ресурс?",
     "Are you sure you want to delete the selected resources?": "Ви впевнені, що хочете вилучити вибрані ресурси?",
     "Are you sure you want to detach this resource?": "Ви впевнені, що хочете відключити цей ресурс?",
@@ -51,6 +53,8 @@
     "Choose an option": "Виберіть варіант",
     "Click to choose": "Натисніть, щоб вибрати",
     "Create": "Створити",
+    "Create :resource": "Створити",
+    "create ": "Створити",
     "Create & Add Another": "Створити & Додавання іншого",
     "Delete File": "Видалити Файл ",
     "Edit": "Редагувати",
@@ -62,6 +66,7 @@
     "Next": "Далі",
     "Only Trashed": "Тільки Мотлох",
     "Per Page:": "На Сторінці:",
+    "Per Page": "На Сторінці",
     "Please select a resource to perform this action on.": "Будь ласка, виберіть ресурс для виконання цієї дії.",
     "Preview": "Попередній перегляд",
     "Previous": "Попередні",
@@ -74,6 +79,7 @@
     "The government won\\'t let us show you what\\'s behind these doors": "Уряд виграв\\'т дозвольте нам показати вам, що за цими дверима",
     "This image": "Цей образ",
     "Update": "Оновлення",
+    "Update :resource": "Оновлення",
     "Update & Continue Editing": "Оновити & продовжити редагування",
     "View": "Вид",
     "We\\'re lost in space. The page your were trying to view does not exist.": "Ми\\'повторно втратив в космосі. На сторінці ви намагаєтесь переглянути не існує.",
@@ -351,5 +357,6 @@
     "Citizen Count": "Кількість громадян",
     "Search": "Пошук",
     "of": "з",
-    "Filter Menux": "Меню Фільтрації"
+    "Filter Menux": "Меню Фільтрації",
+    "Press / to search": "Нажміть для пошуку"
 }
