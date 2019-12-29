@@ -40,6 +40,6 @@ class CitizensCategoryFilter extends Filter
      */
     public function options(Request $request)
     {
-        return CitizensCategory::select('id','title')->pluck('id','title');
+        return CitizensCategory::select('id','title')->orderBy('title','asc')->pluck('id','title');
     }
 }
