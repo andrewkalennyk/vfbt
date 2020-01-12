@@ -6,6 +6,7 @@ use App\Models\HouseCitizen;
 use AwesomeNova\Filters\DependentFilter;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 
 class FlatFilter extends DependentFilter
 {
@@ -22,15 +23,16 @@ class FlatFilter extends DependentFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        $filters = $request->filters();
-
+        $filters = json_decode(base64_decode($request->get('filters')), true);
 
         return $query->whereHas('house_citizens', function ($subQuery) use($filters) {
 
             if ($filters) {
                 foreach ($filters as $filter) {
-                    if (in_array($filter->filter->attribute, ['flat_number'])) {
-                        $subQuery = $subQuery->where($filter->filter->attribute, $filter->value);
+                    $class = Arr::get($filter, 'class');
+                    $value = Arr::get($filter, 'value');
+                    if (in_array($class, ['flat_number']) && $value) {
+                        $subQuery = $subQuery->where($class, $value);
                     }
 
                 }
