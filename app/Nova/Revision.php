@@ -31,7 +31,7 @@ class Revision extends Resource
      * @var array
      */
     public static $search = [
-        'id',
+        'id','old_value','new_value'
     ];
 
     public static $group = 'Користувачі';
