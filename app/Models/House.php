@@ -57,12 +57,12 @@ class House extends BaseClass
 
     public function street()
     {
-       return $this->belongsTo('App\Models\Street');
+        return $this->belongsTo('App\Models\Street');
     }
 
     public function citizens()
     {
-        return $this->belongsToMany('App\Models\Citizen','houses_citizens')->withPivot('citizen_status_id');
+        return $this->belongsToMany('App\Models\Citizen', 'houses_citizens')->withPivot('citizen_status_id');
     }
 
     public function house_citizens()
@@ -75,6 +75,11 @@ class House extends BaseClass
         return $this->belongsTo('App\Models\ElectivePlot');
     }
 
+    public function citizenCitizenStatuses()
+    {
+        return $this->hasMany(CitizenCitizenStatus::class, 'house_id', 'id')->with('citizen');
+    }
+
     public function getTypeLabel()
     {
         return Arr::get($this->typeLabel, $this->type, '');
@@ -82,7 +87,20 @@ class House extends BaseClass
 
     public function getIndexTitleAttribute()
     {
-        return $this->title . ' ' . $this->getTypeLabel() ;
+        return $this->title . ' ' . $this->getTypeLabel();
+    }
+
+    public function getResponsibleAttribute()
+    {
+        $citizens = $this->citizenCitizenStatuses->pluck('citizen.full_name', 'citizen.id');
+        $html = '';
+        if ($citizens->count()) {
+            foreach ($citizens as $id => $citizen) {
+                $html .= '<a href="/admin/resources/citizens/' . $id . '" class="no-underline font-bold dim text-primary">' . $citizen . '</a><br>';
+            }
+        }
+
+        return $html;
     }
 
     public function scopeByStreet($query, $id)

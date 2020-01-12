@@ -98,7 +98,11 @@ class House extends HandBookResource
 
             HasMany::make(__("Зв'язок з громадянином"), 'house_citizens', 'App\Nova\HouseCitizen')->onlyOnDetail(false),
 
-            Textarea::make(__('Коментар'),'description')->alwaysShow()
+            Textarea::make(__('Коментар'),'description')->alwaysShow(),
+
+             Text::make(__('Відповідальний'), 'responsible')
+                 ->asHtml()
+                 ->onlyOnDetail(),
         ];
     }
 

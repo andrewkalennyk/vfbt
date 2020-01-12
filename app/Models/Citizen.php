@@ -148,6 +148,11 @@ class Citizen extends Model
         return implode($indexStatuses, ',<br>');
     }
 
+    public function getFullNameAttribute()
+    {
+        return $this->last_name . ' ' . $this->first_name . ' ' . $this->patronymic_name;
+    }
+
     public function getBadListStatusAttribute()
     {
         $transList = [
@@ -251,7 +256,8 @@ class Citizen extends Model
             ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
 
-    public function scopeExportCitiesFilter($query, $filters) {
+    public function scopeExportCitiesFilter($query, $filters)
+    {
         if ($filters) {
             foreach ($filters as $filter) {
                 $query = $filter->filter->apply(request(), $query, $filter->value);
@@ -259,7 +265,6 @@ class Citizen extends Model
         }
         return $query;
     }
-
 
 
 }
