@@ -110,7 +110,6 @@ class House extends BaseClass
 
     public function scopeFilter($query, $filters)
     {
-
         if (Arr::get($filters, 'street_id')) {
             $query = $query->where('street_id', Arr::get($filters, 'street_id'));
         }
