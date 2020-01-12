@@ -68,15 +68,15 @@ class HouseCitizen extends Model
 
     public function getIndexElectivePlotAttribute()
     {
-        $street = $this->street;
+        return $this->house && $this->house->elective_plot ? $this->house->elective_plot->title : '-';
 
-        $electivePlots = '';
+        /*$electivePlots = '';
 
-        if ($street) {
+        if ($house) {
             $electivePlots = $street->electivePlots->pluck('title')->implode(',');
         }
 
-        return $electivePlots;
+        return $electivePlots;*/
     }
 
 }

@@ -121,14 +121,15 @@ class Citizen extends Model
         if ($house) {
             $streetTitle = $house->street ? $house->street->title : '';
             $houseTitle = $house->house ? $house->house->index_title : '';
-            $floorTitle = $house->floor ? $house->floor . '(поверх)' : '';
-            $entranceTitle = $house->entrance ? $house->entrance . "(під'їзд)" : '';
+            $floorTitle = $house->floor ? $house->floor . '(поверх)</br>' : '';
+            $entranceTitle = $house->entrance ? $house->entrance . "(під'їзд)". '</br>' : '';
             $flatTitle = $house->flat_number ? $house->flat_number . '(квартира)' : '';
+            $electivePlot = $house->house && $house->house->elective_plot ? $house->house->elective_plot->title . ' (дільниця)<br>' : '';
 
-            $addressTitle = $streetTitle . ' ' . $houseTitle;
+            $addressTitle = $electivePlot . $streetTitle . ' ' . $houseTitle . '</br>';
 
             if (!$house->is_private) {
-                $addressTitle = $addressTitle . '</br>' . $entranceTitle . '</br>' . $floorTitle . '</br>' . $flatTitle;
+                $addressTitle = $addressTitle  . $entranceTitle  . $floorTitle . $flatTitle;
             }
             return $addressTitle;
         }
