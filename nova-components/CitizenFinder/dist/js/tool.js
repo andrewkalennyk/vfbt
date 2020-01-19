@@ -805,6 +805,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -814,6 +821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     directives: { mask: __WEBPACK_IMPORTED_MODULE_0_vue_the_mask__["mask"] },
     mounted: function mounted() {
         this.getInfo();
+        this.getUserRole();
     },
     data: function data() {
         return {
@@ -822,13 +830,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             citizen: false,
             noCitizens: false,
             newCitizenForm: false,
+            userRole: '',
             electivePlotId: '',
             streetId: '',
             houseId: '',
             electivePlots: [],
             streets: [],
             houses: [],
-            findCitizens: []
+            findCitizens: [],
+            error: false
         };
     },
 
@@ -837,31 +847,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         newCitizenView: __WEBPACK_IMPORTED_MODULE_2__newCitizenView___default.a
     },
     methods: {
-        processFind: function processFind() {
+
+        checkForm: function checkForm() {
+            this.error = false;
+            if (this.userRole === 'worker') {
+                if (!this.lastName && !this.certificateNumber) {
+                    this.$toasted.error('Введіть прізвище або Номер посвідчення!');
+                    this.error = true;
+                }
+            }
+        },
+
+        getUserRole: function getUserRole() {
             var _this = this;
 
-            this.working = true;
-            Nova.request().post('/search-citizen', {
-                first_name: this.firstName,
-                last_name: this.lastName,
-                patronymic_name: this.patronymicName,
-                phone: this.phone,
-                date_birth: this.birthDate,
-                certificate_number: this.certificateNumber,
-                elective_plot_id: this.electivePlotId,
-                street_id: this.streetId,
-                house_id: this.houseId
-            }).then(function (_ref) {
+            Nova.request().post('/get-user-role').then(function (_ref) {
                 var data = _ref.data;
 
-                _this.findCitizens = data.citizens;
-                if (data.citizens.length === 0) {
-                    _this.$toasted.error('Нічого не знайдено!');
-                } else {
-                    _this.$toasted.success(data.message);
-                }
-                _this.working = false;
+                _this.userRole = data.role;
             });
+        },
+
+        processFind: function processFind() {
+            var _this2 = this;
+
+            this.checkForm();
+            if (!this.error) {
+                this.working = true;
+                Nova.request().post('/search-citizen', {
+                    first_name: this.firstName,
+                    last_name: this.lastName,
+                    patronymic_name: this.patronymicName,
+                    phone: this.phone,
+                    date_birth: this.birthDate,
+                    certificate_number: this.certificateNumber,
+                    elective_plot_id: this.electivePlotId,
+                    street_id: this.streetId,
+                    house_id: this.houseId
+                }).then(function (_ref2) {
+                    var data = _ref2.data;
+
+                    _this2.findCitizens = data.citizens;
+                    if (data.citizens.length === 0) {
+                        _this2.$toasted.error('Нічого не знайдено!');
+                    } else {
+                        _this2.$toasted.success(data.message);
+                    }
+                    _this2.working = false;
+                });
+            }
         },
         choseCitizen: function choseCitizen(event) {
             var citizen = false;
@@ -876,26 +910,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.newCitizenForm = false;
         },
         getInfo: function getInfo() {
-            var _this2 = this;
-
-            Nova.request().post('/get-info-for-new').then(function (_ref2) {
-                var data = _ref2.data;
-
-                _this2.electivePlots = data.elective_plots;
-                _this2.streets = data.streets;
-            });
-        },
-        changeStreet: function changeStreet() {
             var _this3 = this;
 
-            Nova.request().post('/get-related-entities-by-street', {
-                street_id: this.streetId
-            }).then(function (_ref3) {
+            Nova.request().post('/get-info-for-new').then(function (_ref3) {
                 var data = _ref3.data;
 
                 _this3.electivePlots = data.elective_plots;
-                _this3.houses = data.houses;
-                console.log(_this3.houseId);
+                _this3.streets = data.streets;
+            });
+        },
+        changeStreet: function changeStreet() {
+            var _this4 = this;
+
+            Nova.request().post('/get-related-entities-by-street', {
+                street_id: this.streetId
+            }).then(function (_ref4) {
+                var data = _ref4.data;
+
+                _this4.electivePlots = data.elective_plots;
+                _this4.houses = data.houses;
+                console.log(_this4.houseId);
             });
         },
         changeHouse: function changeHouse() {
@@ -920,14 +954,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }
         },
         changeElectivePlot: function changeElectivePlot() {
-            var _this4 = this;
+            var _this5 = this;
 
             Nova.request().post('/get-related-entities-by-elective-plot', {
                 elective_plot_id: this.electivePlotId
-            }).then(function (_ref4) {
-                var data = _ref4.data;
+            }).then(function (_ref5) {
+                var data = _ref5.data;
 
-                _this4.streets = data.streets;
+                _this5.streets = data.streets;
             });
         },
         openForm: function openForm() {

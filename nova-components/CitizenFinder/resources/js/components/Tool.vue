@@ -3,6 +3,13 @@
         <heading class="mb-6">Citizen Finder</heading>
 
         <card class="bg-white flex flex-col rounded" style="min-height: 300px">
+            <!--<div class="px-8 pt-6 pb-8 bg-grey-lighter" v-if="this.errors.length">
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <strong class="font-bold">Помилка!</strong>
+                    <span class="block sm:inline" v-for="error in errors">{{error}}</span>
+                </div>
+            </div>-->
+
             <form class="px-8 pt-6 pb-8" @submit.prevent="processFind">
                 <div class="flex mb-4">
                     <div class="w-1/3 mt-2 ml-2 mr-2">
@@ -168,6 +175,7 @@ export default {
     directives: {mask},
     mounted() {
         this.getInfo();
+        this.getUserRole();
     },
     data() {
         return {
@@ -176,6 +184,7 @@ export default {
             citizen: false,
             noCitizens: false,
             newCitizenForm: false,
+            userRole: '',
             electivePlotId: '',
             streetId: '',
             houseId: '',
@@ -183,6 +192,7 @@ export default {
             streets: [],
             houses:[],
             findCitizens: [],
+            error: false,
         }
     },
     components: {
@@ -191,32 +201,55 @@ export default {
     },
     methods: {
 
-        processFind() {
-            this.working = true;
+        checkForm: function () {
+            this.error = false;
+            if (this.userRole === 'worker') {
+                if (!this.lastName && !this.certificateNumber) {
+                    this.$toasted.error('Введіть прізвище або Номер посвідчення!');
+                    this.error = true;
+                }
+            }
+
+        },
+
+        getUserRole : function () {
             Nova.request()
-                .post(
-                    '/search-citizen',
-                    {
-                        first_name: this.firstName,
-                        last_name: this.lastName,
-                        patronymic_name: this.patronymicName,
-                        phone: this.phone,
-                        date_birth: this.birthDate,
-                        certificate_number: this.certificateNumber,
-                        elective_plot_id: this.electivePlotId,
-                        street_id: this.streetId,
-                        house_id: this.houseId,
-                    }
-                )
+                .post('/get-user-role')
                 .then(({data}) => {
-                    this.findCitizens = data.citizens;
-                    if (data.citizens.length === 0) {
-                        this.$toasted.error('Нічого не знайдено!');
-                    } else {
-                        this.$toasted.success(data.message);
-                    }
-                    this.working = false;
+                    this.userRole = data.role;
                 })
+        },
+
+        processFind() {
+            this.checkForm();
+            if (!this.error) {
+                this.working = true;
+                Nova.request()
+                    .post(
+                        '/search-citizen',
+                        {
+                            first_name: this.firstName,
+                            last_name: this.lastName,
+                            patronymic_name: this.patronymicName,
+                            phone: this.phone,
+                            date_birth: this.birthDate,
+                            certificate_number: this.certificateNumber,
+                            elective_plot_id: this.electivePlotId,
+                            street_id: this.streetId,
+                            house_id: this.houseId,
+                        }
+                    )
+                    .then(({data}) => {
+                        this.findCitizens = data.citizens;
+                        if (data.citizens.length === 0) {
+                            this.$toasted.error('Нічого не знайдено!');
+                        } else {
+                            this.$toasted.success(data.message);
+                        }
+                        this.working = false;
+                    })
+            }
+
         },
 
         choseCitizen(event) {

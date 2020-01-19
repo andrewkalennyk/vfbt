@@ -37,4 +37,23 @@ class InfoController extends \App\Http\Controllers\Controller
 
     }
 
+    public function getUserRole()
+    {
+        $user = \request()->user();
+
+        if ($user->isSuperAdmin()){
+            return [
+                'role' => 'admin'
+            ];
+        } elseif ($user->isCoordinator()) {
+            return [
+                'role' => 'coordinator'
+            ];
+        } else {
+            return [
+                'role' => 'worker'
+            ];
+        }
+    }
+
 }

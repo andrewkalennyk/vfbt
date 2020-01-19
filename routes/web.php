@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/import-general-info','Backend\ImportInfoController@doImport');
     Route::post('/search-citizen','Backend\SearchController@doSearch');
     Route::post('/get-info-for-new','Backend\InfoController@getInfo');
+    Route::post('/get-user-role','Backend\InfoController@getUserRole');
     Route::post('/save-citizen','Backend\CitizenController@saveCitizen');
 
     Route::post('get-related-entities-by-street', 'Backend\SearchController@getEntititesByStreet');
