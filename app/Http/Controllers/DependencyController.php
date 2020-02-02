@@ -13,7 +13,7 @@ class DependencyController extends Controller
 
     public function getHousesByStreet($streetId)
     {
-        return House::byStreet($streetId)->get()->map(function ($item) {
+        return House::byStreet($streetId)->orderBy('title','asc')->get()->map(function ($item) {
             return ['value' => $item->id, 'display' => $item->title];
         });
     }
