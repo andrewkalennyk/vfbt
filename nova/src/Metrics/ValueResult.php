@@ -56,6 +56,13 @@ class ValueResult implements JsonSerializable
     public $format;
 
     /**
+     * Determines whether a value of 0 counts as "No Current Data".
+     *
+     * @var bool
+     */
+    public $zeroResult = false;
+
+    /**
      * Create a new value result instance.
      *
      * @param  mixed  $value
@@ -155,6 +162,19 @@ class ValueResult implements JsonSerializable
     }
 
     /**
+     * Sets the zeroResult value.
+     *
+     * @param  bool  $zeroResult
+     * @return $this
+     */
+    public function allowZeroResult($zeroResult = true)
+    {
+        $this->zeroResult = $zeroResult;
+
+        return $this;
+    }
+
+    /**
      * Prepare the metric result for JSON serialization.
      *
      * @return array
@@ -169,6 +189,7 @@ class ValueResult implements JsonSerializable
             'suffix' => $this->suffix,
             'suffixInflection' => $this->suffixInflection,
             'format' => $this->format,
+            'zeroResult' => $this->zeroResult,
         ];
     }
 }

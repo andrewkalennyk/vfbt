@@ -6,8 +6,8 @@ use DateTime;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Nova\Actions\ActionEvent;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 
 class ResourceAttachController extends Controller
 {
@@ -31,7 +31,7 @@ class ResourceAttachController extends Controller
                 )
             );
 
-            ActionEvent::forAttachedResource($request, $model, $pivot)->save();
+            Nova::actionEvent()->forAttachedResource($request, $model, $pivot)->save();
 
             $pivot->save();
 

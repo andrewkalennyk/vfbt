@@ -57,7 +57,7 @@ class Action implements JsonSerializable
     public $withoutConfirmation = false;
 
     /**
-     * Indicates if this action is only available on the resource detail view.
+     * Indicates if this action is only available on the resource index view.
      *
      * @var bool
      */
@@ -69,6 +69,27 @@ class Action implements JsonSerializable
      * @var bool
      */
     public $onlyOnDetail = false;
+
+    /**
+     * Indicates if this action is available on the resource index view.
+     *
+     * @var bool
+     */
+    public $showOnIndex = true;
+
+    /**
+     * Indicates if this action is available on the resource detail view.
+     *
+     * @var bool
+     */
+    public $showOnDetail = true;
+
+    /**
+     * Indicates if this action is available on the resource's table row.
+     *
+     * @var bool
+     */
+    public $showOnTableRow = false;
 
     /**
      * The current batch ID being handled by the action.
@@ -90,6 +111,27 @@ class Action implements JsonSerializable
      * @var int
      */
     public static $chunkCount = 200;
+
+    /**
+     * The text to be used for the action's confirm button.
+     *
+     * @var string
+     */
+    public $confirmButtonText = 'Run Action';
+
+    /**
+     * The text to be used for the action's cancel button.
+     *
+     * @var string
+     */
+    public $cancelButtonText = 'Cancel';
+
+    /**
+     * The text to be used for the action's confirmation text.
+     *
+     * @var string
+     */
+    public $confirmText = 'Are you sure you want to run this action?';
 
     /**
      * Determine if the action is executable for the given request.
@@ -150,7 +192,7 @@ class Action implements JsonSerializable
      * Return a Vue router response from the action.
      *
      * @param  string  $path
-     * @param  array   $query
+     * @param  array  $query
      * @return array
      */
     public static function push($path, $query = [])
@@ -214,8 +256,8 @@ class Action implements JsonSerializable
                 }
 
                 return DispatchAction::forModels(
-                    $request, $this, $method, $models, $fields
-                );
+                $request, $this, $method, $models, $fields
+            );
             }
         );
 
@@ -229,8 +271,8 @@ class Action implements JsonSerializable
     /**
      * Handle chunk results.
      *
-     * @param  \Laravel\Nova\Fields\ActionFields $fields
-     * @param  array $results
+     * @param  \Laravel\Nova\Fields\ActionFields  $fields
+     * @param  array  $results
      *
      * @return mixed
      */
@@ -247,7 +289,7 @@ class Action implements JsonSerializable
      */
     protected function markAsFinished($model)
     {
-        return $this->batchId ? ActionEvent::markAsFinished($this->batchId, $model) : 0;
+        return $this->batchId ? Nova::actionEvent()->markAsFinished($this->batchId, $model) : 0;
     }
 
     /**
@@ -259,7 +301,7 @@ class Action implements JsonSerializable
      */
     protected function markAsFailed($model, $e = null)
     {
-        return $this->batchId ? ActionEvent::markAsFailed($this->batchId, $model, $e) : 0;
+        return $this->batchId ? Nova::actionEvent()->markAsFailed($this->batchId, $model, $e) : 0;
     }
 
     /**
@@ -294,7 +336,23 @@ class Action implements JsonSerializable
     public function onlyOnIndex($value = true)
     {
         $this->onlyOnIndex = $value;
-        $this->onlyOnDetail = ! $value;
+        $this->showOnIndex = $value;
+        $this->showOnDetail = ! $value;
+        $this->showOnTableRow = ! $value;
+
+        return $this;
+    }
+
+    /**
+     * Indicate that this action is available except on the resource index view.
+     *
+     * @return $this
+     */
+    public function exceptOnIndex()
+    {
+        $this->showOnDetail = true;
+        $this->showOnTableRow = true;
+        $this->showOnIndex = false;
 
         return $this;
     }
@@ -308,7 +366,88 @@ class Action implements JsonSerializable
     public function onlyOnDetail($value = true)
     {
         $this->onlyOnDetail = $value;
-        $this->onlyOnIndex = ! $value;
+        $this->showOnDetail = $value;
+        $this->showOnIndex = ! $value;
+        $this->showOnTableRow = ! $value;
+
+        return $this;
+    }
+
+    /**
+     * Indicate that this action is available except on the resource detail view.
+     *
+     * @return $this
+     */
+    public function exceptOnDetail()
+    {
+        $this->showOnIndex = true;
+        $this->showOnDetail = false;
+        $this->showOnTableRow = true;
+
+        return $this;
+    }
+
+    /**
+     * Indicate that this action is only available on the resource's table row.
+     *
+     * @param  bool  $value
+     * @return $this
+     */
+    public function onlyOnTableRow($value = true)
+    {
+        $this->showOnTableRow = $value;
+        $this->showOnIndex = ! $value;
+        $this->showOnDetail = ! $value;
+
+        return $this;
+    }
+
+    /**
+     * Indicate that this action is available except on the resource's table row.
+     *
+     * @return $this
+     */
+    public function exceptOnTableRow()
+    {
+        $this->showOnTableRow = false;
+        $this->showOnIndex = true;
+        $this->showOnDetail = true;
+
+        return $this;
+    }
+
+    /**
+     * Show the action on the index view.
+     *
+     * @return $this
+     */
+    public function showOnIndex()
+    {
+        $this->showOnIndex = true;
+
+        return $this;
+    }
+
+    /**
+     * Show the action on the detail view.
+     *
+     * @return $this
+     */
+    public function showOnDetail()
+    {
+        $this->showOnDetail = true;
+
+        return $this;
+    }
+
+    /**
+     * Show the action on the table row.
+     *
+     * @return $this
+     */
+    public function showOnTableRow()
+    {
+        $this->showOnTableRow = true;
 
         return $this;
     }
@@ -366,13 +505,13 @@ class Action implements JsonSerializable
      */
     public function uriKey()
     {
-        return Str::slug($this->name());
+        return Str::slug($this->name(), '-', null);
     }
 
     /**
      * Set the action to execute instantly.
      *
-     * @return string
+     * @return $this
      */
     public function withoutConfirmation()
     {
@@ -394,6 +533,91 @@ class Action implements JsonSerializable
     }
 
     /**
+     * Determine if the action is to be shown on the index view.
+     *
+     * @return bool
+     */
+    public function shownOnIndex()
+    {
+        if ($this->onlyOnIndex == true) {
+            return true;
+        }
+
+        if ($this->onlyOnDetail) {
+            return false;
+        }
+
+        return $this->showOnIndex;
+    }
+
+    /**
+     * Determine if the action is to be shown on the detail view.
+     *
+     * @return bool
+     */
+    public function shownOnDetail()
+    {
+        if ($this->onlyOnDetail) {
+            return true;
+        }
+
+        if ($this->onlyOnIndex) {
+            return false;
+        }
+
+        return $this->showOnDetail;
+    }
+
+    /**
+     * Determine if the action is to be sown on the table row.
+     *
+     * @return bool
+     */
+    public function shownOnTableRow()
+    {
+        return $this->showOnTableRow;
+    }
+
+    /**
+     * Set the text for the action's confirmation button.
+     *
+     * @param $text
+     * @return $this
+     */
+    public function confirmButtonText($text)
+    {
+        $this->confirmButtonText = $text;
+
+        return $this;
+    }
+
+    /**
+     * Set the text for the action's cancel button.
+     *
+     * @param $text
+     * @return $this
+     */
+    public function cancelButtonText($text)
+    {
+        $this->cancelButtonText = $text;
+
+        return $this;
+    }
+
+    /**
+     * Set the text for the action's confirmation message.
+     *
+     * @param $text
+     * @return $this
+     */
+    public function confirmText($text)
+    {
+        $this->confirmText = $text;
+
+        return $this;
+    }
+
+    /**
      * Prepare the action for JSON serialization.
      *
      * @return array
@@ -401,15 +625,19 @@ class Action implements JsonSerializable
     public function jsonSerialize()
     {
         return array_merge([
+            'cancelButtonText' => __($this->cancelButtonText),
             'component' => $this->component(),
+            'confirmButtonText' => __($this->confirmButtonText),
+            'confirmText' => __($this->confirmText),
             'destructive' => $this instanceof DestructiveAction,
             'name' => $this->name(),
             'uriKey' => $this->uriKey(),
             'fields' => collect($this->fields())->each->resolve(new class {
             })->all(),
             'availableForEntireResource' => $this->availableForEntireResource,
-            'onlyOnDetail' => $this->onlyOnDetail,
-            'onlyOnIndex' => $this->onlyOnIndex,
+            'showOnDetail' => $this->shownOnDetail(),
+            'showOnIndex' => $this->shownOnIndex(),
+            'showOnTableRow' => $this->shownOnTableRow(),
             'withoutConfirmation' => $this->withoutConfirmation,
         ], $this->meta());
     }

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Laravel\Nova\Actions\ActionResource;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Http\Middleware\RedirectIfAuthenticated;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -118,6 +119,13 @@ class Nova
     public static $jsonVariables = [];
 
     /**
+     * The callback used to report Nova's exceptions.
+     *
+     * @var \Closure
+     */
+    public static $reportCallback;
+
+    /**
      * Indicates if Nova should register its migrations.
      *
      * @var bool
@@ -132,13 +140,20 @@ class Nova
     public static $translations = [];
 
     /**
+     * The callback used to sort Nova resources in the sidebar.
+     *
+     * @var \Closure
+     */
+    public static $sortCallback;
+
+    /**
      * Get the current Nova version.
      *
      * @return string
      */
     public static function version()
     {
-        return '2.3.1';
+        return '2.10.1';
     }
 
     /**
@@ -199,6 +214,7 @@ class Nova
                 'singularLabel' => $resource::singularLabel(),
                 'authorizedToCreate' => $resource::authorizedToCreate($request),
                 'searchable' => $resource::searchable(),
+                'perPageOptions' => $resource::perPageOptions(),
             ], $resource::additionalInformation($request));
         })->values()->all();
     }
@@ -214,14 +230,16 @@ class Nova
         return collect(static::$resources)->filter(function ($resource) use ($request) {
             return $resource::authorizedToViewAny($request) &&
                    $resource::availableForNavigation($request);
-        })->all();
+        })
+            ->sortBy(static::sortResourcesWith())
+            ->all();
     }
 
     /**
      * Get the resources available for the given request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return array
+     * @return \Illuminate\Support\Collection
      */
     public static function globallySearchableResources(Request $request)
     {
@@ -239,7 +257,9 @@ class Nova
      */
     public static function resources(array $resources)
     {
-        static::$resources = array_merge(static::$resources, $resources);
+        static::$resources = array_unique(
+            array_merge(static::$resources, $resources)
+        );
 
         return new static;
     }
@@ -292,7 +312,8 @@ class Nova
             );
 
             if (is_subclass_of($resource, Resource::class) &&
-                ! (new ReflectionClass($resource))->isAbstract()) {
+                ! (new ReflectionClass($resource))->isAbstract() &&
+                ! (is_subclass_of($resource, ActionResource::class))) {
                 $resources[] = $resource;
             }
         }
@@ -835,6 +856,33 @@ class Nova
     }
 
     /**
+     * Register the callback used to set a custom Nova error reporter.
+     *
+     * @var \Closure
+     *
+     * @param \Closure $callback
+     * @return static
+     */
+    public static function report($callback)
+    {
+        static::$reportCallback = $callback;
+
+        return new static;
+    }
+
+    /**
+     * Enable theming-friendly CSS classes for Nova's built-in Vue components.
+     *
+     * @return static
+     */
+    public static function enableThemingClasses()
+    {
+        static::provideToScript(['themingClasses' => true]);
+
+        return new static;
+    }
+
+    /**
      * Dynamically proxy static method calls.
      *
      * @param  string  $method
@@ -848,5 +896,52 @@ class Nova
         }
 
         return static::${$method};
+    }
+
+    /**
+     * Return the configured ActionResource class.
+     *
+     * @return \Laravel\Nova\Actions\ActionResource
+     */
+    public static function actionResource()
+    {
+        return config('nova.actions.resource');
+    }
+
+    /**
+     * Return a new instance of the configured ActionEvent.
+     *
+     * @return \Laravel\Nova\Actions\ActionEvent
+     */
+    public static function actionEvent()
+    {
+        return static::actionResource()::newModel();
+    }
+
+    /**
+     * Register the callback used to sort Nova resources in the sidebar.
+     *
+     * @var \Closure
+     *
+     * @param \Closure $callback
+     * @return static
+     */
+    public static function sortResourcesBy($callback)
+    {
+        static::$sortCallback = $callback;
+
+        return new static;
+    }
+
+    /**
+     * Get the sorting strategy to use for Nova resources.
+     *
+     * @return array
+     */
+    public static function sortResourcesWith()
+    {
+        return static::$sortCallback ?? function ($resource) {
+            return $resource::label();
+        };
     }
 }

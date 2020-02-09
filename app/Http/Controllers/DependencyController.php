@@ -15,7 +15,7 @@ class DependencyController extends Controller
     {
         return House::byStreet($streetId)->orderBy('title','asc')->get()->map(function ($item) {
             return ['value' => $item->id, 'display' => $item->title];
-        });
+        })->sortBy('display',SORT_NUMERIC);
     }
 
     public function getEntityByHouse($houseId, $entityField)

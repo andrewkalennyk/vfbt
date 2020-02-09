@@ -7,6 +7,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 use InvalidArgumentException;
+use Laravel\Nova\Nova;
 
 abstract class Trend extends RangedMetric
 {
@@ -475,7 +476,7 @@ abstract class Trend extends RangedMetric
     {
         $query = $model instanceof Builder ? $model : (new $model)->newQuery();
 
-        $timezone = $request->timezone;
+        $timezone = Nova::resolveUserTimezone($request) ?? $request->timezone;
 
         $expression = (string) TrendDateExpressionFactory::make(
             $query, $dateColumn = $dateColumn ?? $query->getModel()->getCreatedAtColumn(),
@@ -704,5 +705,15 @@ abstract class Trend extends RangedMetric
                         ? __($date->format('F')).' '.$date->format('j').' - '.$date->format('g:i A')
                         : __($date->format('F')).' '.$date->format('j').' - '.$date->format('G:i');
         }
+    }
+
+    /**
+     * Get default timezone.
+     *
+     * @return mixed
+     */
+    private function getDefaultTimezone()
+    {
+        return request()->timezone;
     }
 }

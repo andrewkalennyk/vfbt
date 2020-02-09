@@ -5,8 +5,9 @@ namespace Laravel\Nova\Fields;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Laravel\Nova\Contracts\ListableField;
+use Laravel\Nova\Contracts\RelatableField;
 
-class HasMany extends Field implements ListableField
+class HasMany extends Field implements ListableField, RelatableField
 {
     /**
      * The field's component.
@@ -100,18 +101,18 @@ class HasMany extends Field implements ListableField
     }
 
     /**
-     * Get additional meta information to merge with the field payload.
+     * Prepare the field for JSON serialization.
      *
      * @return array
      */
-    public function meta()
+    public function jsonSerialize()
     {
         return array_merge([
-            'resourceName' => $this->resourceName,
             'hasManyRelationship' => $this->hasManyRelationship,
             'listable' => true,
-            'singularLabel' => $this->singularLabel ?? Str::singular($this->name),
             'perPage'=> $this->resourceClass::$perPageViaRelationship,
-        ], $this->meta);
+            'resourceName' => $this->resourceName,
+            'singularLabel' => $this->singularLabel ?? Str::singular($this->name),
+        ], parent::jsonSerialize());
     }
 }

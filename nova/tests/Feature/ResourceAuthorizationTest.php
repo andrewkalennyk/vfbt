@@ -13,7 +13,7 @@ use Laravel\Nova\Tests\IntegrationTest;
 
 class ResourceAuthorizationTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
     }

@@ -52,6 +52,8 @@ class Relatable implements Rule
             return false;
         }
 
+//        dd($this->relationshipIsFull($model, $attribute, $value));
+
         if ($this->relationshipIsFull($model, $attribute, $value)) {
             return false;
         }
@@ -80,6 +82,10 @@ class Relatable implements Rule
 
         if ($inverseRelation && $this->request->resourceId) {
             $modelBeingUpdated = $this->request->findModelOrFail();
+
+            if (is_null($modelBeingUpdated->{$attribute})) {
+                return false;
+            }
 
             if ($modelBeingUpdated->{$attribute}->getKey() == $value) {
                 return false;

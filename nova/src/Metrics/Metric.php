@@ -11,12 +11,21 @@ use Laravel\Nova\Nova;
 
 abstract class Metric extends Card
 {
+    use HasHelpText;
+
     /**
      * The displayable name of the metric.
      *
      * @var string
      */
     public $name;
+
+    /**
+     * Indicates whether the metric should be refreshed when actions run.
+     *
+     * @var bool
+     */
+    public $refreshWhenActionRuns = false;
 
     /**
      * Calculate the metric's value.
@@ -90,7 +99,19 @@ abstract class Metric extends Card
      */
     public function uriKey()
     {
-        return Str::slug($this->name());
+        return Str::slug($this->name(), '-', null);
+    }
+
+    /**
+     * Set whether the metric should refresh when actions are run.
+     *
+     * @param  bool  $value
+     */
+    public function refreshWhenActionRuns($value = true)
+    {
+        $this->refreshWhenActionRuns = $value;
+
+        return $this;
     }
 
     /**
@@ -104,6 +125,9 @@ abstract class Metric extends Card
             'class' => get_class($this),
             'name' => $this->name(),
             'uriKey' => $this->uriKey(),
+            'helpWidth' => $this->getHelpWidth(),
+            'helpText' => $this->getHelpText(),
+            'refreshWhenActionRuns' => $this->refreshWhenActionRuns,
         ]);
     }
 }

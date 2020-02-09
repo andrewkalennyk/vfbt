@@ -40,10 +40,12 @@ class Image extends File
     {
         parent::__construct($name, $attribute, $disk, $storageCallback);
 
+        $this->acceptedTypes = 'image/*';
+
         $this->thumbnail(function () {
-            return $this->value ? Storage::disk($this->disk)->url($this->value) : null;
+            return $this->value ? Storage::disk($this->getStorageDisk())->url($this->value) : null;
         })->preview(function () {
-            return $this->value ? Storage::disk($this->disk)->url($this->value) : null;
+            return $this->value ? Storage::disk($this->getStorageDisk())->url($this->value) : null;
         });
     }
 
@@ -63,7 +65,7 @@ class Image extends File
     /**
      * Display the image thumbnail with full-rounded edges.
      *
-     * @return void
+     * @return $this
      */
     public function rounded()
     {

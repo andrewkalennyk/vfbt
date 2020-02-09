@@ -37,7 +37,7 @@ class TagResource extends Resource
     {
         return [
             ID::make('ID', 'id'),
-            MorphToMany::make('Videos', 'videos', PostResource::class)->display('title')->searchable()->fields(function () {
+            MorphToMany::make('Posts', 'posts', PostResource::class)->display('title')->searchable()->fields(function () {
                 return [
                     Text::make('Admin', 'admin')->rules('required'),
                 ];

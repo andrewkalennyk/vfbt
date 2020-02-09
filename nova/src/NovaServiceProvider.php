@@ -2,10 +2,11 @@
 
 namespace Laravel\Nova;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Nova\Actions\ActionResource;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Tools\Dashboard;
 use Laravel\Nova\Tools\ResourceManager;
@@ -27,9 +28,10 @@ class NovaServiceProvider extends ServiceProvider
         $this->registerResources();
         $this->registerTools();
         $this->registerCarbonMacros();
+        $this->registerCollectionMacros();
         $this->registerJsonVariables();
 
-        Nova::resources([ActionResource::class]);
+        Nova::resources([config('nova.actions.resource')]);
     }
 
     /**
@@ -142,8 +144,8 @@ class NovaServiceProvider extends ServiceProvider
      */
     protected function registerCarbonMacros()
     {
-        Carbon::macro('firstDayOfQuarter', new Macros\FirstDayOfQuarter);
-        Carbon::macro('firstDayOfPreviousQuarter', new Macros\FirstDayOfPreviousQuarter);
+        Carbon::mixin(new Macros\FirstDayOfQuarter);
+        Carbon::mixin(new Macros\FirstDayOfPreviousQuarter);
     }
 
     /**
@@ -199,5 +201,12 @@ class NovaServiceProvider extends ServiceProvider
             Console\UserCommand::class,
             Console\ValueCommand::class,
         ]);
+    }
+
+    protected function registerCollectionMacros()
+    {
+        Collection::macro('isAssoc', function () {
+            return Arr::isAssoc($this->toBase()->all());
+        });
     }
 }

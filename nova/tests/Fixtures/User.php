@@ -49,6 +49,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the first of the profiles that belong to the user.
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
      * Get all of the posts that belong to the user.
      */
     public function posts()

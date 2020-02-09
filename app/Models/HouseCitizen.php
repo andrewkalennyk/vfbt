@@ -43,7 +43,7 @@ class HouseCitizen extends Model
 
     public function street()
     {
-        return $this->belongsTo('App\Models\Street')->orderBy('title','ASC');
+        return $this->belongsTo('App\Models\Street')->orderBy('title','asc');
     }
 
     public function citizen()

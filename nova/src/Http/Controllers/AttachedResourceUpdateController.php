@@ -6,8 +6,8 @@ use Illuminate\Routing\Controller;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Laravel\Nova\Actions\ActionEvent;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 
 class AttachedResourceUpdateController extends Controller
 {
@@ -36,7 +36,7 @@ class AttachedResourceUpdateController extends Controller
 
             [$pivot, $callbacks] = $resource::fillPivot($request, $model, $pivot);
 
-            ActionEvent::forAttachedResourceUpdate($request, $model, $pivot)->save();
+            Nova::actionEvent()->forAttachedResourceUpdate($request, $model, $pivot)->save();
 
             $pivot->save();
 

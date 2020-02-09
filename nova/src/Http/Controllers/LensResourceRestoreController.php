@@ -4,8 +4,8 @@ namespace Laravel\Nova\Http\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
-use Laravel\Nova\Actions\ActionEvent;
 use Laravel\Nova\Http\Requests\RestoreLensResourceRequest;
+use Laravel\Nova\Nova;
 
 class LensResourceRestoreController extends Controller
 {
@@ -22,7 +22,7 @@ class LensResourceRestoreController extends Controller
                 $model->restore();
 
                 DB::table('action_events')->insert(
-                    ActionEvent::forResourceRestore($request->user(), collect([$model]))
+                    Nova::actionEvent()->forResourceRestore($request->user(), collect([$model]))
                                 ->map->getAttributes()->all()
                 );
             });

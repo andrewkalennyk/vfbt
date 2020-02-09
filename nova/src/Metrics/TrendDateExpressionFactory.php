@@ -3,10 +3,13 @@
 namespace Laravel\Nova\Metrics;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Traits\Macroable;
 use InvalidArgumentException;
 
 class TrendDateExpressionFactory
 {
+    use Macroable;
+
     /**
      * Create a new trend expression instance.
      *
@@ -18,7 +21,13 @@ class TrendDateExpressionFactory
      */
     public static function make(Builder $query, $column, $unit, $timezone)
     {
-        switch ($query->getConnection()->getDriverName()) {
+        $driver = $query->getConnection()->getDriverName();
+
+        if (static::hasMacro($driver)) {
+            return static::$driver($query, $column, $unit, $timezone);
+        }
+
+        switch ($driver) {
             case 'sqlite':
                 return new SqliteTrendDateExpression($query, $column, $unit, $timezone);
             case 'mysql':

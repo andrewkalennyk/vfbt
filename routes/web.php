@@ -37,6 +37,11 @@ Route::get('/test', function () {
     dr($ids);
 });
 
+Route::get('/test-order', function () {
+    $streets = \App\Models\Street::orderBy('title','asc')->pluck('title');
+    dr($streets);
+});
+
 Route::get('/mutators', function () {
     $citizen = \App\Models\Citizen::with('citizen_statuses')->find(93);
     dr($citizen);

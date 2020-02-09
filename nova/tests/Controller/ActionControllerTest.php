@@ -35,7 +35,7 @@ use Laravel\Nova\Tests\IntegrationTest;
 
 class ActionControllerTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -44,7 +44,7 @@ class ActionControllerTest extends IntegrationTest
         Action::$chunkCount = 200;
     }
 
-    public function tearDown() : void
+    public function tearDown(): void
     {
         unset($_SERVER['queuedAction.applied']);
         unset($_SERVER['queuedAction.appliedFields']);

@@ -141,6 +141,13 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     public $readonlyCallback;
 
     /**
+     * The callback used to determine if the field is required.
+     *
+     * @var Closure
+     */
+    public $requiredCallback;
+
+    /**
      * Create a new field.
      *
      * @param  string  $name
@@ -182,7 +189,7 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
      */
     public function stacked($stack = true)
     {
-        $this->stacked = true;
+        $this->stacked = $stack;
 
         return $this;
     }
@@ -205,11 +212,9 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
         if (! $this->displayCallback) {
             $this->resolve($resource, $attribute);
         } elseif (is_callable($this->displayCallback)) {
-            $value = data_get($resource, str_replace('->', '.', $attribute), $placeholder = new \stdClass());
-
-            if ($value !== $placeholder) {
-                $this->value = call_user_func($this->displayCallback, $value);
-            }
+            tap($this->resolveAttribute($resource, $attribute), function ($value) use ($resource, $attribute) {
+                $this->value = call_user_func($this->displayCallback, $value, $resource, $attribute);
+            });
         }
     }
 
@@ -233,11 +238,9 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
         if (! $this->resolveCallback) {
             $this->value = $this->resolveAttribute($resource, $attribute);
         } elseif (is_callable($this->resolveCallback)) {
-            $value = data_get($resource, str_replace('->', '.', $attribute), $placeholder = new \stdClass());
-
-            if ($value !== $placeholder) {
-                $this->value = call_user_func($this->resolveCallback, $value, $resource);
-            }
+            tap($this->resolveAttribute($resource, $attribute), function ($value) use ($resource, $attribute) {
+                $this->value = call_user_func($this->resolveCallback, $value, $resource, $attribute);
+            });
         }
     }
 
@@ -254,7 +257,7 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     }
 
     /**
-     * Define the callback that should be used to resolve the field's value.
+     * Define the callback that should be used to display the field's value.
      *
      * @param  callable  $displayCallback
      * @return $this
@@ -510,7 +513,7 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
 
         switch (get_class($this)) {
             case BelongsTo::class:
-                return $request->newResource()->resource->{$this->attribute}()->getForeignKeyName();
+                return $this->getRelationForeignKeyName($request->newResource()->resource->{$this->attribute}());
             default:
                 return $this->attribute;
         }
@@ -641,6 +644,45 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
     }
 
     /**
+     * Set the callback used to determine if the field is required.
+     *
+     * @param  Closure|bool  $callback
+     * @return $this
+     */
+    public function required($callback = true)
+    {
+        $this->requiredCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Determine if the field is required.
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return bool
+     */
+    public function isRequired(NovaRequest $request)
+    {
+        return with($this->requiredCallback, function ($callback) use ($request) {
+            if ($callback === true || (is_callable($callback) && call_user_func($callback, $request))) {
+                return true;
+            }
+
+            if (! empty($this->attribute) && is_null($callback)) {
+                if ($request->isCreateOrAttachRequest()) {
+                    return in_array('required', $this->getCreationRules($request)[$this->attribute]);
+                }
+
+                if ($request->isUpdateOrUpdateAttachedRequest()) {
+                    return in_array('required', $this->getUpdateRules($request)[$this->attribute]);
+                }
+            }
+
+            return false;
+        });
+    }
+
+    /**
      * Prepare the field for JSON serialization.
      *
      * @return array
@@ -658,6 +700,7 @@ abstract class Field extends FieldElement implements JsonSerializable, Resolvabl
             'sortable' => $this->sortable,
             'nullable' => $this->nullable,
             'readonly' => $this->isReadonly(app(NovaRequest::class)),
+            'required' => $this->isRequired(app(NovaRequest::class)),
             'textAlign' => $this->textAlign,
             'sortableUriKey' => $this->sortableUriKey(),
             'stacked' => $this->stacked,

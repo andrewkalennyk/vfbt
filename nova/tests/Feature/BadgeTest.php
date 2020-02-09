@@ -7,7 +7,7 @@ use Laravel\Nova\Tests\IntegrationTest;
 
 class BadgeTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
     }

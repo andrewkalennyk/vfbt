@@ -2,6 +2,7 @@
 
 namespace Laravel\Nova\Http\Controllers;
 
+use DateTime;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Arr;
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -25,7 +26,10 @@ class ScriptController extends Controller
 
         return response(
             file_get_contents($path),
-            200, ['Content-Type' => 'application/javascript']
-        );
+            200,
+            [
+                'Content-Type' => 'application/javascript',
+            ]
+        )->setLastModified(DateTime::createFromFormat('U', filemtime($path)));
     }
 }

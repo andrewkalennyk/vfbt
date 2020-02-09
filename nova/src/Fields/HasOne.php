@@ -4,8 +4,11 @@ namespace Laravel\Nova\Fields;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Contracts\ListableField;
+use Laravel\Nova\Contracts\RelatableField;
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 
-class HasOne extends Field implements ListableField
+class HasOne extends Field implements ListableField, RelatableField
 {
     /**
      * The field's component.
@@ -43,6 +46,13 @@ class HasOne extends Field implements ListableField
     public $hasOneRelationship;
 
     /**
+     * The callback use to determine if the HasOne field has already been filled.
+     *
+     * @var \Closure
+     */
+    public $filledCallback;
+
+    /**
      * Create a new field.
      *
      * @param  string  $name
@@ -59,6 +69,19 @@ class HasOne extends Field implements ListableField
         $this->resourceClass = $resource;
         $this->resourceName = $resource::uriKey();
         $this->hasOneRelationship = $this->attribute;
+        $this->singularLabel = $resource::singularLabel();
+
+        $this->filledCallback = function ($request) {
+            $resource = Nova::resourceForKey($request->viaResource);
+
+            if ($resource && $request->viaResourceId) {
+                $parent = $resource::newModel()->find($request->viaResourceId);
+
+                return ! is_null($parent->{$this->attribute});
+            }
+
+            return false;
+        };
     }
 
     /**
@@ -99,17 +122,43 @@ class HasOne extends Field implements ListableField
     }
 
     /**
-     * Get additional meta information to merge with the field payload.
+     * Prepare the field for JSON serialization.
      *
      * @return array
      */
-    public function meta()
+    public function jsonSerialize()
     {
+        $request = app(NovaRequest::class);
+
         return array_merge([
             'resourceName' => $this->resourceName,
             'hasOneRelationship' => $this->hasOneRelationship,
             'listable' => true,
-            'singularLabel' => $this->name,
-        ], $this->meta);
+            'singularLabel' => $this->singularLabel,
+            'alreadyFilled' => $this->alreadyFilled($request),
+        ], parent::jsonSerialize());
+    }
+
+    /**
+     * Set the Closure used to determine if the HasOne field has already been filled.
+     *
+     * @param $callback
+     */
+    public function alreadyFilledWhen($callback)
+    {
+        $this->filledCallback = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Determine if the HasOne field has alreaady been filled.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @return bool
+     */
+    public function alreadyFilled(NovaRequest $request)
+    {
+        return call_user_func($this->filledCallback, $request) ?? false;
     }
 }

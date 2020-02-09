@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Laravel\Nova\Contracts\RelatableField;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Http\Requests\ResourceIndexRequest;
 use Laravel\Nova\Nova;
@@ -13,7 +14,7 @@ use Laravel\Nova\Resource;
 use Laravel\Nova\Rules\Relatable;
 use Laravel\Nova\TrashedStatus;
 
-class MorphTo extends Field
+class MorphTo extends Field implements RelatableField
 {
     use ResolvesReverseRelation;
 
@@ -476,23 +477,23 @@ class MorphTo extends Field
     }
 
     /**
-     * Get additional meta information to merge with the field payload.
+     * Prepare the field for JSON serialization.
      *
      * @return array
      */
-    public function meta()
+    public function jsonSerialize()
     {
         $resourceClass = $this->resourceClass;
 
         return array_merge([
-            'resourceName' => $this->resourceName,
-            'resourceLabel' => $resourceClass ? $resourceClass::singularLabel() : null,
-            'morphToRelationship' => $this->morphToRelationship,
-            'morphToTypes' => $this->morphToTypes,
-            'morphToType' => $this->morphToType,
             'morphToId' => $this->morphToId,
-            'searchable' => $this->searchable,
+            'morphToRelationship' => $this->morphToRelationship,
+            'morphToType' => $this->morphToType,
+            'morphToTypes' => $this->morphToTypes,
+            'resourceLabel' => $resourceClass ? $resourceClass::singularLabel() : null,
+            'resourceName' => $this->resourceName,
             'reverse' => $this->isReverseRelation(app(NovaRequest::class)),
-        ], $this->meta);
+            'searchable' => $this->searchable,
+        ], parent::jsonSerialize());
     }
 }

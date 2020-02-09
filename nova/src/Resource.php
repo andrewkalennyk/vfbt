@@ -79,6 +79,20 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public static $globallySearchable = true;
 
     /**
+     * The number of results to display in the global search.
+     *
+     * @var int
+     */
+    public static $globalSearchResults = 5;
+
+    /**
+     * Where should the global search link to?
+     *
+     * @var string
+     */
+    public static $globalSearchLink = 'detail';
+
+    /**
      * The per-page options used the resource index.
      *
      * @var array
@@ -98,6 +112,13 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      * @var array
      */
     public static $softDeletes = [];
+
+    /**
+     * Indicates whether Nova should check for modifications between viewing and updating a resource.
+     *
+     * @var bool
+     */
+    public static $trafficCop = true;
 
     /**
      * The default displayable pivot class name.
@@ -180,6 +201,18 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public static function searchable()
     {
         return ! empty(static::$search) || static::usesScout();
+    }
+
+    /**
+     * Detetermine whether the global search links will take the user to the detail page.
+     *
+     * @param \Laravel\Nova\Http\Requests\NovaRequest $request
+     *
+     * @return string
+     */
+    public function globalSearchLink(NovaRequest $request)
+    {
+        return static::$globalSearchLink;
     }
 
     /**
@@ -288,6 +321,17 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     }
 
     /**
+     * Indicates whether Nova should check for modifications between viewing and updating a resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return  bool
+     */
+    public static function trafficCop(Request $request)
+    {
+        return static::$trafficCop;
+    }
+
+    /**
      * Filter and authorize the given values.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
@@ -311,6 +355,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
     public function serializeForIndex(NovaRequest $request, $fields = null)
     {
         return array_merge($this->serializeWithId($fields ?: $this->indexFields($request)), [
+            'actions' => $this->availableActions($request),
             'authorizedToView' => $this->authorizedToView($request),
             'authorizedToCreate' => $this->authorizedToCreate($request),
             'authorizedToUpdate' => $this->authorizedToUpdateForSerialization($request),
@@ -416,7 +461,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      * Return the location to redirect the user after creation.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \App\Nova\Resource  $resource
+     * @param  \Laravel\Nova\Resource  $resource
      * @return string
      */
     public static function redirectAfterCreate(NovaRequest $request, $resource)
@@ -428,7 +473,7 @@ abstract class Resource implements ArrayAccess, JsonSerializable, UrlRoutable
      * Return the location to redirect the user after update.
      *
      * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  \App\Nova\Resource  $resource
+     * @param  \Laravel\Nova\Resource  $resource
      * @return string
      */
     public static function redirectAfterUpdate(NovaRequest $request, $resource)

@@ -16,6 +16,7 @@ use Laravel\Nova\Tests\Fixtures\GroupedUserResource;
 use Laravel\Nova\Tests\Fixtures\NoopAction;
 use Laravel\Nova\Tests\Fixtures\PanelResource;
 use Laravel\Nova\Tests\Fixtures\PostResource;
+use Laravel\Nova\Tests\Fixtures\ProfileResource;
 use Laravel\Nova\Tests\Fixtures\RecipientResource;
 use Laravel\Nova\Tests\Fixtures\RoleResource;
 use Laravel\Nova\Tests\Fixtures\SoftDeletingFileResource;
@@ -39,7 +40,7 @@ abstract class IntegrationTest extends TestCase
      *
      * @return void
      */
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -58,18 +59,19 @@ abstract class IntegrationTest extends TestCase
             AddressResource::class,
             BooleanResource::class,
             CommentResource::class,
+            CustomKeyResource::class,
             FileResource::class,
+            ForbiddenUserResource::class,
+            GroupedUserResource::class,
             PanelResource::class,
             PostResource::class,
+            ProfileResource::class,
+            RecipientResource::class,
             RoleResource::class,
             SoftDeletingFileResource::class,
             TagResource::class,
             UserResource::class,
             UserWithRedirectResource::class,
-            ForbiddenUserResource::class,
-            GroupedUserResource::class,
-            CustomKeyResource::class,
-            RecipientResource::class,
         ]);
 
         Nova::auth(function () {
@@ -152,7 +154,6 @@ abstract class IntegrationTest extends TestCase
     protected function getPackageProviders($app)
     {
         return [
-            'Orchestra\Database\ConsoleServiceProvider',
             'Laravel\Nova\NovaCoreServiceProvider',
             'Laravel\Nova\NovaServiceProvider',
             'Laravel\Nova\Tests\TestServiceProvider',

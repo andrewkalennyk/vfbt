@@ -11,7 +11,7 @@ use Laravel\Nova\Tests\IntegrationTest;
 
 class LensResourceForceDeleteTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 

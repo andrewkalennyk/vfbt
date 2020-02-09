@@ -14,7 +14,7 @@ class Select extends Field
     /**
      * Set the options for the select menu.
      *
-     * @param  array|\Closure  $options
+     * @param  array|\Closure|\Illuminate\Support\Collection
      * @return $this
      */
     public function options($options)

@@ -12,7 +12,7 @@ use Laravel\Nova\Tests\IntegrationTest;
 
 class FieldControllerTest extends IntegrationTest
 {
-    public function setUp() : void
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -108,6 +108,18 @@ class FieldControllerTest extends IntegrationTest
     {
         $response = $this->withExceptionHandling()
                         ->get('/nova-api/users/creation-pivot-fields/roles');
+
+        $fields = collect($response->original);
+
+        $response->assertStatus(200);
+        $this->assertCount(1, $fields->where('attribute', 'admin'));
+        $this->assertCount(0, $fields->where('attribute', 'pivot-update'));
+    }
+
+    public function test_can_return_creation_pivot_fields_with_parent_belongs_to()
+    {
+        $response = $this->withoutExceptionHandling()
+            ->get('/nova-api/roles/creation-pivot-fields/users?editing=true&editMode=attach');
 
         $fields = collect($response->original);
 
