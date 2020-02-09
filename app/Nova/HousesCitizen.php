@@ -9,6 +9,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Fields\Text;
 use NovaAjaxSelect\AjaxSelect;
 
@@ -59,7 +60,8 @@ class HousesCitizen extends Resource
             Text::make(__('Дільниця'), 'index_elective_plot')
                 ->onlyOnIndex(),
 
-            BelongsTo::make(__('Вулиця'), 'street', 'App\Nova\Street'),
+            Select::make(__('Вулиця селект'), 'street_id')
+                ->options(\App\Models\Street::orderBy('title','asc')->pluck('title','id'))->displayUsingLabels(),
 
             AjaxSelect::make(__('Будинок'), 'house_id')
                 ->get('/get-houses-by-street/{street}')
