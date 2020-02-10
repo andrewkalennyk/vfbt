@@ -244,7 +244,12 @@ class Citizen extends Resource
                     if (!Arr::get($filters, 'street_id')) {
                         return [];
                     }
-                    return House::filter($filters)->orderBy('title','asc')->pluck('title', 'id');
+                    return House::filter($filters)
+                        ->orderBy('title','asc')
+                        ->pluck('title', 'id')
+                        ->sortBy('title', SORT_NUMERIC)
+                        ->values()
+                        ->all();
                 }),
             FlatFilter::make('Квартира', 'flat_number')
                 ->dependentOf('house_id')

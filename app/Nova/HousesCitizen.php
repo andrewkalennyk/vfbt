@@ -60,12 +60,12 @@ class HousesCitizen extends Resource
             Text::make(__('Дільниця'), 'index_elective_plot')
                 ->onlyOnIndex(),
 
-            Select::make(__('Вулиця селект'), 'street_id')
+            Select::make(__('Вулиця'), 'street_id')
                 ->options(\App\Models\Street::orderBy('title','asc')->pluck('title','id'))->displayUsingLabels(),
 
             AjaxSelect::make(__('Будинок'), 'house_id')
-                ->get('/get-houses-by-street/{street}')
-                ->parent('street'),
+                ->get('/get-houses-by-street/{street_id}')
+                ->parent('street_id'),
 
             CheckboxDependent::make(__('Приватний будинок'), 'is_private')
                 ->trueValue(1)

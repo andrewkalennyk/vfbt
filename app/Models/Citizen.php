@@ -197,7 +197,8 @@ class Citizen extends Model
         return $this->belongsToMany(CitizensCategory::class,
             'citizen_citizen_categories',
             'citizen_id',
-            'citizens_category_id');
+            'citizens_category_id')
+            ->orderBy('title','asc');
     }
 
     public function isBlack()
