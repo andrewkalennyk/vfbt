@@ -65,7 +65,7 @@ class CitizenCitizenStatus extends HandBookResource
             BelongsTo::make(__('Громадянин') ,'citizen','App\Nova\Citizen')->searchable(),
 
             Select::make(__('Cтатус'), 'citizen_status_id')
-                ->options(CitizensStatus::pluck('title','id'))->displayUsingLabels(),
+                ->options(CitizensStatus::orderBy('title','asc')->pluck('title','id'))->displayUsingLabels(),
 
             BelongsTo::make(__('Cтатус 2 категорія'), 'citizen_sub_status', 'App\Nova\CitizensSubStatus')->exceptOnForms(),
 
@@ -73,7 +73,7 @@ class CitizenCitizenStatus extends HandBookResource
 
             NovaDependency::make([
                 Select::make(__('Вулиця'), 'street_id')
-                    ->options(Street::pluck('title','id'))
+                    ->options(Street::orderBy('title','asc')->pluck('title','id'))
                     ->displayUsingLabels(),
 
                 AjaxSelect::make(__('Будинок'), 'house_id')

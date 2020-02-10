@@ -63,6 +63,8 @@ class Citizen extends Model
         'house_id'
     ];
 
+    protected $savingCategories = [];
+
 
     public function setFirstNameAttribute($value)
     {
@@ -166,6 +168,18 @@ class Citizen extends Model
         return Arr::get($transList, $typeList, '');
     }
 
+    public function getCategoriesListAttribute()
+    {
+        return !empty($this->categories) ? $this->categories->pluck('id')->all() : collect([]);
+    }
+
+    public function setCategoriesListAttribute($value)
+    {
+        $this->savingCategories = explode(",", $value);
+
+    }
+
+
     public static function importCitizen($item)
     {
         return Citizen::updateOrCreate(
@@ -197,7 +211,8 @@ class Citizen extends Model
         return $this->belongsToMany(CitizensCategory::class,
             'citizen_citizen_categories',
             'citizen_id',
-            'citizens_category_id');
+            'citizens_category_id')
+            ->orderBy('title','asc');
     }
 
     public function isBlack()
@@ -267,5 +282,18 @@ class Citizen extends Model
         return $query;
     }
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created( function ($object) {
+            $object->categories()->sync($object->savingCategories);
+        });
+
+        static::saved(function ($object) {
+            $object->categories()->sync($object->savingCategories);
+        });
+
+    }
 
 }
