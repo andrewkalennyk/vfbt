@@ -14,6 +14,7 @@ use App\Nova\Filters\FlatFilter;
 use Dniccum\PhoneNumber\PhoneNumber;
 use Epartment\NovaDependencyContainer\NovaDependencyContainer;
 use Illuminate\Support\Arr;
+use KossShtukert\LaravelNovaSelect2\Select2;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\BelongsToMany;
 use Laravel\Nova\Fields\Boolean;
@@ -138,6 +139,7 @@ class Citizen extends Resource
 
             Text::make('Категорії', 'index_category')->exceptOnForms()->asHtml(),
 
+
             Text::make('Статуси', 'index_status')->exceptOnForms()->asHtml(),
 
             Text::make('Адресса', 'detail_address')->onlyOnDetail()->asHtml(),
@@ -191,7 +193,18 @@ class Citizen extends Resource
 
             BelongsToMany::make(__('Акції'), 'promotions', 'App\Nova\Promotion'),
 
-            BelongsToMany::make(__('Категорії'), 'categories', 'App\Nova\CitizensCategory'),
+            Select2::make('Категорії', 'categories_list')
+                ->sortable()
+                ->options(\App\Models\CitizensCategory::orderBy('title', 'asc')->pluck('title', 'id'))
+                ->hideFromIndex()
+                ->configuration([
+                    'placeholder' => __('Виберіть категорію'),
+                    'allowClear' => true,
+                    'minimumResultsForSearch' => 1,
+                    'multiple' => true,
+                ]),
+
+            /*BelongsToMany::make(__('Категорії'), 'categories', 'App\Nova\CitizensCategory'),*/
 
             HasMany::make(__('Статуси'), 'citizen_statuses', 'App\Nova\CitizenCitizenStatus')->canSee(function () {
                 $user = \request()->user();
