@@ -240,17 +240,19 @@ class Citizen extends Resource
                 ->withOptions(function (Request $request, $filters) {
                     return Office::filter($filters)->orderBy('title','asc')->pluck('title', 'id');
                 }),
-                //->dependentOf(['elective_plot_id','street_id']),
+                //->dependentOf('elective_plot_id'),
             CitizenElectivePlotFilter::make('Дільниця', 'elective_plot_id')
                 ->withOptions(function (Request $request, $filters) {
                     return ElectivePlot::filter($filters)->orderBy('title','asc')->pluck('title', 'id');
-                }),
-                //->dependentOf(['office_id','street_id']),
+                })
+                ->dependentOf('office_id'),
             CitizenStreetHouseFilter::make('Вулиця', 'street_id')
                 ->withOptions(function (Request $request, $filters) {
-                    return Street::filter($filters)->orderBy('title','asc')->pluck('title', 'id');
-                }),
-                //->dependentOf(['office_id','house_id','elective_plot_id']),
+                    return Street::filter($filters)
+                        ->orderBy('title','asc')
+                        ->pluck('title', 'id');
+                })
+                ->dependentOf('elective_plot_id'),
             CitizenStreetHouseFilter::make('Будинок', 'house_id')
                 ->dependentOf('street_id')
                 ->withOptions(function (Request $request, $filters) {
@@ -259,10 +261,10 @@ class Citizen extends Resource
                     }
                     return House::filter($filters)
                         ->orderBy('title','asc')
-                        ->pluck('title', 'id')
+                        ->get()
                         ->sortBy('title', SORT_NUMERIC)
                         ->values()
-                        ->all();
+                        ->pluck('title', 'id');
                 }),
             FlatFilter::make('Квартира', 'flat_number')
                 ->dependentOf('house_id')

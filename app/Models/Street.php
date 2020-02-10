@@ -60,6 +60,13 @@ class Street extends BaseClass
            /*$ids = House::find(Arr::get($filters,'house_id'));
            $query = $query->where();*/
        }
+
+       $electivePlot = Arr::get($filters, 'elective_plot_id');
+        if ($electivePlot) {
+            $query = $query->whereHas('electivePlots', function ($subQuery) use ($electivePlot) {
+                return $subQuery->where('elective_plot_id', $electivePlot);
+            });
+        }
        return $query;
     }
 
