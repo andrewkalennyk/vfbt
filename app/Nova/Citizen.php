@@ -137,7 +137,7 @@ class Citizen extends Resource
                 ->disableValidation(true)
                 ->placeholder('+380__-___-__-__'),
 
-            //Text::make('Категорії', 'index_category')->exceptOnForms()->asHtml(),
+            Text::make('Категорії', 'index_category')->onlyOnIndex()->asHtml(),
 
 
             Text::make('Статуси', 'index_status')->exceptOnForms()->asHtml(),
