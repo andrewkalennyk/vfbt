@@ -89,7 +89,7 @@ class House extends HandBookResource
                 Text::make(__('Кількість поверхів'), 'floors_number')
                     ->sortable()
                     ->rules('required', 'max:255'),
-            ])->dependsOn('type', 'house')->onlyOnForms(),
+            ])->dependsOn('type', 'house')->hideFromIndex(),
 
             /*only if district*/
             NovaDependency::make([
