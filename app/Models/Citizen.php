@@ -175,8 +175,7 @@ class Citizen extends Model
 
     public function setCategoriesListAttribute($value)
     {
-        $this->savingCategories = explode(",", $value);
-
+        $this->savingCategories = array_filter(explode(",", $value));
     }
 
 
