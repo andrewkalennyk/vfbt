@@ -94,27 +94,39 @@ class Citizen extends Resource
             Text::make(__('Фамилия'), 'last_name')
                 ->sortable()
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::byFullName($request->all())->first();
+                    $params = $request->all();
+                    $exist = CitizenModel::byFullName($params)
+                        ->byPhone($params)
+                        ->byDateBirth($params)
+                        ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО вже зареєстрований');
+                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
                     }
                 }),
 
             Text::make(__('Имя'), 'first_name')
                 ->sortable()
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::byFullName($request->all())->first();
+                    $params = $request->all();
+                    $exist = CitizenModel::byFullName($params)
+                        ->byPhone($params)
+                        ->byDateBirth($params)
+                        ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО вже зареєстрований');
+                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
                     }
                 }),
 
             Text::make(__('Отчество'), 'patronymic_name')
                 ->sortable()
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
-                    $exist = CitizenModel::byFullName($request->all())->first();
+                    $params = $request->all();
+                    $exist = CitizenModel::byFullName($params)
+                        ->byPhone($params)
+                        ->byDateBirth($params)
+                        ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО вже зареєстрований');
+                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
                     }
                 }),
 

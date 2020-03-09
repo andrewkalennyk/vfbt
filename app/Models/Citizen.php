@@ -14,7 +14,6 @@ use App\Traits\RevisionMaker;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Log;
 use PhpOffice\PhpSpreadsheet\Calculation\Category;
 
@@ -62,8 +61,6 @@ class Citizen extends Model
         'street_id',
         'house_id'
     ];
-
-    protected $savingCategories = [];
 
 
     public function setFirstNameAttribute($value)
@@ -123,15 +120,14 @@ class Citizen extends Model
         if ($house) {
             $streetTitle = $house->street ? $house->street->title : '';
             $houseTitle = $house->house ? $house->house->index_title : '';
-            $floorTitle = $house->floor ? $house->floor . '(поверх)</br>' : '';
-            $entranceTitle = $house->entrance ? $house->entrance . "(під'їзд)". '</br>' : '';
+            $floorTitle = $house->floor ? $house->floor . '(поверх)' : '';
+            $entranceTitle = $house->entrance ? $house->entrance . "(під'їзд)" : '';
             $flatTitle = $house->flat_number ? $house->flat_number . '(квартира)' : '';
-            $electivePlot = $house->house && $house->house->elective_plot ? $house->house->elective_plot->title . ' (дільниця)<br>' : '';
 
-            $addressTitle = $electivePlot . $streetTitle . ' ' . $houseTitle . '</br>';
+            $addressTitle = $streetTitle . ' ' . $houseTitle;
 
             if (!$house->is_private) {
-                $addressTitle = $addressTitle  . $entranceTitle  . $floorTitle . $flatTitle;
+                $addressTitle = $addressTitle . '</br>' . $entranceTitle . '</br>' . $floorTitle . '</br>' . $flatTitle;
             }
             return $addressTitle;
         }
@@ -149,34 +145,6 @@ class Citizen extends Model
             $indexStatuses[] = $citStatus . '(' . $citSubStatus . ')';
         }
         return implode($indexStatuses, ',<br>');
-    }
-
-    public function getFullNameAttribute()
-    {
-        return $this->last_name . ' ' . $this->first_name . ' ' . $this->patronymic_name;
-    }
-
-    public function getBadListStatusAttribute()
-    {
-        $transList = [
-            'grey' => 'Сірий',
-            'black' => 'Чорний'
-        ];
-
-        $typeList = $this->type_list ?? '';
-
-        return Arr::get($transList, $typeList, '');
-    }
-
-    public function getCategoriesListAttribute()
-    {
-        return !empty($this->categories) ? $this->categories->pluck('id')->all() : collect([]);
-    }
-
-    public function setCategoriesListAttribute($value)
-    {
-        $this->savingCategories = explode(",", $value);
-
     }
 
 
@@ -211,8 +179,7 @@ class Citizen extends Model
         return $this->belongsToMany(CitizensCategory::class,
             'citizen_citizen_categories',
             'citizen_id',
-            'citizens_category_id')
-            ->orderBy('title','asc');
+            'citizens_category_id');
     }
 
     public function isBlack()
@@ -272,28 +239,15 @@ class Citizen extends Model
             ->where('patronymic_name', 'like', $input['patronymic_name']);
     }
 
-    public function scopeExportCitiesFilter($query, $filters)
+    public function scopeByPhone($query, $input)
     {
-        if ($filters) {
-            foreach ($filters as $filter) {
-                $query = $filter->filter->apply(request(), $query, $filter->value);
-            }
-        }
-        return $query;
+        $query->where('phone', $input['phone']);
     }
 
-    protected static function boot()
+    public function scopeByDateBirth($query, $input)
     {
-        parent::boot();
-
-        static::created( function ($object) {
-            $object->categories()->sync($object->savingCategories);
-        });
-
-        static::saved(function ($object) {
-            $object->categories()->sync($object->savingCategories);
-        });
-
+        $query->where('phone', $input['date_birth']);
     }
+
 
 }
