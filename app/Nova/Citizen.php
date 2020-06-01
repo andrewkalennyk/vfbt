@@ -8,6 +8,7 @@ use App\Nova\Actions\CitizenExport;
 use App\Nova\Filters\CitizenElectivePlotFilter;
 use App\Nova\Filters\CitizenOfficeFilter;
 use App\Nova\Filters\CitizensCategoryFilter;
+use App\Nova\Filters\CitizensCitizenStatusFilter;
 use App\Nova\Filters\CitizenStreetFilter;
 use App\Nova\Filters\CitizenStreetHouseFilter;
 use App\Nova\Filters\FlatFilter;
@@ -295,7 +296,9 @@ class Citizen extends Resource
                     return $entities;
                 }),
 
-            new CitizensCategoryFilter()
+            new CitizensCategoryFilter(),
+
+            new CitizensCitizenStatusFilter()
 
         ];
     }
