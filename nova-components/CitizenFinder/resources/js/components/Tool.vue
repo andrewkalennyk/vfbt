@@ -139,6 +139,7 @@
                             Пошук
                         </button>
                         <a class="flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer"
+                           v-if="this.userRole==='admin'"
                            @click="openForm">
                             Новий
                         </a>
@@ -176,6 +177,7 @@ export default {
     mounted() {
         this.getInfo();
         this.getUserRole();
+        console.log(this);
     },
     data() {
         return {

@@ -812,6 +812,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -822,6 +823,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getInfo();
         this.getUserRole();
+        console.log(this);
     },
     data: function data() {
         return {
@@ -4949,19 +4951,21 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer",
-                        on: { click: _vm.openForm }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        Новий\n                    "
+                    this.userRole === "admin"
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer",
+                            on: { click: _vm.openForm }
+                          },
+                          [
+                            _vm._v(
+                              "\n                        Новий\n                    "
+                            )
+                          ]
                         )
-                      ]
-                    )
+                      : _vm._e()
                   ]
                 )
               ])
