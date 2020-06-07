@@ -204,7 +204,10 @@ class Citizen extends Resource
 
             Textarea::make(__('Коментар'),'comment')->alwaysShow(),
 
-            BelongsToMany::make(__('Акції'), 'promotions', 'App\Nova\Promotion'),
+            BelongsToMany::make(__('Акції'), 'promotions', 'App\Nova\Promotion')->canSee(function () {
+                $user = \request()->user();
+                return ($user->isSuperAdmin() || $user->isCoordinator()) ? true : false;
+            }),
 
             Select2::make('Категорії', 'categories_list')
                 ->sortable()

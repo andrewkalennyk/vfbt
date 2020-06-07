@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
          'App\Models\GeneralInfoCitizen' => 'App\Policies\GeneralInfoPolicy',
-         'App\Models\Promotion' => 'App\Policies\Policy',
+         'App\Models\Promotion' => 'App\Policies\PromotionPolicy',
          'App\Models\CitizensCategory' => 'App\Policies\Policy',
          'App\Models\CitizensStatus' => 'App\Policies\Policy',
          'App\Models\Revision' => 'App\Policies\RevisionPolicy',
@@ -24,9 +24,11 @@ class AuthServiceProvider extends ServiceProvider
          'App\Models\ElectivePlot' => 'App\Policies\ElectivePlotPolicy',
          'App\Models\Street' => 'App\Policies\ElectivePlotPolicy',
          'App\Models\House' => 'App\Policies\ElectivePlotPolicy',
-         'App\Models\Citizen' => 'App\Policies\OfficePolicy',
+         'App\Models\Citizen' => 'App\Policies\CitizenPolicy',
          'App\Models\NavigationMenuItem' => 'App\Policies\Policy',
          'App\Models\BadListReason' => 'App\Policies\Policy',
+         'App\Models\RegionalEstablishmentType' => 'App\Policies\ElectivePlotPolicy',
+         'App\Models\RegionalEstablishment' => 'App\Policies\ElectivePlotPolicy',
     ];
 
     /**

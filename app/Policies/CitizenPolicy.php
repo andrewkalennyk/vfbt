@@ -12,17 +12,23 @@ class CitizenPolicy extends OfficePolicy
 
     public function create(User $user)
     {
-        return true;
+        if ($user->isSuperAdmin() || $user->isCoordinator()) {
+            return true;
+        }
     }
 
     public function viewAny(User $user)
     {
-        return true;
+        if ($user->isSuperAdmin() || $user->isCoordinator()) {
+            return true;
+        }
     }
 
     public function view(User $user, $model)
     {
-        return true;
+        if ($user->isSuperAdmin() || $user->isCoordinator()) {
+            return true;
+        }
     }
 
 }

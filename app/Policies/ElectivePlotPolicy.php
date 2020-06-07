@@ -11,14 +11,21 @@ class ElectivePlotPolicy extends OfficePolicy
 
     public function create(User $user)
     {
-        if ($user->isSuperAdmin() || $user->isCoordinator()) {
+        if ($user->isSuperAdmin()) {
             return true;
         }
     }
 
     public function delete(User $user, $model)
     {
-        if ($user->isSuperAdmin() || $user->isCoordinator()) {
+        if ($user->isSuperAdmin()) {
+            return true;
+        }
+    }
+
+    public function update(User $user, $model)
+    {
+        if ($user->isSuperAdmin()) {
             return true;
         }
     }

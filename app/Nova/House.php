@@ -112,7 +112,9 @@ class House extends HandBookResource
         if ($user->isCoordinator()) {
             $electivePlot = ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
                 ->pluck('id');
-            $streets = Street::where('elective_plot_id', $electivePlot)->pluck('id');
+            $streets = Street::whereHas('electivePlots', function ($subQuery) use ($electivePlot) {
+                return $subQuery->where('elective_plot_id', $electivePlot);
+            })->pluck('id');
             $query = $query->where('street_id', $streets);
         }
 

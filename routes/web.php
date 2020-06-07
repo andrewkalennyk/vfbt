@@ -28,13 +28,15 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/export-handbooks','Backend\ExportHandbookController@doExport');
 
-Route::get('/test', function () {
-    $generalInfo = \App\Models\GeneralInfoCitizen::all();
-    $userIds = \App\Models\Citizen::whereNotIn('id', $generalInfo->pluck('citizen_id'))->pluck('id');
-    $officeId = 1;
-    $usersOffice = $generalInfo->where('office_id', $officeId)->pluck('citizen_id');
-    $ids = $userIds->merge($usersOffice);
-    dr($ids);
+Route::get('/update-house-citizens-with-null-street', function () {
+    $houseCitizens = \App\Models\HouseCitizen::with('house')->whereHas('house')->whereNull('street_id')->get();
+    /*foreach ($houseCitizens as $item) {
+        $item->street_id = $item->house->street_id;
+        $item->save();
+        echo 'saved';
+    }*/
+    dd($houseCitizens);
+
 });
 
 Route::get('/mutators', function () {

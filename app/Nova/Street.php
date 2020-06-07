@@ -73,7 +73,9 @@ class Street extends HandBookResource
         if ($user->isCoordinator()) {
             $electivePlot = \App\Models\ElectivePlot::where('office_id', $user->getCoordinatorsOfficeId())
                 ->pluck('id');
-            $query = $query->where('elective_plot_id', $electivePlot);
+            $query = $query->whereHas('electivePlots', function ($subQuery) use ($electivePlot) {
+                return $subQuery->where('elective_plot_id', $electivePlot);
+            });
         }
 
         return $query;
