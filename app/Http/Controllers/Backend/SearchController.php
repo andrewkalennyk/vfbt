@@ -14,7 +14,7 @@ class SearchController extends \App\Http\Controllers\Controller
 {
     public function doSearch(Request $request)
     {
-        $citizens  = Citizen::with(['categories', 'house_citizens', 'general_info'])
+        $citizens  = Citizen::with(['categories', 'house_citizens', 'general_info','promotions'])
             ->search($request->except(['_token']))
             ->get();
 

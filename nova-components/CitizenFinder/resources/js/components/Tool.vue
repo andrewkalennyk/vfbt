@@ -158,7 +158,7 @@
             </div>
         </card>
 
-        <citizen-view :citizen="this.citizen"/>
+        <citizen-view :citizen="this.citizen" :userRole="this.userRole"/>
 
         <new-citizen-view
                 @assignCitizenChild="assignCitizen"
@@ -177,7 +177,6 @@ export default {
     mounted() {
         this.getInfo();
         this.getUserRole();
-        console.log(this);
     },
     data() {
         return {
@@ -262,7 +261,6 @@ export default {
                 }
             });
             this.citizen = citizen;
-            console.log(this.citizen);
             this.findCitizens = [];
             this.newCitizenForm = false;
         },

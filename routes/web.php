@@ -20,7 +20,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/search-citizen','Backend\SearchController@doSearch');
     Route::post('/get-info-for-new','Backend\InfoController@getInfo');
     Route::post('/get-user-role','Backend\InfoController@getUserRole');
+    Route::post('/get-promotions','Backend\InfoController@getPromotions');
     Route::post('/save-citizen','Backend\CitizenController@saveCitizen');
+    Route::post('/attach-promotion-citizen','Backend\CitizenController@attachPromotionCitizen');
 
     Route::post('get-related-entities-by-street', 'Backend\SearchController@getEntititesByStreet');
     Route::post('get-related-entities-by-elective-plot', 'Backend\SearchController@getEntititesByElectivePlot');
