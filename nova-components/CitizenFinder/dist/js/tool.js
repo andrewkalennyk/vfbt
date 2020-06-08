@@ -823,7 +823,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         this.getInfo();
         this.getUserRole();
-        console.log(this);
     },
     data: function data() {
         return {
@@ -907,7 +906,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             });
             this.citizen = citizen;
-            console.log(this.citizen);
             this.findCitizens = [];
             this.newCitizenForm = false;
         },
@@ -1129,11 +1127,111 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'citizenView',
-    props: ['citizen'],
-    mounted: function mounted() {}
+    props: ['citizen', 'userRole'],
+    data: function data() {
+        return {
+            showAttachPromotionForm: false,
+            promotionId: '',
+            promotions: []
+        };
+    },
+    mounted: function mounted() {
+        this.getPromotions();
+    },
+
+    methods: {
+        showAttachPromotion: function showAttachPromotion() {
+            this.showAttachPromotionForm = true;
+        },
+        hideAttachPromotion: function hideAttachPromotion() {
+            this.showAttachPromotionForm = false;
+        },
+        getPromotions: function getPromotions() {
+            var _this = this;
+
+            Nova.request().post('/get-promotions').then(function (_ref) {
+                var data = _ref.data;
+
+                _this.promotions = data.promotions;
+            });
+        },
+        attachPromotion: function attachPromotion() {
+            var _this2 = this;
+
+            var myForm = document.getElementById('attach_promotion_form'),
+                data = new FormData(myForm);
+            data.append('citizen_id', JSON.stringify(this.citizen.id));
+
+            Nova.request().post('/attach-promotion-citizen', data).then(function (_ref2) {
+                var data = _ref2.data;
+
+                if (data.status) {
+                    _this2.$toasted.success(data.message);
+                    _this2.citizen = data.citizen;
+                } else {
+                    _this2.$toasted.error(data.message);
+                }
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -1403,11 +1501,189 @@ var render = function() {
                       _vm._v(_vm._s(this.citizen.floor))
                     ])
                   ])
-                : _vm._e()
+                : _vm._e(),
+              _vm._v(" "),
+              _c("div", { staticClass: "flex -mb-3" }, [
+                _c("div", { staticClass: "w-2/3 bg-grey-light h-12" }),
+                _vm._v(" "),
+                _c("div", { staticClass: "w-1/3 bg-grey-light h-12 py-6" }, [
+                  this.userRole === "worker"
+                    ? _c(
+                        "a",
+                        {
+                          staticClass:
+                            "flex-no-shrink bg-blue hover:bg-blue-dark text-white text-sm font-bold py-2 px-4 rounded ml-4 cursor-pointer",
+                          on: { click: _vm.showAttachPromotion }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    Прив'язати Акцію\n                "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "font-bold text-xl mb-4" }, [
+                _vm._v("Акції")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.citizen.promotions, function(citizenPromotion) {
+                return _vm.citizen.promotions
+                  ? _c("div", { staticClass: "flex -mb-3" }, [
+                      _c("div", { staticClass: "w-2/3 bg-grey-light h-12" }, [
+                        _vm._v(_vm._s(citizenPromotion.title))
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 bg-grey-light h-12" })
+                    ])
+                  : _vm._e()
+              })
             ],
             2
           )
         ])
+      : _vm._e(),
+    _vm._v(" "),
+    this.showAttachPromotionForm
+      ? _c(
+          "div",
+          {
+            staticClass: "relative rounded overflow-hidden mb-8 shadow-lg mt-6"
+          },
+          [
+            _c(
+              "div",
+              { staticClass: " border-grey-light p-4 flex justify-center p-8" },
+              [
+                _c(
+                  "form",
+                  {
+                    staticClass: "w-full justify-center",
+                    attrs: { id: "attach_promotion_form" },
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.attachPromotion($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "flex flex-wrap -mx-3 mb-4" }, [
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block uppercase tracking-wide text-grey-darker text-xs font-bold mb-2",
+                            attrs: { for: "grid-promotion" }
+                          },
+                          [
+                            _vm._v(
+                              "\n                            Виберіть Акцію\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "relative" }, [
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.promotionId,
+                                  expression: "promotionId"
+                                }
+                              ],
+                              staticClass:
+                                "block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-grey",
+                              attrs: {
+                                id: "grid-promotion",
+                                name: "promotion_id"
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    var $$selectedVal = Array.prototype.filter
+                                      .call($event.target.options, function(o) {
+                                        return o.selected
+                                      })
+                                      .map(function(o) {
+                                        var val =
+                                          "_value" in o ? o._value : o.value
+                                        return val
+                                      })
+                                    _vm.promotionId = $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  },
+                                  _vm.changeElectivePlot
+                                ]
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Виберіть акцію")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(this.promotions, function(promotion) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: promotion.id } },
+                                  [_vm._v(_vm._s(promotion.title))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "w-1/3 md:w-1/3 px-3" }, [
+                        _c(
+                          "div",
+                          { staticClass: "flex flex-wrap -mx-3 mt-6" },
+                          [
+                            _c(
+                              "button",
+                              {
+                                staticClass:
+                                  "bg-blue hover:bg-blue-dark text-white font-bold py-2 px-4 rounded ml-4",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Зберегти\n                            "
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "flex-shrink-0 border-transparent border-4 text-info hover\\:bg-info-dark text-sm py-1 px-2 rounded cursor-pointer",
+                                on: { click: _vm.hideAttachPromotion }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                Відмінити\n                            "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ]
+            )
+          ]
+        )
       : _vm._e()
   ])
 }
@@ -5006,7 +5282,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("citizen-view", { attrs: { citizen: this.citizen } }),
+      _c("citizen-view", {
+        attrs: { citizen: this.citizen, userRole: this.userRole }
+      }),
       _vm._v(" "),
       _c("new-citizen-view", {
         attrs: { newCitizenForm: this.newCitizenForm, citizen: this.citizen },

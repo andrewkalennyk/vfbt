@@ -6,6 +6,7 @@ use App\Models\CitizensStatus;
 use App\Models\CitizensSubStatus;
 use App\Models\ElectivePlot;
 use App\Models\House;
+use App\Models\Promotion;
 use App\Models\RegionalEstablishment;
 use App\Models\RegionalEstablishmentType;
 use App\Models\Street;
@@ -54,6 +55,13 @@ class InfoController extends \App\Http\Controllers\Controller
                 'role' => 'worker'
             ];
         }
+    }
+
+    public function getPromotions(Request $request)
+    {
+        return [
+            'promotions' => Promotion::all()
+        ];
     }
 
 }
