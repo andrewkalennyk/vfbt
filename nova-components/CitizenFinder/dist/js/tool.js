@@ -5227,7 +5227,7 @@ var render = function() {
                       ]
                     ),
                     _vm._v(" "),
-                    this.userRole !== "worker"
+                    false
                       ? _c(
                           "a",
                           {
