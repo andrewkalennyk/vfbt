@@ -6,6 +6,7 @@ use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Select;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
 class UserRole extends Resource
@@ -54,6 +55,11 @@ class UserRole extends Resource
             Text::make(__('Назва'),'title')
                 ->sortable()
                 ->rules('required', 'max:255'),
+
+            Select::make('Тип', 'type')->options([
+                'coordinator' => 'Координатор',
+                'worker' => 'Працівник',
+            ])->displayUsingLabels(),
 
             BelongsTo::make(__('Громадська приймальня'), 'office','App\Nova\Office')->nullable(),
         ];

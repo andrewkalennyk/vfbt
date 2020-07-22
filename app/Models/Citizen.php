@@ -138,6 +138,51 @@ class Citizen extends Model
         return ' - ';
     }
 
+    public function getDetailExcelAddressAttribute()
+    {
+        $house = $this->house_citizens;
+
+        if ($house) {
+            $streetTitle = $house->street ? $house->street->title : '';
+            $houseTitle = $house->house ? $house->house->index_title : '';
+
+            return $streetTitle . ' ' . $houseTitle;
+
+        }
+
+        return ' - ';
+    }
+
+    public function getDetailEntranceAttribute()
+    {
+        $house = $this->house_citizens;
+
+        if ($house && !$house->is_private) {
+            return$house->entrance ? $house->entrance : '';
+        }
+        return ' - ';
+    }
+
+    public function getDetailFloorAttribute()
+    {
+        $house = $this->house_citizens;
+
+        if ($house && !$house->is_private) {
+            return $house->floor ? $house->floor : '';
+        }
+        return ' - ';
+    }
+
+    public function getDetailFlatAttribute()
+    {
+        $house = $this->house_citizens;
+
+        if ($house && !$house->is_private) {
+            return$house->flat_number ? $house->flat_number : '';
+        }
+        return ' - ';
+    }
+
     public function getIndexStatusAttribute()
     {
         $statuses = $this->citizen_statuses;
@@ -177,6 +222,14 @@ class Citizen extends Model
         $this->savingCategories = array_filter(explode(",", $value));
     }
 
+    public function scopeExportCitiesFilter($query, $filters) {
+        if ($filters) {
+            foreach ($filters as $filter) {
+                $query = $filter->filter->apply(request(), $query, $filter->value);
+            }
+        }
+        return $query;
+    }
 
     public static function importCitizen($item)
     {
@@ -276,7 +329,29 @@ class Citizen extends Model
 
     public function scopeByDateBirth($query, $input)
     {
-        $query->where('phone', $input['date_birth']);
+        $query->where('date_birth', $input['date_birth']);
+    }
+
+    public function scopeFilterByPermission($query, $user)
+    {
+        if ($user->isCoordinator() || $user->isWorker()) {
+            $citizensIds = collect([]);
+            $office = Office::with('elective_plots.houses.citizens')->find($user->getCoordinatorsOfficeId());
+            foreach ($office->elective_plots as $electivePlot) {
+                if ($electivePlot->houses->count()) {
+                    foreach ($electivePlot->houses as $house) {
+                        if ($house->citizens->count()) {
+                            $citizensIds = $citizensIds->merge($house->citizens->pluck('id'));
+                        }
+                    }
+                }
+            }
+            $emptyCitizenIds = self::with('house_citizens')->doesnthave('house_citizens')->pluck('id');
+            $citizensIds = $citizensIds->merge($emptyCitizenIds);
+            $query = $query->whereIn('citizens.id', $citizensIds);
+        }
+
+        return $query;
     }
 
     protected static function boot()

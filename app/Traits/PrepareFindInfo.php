@@ -25,12 +25,30 @@ trait PrepareFindInfo
 
     public function getOfficeTitle()
     {
-        return !empty($this->general_info->office) ? $this->general_info->office->title : '—';
+        $houseCitizen = $this->house_citizens;
+        if ($houseCitizen && $houseCitizen->house) {
+            $house = $houseCitizen->house;
+            if ($house->elective_plot && $house->elective_plot->office) {
+                return $house->elective_plot->office->title;
+            }
+            return '-';
+        }
+        return  '-';
+        //return !empty($this->general_info->office) ? $this->general_info->office->title : '—';
     }
 
     public function getElectivePlotTitle()
     {
-        return !empty($this->general_info->elective_plot) ? $this->general_info->elective_plot->title : '—';
+        $houseCitizen = $this->house_citizens;
+        if ($houseCitizen && $houseCitizen->house) {
+            $house = $houseCitizen->house;
+            if ($house->elective_plot) {
+                return $house->elective_plot->title;
+            }
+            return '-';
+        }
+        return  '-';
+
     }
 
     public function getStreetTitle()

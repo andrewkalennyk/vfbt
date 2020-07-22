@@ -351,5 +351,8 @@
     "Citizen Count": "Кількість громадян",
     "Search": "Пошук",
     "of": "з",
-    "Filter Menux": "Меню Фільтрації"
+    "Filter Menux": "Меню Фільтрації",
+    "field is required.": "поле необхідне для заповнення",
+    "has already been taken.": "поле вже існує в системі"
+
 }

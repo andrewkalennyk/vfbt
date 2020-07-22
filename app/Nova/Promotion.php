@@ -75,9 +75,17 @@ class Promotion extends HandBookResource
                     return $date->format('d-m-Y');
                 }),
 
+            Text::make(__('Кількість громадян'),'citizens_count')
+                ->onlyOnIndex(),
+
             BelongsToMany::make(__('Громадяни'), 'citizens', 'App\Nova\Citizen')
                 ->searchable()
         ];
+    }
+
+    public static function indexQuery(NovaRequest $request, $query)
+    {
+        return $query;
     }
 
 }

@@ -271,6 +271,87 @@ Route::get('/update-birthdays', function () {
 
 });
 
+Route::get('/bad-birthdays', function () {
+    $citizens = \App\Models\Citizen::pluck('date_birth','id');
+    $citizens = $citizens->map(function ($birthday) {
+        if (substr($birthday,0, 2) > 31 || substr($birthday,3, 2) > 12 || substr($birthday,2, 1) != '-') {
+            return $birthday;
+        }
+    })->reject(function ($name) {
+        return empty($name);
+    });
+    dd($citizens);
+});
+
+Route::get('/bad-birthdays-sequence', function () {
+    $citizens = \App\Models\Citizen::pluck('date_birth','id');
+    $ids = collect([]);
+    $citizens->map(function ($birthday, $id) use($ids) {
+        if (substr($birthday,2, 1) != '-') {
+            $ids->push($id);
+            return $birthday;
+        }
+    })->reject(function ($name) {
+        return empty($name);
+    });
+    dd($ids);
+});
+
+Route::get('/elective-plots-update', function () {
+    $electivePlots = \App\Models\ElectivePlot::with('streets','houses')->get();
+    $badElectivePlots = [];
+
+    foreach ($electivePlots as $electivePlot) {
+        $houses = $electivePlot->houses;
+        $streetIds = collect([]);
+        foreach ($houses as $house) {
+            $streetIds->push($house->street_id);
+        }
+        $streets = $electivePlot->streets->whereNotIn('id', $streetIds->unique())->implode('title', ', ');
+        if ($streets) {
+            $badElectivePlots[$electivePlot->title] = $streets;
+        }
+
+
+        /*$streetsRelations = $electivePlot->streets ? $electivePlot->streets->pluck('id') : $electivePlot->streets;
+        $houses = $electivePlot->houses->pluck('street_id')->unique();
+        if ($streetsRelations->count() != $houses->count()) {
+            $badElectivePlots->push([$electivePlot->id => $streetsRelations->diff($houses)->toArray()]);
+        }*/
+
+    }
+    dd($badElectivePlots);
+});
+
+Route::get('/elective-plots-people', function () {
+    $offices = \App\Models\Office::with('elective_plots')->get();
+    $statistics = [];
+    foreach ($offices as $office) {
+        $peopleCount = 0;
+        if ($office->elective_plots->count()) {
+            foreach ($office->elective_plots as $electivePlot) {
+                foreach ($electivePlot->houses as $house) {
+                    $count = \App\Models\HouseCitizen::where('house_id', $house->id)->count();
+                    $peopleCount += $count;
+                }
+            }
+        }
+        $statistics[$office->title] = $peopleCount;
+    }
+
+    dd($statistics);
+});
+
+Route::get('/general-citizen-compare', function () {
+    $generalInfoCitizenIds = \App\Models\GeneralInfoCitizen::pluck('citizen_id');
+    $citizenIds = \App\Models\Citizen::pluck('id');
+    $diff = $citizenIds->diff($generalInfoCitizenIds);
+
+});
+
+
+
+
 Route::get('/mutators', function () {
     $citizen = \App\Models\Citizen::with('citizen_statuses')->find(93);
     dr($citizen);

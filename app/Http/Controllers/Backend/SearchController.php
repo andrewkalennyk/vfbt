@@ -5,7 +5,6 @@ use App\Imports\GeneralInfoImport;
 use App\Imports\GeneralInfoImportModel;
 use App\Models\Citizen;
 use App\Models\ElectivePlot;
-use App\Models\GeneralInfoCitizen;
 use App\Models\Street;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -14,7 +13,8 @@ class SearchController extends \App\Http\Controllers\Controller
 {
     public function doSearch(Request $request)
     {
-        $citizens  = Citizen::with(['categories', 'house_citizens', 'general_info','promotions'])
+        $citizens  = Citizen::with(['categories', 'house_citizens.house.elective_plot.office', 'general_info','promotions'])
+            ->filterByPermission($request->user())
             ->search($request->except(['_token']))
             ->get();
 

@@ -93,7 +93,7 @@ class Street extends BaseClass
 
     public function getHouseCountAttribute()
     {
-        return $this->houses->count();
+        return House::where('street_id',$this->id)->count();
     }
 
     protected static function boot()

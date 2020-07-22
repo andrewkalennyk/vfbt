@@ -6,6 +6,9 @@
         <td align="left" valign="bottom"><b>Ім'я</b></td>
         <td align="left" valign="bottom"><b>По-батькові</b></td>
         <td align="left" valign="bottom"><strong>Адреса</strong></td>
+        <td align="left" valign="bottom"><strong>Під'їзд</strong></td>
+        <td align="left" valign="bottom"><strong>Поверх</strong></td>
+        <td align="left" valign="bottom"><strong>Квартира</strong></td>
         <td align="left" valign="bottom"><strong>дата народження</strong></td>
         <td align="left" valign="bottom"><strong>телефон</strong></td>
         <td align="left" valign="bottom"><strong>кат</strong></td>

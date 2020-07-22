@@ -3,7 +3,10 @@
     <td align="left" valign="middle">{{$citizen->last_name}}</td>
     <td align="left" valign="middle">{{$citizen->first_name}}</td>
     <td align="left" valign="middle">{{$citizen->patronymic_name}}</td>
-    <td align="left" valign="middle">{!! $citizen->detail_address !!}</td>
+    <td align="left" valign="middle">{!! $citizen->detail_excel_address !!}</td>
+    <td align="left" valign="middle">{!! $citizen->detail_entrance !!}</td>
+    <td align="left" valign="middle">{!! $citizen->detail_floor !!}</td>
+    <td align="left" valign="middle">{!! $citizen->detail_flat !!}</td>
     <td align="left" valign="middle">{{$citizen->date_birth}}</td>
     <td align="left" valign="middle">{{$citizen->phone}}</td>
     <td align="right" valign="middle">{!! $citizen->index_category !!}</td>

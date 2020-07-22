@@ -79,7 +79,7 @@ class GeneralInfoCitizens extends Resource
             BelongsTo::make('Будинок','house','App\Nova\House'),
 
             Text::make(__('Квартира'),'flat_number')
-                ->sortable()
+                ->sortable(false)
                 ->rules('required', 'max:255'),
 
             BelongsTo::make('Громадянин','citizen','App\Nova\Citizen')->searchable(),
@@ -114,19 +114,26 @@ class GeneralInfoCitizens extends Resource
         return [
             DependentFilter::make('Приймальня','office_id')
                 ->withOptions(function (Request $request, $filters) {
-                    return \App\Models\Office::pluck('title', 'id');
+                    return \App\Models\Office::orderBy('title','asc')->pluck('title', 'id');
                 }),
             DependentFilter::make('Дільниця','elective_plot_id')
                 ->dependentOf('office_id')
                 ->withOptions(function (Request $request, $filters) {
                     return \App\Models\ElectivePlot::where('office_id', $filters['office_id'])
+                        ->orderBy('title','asc')
                         ->pluck('title', 'id');
                 })
                 ->hideWhenEmpty(),
             DependentFilter::make('Вулиця','street_id')
                 ->dependentOf('elective_plot_id')
                 ->withOptions(function (Request $request, $filters) {
-                    return \App\Models\Street::where('elective_plot_id', $filters['elective_plot_id'])
+                    return \App\Models\Street::with(['electivePlots' => function ($query) use($filters) {
+                        $query->where('elective_plots_streets.elective_plot_id', $filters['elective_plot_id']);
+                    }])
+                        ->whereHas('electivePlots', function ($query) use($filters) {
+                            $query->where('elective_plots_streets.elective_plot_id', $filters['elective_plot_id']);
+                        })
+                        ->orderBy('title','asc')
                         ->pluck('title', 'id');
                 })
                 ->hideWhenEmpty(),
@@ -134,6 +141,9 @@ class GeneralInfoCitizens extends Resource
                 ->dependentOf('street_id')
                 ->withOptions(function (Request $request, $filters) {
                     return \App\Models\House::where('street_id', $filters['street_id'])
+                        ->get()
+                        ->sortBy('title', SORT_NUMERIC)
+                        ->values()
                         ->pluck('title', 'id');
                 })
                 ->hideWhenEmpty(),

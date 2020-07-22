@@ -50,7 +50,12 @@ class User extends Authenticatable
 
     public function isCoordinator()
     {
-        return $this->user_role->office ? true  : false;
+        return $this->user_role->type === 'coordinator' ? true : false;
+    }
+
+    public function isWorker()
+    {
+        return $this->user_role->type === 'worker' ? true : false;
     }
 
     public function getCoordinatorsOfficeId()

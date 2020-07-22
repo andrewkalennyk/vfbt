@@ -19,8 +19,11 @@ class CitizenOfficeFilter extends DependentFilter
      */
     public function apply(Request $request, $query, $value)
     {
-        $electivePlots = ElectivePlot::where('office_id', $value)->pluck('id');
-        $streetsIds = Street::whereIn('elective_plot_id',$electivePlots->toArray())->pluck('id');
+        $electivePlotIds = ElectivePlot::where('office_id', $value)->pluck('id');
+
+        $streetsIds = Street::whereHas('electivePlots', function ($subQuery) use($electivePlotIds) {
+            $subQuery->whereIn('elective_plot_id', $electivePlotIds);
+        })->pluck('id');
 
         return $query->whereHas('house_citizens', function ($subQuery) use($streetsIds) {
             return $subQuery->whereIn('street_id', $streetsIds);

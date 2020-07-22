@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Requests\ApplyFormCitizenRequest;
 use App\Models\ApplyForms\ApplyFormCitizen;
 use App\Models\Citizen;
+use App\Models\Revision;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CitizenController extends \App\Http\Controllers\Controller
 {
@@ -27,6 +29,7 @@ class CitizenController extends \App\Http\Controllers\Controller
 
         $citizen = Citizen::with('promotions')->where('id', $request->input('citizen_id'))->first();
         $promotionsId = $citizen->promotions->pluck('id')->toArray();
+        $oldPromotions = $citizen->promotions->pluck('title')->implode(',');
 
         if (in_array($promotionId, $promotionsId)) {
             return [
@@ -40,6 +43,17 @@ class CitizenController extends \App\Http\Controllers\Controller
         $citizen = Citizen::with('promotions')->where('id', $request->input('citizen_id'))->first();
 
         $citizen = $this->prepareCitizen($citizen);
+
+        Revision::create([
+            'user_id' => Auth::getUser() ? Auth::getUser()->id : Null,
+            'class_name' => $citizen->prepareObjectClassName(),
+            'model' => get_class($citizen),
+            'model_id' => $citizen->id,
+            'link' => $citizen->prepareLink($citizen->id),
+            'type' => 'Привязка Акції до громадянина через пошук',
+            'old_value' => $oldPromotions,
+            'new_value' => $citizen->promotions->pluck('title')->implode(',<br>')
+        ]);
 
         return [
             'status' => true,

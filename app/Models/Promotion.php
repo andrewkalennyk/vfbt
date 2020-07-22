@@ -48,6 +48,12 @@ class Promotion extends Model
             ->using(CitizenPromotion::class);
     }
 
+    public function getCitizensCountAttribute()
+    {
+
+        return CitizenPromotion::where('promotion_id',$this->id)->count();
+    }
+
     /*public function citizens(): BelongsToMany
     {
         return $this->belongsToMany(Citizen::class,
@@ -55,4 +61,7 @@ class Promotion extends Model
             'promotion_id')
             ->using(CitizenPromotion::class);
     }*/
+
+
+
 }

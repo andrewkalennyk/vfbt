@@ -29,9 +29,8 @@ class GeneralInfoPromotions extends Filter
      */
     public function apply(Request $request, $query, $value)
     {
-
-        $ids = DB::table('general_info_citizens_promotions')->where('promotion_id',$value)->pluck('general_info_citizen_id');
-        return $query->whereIn('id', $ids);
+        $promotion = Promotion::with('citizens')->find($value);
+        return $query->whereIn('citizen_id', $promotion->citizens->pluck('id'));
     }
 
     /**
@@ -42,6 +41,6 @@ class GeneralInfoPromotions extends Filter
      */
     public function options(Request $request)
     {
-        return Promotion::select('id','title')->pluck('id','title');
+        return Promotion::select('id','title')->orderBy('title','asc')->pluck('id','title');
     }
 }

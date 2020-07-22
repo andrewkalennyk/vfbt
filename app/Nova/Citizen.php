@@ -97,11 +97,10 @@ class Citizen extends Resource
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $params = $request->all();
                     $exist = CitizenModel::byFullName($params)
-                        ->byPhone($params)
                         ->byDateBirth($params)
                         ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
+                        return $fail('Користувач з таким ФІО і датою народження вже зареєстрований');
                     }
                 }),
 
@@ -110,11 +109,10 @@ class Citizen extends Resource
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $params = $request->all();
                     $exist = CitizenModel::byFullName($params)
-                        ->byPhone($params)
                         ->byDateBirth($params)
                         ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
+                        return $fail('Користувач з таким ФІО і датою народження вже зареєстрований');
                     }
                 }),
 
@@ -123,11 +121,10 @@ class Citizen extends Resource
                 ->creationRules('required', 'max:255', function($attribute, $value, $fail) use($request) {
                     $params = $request->all();
                     $exist = CitizenModel::byFullName($params)
-                        ->byPhone($params)
                         ->byDateBirth($params)
                         ->first();
                     if ($exist) {
-                        return $fail('Користувач з таким ФІО, телефоном і датою народження вже зареєстрований');
+                        return $fail('Користувач з таким ФІО і датою народження вже зареєстрований');
                     }
                 }),
 
@@ -335,11 +332,21 @@ class Citizen extends Resource
     {
         $user = $request->user();
         if ($user->isCoordinator()) {
-            $generalInfo = GeneralInfoCitizen::all();
-            $userIds = self::$model::whereNotIn('id', $generalInfo->pluck('citizen_id'))->pluck('id');
-            $usersOfficeIds = $generalInfo->where('office_id', $user->getCoordinatorsOfficeId())->pluck('citizen_id');
-            $ids = $userIds->merge($usersOfficeIds);
-            $query = $query->whereIn('id', $ids);
+            $citizensIds = collect([]);
+            $office = Office::with('elective_plots.houses.citizens')->find($user->getCoordinatorsOfficeId());
+            foreach ($office->elective_plots as $electivePlot) {
+                if ($electivePlot->houses->count()) {
+                    foreach ($electivePlot->houses as $house) {
+                        if ($house->citizens->count()) {
+                            $citizensIds = $citizensIds->merge($house->citizens->pluck('id'));
+                        }
+                    }
+                }
+            }
+            $emptyCitizenIds = \App\Models\Citizen::with('house_citizens')->doesnthave('house_citizens')->pluck('id');
+            $citizensIds = $citizensIds->merge($emptyCitizenIds);
+
+            $query = $query->whereIn('citizens.id', $citizensIds);
         }
 
         return $query;
